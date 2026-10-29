@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Christie's Hen Do · Idea Box</title>
+<meta name="description" content="Drop your ideas for Christie's hen do.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Christie's Hen Do · Idea Box 🪩">
+<meta property="og:description" content="Got an idea for the hen? Drop it in the box.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪩</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12001f; --bg2:#2a0040;
+    --pink:#ff2d95; --hot:#ff5fb3; --violet:#9b5cff; --gold:#ffd166; --silver:#e9e4ff;
+    --text:#fff5fb; --muted:#cdb6dd; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.16);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:Outfit,system-ui,sans-serif;color:var(--text);min-height:100vh;background:var(--bg);overflow-x:hidden}
+  .bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(255,45,149,.35), transparent 60%),
+      radial-gradient(800px 500px at 100% 40%, rgba(155,92,255,.25), transparent 60%),
+      radial-gradient(700px 500px at 0% 80%, rgba(255,45,149,.18), transparent 60%),
+      linear-gradient(180deg,var(--bg),var(--bg2))}
+  /* floating sparkles */
+  .sparkles{position:fixed;inset:0;pointer-events:none;z-index:0}
+  .sparkles i{position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;
+    box-shadow:0 0 8px 2px rgba(255,255,255,.8),0 0 18px 4px rgba(255,45,149,.5);
+    animation:twinkle 3s ease-in-out infinite;opacity:0}
+  @keyframes twinkle{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1)}}
+
+  main{position:relative;z-index:1;max-width:620px;margin:0 auto;padding:28px 18px 60px}
+
+  /* disco ball */
+  .ball-wrap{display:flex;justify-content:center;margin-top:-8px}
+  .string{width:2px;height:34px;background:linear-gradient(var(--silver),transparent);margin:0 auto}
+  .ball{width:112px;height:112px;border-radius:50%;position:relative;overflow:hidden;
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.28) 0 1.5px, transparent 1.5px 11px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,.28) 0 1.5px, transparent 1.5px 11px),
+      conic-gradient(from 0deg,#fff,#c9b8ff,#ff9fd0,#fff,#9fd9ff,#ffe39f,#fff,#d6c4ff,#fff);
+    box-shadow:inset -18px -18px 30px rgba(40,0,60,.65), inset 10px 10px 20px rgba(255,255,255,.5),
+      0 0 40px rgba(255,45,149,.55),0 0 90px rgba(155,92,255,.35);
+    animation:spin 8s linear infinite;
+  }
+  .ball::after{content:"";position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.95) 0 6%,transparent 18%)}
+  @keyframes spin{to{filter:hue-rotate(360deg)}}
+
+  header{text-align:center;margin:10px 0 26px}
+  .kicker{letter-spacing:.32em;text-transform:uppercase;font-weight:700;font-size:13px;color:var(--gold)}
+  h1{font-family:Monoton,'Arial Black',Impact,sans-serif;font-weight:400;font-size:clamp(46px,14vw,86px);line-height:1;margin:10px 0 6px;
+    color:#fff;text-shadow:0 0 6px #fff,0 0 18px var(--pink),0 0 42px var(--pink),0 0 70px var(--violet)}
+  .sub{font-family:Outfit,system-ui,sans-serif;font-weight:900;font-size:clamp(20px,5.6vw,28px);margin:0;
+    background:linear-gradient(90deg,var(--hot),var(--gold),var(--hot));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .intro{color:var(--muted);font-size:16px;line-height:1.5;margin:14px auto 0;max-width:30em}
+
+  form,.done{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px 18px;
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    box-shadow:0 20px 60px rgba(0,0,0,.35)}
+  .field{margin-bottom:22px}
+  .field:last-of-type{margin-bottom:8px}
+  label.q,.q{display:block;font-weight:700;font-size:17px;margin-bottom:8px}
+  .q small{font-weight:400;color:var(--muted);font-size:14px;margin-left:4px}
+  .req{color:var(--hot)}
+  input[type=text],input[type=url],textarea{
+    width:100%;font:inherit;font-size:16px;color:var(--text);background:rgba(0,0,0,.28);
+    border:1.5px solid var(--line);border-radius:14px;padding:13px 14px;outline:none;transition:border-color .15s,box-shadow .15s}
+  textarea{min-height:92px;resize:vertical}
+  input::placeholder,textarea::placeholder{color:#a58ab8}
+  input:focus,textarea:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(255,45,149,.22)}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips input{position:absolute;opacity:0;pointer-events:none}
+  .chips label{cursor:pointer;user-select:none;font-weight:500;font-size:15px;padding:10px 14px;border-radius:999px;
+    border:1.5px solid var(--line);background:rgba(255,255,255,.04);transition:all .15s}
+  .chips label:hover{border-color:var(--hot)}
+  .chips input:checked + label{background:linear-gradient(135deg,var(--pink),var(--violet));border-color:transparent;
+    box-shadow:0 0 18px rgba(255,45,149,.55);color:#fff}
+  .chips input:focus-visible + label{outline:3px solid var(--gold);outline-offset:2px}
+
+  .hype{display:flex;gap:6px}
+  .hype input{position:absolute;opacity:0;pointer-events:none}
+  .hype label{font-size:34px;cursor:pointer;filter:grayscale(1) brightness(.6);transition:transform .15s,filter .15s}
+  .hype label.on{filter:none;transform:scale(1.12)}
+  .hype input:focus-visible + label{outline:3px solid var(--gold);border-radius:8px}
+  .hype-text{color:var(--gold);font-weight:700;min-height:1.4em;margin-top:4px}
+
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+  button.go{width:100%;margin-top:14px;border:0;border-radius:18px;padding:18px;cursor:pointer;
+    font:900 19px Outfit,sans-serif;letter-spacing:.04em;color:#fff;
+    background:linear-gradient(135deg,var(--pink),var(--violet));
+    box-shadow:0 10px 30px rgba(255,45,149,.45);transition:transform .1s,box-shadow .2s}
+  button.go:hover{box-shadow:0 12px 40px rgba(255,45,149,.7)}
+  button.go:active{transform:scale(.98)}
+  button.go[disabled]{opacity:.6;cursor:progress}
+  .error{color:#ffb3c7;font-weight:500;margin-top:12px;min-height:1.2em;text-align:center}
+
+  .done{text-align:center;padding:40px 22px}
+  .done .big{font-size:64px}
+  .done h2{font-family:Monoton,'Arial Black',Impact,sans-serif;font-weight:400;font-size:clamp(34px,10vw,52px);margin:10px 0;
+    text-shadow:0 0 12px var(--pink),0 0 30px var(--violet)}
+  .done p{color:var(--muted);font-size:17px;margin:0 0 22px}
+  .again{display:inline-block;border:1.5px solid var(--hot);color:#fff;background:transparent;font:700 16px Outfit;
+    padding:13px 22px;border-radius:999px;cursor:pointer}
+
+  footer{text-align:center;color:var(--muted);font-size:14px;margin-top:22px;line-height:1.5}
+  footer b{color:var(--silver)}
+
+  .confetti{position:fixed;top:-12px;width:9px;height:14px;z-index:5;pointer-events:none;border-radius:2px;
+    animation:fall linear forwards}
+  @keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+  @media (prefers-reduced-motion:reduce){.ball,.sparkles i{animation:none}.sparkles i{opacity:.6}}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="sparkles" aria-hidden="true"></div>
+<main>
+  <div class="ball-wrap" aria-hidden="true"><div><div class="string"></div><div class="ball"></div></div></div>
+
+  <header>
+    <div class="kicker">The Hen Do Idea Box</div>
+    <h1>Christie</h1>
+    <p class="sub">is getting married! 💍</p>
+    <p class="intro">Got an idea for the hen? Big or small, wild or chill, drop it in the box. It goes privately to the organisers, so Christie won't see a thing.</p>
+  </header>
+
+  <form id="ideaForm" novalidate>
+    <div class="field">
+      <label class="q" for="name">Your name <span class="req">*</span></label>
+      <input type="text" id="name" name="name" autocomplete="given-name" placeholder="So we know who to thank" required>
+    </div>
+
+    <div class="field">
+      <label class="q" for="idea">The idea <span class="req">*</span></label>
+      <input type="text" id="idea" name="idea" placeholder="e.g. Cocktail masterclass, paddleboarding, spa day…" required>
+    </div>
+
+    <div class="field">
+      <label class="q" for="details">Tell us more <small>optional</small></label>
+      <textarea id="details" name="details" placeholder="Why it'd be amazing, where it is, anything we should know"></textarea>
+    </div>
+
+    <div class="field">
+      <label class="q" for="link">Link <small>optional</small></label>
+      <input type="url" id="link" name="link" inputmode="url" placeholder="Paste a website or Instagram link">
+    </div>
+
+    <div class="field">
+      <span class="q" id="q-price">Rough price per person</span>
+      <div class="chips" role="radiogroup" aria-labelledby="q-price" data-name="price">
+        <input type="radio" name="price" id="p1" value="Free"><label for="p1">Free</label>
+        <input type="radio" name="price" id="p2" value="Under £25"><label for="p2">Under £25</label>
+        <input type="radio" name="price" id="p3" value="£25–50"><label for="p3">£25–50</label>
+        <input type="radio" name="price" id="p4" value="£50–100"><label for="p4">£50–100</label>
+        <input type="radio" name="price" id="p5" value="£100+"><label for="p5">£100+</label>
+        <input type="radio" name="price" id="p6" value="Not sure"><label for="p6">Not sure</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="q" id="q-time">How long does it take?</span>
+      <div class="chips" role="radiogroup" aria-labelledby="q-time">
+        <input type="radio" name="time" id="t1" value="1–2 hours"><label for="t1">1–2 hours</label>
+        <input type="radio" name="time" id="t2" value="Half day"><label for="t2">Half day</label>
+        <input type="radio" name="time" id="t3" value="Full day"><label for="t3">Full day</label>
+        <input type="radio" name="time" id="t4" value="Evening / night out"><label for="t4">Evening</label>
+        <input type="radio" name="time" id="t5" value="Overnight / weekend"><label for="t5">Overnight</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="q" id="q-transport">Getting there</span>
+      <div class="chips" role="radiogroup" aria-labelledby="q-transport">
+        <input type="radio" name="transport" id="r1" value="Walkable"><label for="r1">Walkable</label>
+        <input type="radio" name="transport" id="r2" value="Taxi / Uber"><label for="r2">Taxi / Uber</label>
+        <input type="radio" name="transport" id="r3" value="Train"><label for="r3">Train</label>
+        <input type="radio" name="transport" id="r4" value="Need a minibus / drive"><label for="r4">Minibus / drive</label>
+        <input type="radio" name="transport" id="r5" value="Not sure"><label for="r5">Not sure</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="q" for="kit">Anything to bring or wear? <small>optional</small></label>
+      <input type="text" id="kit" name="kit" placeholder="e.g. swimwear, trainers, fancy dress">
+    </div>
+
+    <div class="field">
+      <span class="q" id="q-christie">The Christie factor 👰‍♀️</span>
+      <div class="chips" role="radiogroup" aria-labelledby="q-christie">
+        <input type="radio" name="christie" id="c1" value="She suggested it"><label for="c1">She suggested it</label>
+        <input type="radio" name="christie" id="c2" value="She's mentioned loving it"><label for="c2">She's mentioned loving it</label>
+        <input type="radio" name="christie" id="c3" value="Not sure"><label for="c3">Not sure</label>
+        <input type="radio" name="christie" id="c4" value="Total surprise"><label for="c4">Total surprise 🤫</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="q" id="q-hype">Your hype level</span>
+      <div class="hype" role="radiogroup" aria-labelledby="q-hype">
+        <input type="radio" name="hype" id="h1" value="1"><label for="h1" title="1 – Could be fun">🪩</label>
+        <input type="radio" name="hype" id="h2" value="2"><label for="h2" title="2 – Nice one">🪩</label>
+        <input type="radio" name="hype" id="h3" value="3"><label for="h3" title="3 – Love it">🪩</label>
+        <input type="radio" name="hype" id="h4" value="4"><label for="h4" title="4 – Obsessed">🪩</label>
+        <input type="radio" name="hype" id="h5" value="5"><label for="h5" title="5 – We HAVE to do this">🪩</label>
+      </div>
+      <div class="hype-text" id="hypeText" aria-live="polite"></div>
+    </div>
+
+    <div class="hp" aria-hidden="true">
+      <label for="website">Leave this empty</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <button class="go" type="submit" id="submitBtn">Drop it in the box ✨</button>
+    <div class="error" id="error" role="alert"></div>
+  </form>
+
+  <section class="done" id="done" hidden aria-live="polite">
+    <div class="big">🪩</div>
+    <h2>Idea dropped!</h2>
+    <p>Thank you! The organisers have got it. Christie's going to love this.</p>
+    <button class="again" id="again" type="button">Add another idea</button>
+  </section>
+
+  <footer>Ideas go straight to the organisers and stay <b>top secret</b> 🤫<br>Add as many as you like, any time.</footer>
+</main>
+
+<script>
+  // Paste the Apps Script web app URL (ends in /exec) here:
+  const SCRIPT_URL = "PASTE_APPS_SCRIPT_URL_HERE";
+
+  // sparkles
+  (function(){
+    const box=document.querySelector('.sparkles');
+    for(let i=0;i<34;i++){
+      const s=document.createElement('i');
+      s.style.left=Math.random()*100+'vw'; s.style.top=Math.random()*100+'vh';
+      s.style.animationDelay=(Math.random()*3)+'s'; s.style.animationDuration=(2+Math.random()*3)+'s';
+      const k=Math.random()*.7+.4; s.style.width=s.style.height=(4*k)+'px';
+      box.appendChild(s);
+    }
+  })();
+
+  // hype rating
+  const hypeWords={1:"Could be fun",2:"Nice one",3:"Love it",4:"Obsessed",5:"We HAVE to do this 🔥"};
+  const hypeInputs=[...document.querySelectorAll('input[name=hype]')];
+  function paintHype(){
+    const v=+(hypeInputs.find(i=>i.checked)?.value||0);
+    hypeInputs.forEach(i=>document.querySelector(`label[for=${i.id}]`).classList.toggle('on',+i.value<=v));
+    document.getElementById('hypeText').textContent=v?hypeWords[v]:'';
+  }
+  hypeInputs.forEach(i=>i.addEventListener('change',paintHype));
+
+  // tap a selected chip again to clear it
+  document.querySelectorAll('.chips input[type=radio]').forEach(inp=>{
+    const lab=document.querySelector(`label[for=${inp.id}]`);
+    lab.addEventListener('mousedown',()=>{inp.dataset.was=inp.checked});
+    lab.addEventListener('click',e=>{ if(inp.dataset.was==='true'){e.preventDefault();inp.checked=false;inp.dataset.was='false';} });
+  });
+
+  const form=document.getElementById('ideaForm'), btn=document.getElementById('submitBtn'),
+        err=document.getElementById('error'), done=document.getElementById('done');
+
+  form.addEventListener('submit',async e=>{
+    e.preventDefault(); err.textContent='';
+    const fd=new FormData(form);
+    if(!fd.get('name').trim()){err.textContent='Pop your name in first 💕';form.name.focus();return}
+    if(!fd.get('idea').trim()){err.textContent="What's the idea? 👀";form.idea.focus();return}
+    if(!SCRIPT_URL.startsWith('https://script.google.com/')){err.textContent='The idea box isn\'t connected yet. Tell the organisers!';return}
+    btn.disabled=true; btn.textContent='Sending…';
+    try{
+      await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:new URLSearchParams(fd)});
+      form.hidden=true; done.hidden=false; confetti(); window.scrollTo({top:0,behavior:'smooth'});
+    }catch(_){
+      err.textContent='Hmm, that didn\'t send. Check your signal and try again.';
+    }finally{ btn.disabled=false; btn.textContent='Drop it in the box ✨'; }
+  });
+
+  document.getElementById('again').addEventListener('click',()=>{
+    const name=form.name.value; form.reset(); form.name.value=name; paintHype();
+    done.hidden=true; form.hidden=false; form.idea.focus();
+  });
+
+  function confetti(){
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cols=['#ff2d95','#9b5cff','#ffd166','#ffffff','#5fd4ff'];
+    for(let i=0;i<90;i++){
+      const c=document.createElement('div'); c.className='confetti';
+      c.style.left=Math.random()*100+'vw'; c.style.background=cols[i%cols.length];
+      c.style.animationDuration=(2.2+Math.random()*2)+'s'; c.style.animationDelay=(Math.random()*.6)+'s';
+      document.body.appendChild(c); setTimeout(()=>c.remove(),5000);
+    }
+  }
+</script>
+</body>
+</html>
