@@ -6,6 +6,8 @@
  *   - Missions for Christie     → the "Missions" tab
  *   - Finishing touches board   → the "Extras" tab (everyone can see these on the page)
  *     Organisers: type Sorted in the Status column to stamp a card, or Hidden to take it off the board.
+ *   - Bank details for paying come from the "Bank details" tab (kept here, not in the public website code).
+ *     Fill in its Secret word row to make people type that word before the details show.
  * Tabs are found by name, so other tabs (Budget etc.) can sit anywhere, in any order.
  * Tabs are created automatically the first time something arrives for them.
  *
@@ -100,6 +102,7 @@ function doGet(e) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const q = (e && e.parameter) || {};
   if (q.board) return json_({ ok: true, items: board_(ss, who_(q.me)) });
+  if (q.bank) return json_(bank_(ss, q.word));
   const count = key => { const sh = ss.getSheetByName(TABS[key].name); return sh ? Math.max(0, sh.getLastRow() - 1) : 0; };
   return json_({
     ok: true,
@@ -132,6 +135,19 @@ function board_(ss, me) {
       sorted: String(r[10]).trim().toLowerCase() === 'sorted',
       at: r[0] instanceof Date ? r[0].getTime() : 0,
     }));
+}
+
+function bank_(ss, word) {
+  const sh = ss.getSheetByName('Bank details');
+  if (!sh || sh.getLastRow() < 2) return { ok: false, error: 'No bank details yet' };
+  const rows = sh.getRange(1, 1, sh.getLastRow(), 2).getValues();
+  const get = k => { const r = rows.find(x => String(x[0]).trim().toLowerCase() === k); return r ? String(r[1]).trim() : ''; };
+  const secret = who_(get('secret word'));
+  if (secret && who_(word) !== secret) {
+    Utilities.sleep(700);                       // slows down guessing
+    return { ok: false, needWord: true, wrong: !!word };
+  }
+  return { ok: true, name: get('name on account'), sort: get('sort code'), account: get('account number'), reference: get('reference') };
 }
 
 // Names are matched loosely so "Beth" and " beth " count as the same person.
