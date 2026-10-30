@@ -399,6 +399,28 @@ body.crispy .news-strip .new{color:var(--ice);box-shadow:inset 0 0 0 1px rgba(15
 .spotify.spotify-mini{height:152px;border-radius:14px}
 .tunes .foot{margin-top:10px;font-size:13px}
 .tunes .foot a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(255,209,102,.4)}
+/* receipt */
+.receipt-wrap{filter:drop-shadow(0 18px 30px rgba(0,0,0,.45));margin:6px 6px 0}
+.receipt{--z:14px;position:relative;padding:30px 20px 34px;color:#2a0b3a;font-family:var(--mono);font-size:13px;line-height:1.5;
+  background:#fff8ec;background-image:radial-gradient(rgba(194,24,91,.07) 1px,transparent 1.2px);background-size:9px 9px;
+  -webkit-mask:conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) top/var(--z) 51% repeat-x,conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) bottom/var(--z) 51% repeat-x;
+  mask:conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) top/var(--z) 51% repeat-x,conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) bottom/var(--z) 51% repeat-x}
+.screen.show .receipt{animation:receiptIn .9s cubic-bezier(.2,.8,.2,1) both .1s}
+@keyframes receiptIn{from{transform:translateY(-24px);opacity:0}to{transform:none;opacity:1}}
+.r-head{text-align:center;display:flex;flex-direction:column;gap:2px;font-size:11px;letter-spacing:.12em;color:#6b3a7a}
+.r-head b{font-size:16px;letter-spacing:.14em;color:#c2185b;margin-bottom:4px}
+.r-rule{border-top:1.5px dashed rgba(42,11,58,.35);margin:12px 0}
+.r-rule.double{border-top:3px double rgba(42,11,58,.45)}
+.r-row{display:grid;grid-template-columns:1fr auto auto;gap:14px;padding:3px 0}
+.r-row span:nth-child(n+2){text-align:right;min-width:62px}
+.r-cols{font-size:10px;letter-spacing:.14em;color:#8a5a96;padding-bottom:6px}
+.r-total{font-weight:700;font-size:14px}
+.r-ask{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11px;letter-spacing:.14em;color:#6b3a7a}
+.r-ask b{font-size:26px;letter-spacing:0;color:#24002f}
+.r-ask small{font-size:11px;letter-spacing:.14em;color:#6b3a7a}
+.r-note{margin:4px 0 0;font-size:11px;color:#6b3a7a;text-align:right}
+.r-bar{height:34px;margin:20px auto 8px;width:78%;background:repeating-linear-gradient(90deg,#2a0b3a 0 2px,transparent 2px 4px,#2a0b3a 4px 5px,transparent 5px 8px,#2a0b3a 8px 11px,transparent 11px 12px,#2a0b3a 12px 13px,transparent 13px 16px)}
+.r-foot{margin:0;text-align:center;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a5a96}
 .linkbtn{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--hot);font-weight:700;text-decoration:underline}
 /* inner pages */
 .page-head{display:flex;align-items:center;gap:14px;margin:4px 0 16px}
@@ -584,14 +606,11 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
   <section class="screen page" id="pg-money" aria-labelledby="moneyH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">The boring bit</span></div>
     <h2 class="sec-h" id="moneyH">The money</h2>
-    <div class="panel">
-      <div class="price">£550<small>EACH</small></div>
-      <ul class="rows">
-        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/><path d="M6 6l3.5 3.5M14.5 14.5L18 18M18 6l-3.5 3.5M9.5 14.5L6 18"/></svg></span><span><b>£80 of that is contingency.</b> Our just-in-case pot for anything that costs more than planned.</span></li>
-        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span><span><b>What it covers:</b> we'll spell it out here as things get booked.</span></li>
-        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19M6 15h4"/></svg></span><span><b>How to pay:</b> payment link coming very soon, so hang fire for now.</span></li>
-      </ul>
-    </div>
+    <div class="receipt-wrap"><div class="receipt" id="receipt" aria-label="Budget breakdown"></div></div>
+    <ul class="panel rows" style="margin-top:18px">
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/><path d="M6 6l3.5 3.5M14.5 14.5L18 18M18 6l-3.5 3.5M9.5 14.5L6 18"/></svg></span><span><b>Why the range?</b> The boat and vineyard costs are estimates until they're booked. The contingency is our just-in-case pot for anything that costs more than planned.</span></li>
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19M6 15h4"/></svg></span><span><b>How to pay:</b> payment link coming very soon, so hang fire for now.</span></li>
+    </ul>
   </section>
 
   <section class="screen page" id="pg-prep" aria-labelledby="prepH">
@@ -930,8 +949,20 @@ const HEN_DATE = new Date(2027, 8, 9); // 9 Sept 2027
 /* ================= HUB CONTENT: edit this bit as plans firm up ================= */
 // Newest first. Add a line whenever something changes.
 const UPDATES = [
+  { date: '30 Oct 2026', text: "The money's in. Full breakdown's on the receipt, under The money." },
   { date: '30 Oct 2026', text: "We're live. Dates are locked in, the idea box is open and the playlist's up. Get adding!" },
 ];
+// The receipt on The money page. Prices are each, in £: [item, low, high]. Totals add themselves up.
+const BUDGET = {
+  where: 'Split', people: 7, ask: 550,
+  items: [
+    ['Accommodation',       193.14, 193.14],
+    ['Boat experience',      43.50,  87.00],
+    ['Vineyard experience',  43.50,  78.30],
+    ['Flights',             100.00, 100.00],
+    ['Contingency',          80.00,  80.00],
+  ],
+};
 // Add plans as they're booked, e.g. plan: ['Private boat day', 'Konoba seafood feast']. A note shows when there's no plan yet.
 const DAYS = [
   { wd: 'THU', d: '09', title: 'Day 1', plan: [] },
@@ -1568,6 +1599,25 @@ addEventListener('popstate', () => {          // phone's back button
   else if($('.screen.page.show')) goHome();
 });
 if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) openPage(location.hash.slice(1), false);
+
+/* ================= THE MONEY: receipt ================= */
+(function receipt(){
+  const gbp = n => '£' + n.toFixed(2);
+  const lo = BUDGET.items.reduce((t, i) => t + i[1], 0), hi = BUDGET.items.reduce((t, i) => t + i[2], 0);
+  const row = (a, b, c, cls = '') => `<div class="r-row ${cls}"><span>${a}</span><span>${b}</span><span>${c}</span></div>`;
+  $('#receipt').innerHTML = `
+    <div class="r-head"><b>CHRISTIE'S HEN DO</b><span>${esc(BUDGET.where.toUpperCase())} · 09–14.09.27</span><span>${BUDGET.people} GUESTS · PRICES EACH</span></div>
+    <div class="r-rule"></div>
+    ${row('ITEM', 'FROM', 'UP TO', 'r-cols')}
+    ${BUDGET.items.map(([n, a, b]) => row(esc(n), gbp(a), gbp(b))).join('')}
+    <div class="r-rule"></div>
+    ${row('TOTAL EACH', gbp(lo), gbp(hi), 'r-total')}
+    <div class="r-rule double"></div>
+    <div class="r-ask"><span>WE'RE ASKING</span><b>${gbp(BUDGET.ask)}<small> EACH</small></b></div>
+    <p class="r-note">${BUDGET.ask >= hi ? 'Covers the top end, with a little to spare.' : 'Top end may come in a touch higher.'}</p>
+    <div class="r-bar" aria-hidden="true"></div>
+    <p class="r-foot">Christie's none the wiser<br>Thank you, come again</p>`;
+})();
 
 /* ================= HUB: what's new + the plan ================= */
 $('#newsLatest').textContent = UPDATES[0].text;
