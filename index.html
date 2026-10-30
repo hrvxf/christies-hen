@@ -206,7 +206,7 @@ body.crispy .next{background:linear-gradient(135deg,var(--sapphire),#6a4dff);box
 .printer .slot{position:absolute;left:18px;right:18px;bottom:9px;height:7px;border-radius:4px;background:#05000a;box-shadow:inset 0 2px 4px #000,0 0 14px rgba(255,45,149,.7)}
 .printer .led{position:absolute;right:16px;top:12px;width:8px;height:8px;border-radius:50%;background:#3dff9a;box-shadow:0 0 8px #3dff9a}
 .printing .printer .led{animation:pulse .25s steps(1) infinite}
-.paper{position:relative;margin:-10px auto 0;width:min(92%,330px);height:230px;overflow:hidden;z-index:2;padding:0 6px}
+.paper{position:relative;margin:-10px auto 0;width:min(92%,330px);height:230px;overflow:hidden;z-index:2;padding:0 6px;transition:height .5s cubic-bezier(.4,0,.2,1)}
 .ticket{position:relative;display:flex;text-align:left;color:#2a0b3a;background:var(--cream);border-radius:10px;min-height:206px;
   transform:translateY(-104%);box-shadow:0 14px 30px rgba(0,0,0,.45);
   background-image:radial-gradient(rgba(255,45,149,.10) 1px,transparent 1.2px);background-size:9px 9px;
@@ -1170,7 +1170,7 @@ async function submitIdea(){
   showScreen('ticketScreen');
   const scene = $('#scene'), ticket = $('#ticket'), paper = $('#paper');
   $('#doneCopy').hidden = true; $('#failCopy').hidden = true;
-  ticket.style.visibility = ''; paper.style.height = ''; scene.classList.remove('printing'); void scene.offsetWidth;
+  ticket.style.visibility = ''; paper.style.transition = 'none'; paper.style.height = ''; void paper.offsetWidth; paper.style.transition = ''; scene.classList.remove('printing'); void scene.offsetWidth;
   const sending = send(f).then(() => true).catch(() => false);
   scene.classList.add('printing'); Sound.printer();
   await wait(reduced ? 200 : 2300);
@@ -1183,26 +1183,29 @@ async function submitIdea(){
 }
 $('#retryBtn').addEventListener('click', submitIdea);
 async function dropTicket(ticket){
-  const ballot = $('#ballot'), from = ticket.getBoundingClientRect(), box = ballot.getBoundingClientRect();
+  const ballot = $('#ballot'), paper = $('#paper'), from = ticket.getBoundingClientRect(), box = ballot.getBoundingClientRect();
   const fly = ticket.cloneNode(true); fly.removeAttribute('id'); fly.classList.add('flyer');
-  Object.assign(fly.style, { left: from.left+'px', top: from.top+'px', width: from.width+'px', height: from.height+'px', transform:'none', animation:'none' });
+  Object.assign(fly.style, { left: from.left+'px', top: from.top+'px', width: from.width+'px', height: from.height+'px', transform:'none', animation:'none', transformOrigin:'50% 100%' });
   document.body.appendChild(fly); ticket.style.visibility = 'hidden';
-  $('#paper').style.height = '30px';
-  const slotX = box.left + box.width/2, slotY = box.top + 12;
-  const dx = slotX - (from.left + from.width/2), dy = slotY - (from.top + from.height/2);
+  // aim the ticket's bottom edge at the slot in the lid, then slide it down "into" the box
+  const slotX = box.left + box.width/2, slotY = box.top + 13;
+  const sc = Math.min(.42, 118 / from.width);
+  const dx = slotX - (from.left + from.width/2), dy = slotY - from.bottom, sink = from.height * sc;
   if(!reduced){
     await fly.animate([
-      { transform:'translate(0,0) rotate(0) scale(1)', opacity:1 },
-      { transform:`translate(${dx*.3}px,${dy*.25 - 30}px) rotate(-8deg) scale(.9)`, opacity:1, offset:.35 },
-      { transform:`translate(${dx}px,${dy - 20}px) rotate(90deg) scale(.42,.42)`, opacity:1, offset:.8 },
-      { transform:`translate(${dx}px,${dy + 30}px) rotate(90deg) scale(.32,.42)`, opacity:0 }
-    ], { duration: 1100, easing:'cubic-bezier(.45,0,.3,1)', fill:'forwards' }).finished.catch(()=>{});
+      { transform:'translate(0,0) rotate(0) scale(1)', clipPath:'inset(0 0 0 0)', offset:0 },
+      { transform:`translate(${dx*.3}px,${dy*.3 - 46}px) rotate(-7deg) scale(.82)`, clipPath:'inset(0 0 0 0)', offset:.3 },
+      { transform:`translate(${dx}px,${dy}px) rotate(0) scale(${sc})`, clipPath:'inset(0 0 0 0)', offset:.58 },
+      { transform:`translate(${dx}px,${dy + sink}px) rotate(0) scale(${sc})`, clipPath:'inset(0 0 100% 0)', offset:1 }
+    ], { duration: 1500, easing:'cubic-bezier(.4,0,.3,1)', fill:'forwards' }).finished.catch(()=>{});
   }
   fly.remove();
   ballot.classList.remove('gulp'); void ballot.offsetWidth; ballot.classList.add('gulp');
   Sound.chime(); glitter(slotX, slotY); lightFloor(30); beat = 1;
+  await wait(reduced ? 0 : 450);
+  paper.style.height = '30px';                      // box glides up under the printer
+  await wait(reduced ? 0 : 520);
 }
-
 /* ================= THEME → SWING TAG ================= */
 function fillTag(){
   const f = form.elements;
