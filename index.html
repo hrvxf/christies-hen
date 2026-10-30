@@ -424,6 +424,46 @@ body.crispy .news-strip .new{color:var(--ice);box-shadow:inset 0 0 0 1px rgba(15
 .r-note{margin:4px 0 0;font-size:11px;color:#6b3a7a;text-align:right}
 .r-bar{height:34px;margin:20px auto 8px;width:78%;background:repeating-linear-gradient(90deg,#2a0b3a 0 2px,transparent 2px 4px,#2a0b3a 4px 5px,transparent 5px 8px,#2a0b3a 8px 11px,transparent 11px 12px,#2a0b3a 12px 13px,transparent 13px 16px)}
 .r-foot{margin:0;text-align:center;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a5a96}
+.navtile.art{padding:12px 12px 14px;gap:12px;min-height:0;justify-content:flex-start}
+.navtile.art .obj{display:grid;place-items:center;height:104px;border-radius:14px;background:rgba(0,0,0,.22);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);overflow:hidden}
+.navtile.art .art-txt{padding:0 4px}
+.navtile.art .obj > span{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.navtile.art:hover .obj > span{transform:translateY(-3px) rotate(0deg)!important}
+/* boarding pass */
+.pass{display:flex;width:86%;height:74px;border-radius:8px;background:#fff8ec;color:#2a0b3a;transform:rotate(-3deg);box-shadow:0 8px 18px rgba(0,0,0,.4);
+  -webkit-mask:radial-gradient(circle 5px at calc(100% - 26px) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 5px at calc(100% - 26px) 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
+  mask:radial-gradient(circle 5px at calc(100% - 26px) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 5px at calc(100% - 26px) 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
+.p-main{flex:1;min-width:0;display:flex;flex-direction:column;padding:7px 8px 6px;font-family:var(--mono);line-height:1.1}
+.p-k{font-size:6.5px;letter-spacing:.18em;text-transform:uppercase;color:#c2185b;font-weight:700}
+.p-to{font-size:17px;font-weight:700;letter-spacing:.06em;margin-top:3px}
+.p-row{display:flex;align-items:center;gap:4px;font-size:8px;font-weight:700;color:#6b3a7a;margin-top:3px}
+.p-plane{width:11px;height:11px;fill:#c2185b;transform:rotate(90deg)}
+.p-date{font-size:7px;letter-spacing:.08em;color:#6b3a7a;margin-top:auto}
+.p-stub{flex:none;width:26px;border-left:1.5px dashed rgba(42,11,58,.3);display:grid;place-items:center}
+.p-bar{width:12px;height:52px;background:repeating-linear-gradient(0deg,#2a0b3a 0 1.5px,transparent 1.5px 3px,#2a0b3a 3px 4px,transparent 4px 6px)}
+/* mini receipt */
+.mini-r{display:flex;flex-direction:column;gap:5px;width:62%;height:84px;padding:8px 9px 0;background:#fff8ec;transform:rotate(2deg);font-family:var(--mono);color:#2a0b3a;
+  box-shadow:0 8px 18px rgba(0,0,0,.4);-webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) bottom/8px 100%;mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) bottom/8px 100%}
+.mr-k{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#c2185b;font-weight:700;text-align:center;margin-bottom:1px}
+.mini-r i{display:block;height:3px;border-radius:2px;background:rgba(42,11,58,.18)}
+.mini-r i.s{width:70%}
+.mr-t{display:flex;justify-content:space-between;align-items:baseline;border-top:1.5px dashed rgba(42,11,58,.3);padding-top:4px;margin-top:2px;font-size:7px;letter-spacing:.12em;color:#6b3a7a}
+.mr-t b{font-size:13px;letter-spacing:0;color:#24002f}
+/* passport */
+.passport{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:62px;height:86px;border-radius:4px 9px 9px 4px;
+  background:linear-gradient(160deg,#6a1446,#3c0727);transform:rotate(-4deg);box-shadow:0 8px 18px rgba(0,0,0,.45),inset 4px 0 0 rgba(0,0,0,.25),inset 5px 0 0 rgba(255,255,255,.06)}
+.pp-crest svg{width:26px;height:26px;fill:none;stroke:#f2cf7a;stroke-width:1.1}
+.pp-word{font-family:var(--mono);font-size:6.5px;letter-spacing:.22em;text-transform:uppercase;color:#f2cf7a}
+/* postcard */
+.postcard{display:flex;gap:6px;width:88%;height:72px;padding:5px;border-radius:5px;background:#fff8ec;transform:rotate(3deg);box-shadow:0 8px 18px rgba(0,0,0,.4)}
+.pc-pic{position:relative;flex:1.5;border-radius:3px;overflow:hidden;background:linear-gradient(180deg,#ffb38a 0%,#ff8fb0 45%,#5fb6e8 46%,#2f7fc4 100%)}
+.pc-sun{position:absolute;left:58%;top:22%;width:16px;height:16px;border-radius:50%;background:#fff3cf;box-shadow:0 0 10px #fff3cf}
+.pc-sea{position:absolute;left:0;right:0;top:46%;bottom:0;background:repeating-linear-gradient(180deg,transparent 0 5px,rgba(255,255,255,.25) 5px 6px)}
+.pc-txt{position:absolute;left:6px;bottom:5px;font:900 italic 15px/1 var(--sans);color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.35)}
+.pc-txt small{display:block;font:600 6.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;margin-bottom:2px}
+.pc-side{flex:1;display:flex;flex-direction:column;gap:6px;padding:2px 0}
+.pc-stamp{align-self:flex-end;width:20px;height:24px;background:#c2185b;border:2px dotted #fff8ec;outline:1px solid rgba(194,24,91,.4);margin-bottom:4px}
+.pc-side i{display:block;height:1.5px;background:rgba(42,11,58,.25)}
 .linkbtn{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--hot);font-weight:700;text-decoration:underline}
 /* inner pages */
 .page-head{display:flex;align-items:center;gap:14px;margin:4px 0 16px}
@@ -582,10 +622,34 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
       <p class="sec-k info-k">The need-to-knows</p>
       <button class="news-strip" type="button" data-page="news"><span class="new">New</span><span class="txt" id="newsLatest"></span><span class="chev" aria-hidden="true">›</span></button>
       <nav class="navgrid" aria-label="Trip info">
-        <button class="navtile" type="button" data-page="plan"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><span><b>The plan</b><small>9–14 Sept, filling up</small></span></button>
-        <button class="navtile" type="button" data-page="money"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/></svg></span><span><b>The money</b><small>£550 each</small></span></button>
-        <button class="navtile" type="button" data-page="prep"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><circle cx="12" cy="10" r="3.2"/><path d="M9 16.5h6"/></svg></span><span><b>Before you go</b><small>Check your passport</small></span></button>
-        <button class="navtile" type="button" data-page="croatia"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></span><span><b>Croatia 101</b><small>Euros, plugs, Živjeli</small></span></button>
+        <button class="navtile art" type="button" data-page="plan">
+          <span class="obj" aria-hidden="true"><span class="pass">
+            <span class="p-main"><span class="p-k">Boarding pass</span><span class="p-to">SPLIT</span><span class="p-row"><span>UK</span><svg viewBox="0 0 24 24" class="p-plane"><path d="M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8.5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5z"/></svg><span>SPU</span></span><span class="p-date">09 SEP → 14 SEP</span></span>
+            <span class="p-stub"><span class="p-bar"></span></span>
+          </span></span>
+          <span class="art-txt"><b>The plan</b><small>9–14 Sept, filling up</small></span>
+        </button>
+        <button class="navtile art" type="button" data-page="money">
+          <span class="obj" aria-hidden="true"><span class="mini-r">
+            <span class="mr-k">Receipt</span><i></i><i class="s"></i><i></i><i class="s"></i>
+            <span class="mr-t"><span>TOTAL</span><b id="tileAsk">£550</b></span>
+          </span></span>
+          <span class="art-txt"><b>Costs</b><small>£550 each</small></span>
+        </button>
+        <button class="navtile art" type="button" data-page="prep">
+          <span class="obj" aria-hidden="true"><span class="passport">
+            <span class="pp-crest"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+            <span class="pp-word">Passport</span>
+          </span></span>
+          <span class="art-txt"><b>Before you go</b><small>Check your passport</small></span>
+        </button>
+        <button class="navtile art" type="button" data-page="croatia">
+          <span class="obj" aria-hidden="true"><span class="postcard">
+            <span class="pc-pic"><span class="pc-sun"></span><span class="pc-sea"></span><span class="pc-txt"><small>Pozdrav iz</small>Splita</span></span>
+            <span class="pc-side"><span class="pc-stamp"></span><i></i><i></i><i></i></span>
+          </span></span>
+          <span class="art-txt"><b>Croatia 101</b><small>Euros, plugs, Živjeli</small></span>
+        </button>
       </nav>
     </div>
 
@@ -608,7 +672,7 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
 
   <section class="screen page" id="pg-money" aria-labelledby="moneyH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">The boring bit</span></div>
-    <h2 class="sec-h" id="moneyH">The money</h2>
+    <h2 class="sec-h" id="moneyH">Costs</h2>
     <div class="receipt-wrap"><div class="receipt" id="receipt" aria-label="Budget breakdown"></div></div>
     <ul class="panel rows" style="margin-top:18px">
       <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/><path d="M6 6l3.5 3.5M14.5 14.5L18 18M18 6l-3.5 3.5M9.5 14.5L6 18"/></svg></span><span><b>Why the range?</b> The boat and vineyard costs are estimates until they're booked. The contingency is our just-in-case pot for anything that costs more than planned.</span></li>
@@ -952,7 +1016,7 @@ const HEN_DATE = new Date(2027, 8, 9); // 9 Sept 2027
 /* ================= HUB CONTENT: edit this bit as plans firm up ================= */
 // Newest first. Add a line whenever something changes.
 const UPDATES = [
-  { date: '30 Oct 2026', text: "The money's in. Full breakdown's on the receipt, under The money." },
+  { date: '30 Oct 2026', text: "The money's in. Full breakdown's on the receipt, under Costs." },
   { date: '30 Oct 2026', text: "We're live. Dates are locked in, the idea box is open and the playlist's up. Get adding!" },
 ];
 // The receipt on The money page. Prices are each, in £. Totals add themselves up.
@@ -1611,6 +1675,7 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
   const low = i => i.cost ?? i.from, high = i => i.cost ?? i.to;
   const lo = BUDGET.items.reduce((t, i) => t + low(i), 0), hi = BUDGET.items.reduce((t, i) => t + high(i), 0);
   const c = BUDGET.items.find(i => /contingency/i.test(i.item)), cont = c ? high(c) : 0;
+  $('#tileAsk').textContent = '£' + BUDGET.ask;
   const row = (a, b, c, cls = '') => `<div class="r-row ${cls}"><span>${a}</span><span>${b}</span><span>${c}</span></div>`;
   const item = i => i.cost != null
     ? `<div class="r-row r-one"><span>${esc(i.item)}${i.booked ? '<em class="r-booked">Booked</em>' : ''}</span><span>${gbp(i.cost)}</span></div>`
