@@ -464,6 +464,52 @@ body.crispy .news-strip .new{color:var(--ice);box-shadow:inset 0 0 0 1px rgba(15
 .pc-side{flex:1;display:flex;flex-direction:column;gap:6px;padding:2px 0}
 .pc-stamp{align-self:flex-end;width:20px;height:24px;background:#c2185b;border:2px dotted #fff8ec;outline:1px solid rgba(194,24,91,.4);margin-bottom:4px}
 .pc-side i{display:block;height:1.5px;background:rgba(42,11,58,.25)}
+.screen.page{padding-bottom:18vh}
+/* the plan: boarding pass */
+.bp-wrap{filter:drop-shadow(0 18px 30px rgba(0,0,0,.45));margin:4px 0 22px}
+.bp{display:flex;border-radius:16px;background:#fff8ec;color:#2a0b3a;
+  background-image:radial-gradient(rgba(194,24,91,.07) 1px,transparent 1.2px);background-size:9px 9px;
+  -webkit-mask:radial-gradient(circle 9px at calc(100% - 62px) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 9px at calc(100% - 62px) 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
+  mask:radial-gradient(circle 9px at calc(100% - 62px) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 9px at calc(100% - 62px) 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
+.screen.show .bp{animation:receiptIn .9s cubic-bezier(.2,.8,.2,1) both .1s}
+.bp-main{flex:1;min-width:0;padding:16px 14px 16px 18px;font-family:var(--mono)}
+.bp-k{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#c2185b;font-weight:700}
+.bp-route{display:flex;align-items:center;gap:10px;margin:12px 0 14px}
+.bp-port{display:flex;flex-direction:column;line-height:1.1}
+.bp-port.r{text-align:right}
+.bp-port small{font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#8a5a96}
+.bp-port b{font-size:30px;letter-spacing:.04em;margin:2px 0}
+.bp-fly{flex:1;display:flex;align-items:center;gap:6px;color:#c2185b}
+.bp-fly i{flex:1;border-top:1.5px dashed rgba(42,11,58,.3)}
+.bp-fly svg{width:18px;height:18px;fill:currentColor;transform:rotate(90deg)}
+.bp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 8px;border-top:1.5px dashed rgba(42,11,58,.25);padding-top:12px}
+.bp-grid span{font-size:12px;font-weight:700;line-height:1.25}
+.bp-grid small{display:block;font-size:8px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:#8a5a96;margin-bottom:2px}
+.bp-stub{flex:none;width:62px;border-left:2px dashed rgba(42,11,58,.28);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:16px 0}
+.bp-admit{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--disco);font-size:17px;color:#c2185b;letter-spacing:.06em}
+.bp-bar{width:22px;height:70px;background:repeating-linear-gradient(0deg,#2a0b3a 0 2px,transparent 2px 4px,#2a0b3a 4px 5px,transparent 5px 8px,#2a0b3a 8px 10px,transparent 10px 11px)}
+/* the plan: progress + timeline */
+.plan-prog{display:flex;align-items:center;gap:12px;margin:0 0 18px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.plan-prog span{flex:none}
+.plan-prog i{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden}
+.plan-prog b{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#f6d27c,#fff3cf);box-shadow:0 0 10px rgba(255,209,102,.6)}
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:15px;top:18px;bottom:30px;width:1.5px;background:linear-gradient(rgba(255,209,102,.7),rgba(255,209,102,.2))}
+.tl{position:relative;padding:0 0 12px 44px}
+.tl-dot{position:absolute;left:8px;top:18px;width:16px;height:16px;border-radius:50%;background:#1a0029;box-shadow:inset 0 0 0 1.5px rgba(255,209,102,.7)}
+.tl.done .tl-dot{background:var(--gold);box-shadow:0 0 14px rgba(255,209,102,.7)}
+.tl.travel .tl-dot{left:3px;top:13px;width:26px;height:26px;display:grid;place-items:center;background:#1a0029;box-shadow:inset 0 0 0 1.5px var(--gold),0 0 14px rgba(255,209,102,.25)}
+.tl.travel .tl-dot svg{width:14px;height:14px;fill:var(--gold);transform:rotate(180deg)}
+.tl.travel:first-child .tl-dot svg{transform:rotate(90deg)}
+.tl-card{border-radius:18px;padding:14px 16px;background:linear-gradient(180deg,rgba(48,12,74,.86),rgba(22,3,38,.9));box-shadow:0 14px 34px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.07)}
+.tl.tba .tl-card{background:rgba(22,3,38,.78);box-shadow:inset 0 0 0 1px rgba(255,220,150,.14)}
+.tl-date{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.tl-title{font-weight:600;font-size:17px;margin-top:3px}
+.tl-note{color:var(--muted);font-weight:400}
+.tl-tba{color:var(--muted);font-size:14px;font-style:italic;margin-top:3px;opacity:.8}
+.tl ul{list-style:none;margin:10px 0 0;padding:10px 0 0;display:grid;gap:8px;border-top:1px solid var(--line)}
+.tl ul li{display:flex;gap:12px;align-items:baseline;line-height:1.4}
+.tl .when{flex:none;width:76px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
 .linkbtn{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--hot);font-weight:700;text-decoration:underline}
 /* inner pages */
 .page-head{display:flex;align-items:center;gap:14px;margin:4px 0 16px}
@@ -665,9 +711,28 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
   <section class="screen page" id="pg-plan" aria-labelledby="planH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Thu 9 – Tue 14 Sept 2027</span></div>
     <h2 class="sec-h" id="planH">The plan</h2>
-    <p class="sec-p">Filling up as we book. Got ideas? Chuck them in the <button class="linkbtn" type="button" data-go="home">idea box</button></p>
-    <div class="panel rows" id="dayList"></div>
-    <div class="panel soon"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg></span><span><b style="color:var(--text)">Where we're staying, and flights:</b> coming soon. Photos up the minute it's booked.</span></div>
+    <div class="bp-wrap"><div class="bp">
+      <div class="bp-main">
+        <div class="bp-k">Boarding pass · Christie's Hen Do</div>
+        <div class="bp-route">
+          <span class="bp-port"><small>From</small><b>UK</b><small>Home</small></span>
+          <span class="bp-fly" aria-hidden="true"><i></i><svg viewBox="0 0 24 24"><path d="M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8.5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5z"/></svg><i></i></span>
+          <span class="bp-port r"><small>To</small><b>SPU</b><small>Split</small></span>
+        </div>
+        <div class="bp-grid">
+          <span><small>Depart</small>Thu 09 Sep</span><span><small>Return</small>Tue 14 Sep</span><span><small>Nights</small>5</span>
+          <span><small>Guests</small>7</span><span><small>Class</small>First</span><span><small>Gate</small>TBC</span>
+        </div>
+      </div>
+      <div class="bp-stub" aria-hidden="true"><span class="bp-admit">ADMIT 7</span><span class="bp-bar"></span></div>
+    </div></div>
+
+    <div class="plan-prog"><span id="planProg"></span><i><b id="planBar"></b></i></div>
+    <ol class="timeline" id="dayList"></ol>
+
+    <div class="panel soon" style="margin-top:6px"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg></span><span><b style="color:var(--text)">Where we're staying is booked.</b> Photos and details coming soon.</span></div>
+    <a class="btn btn-line" style="margin-top:14px" href="split-trip.ics" download>Add the dates to my calendar</a>
+    <p class="sec-p" style="text-align:center;margin-top:16px;font-size:14px">Got ideas? Chuck them in the <button class="linkbtn" type="button" data-go="home">idea box</button></p>
   </section>
 
   <section class="screen page" id="pg-money" aria-labelledby="moneyH">
@@ -1032,14 +1097,16 @@ const BUDGET = {
     { item: 'Contingency',         cost: 80.00 },
   ],
 };
-// Add plans as they're booked, e.g. plan: ['Private boat day', 'Konoba seafood feast']. A note shows when there's no plan yet.
+// The timeline on The plan page. Add plans as they're booked, either as plain text or with a time:
+//   plan: ['Konoba seafood feast']   or   plan: [{ when: 'Morning', what: 'Private boat day' }, { when: 'Evening', what: 'Konoba seafood feast' }]
+// travel: true puts a plane on the timeline.
 const DAYS = [
-  { wd: 'THU', d: '09', title: 'Day 1', plan: [] },
-  { wd: 'FRI', d: '10', title: 'Day 2', plan: [] },
-  { wd: 'SAT', d: '11', title: 'Day 3', plan: [] },
-  { wd: 'SUN', d: '12', title: 'Day 4', plan: [] },
-  { wd: 'MON', d: '13', title: 'Day 5', plan: [] },
-  { wd: 'TUE', d: '14', title: 'Day 6', note: 'Home time' },
+  { date: 'Thu 09 Sep', title: 'Day 1', travel: true, note: 'Fly out', plan: [] },
+  { date: 'Fri 10 Sep', title: 'Day 2', plan: [] },
+  { date: 'Sat 11 Sep', title: 'Day 3', plan: [] },
+  { date: 'Sun 12 Sep', title: 'Day 4', plan: [] },
+  { date: 'Mon 13 Sep', title: 'Day 5', plan: [] },
+  { date: 'Tue 14 Sep', title: 'Day 6', travel: true, note: 'Fly home', plan: [] },
 ];
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
@@ -1700,8 +1767,18 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
 /* ================= HUB: what's new + the plan ================= */
 $('#newsLatest').textContent = UPDATES[0].text;
 $('#newsList').innerHTML = UPDATES.map(u => `<li><time>${esc(u.date)}</time><span>${esc(u.text)}</span></li>`).join('');
-$('#dayList').innerHTML = DAYS.map(d => `<div><span class="dbadge"><small>${esc(d.wd)}</small><b>${esc(d.d)}</b><small>SEP</small></span>
-  <span class="dinfo"><b>${esc(d.title)}</b>${d.plan && d.plan.length ? '<ul>' + d.plan.map(x => `<li>${esc(x)}</li>`).join('') + '</ul>' : `<span>${esc(d.note || 'TBC')}</span>`}</span></div>`).join('');
+const PLANE = '<svg viewBox="0 0 24 24"><path d="M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8.5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5z"/></svg>';
+$('#dayList').innerHTML = DAYS.map(d => {
+  const items = (d.plan || []).map(x => typeof x === 'string' ? { what: x } : x);
+  const cls = ['tl', items.length ? 'done' : 'tba', d.travel ? 'travel' : ''].join(' ');
+  return `<li class="${cls}"><span class="tl-dot" aria-hidden="true">${d.travel ? PLANE : ''}</span><div class="tl-card">
+    <div class="tl-date">${esc(d.date)}</div>
+    <div class="tl-title">${esc(d.title)}${d.note ? `<span class="tl-note"> · ${esc(d.note)}</span>` : ''}</div>
+    ${items.length ? '<ul>' + items.map(i => `<li>${i.when ? `<span class="when">${esc(i.when)}</span>` : ''}<span>${esc(i.what)}</span></li>`).join('') + '</ul>' : '<div class="tl-tba">To be announced</div>'}
+  </div></li>`;
+}).join('');
+(function(){ const n = DAYS.filter(d => d.plan && d.plan.length).length;
+  $('#planProg').textContent = `${n} of ${DAYS.length} days planned`; $('#planBar').style.width = Math.max(3, n / DAYS.length * 100) + '%'; })();
 
 /* ================= PLAYLIST ================= */
 // Tapping into the Spotify player turns the disco music off so the two don't clash.
