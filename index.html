@@ -1592,8 +1592,13 @@ const Sound = (() => {
     get on(){ return on },
     get level(){ return lvl },
     get track(){ return SONGS[skipTo >= 0 ? skipTo : song].name },
-    resume(){ if(ctx && on && ctx.state !== 'running') ctx.resume(); },
-    pause(){ if(ctx && ctx.state === 'running') ctx.suspend(); },
+    resume(){
+      if(!ctx || !on || ctx.state === 'running') return;
+      if(ctx.state === 'interrupted'){ this.halt(); this.start(); return; }   // iPhone: a stuck context can't be resumed, so start a fresh one
+      ctx.resume();
+    },
+    // stop completely and let go of the audio (used when the page goes into the background); start() builds it fresh
+    halt(){ if(!ctx) return; clearInterval(timer); on = false; build = 0; dropAt = 0; kicks.length = 0; drops.length = 0; const c = ctx; ctx = null; try{ c.close(); }catch(_){} },
     get state(){ return ctx ? ctx.state : 'none' },
     start(){ if(!ctx && !init()) return false; ctx.resume(); on = true; clearInterval(timer);
       master.gain.cancelScheduledValues(ctx.currentTime); master.gain.setTargetAtTime(.34, ctx.currentTime, .4);
@@ -1643,12 +1648,12 @@ soundBtn.addEventListener('click', () => {
 });
 $('#nextBtn').addEventListener('click', () => { if(!Sound.on) return; toast('Up next: ' + Sound.next()); });
 // pause when the page isn't on screen (switching apps, home screen, locked phone); carry on when it's back
-document.addEventListener('visibilitychange', () => {
-  if(document.hidden){ Sound.pause(); try{ speechSynthesis.cancel(); }catch(_){} }
-  else if(!userMuted && Sound.on) Sound.resume();
-});
-addEventListener('pagehide', () => Sound.pause());
-addEventListener('pageshow', () => { if(!document.hidden && !userMuted && Sound.on) Sound.resume(); });
+let backOnReturn = false;
+function leaving(){ if(Sound.on){ Sound.halt(); backOnReturn = true; } try{ speechSynthesis.cancel(); }catch(_){} }
+function returning(){ if(backOnReturn && !userMuted){ backOnReturn = false; startMusic(); } }   // on iPhone the next tap finishes the restart
+document.addEventListener('visibilitychange', () => document.hidden ? leaving() : returning());
+addEventListener('pagehide', leaving);
+addEventListener('pageshow', () => { if(!document.hidden) returning(); });
 startMusic(); paintSound();
 
 /* entrance: the tap that opens the curtains also unlocks the music */
