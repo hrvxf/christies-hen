@@ -419,10 +419,10 @@ body.crispy .sec-h{--hot:var(--ice);--pink:var(--sapphire);color:#e6f2ff}
 .dinfo ul{margin:4px 0 0;padding-left:18px}
 .soon{display:flex;gap:13px;align-items:center;color:var(--muted);line-height:1.45}
 .soon .em{font-size:28px}
-.big{font-family:var(--mono);font-weight:700;font-size:44px;line-height:1;color:var(--gold);text-shadow:0 0 14px rgba(255,209,102,.5);margin-bottom:14px}
-.big small{font-size:15px;letter-spacing:.16em;margin-left:6px}
+.price{font-family:var(--mono);font-weight:700;font-size:44px;line-height:1;color:var(--gold);text-shadow:0 0 14px rgba(255,209,102,.5);margin-bottom:14px}
+.price small{font-size:15px;letter-spacing:.16em;margin-left:6px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tile{border-radius:18px;padding:14px;background:var(--fill);font-size:14px;line-height:1.4;color:var(--muted)}
+.tile{border-radius:18px;padding:14px;background:linear-gradient(180deg,rgba(48,12,74,.9),rgba(22,3,38,.92));box-shadow:inset 0 1px 0 rgba(255,255,255,.07);font-size:14px;line-height:1.4;color:var(--muted)}
 .tile .em{display:block;font-size:24px;margin-bottom:4px}
 .tile b{display:block;color:var(--text);font-size:16px;margin-bottom:2px}
 .spotify{display:block;width:100%;height:352px;border:0;border-radius:14px;background:rgba(0,0,0,.25)}
@@ -456,6 +456,31 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
 #foodForm .next{display:block;width:100%;margin-top:18px}
 .next[disabled]{opacity:.6;cursor:default}
 .ballot.wide .front span{font-size:21px}
+/* premium pass for inner pages + the idea box questions */
+.ico{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:12px;background:rgba(255,209,102,.08);box-shadow:inset 0 0 0 1px rgba(255,209,102,.18)}
+.ico svg{width:19px;height:19px;fill:none;stroke:var(--gold);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+body.crispy .ico svg{stroke:var(--ice)}
+.rows > li,.rows > div{align-items:flex-start}
+.rows .ico{margin-top:1px}
+.soon{align-items:center}
+.tile .ico{width:32px;height:32px;border-radius:10px;margin-bottom:10px}
+.tile .ico svg{width:17px;height:17px}
+.q{font-weight:700;letter-spacing:-.015em}
+.next,body.crispy .next{min-height:54px;padding:0 22px;border-radius:999px;font:600 16px var(--sans);letter-spacing:.02em;color:#24082f;
+  background:linear-gradient(180deg,#fff3cf 0%,#f6d27c 55%,#e9b955 100%);
+  box-shadow:0 10px 30px rgba(233,185,85,.2),inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(120,70,0,.25)}
+body.crispy .next{background:linear-gradient(180deg,#f2f8ff 0%,#bcdcff 60%,#8fbfff 100%);box-shadow:0 10px 30px rgba(61,123,255,.25),inset 0 1px 0 #fff}
+.skip{min-height:54px;padding:0 22px;border-radius:999px;font:600 15px var(--sans);color:var(--cream);background:rgba(255,255,255,.035);box-shadow:inset 0 0 0 1px rgba(255,220,150,.28)}
+.back{border-radius:999px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,220,150,.25);font-size:18px;color:var(--cream)}
+.chips label{font-weight:500;font-size:15px;padding:12px 17px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.chips label:hover{background:rgba(255,255,255,.07)}
+.chips.big label{font-size:16px;padding:15px 18px}
+.chips input:checked + label,body.crispy .chips input:checked + label{color:#fff3cf;background:rgba(255,209,102,.12);box-shadow:inset 0 0 0 1.5px rgba(255,209,102,.75),0 0 18px rgba(255,209,102,.12)}
+body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,255,.12);box-shadow:inset 0 0 0 1.5px rgba(159,211,255,.8)}
+.again,.again.alt,body.crispy .again{min-height:50px;padding:0 24px;font:600 15px var(--sans);letter-spacing:.02em;color:#24082f;
+  background:linear-gradient(180deg,#fff3cf 0%,#f6d27c 55%,#e9b955 100%);box-shadow:0 10px 30px rgba(233,185,85,.2),inset 0 1px 0 rgba(255,255,255,.7)}
+.again.alt{color:var(--cream);background:rgba(255,255,255,.035);box-shadow:inset 0 0 0 1px rgba(255,220,150,.32)}
+.hype-word{font-size:24px}
 .sitefoot{text-align:center;color:#a993ba;font-size:13px;line-height:1.6;margin:48px 0 24vh;text-shadow:0 1px 10px #0d0018}
 
 @media (min-width:700px){ main{padding-top:calc(var(--safe-t) + 80px)} }
@@ -544,20 +569,20 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
   <section class="screen page" id="pg-plan" aria-labelledby="planH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Thu 9 – Mon 13 Sept 2027</span></div>
     <h2 class="sec-h" id="planH">The plan</h2>
-    <p class="sec-p">Filling up as we book. Got ideas? Chuck them in the <button class="linkbtn" type="button" data-go="home">idea box</button> 🪩</p>
+    <p class="sec-p">Filling up as we book. Got ideas? Chuck them in the<button class="linkbtn" type="button" data-go="home">idea box</button></p>
     <div class="panel rows" id="dayList"></div>
-    <div class="panel soon"><span class="em" aria-hidden="true">🏡</span><span><b style="color:var(--text)">Where we're staying, and flights:</b> coming soon. Photos up the minute it's booked.</span></div>
+    <div class="panel soon"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg></span><span><b style="color:var(--text)">Where we're staying, and flights:</b> coming soon. Photos up the minute it's booked.</span></div>
   </section>
 
   <section class="screen page" id="pg-money" aria-labelledby="moneyH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">The boring bit</span></div>
     <h2 class="sec-h" id="moneyH">The money</h2>
     <div class="panel">
-      <div class="big">£550<small>EACH</small></div>
+      <div class="price">£550<small>EACH</small></div>
       <ul class="rows">
-        <li><span class="em" aria-hidden="true">🛟</span><span><b>£80 of that is contingency.</b> Our just-in-case pot for anything that costs more than planned.</span></li>
-        <li><span class="em" aria-hidden="true">🧾</span><span><b>What it covers:</b> we'll spell it out here as things get booked.</span></li>
-        <li><span class="em" aria-hidden="true">💸</span><span><b>How to pay:</b> payment link coming very soon, so hang fire for now.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/><path d="M6 6l3.5 3.5M14.5 14.5L18 18M18 6l-3.5 3.5M9.5 14.5L6 18"/></svg></span><span><b>£80 of that is contingency.</b> Our just-in-case pot for anything that costs more than planned.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span><span><b>What it covers:</b> we'll spell it out here as things get booked.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19M6 15h4"/></svg></span><span><b>How to pay:</b> payment link coming very soon, so hang fire for now.</span></li>
       </ul>
     </div>
   </section>
@@ -566,10 +591,10 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Do these early</span></div>
     <h2 class="sec-h" id="prepH">Before you go</h2>
     <ul class="panel rows">
-      <li><span class="em" aria-hidden="true">🛂</span><span><b>Check your passport now.</b> For Croatia it needs to be issued less than 10 years before we land, and valid for 3 months after we fly home. Renewals can take weeks. <a href="https://www.gov.uk/foreign-travel-advice/croatia/entry-requirements" target="_blank" rel="noopener">The gov.uk rules</a></span></li>
-      <li><span class="em" aria-hidden="true">🩺</span><span><b>Get a GHIC.</b> It's free on the NHS website, so ignore any site that tries to charge you.</span></li>
-      <li><span class="em" aria-hidden="true">🛡️</span><span><b>Sort travel insurance</b> once flights are booked.</span></li>
-      <li><span class="em" aria-hidden="true">🛃</span><span><b>New EU border checks.</b> You might have fingerprints and a photo taken at passport control. It's free, just a bit more queueing.</span></li>
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><circle cx="12" cy="10" r="3.2"/><path d="M9 16.5h6"/></svg></span><span><b>Check your passport now.</b> For Croatia it needs to be issued less than 10 years before we land, and valid for 3 months after we fly home. Renewals can take weeks. <a href="https://www.gov.uk/foreign-travel-advice/croatia/entry-requirements" target="_blank" rel="noopener">The gov.uk rules</a></span></li>
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8v8M8 12h8"/></svg></span><span><b>Get a GHIC.</b> It's free on the NHS website, so ignore any site that tries to charge you.</span></li>
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.5-3.2 8-7.5 9.5-4.3-1.5-7.5-5-7.5-9.5V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span><b>Sort travel insurance</b> once flights are booked.</span></li>
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.2"/><path d="M6.5 16c.6-1.6 1.5-2.4 2.5-2.4s1.9.8 2.5 2.4M14 10h4M14 13.5h3"/></svg></span><span><b>New EU border checks.</b> You might have fingerprints and a photo taken at passport control. It's free, just a bit more queueing.</span></li>
     </ul>
   </section>
 
@@ -577,14 +602,14 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Need to know</span></div>
     <h2 class="sec-h" id="croH">Croatia 101</h2>
     <div class="grid">
-      <div class="tile"><span class="em" aria-hidden="true">💶</span><b>Euros</b>Cards work most places. Carry a bit of cash for boats and beach bars.</div>
-      <div class="tile"><span class="em" aria-hidden="true">🚕</span><b>Getting about</b>Uber and Bolt work in the bigger towns.</div>
-      <div class="tile"><span class="em" aria-hidden="true">🔌</span><b>Plugs</b>European two-pin. Bring an adapter (or two).</div>
-      <div class="tile"><span class="em" aria-hidden="true">☀️</span><b>Weather</b>Still hot in September and the sea's lovely. Swimmies and sunnies.</div>
-      <div class="tile"><span class="em" aria-hidden="true">🥂</span><b>Živjeli!</b>(ZHIV-yeh-lee) Cheers. You'll need this one.</div>
-      <div class="tile"><span class="em" aria-hidden="true">🙏</span><b>Hvala</b>(HVAH-la) Thank you. Also handy.</div>
-      <div class="tile"><span class="em" aria-hidden="true">🚨</span><b>Emergencies</b>Call 112.</div>
-      <div class="tile"><span class="em" aria-hidden="true">💧</span><b>Tap water</b>Fine to drink. Save your euros for G&amp;Ts.</div>
+      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.5 6.5a6.5 6.5 0 1 0 0 11"/><path d="M4.5 10.5h8M4.5 13.5h8"/></svg></span><b>Euros</b>Cards work most places. Carry a bit of cash for boats and beach bars.</div>
+      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 17v-4.5L7 7h10l2 5.5V17"/><path d="M3.5 12.5h17M5 17h14"/><path d="M7.5 17v2M16.5 17v2"/></svg></span><b>Getting about</b>Uber and Bolt work in the bigger towns.</div>
+      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6.5 8h11v3a5.5 5.5 0 0 1-11 0zM12 16.5V21"/></svg></span><b>Plugs</b>European two-pin. Bring an adapter (or two).</div>
+      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></span><b>Weather</b>Still hot in September and the sea's lovely. Swimmies and sunnies.</div>
+      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3h8l-.5 5a3.5 3.5 0 0 1-7 0z"/><path d="M12 11.5V20M8.5 20h7"/></svg></span><b>Živjeli!</b>(ZHIV-yeh-lee) Cheers. You'll need this one.</div>
+      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><b>Hvala</b>(HVAH-la) Thank you. Also handy.</div>
+      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4.5M12 17.5v.01"/></svg></span><b>Emergencies</b>Call 112.</div>
+      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5S6 10 6 14a6 6 0 0 0 12 0c0-4-6-10.5-6-10.5z"/></svg></span><b>Tap water</b>Fine to drink. Save your euros for G&amp;Ts.</div>
     </div>
   </section>
 
@@ -615,7 +640,7 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
       <textarea id="fnotes" name="notes" placeholder="e.g. nut allergy, can't stand olives, go green on boats" maxlength="1500"></textarea>
       <div class="sr" aria-hidden="true"><label for="website4">Leave empty</label><input type="text" id="website4" name="website" tabindex="-1"></div>
       <div class="err" aria-live="polite"></div>
-      <button class="next" type="submit">Send it 🍽️</button>
+      <button class="next" type="submit">Send it</button>
     </form>
   </section>
 
@@ -673,7 +698,7 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
 
       <div class="step" data-auto>
         <h2 class="q">How long does it take?</h2>
-        <p class="hint">So we can plan it round the sunbathing ☀️</p>
+        <p class="hint">So we can plan it round the sunbathing</p>
         <div class="chips" role="radiogroup" aria-label="Time needed">
           <input type="radio" name="time" id="t1" value="1–2 hours"><label for="t1">1–2 hours</label>
           <input type="radio" name="time" id="t2" value="Half day"><label for="t2">Half day</label>
@@ -700,26 +725,26 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
       </div>
 
       <div class="step" data-auto>
-        <h2 class="q">The Christie factor 👰‍♀️</h2>
+        <h2 class="q">The Christie factor</h2>
         <p class="hint">Has she ever gone on about it?</p>
         <div class="chips big" role="radiogroup" aria-label="Christie factor">
-          <input type="radio" name="christie" id="c1" value="She suggested it"><label for="c1">💡 She suggested it</label>
-          <input type="radio" name="christie" id="c2" value="She's mentioned it more than once"><label for="c2">😍 She's mentioned it more than once</label>
-          <input type="radio" name="christie" id="c3" value="Not sure"><label for="c3">🤷‍♀️ Not sure</label>
-          <input type="radio" name="christie" id="c4" value="Total surprise"><label for="c4">🤫 Total surprise</label>
+          <input type="radio" name="christie" id="c1" value="She suggested it"><label for="c1">She suggested it</label>
+          <input type="radio" name="christie" id="c2" value="She's mentioned it more than once"><label for="c2">She's mentioned it more than once</label>
+          <input type="radio" name="christie" id="c3" value="Not sure"><label for="c3">Not sure</label>
+          <input type="radio" name="christie" id="c4" value="Total surprise"><label for="c4">Total surprise</label>
         </div>
         <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
       </div>
 
       <div class="step">
         <div class="hangball" aria-hidden="true"><i></i><canvas width="300" height="300"></canvas></div>
-        <h2 class="q">How many G&amp;Ts is this idea worth? 🍸</h2>
-        <p class="hint">Your hype level. Tap a glass and turn it up 🔊</p>
+        <h2 class="q">How many G&amp;Ts is this idea worth?</h2>
+        <p class="hint">Your hype level. Tap a glass and turn it up</p>
         <input type="hidden" name="hype">
         <div class="glasses" data-prefix="i" role="radiogroup" aria-label="Hype level"></div>
         <div class="hype-word" aria-live="polite"></div>
         <div class="err" aria-live="polite"></div>
-        <div class="nav"><button class="next" type="button" id="printBtn">Print my ticket 🎟️</button></div>
+        <div class="nav"><button class="next" type="button" id="printBtn">Print my ticket</button></div>
       </div>
 
       <div class="sr" aria-hidden="true"><label for="website">Leave empty</label><input type="text" id="website" name="website" tabindex="-1"></div>
@@ -736,7 +761,7 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
       </div>
 
       <div class="step" data-req="theme">
-        <h2 class="q">What's the theme? 👗</h2>
+        <h2 class="q">What's the theme?</h2>
         <p class="hint">Dress code, colour scheme, fancy dress, matching outfits…</p>
         <label class="sr" for="theme">The theme</label>
         <input type="text" id="theme" name="theme" placeholder="e.g. All white on the boat" maxlength="120">
@@ -758,36 +783,36 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
         <h2 class="q">When would we wear it?</h2>
         <p class="hint">Pick the best fit.</p>
         <div class="chips big" role="radiogroup" aria-label="When">
-          <input type="radio" name="when" id="w1" value="The whole trip"><label for="w1">🎉 The whole trip</label>
-          <input type="radio" name="when" id="w2" value="One night out"><label for="w2">🌙 One night out</label>
-          <input type="radio" name="when" id="w3" value="Boat or beach day"><label for="w3">⛵ Boat or beach day</label>
-          <input type="radio" name="when" id="w4" value="Travel day (matching airport outfits)"><label for="w4">✈️ Travel day (matching airport outfits)</label>
-          <input type="radio" name="when" id="w6" value="Just a matching touch (sashes, tees, accessories)"><label for="w6">🎀 Just a matching touch (sashes, tees)</label>
-          <input type="radio" name="when" id="w5" value="Not sure"><label for="w5">🤷‍♀️ Not sure</label>
+          <input type="radio" name="when" id="w1" value="The whole trip"><label for="w1">The whole trip</label>
+          <input type="radio" name="when" id="w2" value="One night out"><label for="w2">One night out</label>
+          <input type="radio" name="when" id="w3" value="Boat or beach day"><label for="w3">Boat or beach day</label>
+          <input type="radio" name="when" id="w4" value="Travel day (matching airport outfits)"><label for="w4">Travel day (matching airport outfits)</label>
+          <input type="radio" name="when" id="w6" value="Just a matching touch (sashes, tees, accessories)"><label for="w6">Just a matching touch (sashes, tees)</label>
+          <input type="radio" name="when" id="w5" value="Not sure"><label for="w5">Not sure</label>
         </div>
         <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
       </div>
 
       <div class="step" data-auto>
-        <h2 class="q">The Christie factor 👰‍♀️</h2>
+        <h2 class="q">The Christie factor</h2>
         <p class="hint">Would she be up for it?</p>
         <div class="chips big" role="radiogroup" aria-label="Christie factor">
-          <input type="radio" name="christie" id="tc1" value="She suggested it"><label for="tc1">💡 She suggested it</label>
-          <input type="radio" name="christie" id="tc2" value="She'd love it"><label for="tc2">😍 She'd love it</label>
-          <input type="radio" name="christie" id="tc3" value="Not sure"><label for="tc3">🤷‍♀️ Not sure</label>
-          <input type="radio" name="christie" id="tc4" value="Total surprise"><label for="tc4">🤫 Total surprise</label>
+          <input type="radio" name="christie" id="tc1" value="She suggested it"><label for="tc1">She suggested it</label>
+          <input type="radio" name="christie" id="tc2" value="She'd love it"><label for="tc2">She'd love it</label>
+          <input type="radio" name="christie" id="tc3" value="Not sure"><label for="tc3">Not sure</label>
+          <input type="radio" name="christie" id="tc4" value="Total surprise"><label for="tc4">Total surprise</label>
         </div>
         <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
       </div>
 
       <div class="step">
         <div class="hangball" aria-hidden="true"><i></i><canvas width="300" height="300"></canvas></div>
-        <h2 class="q">How many G&amp;Ts is this theme worth? 🍸</h2>
-        <p class="hint">Your hype level. Tap a glass and turn it up 🔊</p>
+        <h2 class="q">How many G&amp;Ts is this theme worth?</h2>
+        <p class="hint">Your hype level. Tap a glass and turn it up</p>
         <input type="hidden" name="hype">
         <div class="glasses" data-prefix="t" role="radiogroup" aria-label="Hype level"></div>
         <div class="hype-word" aria-live="polite"></div>
-        <div class="nav"><button class="next" type="button">Hang it on the rail 👗</button></div>
+        <div class="nav"><button class="next" type="button">Hang it on the rail</button></div>
       </div>
 
       <div class="sr" aria-hidden="true"><label for="website2">Leave empty</label><input type="text" id="website2" name="website" tabindex="-1"></div>
@@ -804,8 +829,8 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
       </div>
 
       <div class="step" data-req="mission">
-        <h2 class="q">What's the mission? 🎯</h2>
-        <p class="hint">A little challenge for Christie on the trip. Cheeky, not crude 😉</p>
+        <h2 class="q">What's the mission?</h2>
+        <p class="hint">A little challenge for Christie on the trip. Cheeky, not crude</p>
         <label class="sr" for="mission">The mission</label>
         <input type="text" id="mission" name="mission" placeholder="e.g. Order drinks in Croatian" maxlength="160">
         <label class="lbl" for="mdetails">Any rules? <small>(optional)</small></label>
@@ -818,11 +843,11 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
         <h2 class="q">When should she do it?</h2>
         <p class="hint">Pick the best fit.</p>
         <div class="chips big" role="radiogroup" aria-label="When">
-          <input type="radio" name="when" id="mw1" value="At the airport"><label for="mw1">✈️ At the airport</label>
-          <input type="radio" name="when" id="mw2" value="On the boat"><label for="mw2">⛵ On the boat</label>
-          <input type="radio" name="when" id="mw3" value="On a night out"><label for="mw3">🌙 On a night out</label>
-          <input type="radio" name="when" id="mw4" value="At dinner"><label for="mw4">🍽️ At dinner</label>
-          <input type="radio" name="when" id="mw5" value="Any time"><label for="mw5">🎉 Any time</label>
+          <input type="radio" name="when" id="mw1" value="At the airport"><label for="mw1">At the airport</label>
+          <input type="radio" name="when" id="mw2" value="On the boat"><label for="mw2">On the boat</label>
+          <input type="radio" name="when" id="mw3" value="On a night out"><label for="mw3">On a night out</label>
+          <input type="radio" name="when" id="mw4" value="At dinner"><label for="mw4">At dinner</label>
+          <input type="radio" name="when" id="mw5" value="Any time"><label for="mw5">Any time</label>
         </div>
         <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
       </div>
@@ -831,21 +856,21 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
         <h2 class="q">How brave does she need to be?</h2>
         <p class="hint">Be kind. Ish.</p>
         <div class="chips big" role="radiogroup" aria-label="Cheek level">
-          <input type="radio" name="cheek" id="mk1" value="Easy peasy"><label for="mk1">😇 Easy peasy</label>
-          <input type="radio" name="cheek" id="mk2" value="Bit cheeky"><label for="mk2">😏 Bit cheeky</label>
-          <input type="radio" name="cheek" id="mk3" value="Proper dare"><label for="mk3">🫣 Proper dare</label>
+          <input type="radio" name="cheek" id="mk1" value="Easy peasy"><label for="mk1">Easy peasy</label>
+          <input type="radio" name="cheek" id="mk2" value="Bit cheeky"><label for="mk2">Bit cheeky</label>
+          <input type="radio" name="cheek" id="mk3" value="Proper dare"><label for="mk3">Proper dare</label>
         </div>
         <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
       </div>
 
       <div class="step">
         <div class="hangball" aria-hidden="true"><i></i><canvas width="300" height="300"></canvas></div>
-        <h2 class="q">How many G&amp;Ts will she need first? 🍸</h2>
-        <p class="hint">Tap a glass and turn it up 🔊</p>
+        <h2 class="q">How many G&amp;Ts will she need first?</h2>
+        <p class="hint">Tap a glass and turn it up</p>
         <input type="hidden" name="hype">
         <div class="glasses" data-prefix="m" role="radiogroup" aria-label="G&amp;Ts needed"></div>
         <div class="hype-word" aria-live="polite"></div>
-        <div class="nav"><button class="next" type="button">Seal the mission 🎯</button></div>
+        <div class="nav"><button class="next" type="button">Seal the mission</button></div>
       </div>
 
       <div class="sr" aria-hidden="true"><label for="website3">Leave empty</label><input type="text" id="website3" name="website" tabindex="-1"></div>
@@ -873,7 +898,7 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
       <div class="done-copy" id="doneCopy" hidden>
         <h2 id="doneH">Idea dropped!</h2>
         <p id="doneText">It's in the box. The organisers have got it, and Christie's none the wiser.</p>
-        <div class="done-btns" id="doneBtns"><button class="again" type="button" data-go="idea">Drop another idea ✨</button><button class="again alt" type="button" data-go="theme">Pitch a theme 👗</button></div>
+        <div class="done-btns" id="doneBtns"><button class="again" type="button" data-go="idea">Drop another idea</button><button class="again alt" type="button" data-go="theme">Pitch a theme</button></div>
         <button class="ghost" type="button" data-go="home">Back to the dance floor</button>
       </div>
       <div class="done-copy" id="failCopy" hidden>
@@ -905,7 +930,7 @@ body.crispy .navtile .ico svg{stroke:var(--ice)}
       <div class="done-copy" id="tagDone" hidden>
         <h2>On the rail!</h2>
         <p id="tagDoneText">Your theme's been hung up for the organisers. Christie's none the wiser.</p>
-        <div class="done-btns"><button class="again alt" type="button" data-go="theme">Pitch another theme 👗</button><button class="again" type="button" data-go="idea">Drop an idea 🪩</button></div>
+        <div class="done-btns"><button class="again alt" type="button" data-go="theme">Pitch another theme</button><button class="again" type="button" data-go="idea">Drop an idea</button></div>
         <button class="ghost" type="button" data-go="home">Back to the dance floor</button>
       </div>
       <div class="done-copy" id="tagFail" hidden>
@@ -1245,8 +1270,8 @@ fetch(SCRIPT_URL + '?count=1').then(r => r.json()).then(d => {
 }).catch(()=>{});
 
 /* ================= G&T GLASSES ================= */
-const HYPE_IDEA = ['', 'Go on then', "I'd be up for it", 'Love this', 'Obsessed', 'Cocktails all round! 🍹'];
-const HYPE = { idea: HYPE_IDEA, theme: HYPE_IDEA, mission: ['', 'Just the one', 'A couple for courage', 'Getting brave now', 'Dutch courage', 'Cocktails all round! 🍹'] };
+const HYPE_IDEA = ['', 'Go on then', "I'd be up for it", 'Love this', 'Obsessed', 'Cocktails all round!'];
+const HYPE = { idea: HYPE_IDEA, theme: HYPE_IDEA, mission: ['', 'Just the one', 'A couple for courage', 'Getting brave now', 'Dutch courage', 'Cocktails all round!'] };
 const PREFIX_KIND = { i: 'idea', t: 'theme', m: 'mission' };
 document.body.insertAdjacentHTML('beforeend', `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8ecff" stop-opacity=".95"/><stop offset="1" stop-color="#3d7bff" stop-opacity=".85"/></linearGradient></defs></svg>`);
 // Each glass holds a bit more than the last; the fifth is a big balloon-glass cocktail.
@@ -1358,7 +1383,7 @@ function showStep(i, dir='r'){
   const first = steps[i].querySelector('input[type=text],input[type=url]');
   if(first && matchMedia('(hover:hover)').matches) setTimeout(()=>first.focus({preventScroll:true}), 350);
 }
-const REQ_MSG = { name:'Pop your name in first 💕', idea:"Go on, what's the idea? 👀", theme:"Go on, what's the theme? 👗", mission:"Go on, what's the mission? 🎯" };
+const REQ_MSG = { name:'Pop your name in first', idea:"Go on, what's the idea?", theme:"Go on, what's the theme?", mission:"Go on, what's the mission?" };
 const EXAMPLES = {
   idea: ['Private boat day','Krka waterfalls trip','Hvar beach club day','Sunset kayaking','Vineyard wine tasting','Blue Cave boat trip','Konoba seafood feast','Snorkelling & a picnic'],
   kit: ['swimmies & suncream','water shoes, a hat','something sparkly','sunnies and SPF'],
@@ -1429,10 +1454,10 @@ const gtNo = n => n != null ? 'No. ' + String(n + 1).padStart(3,'0') : 'VIP';
 // Ideas and missions share the ticket printer; these are the bits that change.
 const TICKET = {
   idea: { by:'Dropped by', admit:'ADMIT ONE', box:'IDEAS', sub:'top secret', done:'Idea dropped!',
-    btns:[['idea','Drop another idea ✨',''],['theme','Pitch a theme 👗','alt']],
+    btns:[['idea','Drop another idea',''],['theme','Pitch a theme','alt']],
     text: n => n != null ? `It's in the box, idea number ${n}! The organisers have got it, and Christie's none the wiser.` : "It's in the box. The organisers have got it, and Christie's none the wiser." },
   mission: { by:'Set by', admit:'MISSION', box:'MISSIONS', sub:'for later', done:'Mission filed!',
-    btns:[['mission','Set another mission 🎯',''],['idea','Drop an idea 🪩','alt']],
+    btns:[['mission','Set another mission',''],['idea','Drop an idea','alt']],
     text: n => n != null ? `Mission number ${n} is locked away for the trip. Christie's none the wiser.` : "It's locked away for the trip. Christie's none the wiser." }
 };
 function fillTicket(){
@@ -1570,7 +1595,7 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
 $('#newsLatest').textContent = UPDATES[0].text;
 $('#newsList').innerHTML = UPDATES.map(u => `<li><time>${esc(u.date)}</time><span>${esc(u.text)}</span></li>`).join('');
 $('#dayList').innerHTML = DAYS.map(d => `<div><span class="dbadge"><small>${esc(d.wd)}</small><b>${esc(d.d)}</b><small>SEP</small></span>
-  <span class="dinfo"><b>${esc(d.title)}</b>${d.plan.length ? '<ul>' + d.plan.map(x => `<li>${esc(x)}</li>`).join('') + '</ul>' : '<span>TBC 🪩</span>'}</span></div>`).join('');
+  <span class="dinfo"><b>${esc(d.title)}</b>${d.plan.length ? '<ul>' + d.plan.map(x => `<li>${esc(x)}</li>`).join('') + '</ul>' : '<span>TBC</span>'}</span></div>`).join('');
 
 /* ================= FOOD + ALLERGIES ================= */
 const food = $('#foodForm'), foodBtn = food.querySelector('button[type=submit]'), foodErr = food.querySelector('.err');
@@ -1586,24 +1611,24 @@ food.addEventListener('submit', async e => {
   const name = food.elements.name.value.trim(), notes = food.elements.notes.value.trim();
   const diet = [...food.querySelectorAll('input[name=diet]:checked')].map(i => i.value).join(', ');
   if(!name){ foodErr.textContent = REQ_MSG.name; food.elements.name.focus(); return; }
-  if(!diet && !notes){ foodErr.textContent = 'Tick a box or tell us below 🍽️'; return; }
+  if(!diet && !notes){ foodErr.textContent = 'Tick a box or tell us below'; return; }
   foodErr.textContent = ''; store.set('hen_name', name);
   foodBtn.disabled = true; foodBtn.textContent = 'Sending…';
   const p = new URLSearchParams({ type:'diet', name, diet, notes, website: food.elements.website.value,
     idea: '🍽️ FOOD: ' + [diet, notes].filter(Boolean).join(' · ') });   // fallback for an older Sheet script
   const ok = await post(p).then(() => true, () => false);
   foodBtn.disabled = false;
-  if(!ok){ foodBtn.textContent = 'Send it 🍽️'; foodErr.textContent = "That didn't send. Check your signal and try again."; return; }
+  if(!ok){ foodBtn.textContent = 'Send it'; foodErr.textContent = "That didn't send. Check your signal and try again."; return; }
   foodBtn.textContent = 'Got it ✓';
   const r = foodBtn.getBoundingClientRect(); Sound.chime(); glitter(r.left + r.width/2, r.top); lightFloor(30); beat = 1;
-  toast("Got it. We'll plan round it 🍽️");
-  setTimeout(() => { foodBtn.textContent = 'Send it 🍽️'; }, 4000);
+  toast("Got it. We'll plan round it.");
+  setTimeout(() => { foodBtn.textContent = 'Send it'; }, 4000);
 });
 
 /* ================= PLAYLIST ================= */
 // Tapping into the Spotify player turns the disco music off so the two don't clash.
 addEventListener('blur', () => setTimeout(() => {
-  if(document.activeElement === $('#spotify') && Sound.on){ Sound.stop(); userMuted = true; paintSound(); toast('🎶 Party music off so you can hear the playlist'); }
+  if(document.activeElement === $('#spotify') && Sound.on){ Sound.stop(); userMuted = true; paintSound(); toast('Party music off so you can hear the playlist'); }
 }, 0));
 
 /* ================= PRESS EFFECTS ================= */
