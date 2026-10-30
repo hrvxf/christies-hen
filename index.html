@@ -316,8 +316,8 @@ body.crispy .next{background:linear-gradient(135deg,var(--sapphire),#6a4dff);box
 <div class="topbar">
   <span class="pill" id="counter" hidden><span class="dot"></span><span id="counterText"></span></span>
   <span></span>
-  <button class="pill sound" id="soundBtn" type="button" aria-pressed="false">
-    <span class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></span><span id="soundLabel">Tap for music</span>
+  <button class="pill sound on" id="soundBtn" type="button" aria-pressed="true">
+    <span class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></span><span id="soundLabel">Music on</span>
   </button>
 </div>
 
@@ -628,6 +628,7 @@ const Sound = (() => {
   function tick(){ while(nextT < ctx.currentTime + .12){ play(step,nextT); nextT += 60/tempo/4; step = (step+1) % 64; } }
   return {
     get on(){ return on },
+    resume(){ if(ctx && on && ctx.state !== 'running') ctx.resume(); },
     start(){ if(!ctx && !init()) return false; ctx.resume(); on = true; clearInterval(timer);
       master.gain.cancelScheduledValues(ctx.currentTime); master.gain.setTargetAtTime(.34, ctx.currentTime, .4);
       nextT = ctx.currentTime + .06; timer = setInterval(tick, 25); return true; },
@@ -642,25 +643,25 @@ const Sound = (() => {
 })();
 
 const soundBtn = $('#soundBtn'), soundLabel = $('#soundLabel');
-// Music plays from the first tap anywhere (browsers block sound before that). The pill mutes it.
-let userMuted = store.get('hen_muted') === '1';
+// Music is ON by default. Browsers hold sound until the first tap, so it kicks in then. The pill turns it off.
+let userMuted = false;
 function paintSound(){
   soundBtn.classList.toggle('on', Sound.on);
-  soundLabel.textContent = Sound.on ? 'Mute' : (userMuted ? 'Muted' : 'Tap for music');
-  soundBtn.setAttribute('aria-pressed', String(!Sound.on));
-  soundBtn.setAttribute('aria-label', Sound.on ? 'Mute music' : 'Play music');
+  soundLabel.textContent = Sound.on ? 'Music on' : 'Music off';
+  soundBtn.setAttribute('aria-pressed', String(Sound.on));
+  soundBtn.setAttribute('aria-label', Sound.on ? 'Turn music off' : 'Turn music on');
 }
-function startMusic(){ if(userMuted || Sound.on) return; if(Sound.start()){ Sound.tempo(hypeLevel); } paintSound(); }
+function startMusic(){ if(userMuted) return; if(!Sound.on){ if(Sound.start()) Sound.tempo(hypeLevel); } else Sound.resume(); paintSound(); }
 ['click','touchend','keydown'].forEach(ev => addEventListener(ev, e => {
   if(e.target && e.target.closest && e.target.closest('#soundBtn')) return;
   startMusic();
 }, { passive:true }));
 soundBtn.addEventListener('click', () => {
-  if(Sound.on){ Sound.stop(); userMuted = true; store.set('hen_muted','1'); }
-  else { userMuted = false; store.set('hen_muted','0'); startMusic(); }
+  if(Sound.on){ Sound.stop(); userMuted = true; }
+  else { userMuted = false; startMusic(); }
   paintSound();
 });
-paintSound();
+startMusic();
 
 /* ================= NEON SIGN ================= */
 const title = $('#title');
