@@ -2,304 +2,806 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Christie's Hen Do · Idea Box</title>
-<meta name="description" content="Drop your ideas for Christie's hen do.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0018">
+<title>Christie's Last Disco · Hen Do Idea Box</title>
 <meta name="robots" content="noindex">
-<meta property="og:title" content="Christie's Hen Do · Idea Box 🪩">
-<meta property="og:description" content="Got an idea for the hen? Drop it in the box.">
+<meta name="description" content="Got an idea for Christie's hen do? Drop it in the box. Top secret 🤫">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hrvxf.github.io/christies-hen/">
+<meta property="og:title" content="Christie's Last Disco 🪩">
+<meta property="og:description" content="Got an idea for the hen? Drop it in the box. Top secret 🤫">
+<meta property="og:image" content="https://hrvxf.github.io/christies-hen/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪩</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Outfit:wght@400;500;700;900&family=Space+Mono:wght@400;700&family=Tilt+Neon&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#12001f; --bg2:#2a0040;
-    --pink:#ff2d95; --hot:#ff5fb3; --violet:#9b5cff; --gold:#ffd166; --silver:#e9e4ff;
-    --text:#fff5fb; --muted:#cdb6dd; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.16);
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0}
-  body{font-family:Outfit,system-ui,sans-serif;color:var(--text);min-height:100vh;background:var(--bg);overflow-x:hidden}
-  .bg{position:fixed;inset:0;z-index:0;pointer-events:none;
-    background:
-      radial-gradient(1200px 600px at 50% -10%, rgba(255,45,149,.35), transparent 60%),
-      radial-gradient(800px 500px at 100% 40%, rgba(155,92,255,.25), transparent 60%),
-      radial-gradient(700px 500px at 0% 80%, rgba(255,45,149,.18), transparent 60%),
-      linear-gradient(180deg,var(--bg),var(--bg2))}
-  /* floating sparkles */
-  .sparkles{position:fixed;inset:0;pointer-events:none;z-index:0}
-  .sparkles i{position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;
-    box-shadow:0 0 8px 2px rgba(255,255,255,.8),0 0 18px 4px rgba(255,45,149,.5);
-    animation:twinkle 3s ease-in-out infinite;opacity:0}
-  @keyframes twinkle{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1)}}
+:root{
+  --ink:#0d0018; --plum:#22003a; --pink:#ff2d95; --hot:#ff6ec7; --violet:#9b5cff;
+  --sapphire:#3d7bff; --ice:#9fd3ff; --gold:#ffd166; --cream:#fff4e3;
+  --text:#fff6fb; --muted:#cbb4dc; --glass:rgba(24,4,40,.62); --line:rgba(255,255,255,.14);
+  --sans:Outfit,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --disco:Monoton,"Arial Black",Impact,sans-serif;
+  --neon:"Tilt Neon",Outfit,system-ui,sans-serif;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --safe-t:env(safe-area-inset-top,0px); --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%}
+body{font-family:var(--sans);color:var(--text);background:var(--ink);overflow-x:hidden;min-height:100svh}
+button{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-  main{position:relative;z-index:1;max-width:620px;margin:0 auto;padding:28px 18px 60px}
+/* ---------- atmosphere ---------- */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 50% -8%, rgba(255,45,149,.30), transparent 62%),
+    radial-gradient(700px 520px at 105% 35%, rgba(155,92,255,.22), transparent 60%),
+    radial-gradient(600px 480px at -5% 70%, rgba(61,123,255,.16), transparent 60%),
+    linear-gradient(180deg,#0d0018 0%,#1c0032 55%,#12001f 100%)}
+body.crispy .sky{background:
+    radial-gradient(900px 520px at 50% -8%, rgba(61,123,255,.38), transparent 62%),
+    radial-gradient(700px 520px at 105% 35%, rgba(159,211,255,.20), transparent 60%),
+    radial-gradient(600px 480px at -5% 70%, rgba(255,45,149,.16), transparent 60%),
+    linear-gradient(180deg,#000a1f 0%,#08164a 55%,#050b24 100%)}
+#flecks{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 
-  /* disco ball */
-  .ball-wrap{display:flex;justify-content:center;margin-top:-8px}
-  .string{width:2px;height:34px;background:linear-gradient(var(--silver),transparent);margin:0 auto}
-  .ball{width:112px;height:112px;border-radius:50%;position:relative;overflow:hidden;
-    background:
-      repeating-linear-gradient(0deg, rgba(0,0,0,.28) 0 1.5px, transparent 1.5px 11px),
-      repeating-linear-gradient(90deg, rgba(0,0,0,.28) 0 1.5px, transparent 1.5px 11px),
-      conic-gradient(from 0deg,#fff,#c9b8ff,#ff9fd0,#fff,#9fd9ff,#ffe39f,#fff,#d6c4ff,#fff);
-    box-shadow:inset -18px -18px 30px rgba(40,0,60,.65), inset 10px 10px 20px rgba(255,255,255,.5),
-      0 0 40px rgba(255,45,149,.55),0 0 90px rgba(155,92,255,.35);
-    animation:spin 8s linear infinite;
-  }
-  .ball::after{content:"";position:absolute;inset:0;border-radius:50%;
-    background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.95) 0 6%,transparent 18%)}
-  @keyframes spin{to{filter:hue-rotate(360deg)}}
+/* dance floor */
+.floor-wrap{position:fixed;left:0;right:0;bottom:0;height:38vh;z-index:0;pointer-events:none;perspective:420px;perspective-origin:50% -40%;
+  -webkit-mask-image:linear-gradient(to top,#000 30%,transparent 100%);mask-image:linear-gradient(to top,#000 30%,transparent 100%)}
+.floor{position:absolute;left:-30%;right:-30%;bottom:-6%;height:120%;transform:rotateX(62deg);transform-origin:50% 100%;
+  display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(6,1fr);gap:4px;padding:4px}
+.floor i{border-radius:3px;background:rgba(255,255,255,.035);box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);transition:background .35s,box-shadow .35s}
+.floor i.lit{background:var(--c);opacity:.8;box-shadow:0 0 22px var(--c),inset 0 0 12px rgba(255,255,255,.5)}
 
-  header{text-align:center;margin:10px 0 26px}
-  .kicker{letter-spacing:.32em;text-transform:uppercase;font-weight:700;font-size:13px;color:var(--gold)}
-  h1{font-family:Monoton,'Arial Black',Impact,sans-serif;font-weight:400;font-size:clamp(46px,14vw,86px);line-height:1;margin:10px 0 6px;
-    color:#fff;text-shadow:0 0 6px #fff,0 0 18px var(--pink),0 0 42px var(--pink),0 0 70px var(--violet)}
-  .sub{font-family:Outfit,system-ui,sans-serif;font-weight:900;font-size:clamp(20px,5.6vw,28px);margin:0;
-    background:linear-gradient(90deg,var(--hot),var(--gold),var(--hot));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .intro{color:var(--muted);font-size:16px;line-height:1.5;margin:14px auto 0;max-width:30em}
+/* ---------- top bar ---------- */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:8px;
+  padding:calc(var(--safe-t) + 12px) 14px 10px;pointer-events:none}
+.topbar > *{pointer-events:auto}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;background:rgba(13,0,24,.6);
+  border:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-weight:700;font-size:14px;white-space:nowrap}
+.pill .dot{width:8px;height:8px;border-radius:50%;background:#3dff9a;box-shadow:0 0 8px #3dff9a;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+.sound{cursor:pointer}
+.eq{display:inline-flex;gap:2px;align-items:flex-end;height:14px}
+.eq b{width:3px;height:4px;background:currentColor;border-radius:1px}
+.sound.on{border-color:var(--pink);box-shadow:0 0 16px rgba(255,45,149,.45)}
+.sound.on .eq b{animation:eq .5s ease-in-out infinite alternate}
+.sound.on .eq b:nth-child(2){animation-delay:.15s}.sound.on .eq b:nth-child(3){animation-delay:.3s}.sound.on .eq b:nth-child(4){animation-delay:.08s}
+@keyframes eq{from{height:3px}to{height:14px}}
 
-  form,.done{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px 18px;
-    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-    box-shadow:0 20px 60px rgba(0,0,0,.35)}
-  .field{margin-bottom:22px}
-  .field:last-of-type{margin-bottom:8px}
-  label.q,.q{display:block;font-weight:700;font-size:17px;margin-bottom:8px}
-  .q small{font-weight:400;color:var(--muted);font-size:14px;margin-left:4px}
-  .req{color:var(--hot)}
-  input[type=text],input[type=url],textarea{
-    width:100%;font:inherit;font-size:16px;color:var(--text);background:rgba(0,0,0,.28);
-    border:1.5px solid var(--line);border-radius:14px;padding:13px 14px;outline:none;transition:border-color .15s,box-shadow .15s}
-  textarea{min-height:92px;resize:vertical}
-  input::placeholder,textarea::placeholder{color:#a58ab8}
-  input:focus,textarea:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(255,45,149,.22)}
+/* ---------- layout ---------- */
+main{position:relative;z-index:5;max-width:560px;margin:0 auto;padding:calc(var(--safe-t) + 64px) 18px calc(var(--safe-b) + 40px);min-height:100svh}
+.screen{display:none}
+.screen.show{display:block;animation:screenIn .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes screenIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
-  .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chips input{position:absolute;opacity:0;pointer-events:none}
-  .chips label{cursor:pointer;user-select:none;font-weight:500;font-size:15px;padding:10px 14px;border-radius:999px;
-    border:1.5px solid var(--line);background:rgba(255,255,255,.04);transition:all .15s}
-  .chips label:hover{border-color:var(--hot)}
-  .chips input:checked + label{background:linear-gradient(135deg,var(--pink),var(--violet));border-color:transparent;
-    box-shadow:0 0 18px rgba(255,45,149,.55);color:#fff}
-  .chips input:focus-visible + label{outline:3px solid var(--gold);outline-offset:2px}
+/* ---------- intro ---------- */
+.ball-rig{position:relative;height:210px;display:flex;justify-content:center;margin-top:-64px;cursor:pointer;user-select:none}
+.ball-rig .wire{position:absolute;top:0;left:50%;width:2px;margin-left:-1px;height:66px;background:linear-gradient(#fff0,#d9d0ff)}
+.ball-rig .ballbox{position:absolute;top:60px;width:150px;height:150px;border-radius:50%;
+  box-shadow:0 0 50px rgba(255,45,149,.55),0 0 110px rgba(155,92,255,.35);transition:box-shadow .5s}
+body.crispy .ball-rig .ballbox{box-shadow:0 0 50px rgba(61,123,255,.7),0 0 110px rgba(159,211,255,.35)}
+#ball{width:150px;height:150px;display:block}
+.ball-rig.drop{animation:lower 2.2s cubic-bezier(.25,1.35,.45,1) both}
+@keyframes lower{from{transform:translateY(-260px)}to{transform:none}}
+.ball-rig.boing{animation:boing .45s ease}
+@keyframes boing{30%{transform:translateY(8px) scale(.97)}60%{transform:translateY(-4px)}}
 
-  .hype{display:flex;gap:6px}
-  .hype input{position:absolute;opacity:0;pointer-events:none}
-  .hype label{font-size:34px;cursor:pointer;filter:grayscale(1) brightness(.6);transition:transform .15s,filter .15s}
-  .hype label.on{filter:none;transform:scale(1.12)}
-  .hype input:focus-visible + label{outline:3px solid var(--gold);border-radius:8px}
-  .hype-text{color:var(--gold);font-weight:700;min-height:1.4em;margin-top:4px}
+.kicker{text-align:center;letter-spacing:.34em;text-transform:uppercase;font-weight:700;font-size:12px;color:var(--gold);margin:14px 0 4px}
+h1.sign{font-family:var(--disco);font-weight:400;text-align:center;margin:0;line-height:1.05;font-size:clamp(40px,12.5vw,74px);letter-spacing:.02em}
+h1.sign span{display:inline-block;color:#2c1238;opacity:.25;animation:neonOn 1.4s steps(1,end) forwards;animation-delay:calc(var(--i) * 110ms + 1600ms)}
+@keyframes neonOn{
+  0%{color:#2c1238;opacity:.25;text-shadow:none}
+  6%,16%,30%,100%{color:#fff;opacity:1;text-shadow:0 0 4px #fff,0 0 12px var(--pink),0 0 28px var(--pink),0 0 60px var(--violet)}
+  10%,22%{color:#5a2a6c;opacity:.5;text-shadow:none}}
+h1.sign span.lit{animation:none;color:#fff;opacity:1;text-shadow:0 0 4px #fff,0 0 12px var(--pink),0 0 28px var(--pink),0 0 60px var(--violet)}
+h1.sign span.lit.flick{animation:flick .5s steps(1,end) 1}
+@keyframes flick{0%,100%{color:#fff;text-shadow:0 0 4px #fff,0 0 12px var(--pink),0 0 28px var(--pink),0 0 60px var(--violet)}20%,60%{color:#5a2a6c;text-shadow:none}}
+body.crispy h1.sign span{--pink:var(--sapphire);--violet:var(--ice)}
+.tube{font-family:var(--neon);text-align:center;font-size:clamp(30px,9.5vw,50px);margin:2px 0 0;color:#ffe3f3;letter-spacing:.06em;
+  text-shadow:0 0 3px #fff,0 0 10px var(--hot),0 0 24px var(--pink),0 0 48px var(--pink);opacity:0;animation:tubeOn .9s ease forwards 2.6s, hum 4s ease-in-out infinite 3.5s}
+@keyframes tubeOn{0%{opacity:0}30%{opacity:.8}40%{opacity:.2}60%,100%{opacity:1}}
+@keyframes hum{50%{text-shadow:0 0 3px #fff,0 0 8px var(--hot),0 0 18px var(--pink),0 0 36px var(--pink)}}
+body.crispy .tube{--hot:var(--ice);--pink:var(--sapphire);color:#e6f2ff}
 
-  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.marquee{position:relative;margin:26px auto 0;max-width:340px;padding:16px 18px 14px;border-radius:16px;text-align:center;
+  background:linear-gradient(180deg,#1c0530,#0e0019);border:1px solid rgba(255,209,102,.35);box-shadow:0 10px 40px rgba(0,0,0,.4),inset 0 0 30px rgba(255,209,102,.07)}
+.marquee .bulb{position:absolute;width:7px;height:7px;border-radius:50%;background:#6b5420;transform:translate(-50%,-50%);transition:background .12s,box-shadow .12s}
+.marquee .bulb.on{background:#fff3c4;box-shadow:0 0 6px 2px var(--gold),0 0 14px 3px rgba(255,209,102,.6)}
+.days{font-family:var(--mono);font-weight:700;font-size:44px;line-height:1;color:var(--gold);text-shadow:0 0 14px rgba(255,209,102,.6);letter-spacing:.04em}
+.days small{font-size:16px;letter-spacing:.2em;margin-left:6px}
+.till{font-family:var(--mono);font-size:12px;letter-spacing:.24em;color:#e9d9b4;margin-top:6px;text-transform:uppercase}
+.intro-copy{text-align:center;color:var(--muted);font-size:17px;line-height:1.55;margin:24px auto 0;max-width:27em}
+.intro-copy b{color:var(--text)}
 
-  button.go{width:100%;margin-top:14px;border:0;border-radius:18px;padding:18px;cursor:pointer;
-    font:900 19px Outfit,sans-serif;letter-spacing:.04em;color:#fff;
-    background:linear-gradient(135deg,var(--pink),var(--violet));
-    box-shadow:0 10px 30px rgba(255,45,149,.45);transition:transform .1s,box-shadow .2s}
-  button.go:hover{box-shadow:0 12px 40px rgba(255,45,149,.7)}
-  button.go:active{transform:scale(.98)}
-  button.go[disabled]{opacity:.6;cursor:progress}
-  .error{color:#ffb3c7;font-weight:500;margin-top:12px;min-height:1.2em;text-align:center}
+.cta{display:block;width:100%;margin:26px 0 0;border:0;border-radius:20px;padding:20px 18px;cursor:pointer;position:relative;overflow:hidden;
+  font:900 20px var(--sans);letter-spacing:.03em;color:#fff;background:linear-gradient(135deg,var(--pink),var(--violet));
+  box-shadow:0 12px 34px rgba(255,45,149,.5),inset 0 1px 0 rgba(255,255,255,.35);transition:transform .12s,box-shadow .2s}
+.cta::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%);animation:shine 3.2s ease-in-out infinite 3s}
+@keyframes shine{40%,100%{transform:translateX(120%)}}
+.cta:active{transform:scale(.98)}
+.cta[disabled]{opacity:.55;cursor:default}
+body.crispy .cta{background:linear-gradient(135deg,var(--sapphire),#6a4dff);box-shadow:0 12px 34px rgba(61,123,255,.5)}
+.foot{text-align:center;color:#a993ba;font-size:13px;margin-top:22px;line-height:1.6}
 
-  .done{text-align:center;padding:40px 22px}
-  .done .big{font-size:64px}
-  .done h2{font-family:Monoton,'Arial Black',Impact,sans-serif;font-weight:400;font-size:clamp(34px,10vw,52px);margin:10px 0;
-    text-shadow:0 0 12px var(--pink),0 0 30px var(--violet)}
-  .done p{color:var(--muted);font-size:17px;margin:0 0 22px}
-  .again{display:inline-block;border:1.5px solid var(--hot);color:#fff;background:transparent;font:700 16px Outfit;
-    padding:13px 22px;border-radius:999px;cursor:pointer}
+/* ---------- flow ---------- */
+.flow-head{display:flex;align-items:center;gap:12px;margin:4px 0 18px}
+.back{flex:none;width:44px;height:44px;border-radius:14px;border:1px solid var(--line);background:var(--glass);cursor:pointer;font-size:20px;display:grid;place-items:center}
+.tiles{display:flex;gap:5px;flex:1}
+.tiles i{flex:1;height:10px;border-radius:3px;background:rgba(255,255,255,.08);transition:background .3s,box-shadow .3s}
+.tiles i.done{background:var(--c,var(--pink));box-shadow:0 0 10px var(--c,var(--pink))}
+.tiles i.now{background:rgba(255,255,255,.35);animation:pulse 1s ease-in-out infinite}
+.count{font-family:var(--mono);font-size:13px;color:var(--gold);flex:none;letter-spacing:.06em}
 
-  footer{text-align:center;color:var(--muted);font-size:14px;margin-top:22px;line-height:1.5}
-  footer b{color:var(--silver)}
+.card{position:relative;background:var(--glass);border:1px solid var(--line);border-radius:26px;padding:26px 20px 22px;
+  backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);box-shadow:0 24px 70px rgba(0,0,0,.45)}
+.step{display:none}
+.step.show{display:block}
+.step.in-r{animation:inR .45s cubic-bezier(.2,.8,.2,1) both}.step.in-l{animation:inL .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes inR{from{opacity:0;transform:translateX(40px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes inL{from{opacity:0;transform:translateX(-40px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.q{font-weight:900;font-size:clamp(26px,7.4vw,34px);line-height:1.1;margin:0 0 6px;letter-spacing:-.01em}
+.hint{color:var(--muted);font-size:15px;margin:0 0 18px;line-height:1.45}
+.lbl{display:block;font-weight:700;font-size:15px;margin:18px 0 8px;color:#f3e3ff}
+.lbl small{font-weight:400;color:var(--muted)}
+input[type=text],input[type=url],textarea{width:100%;font:500 18px var(--sans);color:var(--text);background:rgba(0,0,0,.32);
+  border:1.5px solid rgba(255,255,255,.16);border-radius:16px;padding:15px 16px;outline:none;transition:border-color .15s,box-shadow .15s}
+textarea{min-height:104px;resize:vertical;font-size:16px;line-height:1.45}
+input::placeholder,textarea::placeholder{color:#9c84ae}
+input:focus,textarea:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(255,45,149,.22)}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+.err{color:#ffb3c7;font-weight:500;font-size:15px;min-height:1.3em;margin-top:10px}
 
-  .confetti{position:fixed;top:-12px;width:9px;height:14px;z-index:5;pointer-events:none;border-radius:2px;
-    animation:fall linear forwards}
-  @keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
-  @media (prefers-reduced-motion:reduce){.ball,.sparkles i{animation:none}.sparkles i{opacity:.6}}
-  [hidden]{display:none!important}
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{cursor:pointer;user-select:none;font-weight:700;font-size:16px;padding:13px 17px;border-radius:999px;
+  border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);transition:transform .12s,background .2s,box-shadow .2s,border-color .2s}
+.chips label:active{transform:scale(.95)}
+.chips input:checked + label{background:linear-gradient(135deg,var(--pink),var(--violet));border-color:transparent;box-shadow:0 0 22px rgba(255,45,149,.6);color:#fff}
+body.crispy .chips input:checked + label{background:linear-gradient(135deg,var(--sapphire),#6a4dff);box-shadow:0 0 22px rgba(61,123,255,.6)}
+.chips input:focus-visible + label{outline:3px solid var(--gold);outline-offset:2px}
+.chips.big label{width:100%;text-align:left;border-radius:18px;padding:16px 18px;font-size:17px}
+
+.nav{display:flex;gap:10px;margin-top:22px}
+.next{flex:1;border:0;border-radius:18px;padding:17px;cursor:pointer;font:900 18px var(--sans);color:#fff;
+  background:linear-gradient(135deg,var(--pink),var(--violet));box-shadow:0 10px 28px rgba(255,45,149,.42)}
+body.crispy .next{background:linear-gradient(135deg,var(--sapphire),#6a4dff);box-shadow:0 10px 28px rgba(61,123,255,.42)}
+.skip{flex:none;border:1px solid var(--line);border-radius:18px;padding:17px 20px;background:transparent;cursor:pointer;font-weight:700;color:var(--muted)}
+
+/* G&T glasses */
+.glasses{display:flex;justify-content:space-between;gap:6px;margin:6px 0 4px}
+.glass{flex:1;background:none;border:0;padding:6px 0;cursor:pointer;display:flex;justify-content:center;border-radius:14px;transition:transform .15s}
+.glass:active{transform:scale(.92)}
+.glass:focus-visible{outline:3px solid var(--gold)}
+.glass svg{width:100%;max-width:58px;height:auto;overflow:visible}
+.glass .outline{fill:rgba(255,255,255,.05);stroke:rgba(255,255,255,.55);stroke-width:2}
+.glass .liquid{fill:url(#gin);transform:translateY(0);transition:transform .55s cubic-bezier(.3,1.4,.5,1)}
+.glass.full .liquid{transform:translateY(-60px)}
+.glass .bub{fill:rgba(255,255,255,.75);opacity:0}
+.glass.full .bub{animation:fizz 1.6s linear infinite;animation-delay:var(--d)}
+@keyframes fizz{0%{opacity:0;transform:translateY(0)}15%{opacity:.9}100%{opacity:0;transform:translateY(-44px)}}
+.glass .lime{opacity:0;transform-origin:40px 12px;transform:scale(.3) rotate(-40deg);transition:all .35s cubic-bezier(.3,1.6,.5,1) .15s}
+.glass.full .lime{opacity:1;transform:none}
+.glass .ice{fill:rgba(255,255,255,.28);stroke:rgba(255,255,255,.6);stroke-width:1;opacity:0;transition:opacity .3s .2s}
+.glass.full .ice{opacity:1}
+.hype-word{text-align:center;font-family:var(--neon);font-size:26px;min-height:38px;margin-top:6px;color:#e6f2ff;
+  text-shadow:0 0 8px var(--sapphire),0 0 22px var(--sapphire)}
+
+/* ---------- ticket scene ---------- */
+.scene{position:relative;text-align:center}
+.printer{position:relative;margin:0 auto;width:min(100%,360px);height:62px;border-radius:18px 18px 10px 10px;
+  background:linear-gradient(180deg,#3a2350,#1d0b2b);border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 40px rgba(0,0,0,.5);z-index:3}
+.printer .label{position:absolute;top:10px;left:0;right:0;font-family:var(--neon);font-size:17px;letter-spacing:.12em;color:#ffe3f3;
+  text-shadow:0 0 8px var(--pink),0 0 16px var(--pink)}
+.printer .slot{position:absolute;left:18px;right:18px;bottom:9px;height:7px;border-radius:4px;background:#05000a;box-shadow:inset 0 2px 4px #000,0 0 14px rgba(255,45,149,.7)}
+.printer .led{position:absolute;right:16px;top:12px;width:8px;height:8px;border-radius:50%;background:#3dff9a;box-shadow:0 0 8px #3dff9a}
+.printing .printer .led{animation:pulse .25s steps(1) infinite}
+.paper{position:relative;margin:-10px auto 0;width:min(92%,330px);height:230px;overflow:hidden;z-index:2;padding:0 6px}
+.ticket{position:relative;display:flex;text-align:left;color:#2a0b3a;background:var(--cream);border-radius:10px;min-height:206px;
+  transform:translateY(-104%);box-shadow:0 14px 30px rgba(0,0,0,.45);
+  background-image:radial-gradient(rgba(255,45,149,.10) 1px,transparent 1.2px);background-size:9px 9px;
+  -webkit-mask:radial-gradient(circle 10px at calc(100% - 74px) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 10px at calc(100% - 74px) 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
+  mask:radial-gradient(circle 10px at calc(100% - 74px) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 10px at calc(100% - 74px) 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
+.printing .ticket{animation:print 2s steps(14,end) forwards}
+@keyframes print{to{transform:translateY(0)}}
+.t-main{flex:1;padding:14px 12px 12px 16px;min-width:0}
+.t-top{display:flex;justify-content:space-between;gap:6px;white-space:nowrap;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.06em;color:#c2185b;border-bottom:1.5px dashed rgba(194,24,91,.4);padding-bottom:7px}
+.t-idea{font-weight:900;font-size:22px;line-height:1.1;margin:10px 0 6px;color:#24002f;word-wrap:break-word;overflow-wrap:anywhere;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.t-meta{font-family:var(--mono);font-size:11px;color:#6b3a7a;line-height:1.5}
+.t-row{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;margin-top:10px;font-size:13px}
+.t-row b{font-weight:900}
+.t-hype{font-size:15px;letter-spacing:-2px;white-space:nowrap}
+.t-stub{flex:none;width:74px;border-left:2px dashed rgba(194,24,91,.45);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:14px 0}
+.admit{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--disco);font-size:19px;color:#c2185b;letter-spacing:.06em}
+.t-no{font-family:var(--mono);font-weight:700;font-size:12px;color:#24002f}
+.flyer{position:fixed;z-index:30;pointer-events:none;margin:0}
+
+.ballot{position:relative;margin:4px auto 0;width:220px;height:150px;z-index:1}
+.ballot .lid{position:absolute;left:-8px;right:-8px;top:0;height:26px;border-radius:10px;background:linear-gradient(180deg,#ffe9a8,#d9a531);
+  box-shadow:0 6px 14px rgba(0,0,0,.35),inset 0 1px 0 #fff8dc}
+.ballot .lid::after{content:"";position:absolute;left:50%;top:9px;width:120px;height:8px;margin-left:-60px;border-radius:4px;background:#2a1600;box-shadow:inset 0 2px 3px #000}
+.ballot .front{position:absolute;left:0;right:0;top:20px;bottom:0;border-radius:0 0 16px 16px;overflow:hidden;
+  background:
+    radial-gradient(circle at 20% 30%,#fff 0 1px,transparent 2px) 0 0/23px 19px,
+    radial-gradient(circle at 70% 60%,#ffe9f5 0 1px,transparent 2px) 0 0/17px 21px,
+    conic-gradient(from 0deg,#ff2d95,#9b5cff,#3d7bff,#ff6ec7,#ffd166,#ff2d95);
+  box-shadow:inset 0 -20px 40px rgba(0,0,0,.35),0 20px 50px rgba(0,0,0,.45);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ballot .front::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.5) 48%,transparent 62%);background-size:250% 100%;animation:glint 3s linear infinite}
+@keyframes glint{from{background-position:150% 0}to{background-position:-100% 0}}
+.ballot .front span{position:relative;font-family:var(--disco);font-size:30px;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.25),0 0 18px rgba(255,255,255,.6)}
+.ballot .front small{position:relative;font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#fff;opacity:.9;margin-top:2px}
+.ballot.gulp{animation:gulp .5s ease}
+@keyframes gulp{30%{transform:scale(1.07,.93)}60%{transform:scale(.97,1.04)}}
+.glitter{position:fixed;z-index:31;width:7px;height:7px;border-radius:2px;pointer-events:none}
+
+.done-copy{margin-top:22px}
+.done-copy h2{font-family:var(--disco);font-weight:400;text-transform:uppercase;line-height:1.15;font-size:clamp(30px,9vw,46px);margin:0;color:#fff;
+  text-shadow:0 0 6px #fff,0 0 18px var(--pink),0 0 42px var(--violet)}
+.done-copy p{color:var(--muted);font-size:17px;line-height:1.5;margin:10px auto 18px;max-width:24em}
+.again{border:1.5px solid var(--hot);color:#fff;background:rgba(255,45,149,.12);font:800 17px var(--sans);padding:15px 24px;border-radius:999px;cursor:pointer}
+.ghost{display:block;margin:14px auto 0;background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:15px}
+
+/* toast + bubbles */
+.toast{position:fixed;left:50%;bottom:calc(var(--safe-b) + 24px);transform:translate(-50%,40px);opacity:0;z-index:40;width:max-content;max-width:min(92vw,400px);
+  background:rgba(8,16,48,.92);border:1px solid rgba(159,211,255,.5);color:#e6f2ff;padding:13px 18px;border-radius:16px;font-weight:700;
+  box-shadow:0 0 30px rgba(61,123,255,.5);transition:all .45s cubic-bezier(.2,1.4,.4,1);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.bubble{position:fixed;bottom:-20px;z-index:2;border-radius:50%;pointer-events:none;border:1px solid rgba(220,240,255,.7);
+  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.8),rgba(159,211,255,.15) 60%);animation:rise linear forwards}
+@keyframes rise{to{transform:translate(var(--dx),-110vh);opacity:.2}}
+
+@media (min-width:700px){ main{padding-top:calc(var(--safe-t) + 80px)} }
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  h1.sign span{opacity:1;color:#fff;text-shadow:0 0 12px var(--pink),0 0 28px var(--pink)} .tube{opacity:1}
+}
 </style>
 </head>
 <body>
-<div class="bg" aria-hidden="true"></div>
-<div class="sparkles" aria-hidden="true"></div>
+<div class="sky" aria-hidden="true"></div>
+<div class="floor-wrap" aria-hidden="true"><div class="floor" id="floor"></div></div>
+<canvas id="flecks" aria-hidden="true"></canvas>
+
+<div class="topbar">
+  <span class="pill" id="counter" hidden><span class="dot"></span><span id="counterText"></span></span>
+  <span></span>
+  <button class="pill sound" id="soundBtn" type="button" aria-pressed="false">
+    <span class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></span><span id="soundLabel">Play music</span>
+  </button>
+</div>
+
 <main>
-  <div class="ball-wrap" aria-hidden="true"><div><div class="string"></div><div class="ball"></div></div></div>
-
-  <header>
-    <div class="kicker">The Hen Do Idea Box</div>
-    <h1>Christie</h1>
-    <p class="sub">is getting married! 💍</p>
-    <p class="intro">Got an idea for the hen? Big or small, wild or chill, drop it in the box. It goes privately to the organisers, so Christie won't see a thing.</p>
-  </header>
-
-  <form id="ideaForm" novalidate>
-    <div class="field">
-      <label class="q" for="name">Your name <span class="req">*</span></label>
-      <input type="text" id="name" name="name" autocomplete="given-name" placeholder="So we know who to thank" required>
+  <!-- ============ INTRO ============ -->
+  <section class="screen show" id="intro" aria-labelledby="title">
+    <div class="ball-rig drop" id="ballRig" role="img" aria-label="A spinning mirror ball">
+      <div class="wire"></div>
+      <div class="ballbox"><canvas id="ball" width="300" height="300"></canvas></div>
     </div>
 
-    <div class="field">
-      <label class="q" for="idea">The idea <span class="req">*</span></label>
-      <input type="text" id="idea" name="idea" placeholder="e.g. Cocktail masterclass, paddleboarding, spa day…" required>
+    <div class="kicker">Welcome to</div>
+    <h1 class="sign" id="title" aria-label="Christie's"></h1>
+    <p class="tube">Last Disco</p>
+
+    <div class="marquee" id="marquee">
+      <div class="days" id="days">—</div>
+      <div class="till" id="till">till the hen · 09.09.27</div>
     </div>
 
-    <div class="field">
-      <label class="q" for="details">Tell us more <small>optional</small></label>
-      <textarea id="details" name="details" placeholder="Why it'd be amazing, where it is, anything we should know"></textarea>
-    </div>
+    <p class="intro-copy">Got an idea for the hen? Big or small, wild or chill, <b>drop it in the box</b>. It goes straight to the organisers, so Christie won't see a thing 🤫</p>
 
-    <div class="field">
-      <label class="q" for="link">Link <small>optional</small></label>
-      <input type="url" id="link" name="link" inputmode="url" placeholder="Paste a website or Instagram link">
-    </div>
-
-    <div class="field">
-      <span class="q" id="q-price">Rough price per person</span>
-      <div class="chips" role="radiogroup" aria-labelledby="q-price" data-name="price">
-        <input type="radio" name="price" id="p1" value="Free"><label for="p1">Free</label>
-        <input type="radio" name="price" id="p2" value="Under £25"><label for="p2">Under £25</label>
-        <input type="radio" name="price" id="p3" value="£25–50"><label for="p3">£25–50</label>
-        <input type="radio" name="price" id="p4" value="£50–100"><label for="p4">£50–100</label>
-        <input type="radio" name="price" id="p5" value="£100+"><label for="p5">£100+</label>
-        <input type="radio" name="price" id="p6" value="Not sure"><label for="p6">Not sure</label>
-      </div>
-    </div>
-
-    <div class="field">
-      <span class="q" id="q-time">How long does it take?</span>
-      <div class="chips" role="radiogroup" aria-labelledby="q-time">
-        <input type="radio" name="time" id="t1" value="1–2 hours"><label for="t1">1–2 hours</label>
-        <input type="radio" name="time" id="t2" value="Half day"><label for="t2">Half day</label>
-        <input type="radio" name="time" id="t3" value="Full day"><label for="t3">Full day</label>
-        <input type="radio" name="time" id="t4" value="Evening / night out"><label for="t4">Evening</label>
-        <input type="radio" name="time" id="t5" value="Overnight / weekend"><label for="t5">Overnight</label>
-      </div>
-    </div>
-
-    <div class="field">
-      <span class="q" id="q-transport">Getting there</span>
-      <div class="chips" role="radiogroup" aria-labelledby="q-transport">
-        <input type="radio" name="transport" id="r1" value="Walkable"><label for="r1">Walkable</label>
-        <input type="radio" name="transport" id="r2" value="Taxi / Uber"><label for="r2">Taxi / Uber</label>
-        <input type="radio" name="transport" id="r3" value="Train"><label for="r3">Train</label>
-        <input type="radio" name="transport" id="r4" value="Need a minibus / drive"><label for="r4">Minibus / drive</label>
-        <input type="radio" name="transport" id="r5" value="Not sure"><label for="r5">Not sure</label>
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="q" for="kit">Anything to bring or wear? <small>optional</small></label>
-      <input type="text" id="kit" name="kit" placeholder="e.g. swimwear, trainers, fancy dress">
-    </div>
-
-    <div class="field">
-      <span class="q" id="q-christie">The Christie factor 👰‍♀️</span>
-      <div class="chips" role="radiogroup" aria-labelledby="q-christie">
-        <input type="radio" name="christie" id="c1" value="She suggested it"><label for="c1">She suggested it</label>
-        <input type="radio" name="christie" id="c2" value="She's mentioned loving it"><label for="c2">She's mentioned loving it</label>
-        <input type="radio" name="christie" id="c3" value="Not sure"><label for="c3">Not sure</label>
-        <input type="radio" name="christie" id="c4" value="Total surprise"><label for="c4">Total surprise 🤫</label>
-      </div>
-    </div>
-
-    <div class="field">
-      <span class="q" id="q-hype">Your hype level</span>
-      <div class="hype" role="radiogroup" aria-labelledby="q-hype">
-        <input type="radio" name="hype" id="h1" value="1"><label for="h1" title="1 – Could be fun">🪩</label>
-        <input type="radio" name="hype" id="h2" value="2"><label for="h2" title="2 – Nice one">🪩</label>
-        <input type="radio" name="hype" id="h3" value="3"><label for="h3" title="3 – Love it">🪩</label>
-        <input type="radio" name="hype" id="h4" value="4"><label for="h4" title="4 – Obsessed">🪩</label>
-        <input type="radio" name="hype" id="h5" value="5"><label for="h5" title="5 – We HAVE to do this">🪩</label>
-      </div>
-      <div class="hype-text" id="hypeText" aria-live="polite"></div>
-    </div>
-
-    <div class="hp" aria-hidden="true">
-      <label for="website">Leave this empty</label>
-      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-    </div>
-
-    <button class="go" type="submit" id="submitBtn">Drop it in the box ✨</button>
-    <div class="error" id="error" role="alert"></div>
-  </form>
-
-  <section class="done" id="done" hidden aria-live="polite">
-    <div class="big">🪩</div>
-    <h2>Idea dropped!</h2>
-    <p>Thank you! The organisers have got it. Christie's going to love this.</p>
-    <button class="again" id="again" type="button">Add another idea</button>
+    <button class="cta" id="startBtn" type="button">Drop an idea 🪩</button>
+    <p class="foot">Takes about a minute · add as many as you like</p>
   </section>
 
-  <footer>Ideas go straight to the organisers and stay <b>top secret</b> 🤫<br>Add as many as you like, any time.</footer>
+  <!-- ============ FLOW ============ -->
+  <section class="screen" id="flow" aria-label="Your idea">
+    <div class="flow-head">
+      <button class="back" id="backBtn" type="button" aria-label="Back">←</button>
+      <div class="tiles" id="tiles" aria-hidden="true"></div>
+      <span class="count" id="stepCount">01/08</span>
+    </div>
+
+    <form class="card" id="form" novalidate autocomplete="off">
+      <div class="step" data-req="name">
+        <h2 class="q">First up, who's this?</h2>
+        <p class="hint">So the organisers know who to thank.</p>
+        <label class="sr" for="name">Your name</label>
+        <input type="text" id="name" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
+        <div class="err" aria-live="polite"></div>
+        <div class="nav"><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step" data-req="idea">
+        <h2 class="q">What's the big idea?</h2>
+        <p class="hint">Give it a name. Short and sweet.</p>
+        <label class="sr" for="idea">The idea</label>
+        <input type="text" id="idea" name="idea" placeholder="e.g. Cocktail masterclass" maxlength="120">
+        <label class="lbl" for="details">Sell it to us <small>(optional)</small></label>
+        <textarea id="details" name="details" placeholder="Why it'd be amazing, where it is, anything we should know" maxlength="1500"></textarea>
+        <div class="err" aria-live="polite"></div>
+        <div class="nav"><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step">
+        <h2 class="q">Got a link?</h2>
+        <p class="hint">Website, Instagram, TikTok, anything that shows it off.</p>
+        <label class="sr" for="link">Link</label>
+        <input type="url" id="link" name="link" inputmode="url" placeholder="Paste a link">
+        <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step" data-auto>
+        <h2 class="q">Roughly how much per person?</h2>
+        <p class="hint">A guess is fine.</p>
+        <div class="chips" role="radiogroup" aria-label="Price per person">
+          <input type="radio" name="price" id="p1" value="Free"><label for="p1">Free</label>
+          <input type="radio" name="price" id="p2" value="Under £25"><label for="p2">Under £25</label>
+          <input type="radio" name="price" id="p3" value="£25–50"><label for="p3">£25–50</label>
+          <input type="radio" name="price" id="p4" value="£50–100"><label for="p4">£50–100</label>
+          <input type="radio" name="price" id="p5" value="£100+"><label for="p5">£100+</label>
+          <input type="radio" name="price" id="p6" value="Not sure"><label for="p6">No idea</label>
+        </div>
+        <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step" data-auto>
+        <h2 class="q">How long does it take?</h2>
+        <p class="hint">Helps us plan the day.</p>
+        <div class="chips" role="radiogroup" aria-label="Time needed">
+          <input type="radio" name="time" id="t1" value="1–2 hours"><label for="t1">1–2 hours</label>
+          <input type="radio" name="time" id="t2" value="Half day"><label for="t2">Half day</label>
+          <input type="radio" name="time" id="t3" value="Full day"><label for="t3">Full day</label>
+          <input type="radio" name="time" id="t4" value="Evening / night out"><label for="t4">Evening</label>
+          <input type="radio" name="time" id="t5" value="Overnight / weekend"><label for="t5">Overnight</label>
+        </div>
+        <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step">
+        <h2 class="q">Getting there?</h2>
+        <p class="hint">And anything we'd need to bring.</p>
+        <div class="chips" role="radiogroup" aria-label="Transport">
+          <input type="radio" name="transport" id="r1" value="Walkable"><label for="r1">Walkable</label>
+          <input type="radio" name="transport" id="r2" value="Taxi / Uber"><label for="r2">Taxi / Uber</label>
+          <input type="radio" name="transport" id="r3" value="Train"><label for="r3">Train</label>
+          <input type="radio" name="transport" id="r4" value="Need a minibus / drive"><label for="r4">Minibus / drive</label>
+          <input type="radio" name="transport" id="r5" value="Not sure"><label for="r5">Not sure</label>
+        </div>
+        <label class="lbl" for="kit">Anything to bring or wear? <small>(optional)</small></label>
+        <input type="text" id="kit" name="kit" placeholder="e.g. swimwear, trainers, fancy dress" maxlength="200">
+        <div class="nav"><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step" data-auto>
+        <h2 class="q">The Christie factor 👰‍♀️</h2>
+        <p class="hint">Has she ever mentioned this?</p>
+        <div class="chips big" role="radiogroup" aria-label="Christie factor">
+          <input type="radio" name="christie" id="c1" value="She suggested it"><label for="c1">💡 She suggested it</label>
+          <input type="radio" name="christie" id="c2" value="She's mentioned loving it"><label for="c2">😍 She's mentioned loving it</label>
+          <input type="radio" name="christie" id="c3" value="Not sure"><label for="c3">🤷‍♀️ Not sure</label>
+          <input type="radio" name="christie" id="c4" value="Total surprise"><label for="c4">🤫 Total surprise</label>
+        </div>
+        <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step">
+        <h2 class="q">How many G&amp;Ts is this idea worth? 🍸</h2>
+        <p class="hint">Your hype level. Tap a glass.</p>
+        <input type="hidden" name="hype" id="hype">
+        <div class="glasses" id="glasses" role="radiogroup" aria-label="Hype level"></div>
+        <div class="hype-word" id="hypeWord" aria-live="polite"></div>
+        <div class="err" aria-live="polite"></div>
+        <div class="nav"><button class="next" type="button" id="printBtn">Print my ticket 🎟️</button></div>
+      </div>
+
+      <div class="sr" aria-hidden="true"><label for="website">Leave empty</label><input type="text" id="website" name="website" tabindex="-1"></div>
+    </form>
+  </section>
+
+  <!-- ============ TICKET ============ -->
+  <section class="screen" id="ticketScreen" aria-live="polite">
+    <div class="scene" id="scene">
+      <div class="printer"><div class="label">THE IDEA-O-MATIC</div><div class="led"></div><div class="slot"></div></div>
+      <div class="paper" id="paper">
+        <div class="ticket" id="ticket">
+          <div class="t-main">
+            <div class="t-top"><span>CHRISTIE'S LAST DISCO</span><span>09·09·27</span></div>
+            <div class="t-idea" id="tIdea"></div>
+            <div class="t-meta" id="tMeta"></div>
+            <div class="t-row"><span>Dropped by <b id="tName"></b></span><span class="t-hype" id="tHype"></span></div>
+          </div>
+          <div class="t-stub"><span class="admit">ADMIT ONE</span><span class="t-no" id="tNo"></span></div>
+        </div>
+      </div>
+      <div class="ballot" id="ballot"><div class="lid"></div><div class="front"><span>IDEAS</span><small>top secret</small></div></div>
+
+      <div class="done-copy" id="doneCopy" hidden>
+        <h2>Idea dropped!</h2>
+        <p id="doneText">It's in the box. The organisers have got it, and Christie's none the wiser.</p>
+        <button class="again" id="againBtn" type="button">Drop another idea ✨</button>
+        <button class="ghost" id="homeBtn" type="button">Back to the dance floor</button>
+      </div>
+      <div class="done-copy" id="failCopy" hidden>
+        <h2>Oops!</h2>
+        <p>Your ticket jammed. Check your signal and try again.</p>
+        <button class="again" id="retryBtn" type="button">Try again</button>
+      </div>
+    </div>
+  </section>
 </main>
 
+<div class="toast" id="toast" role="status"></div>
+
 <script>
-  // Paste the Apps Script web app URL (ends in /exec) here:
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby5sgYDk8_4JJ1yR3K6jQ8L61cAuQ5fHjeg388IlfaUNLYKBsq-w56ozXcoh_o6kqk/exec";
+(() => {
+'use strict';
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby5sgYDk8_4JJ1yR3K6jQ8L61cAuQ5fHjeg388IlfaUNLYKBsq-w56ozXcoh_o6kqk/exec";
+const HEN_DATE = new Date(2027, 8, 9); // 9 Sept 2027
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const store = { get(k){ try{return localStorage.getItem(k)}catch(_){return null} }, set(k,v){ try{localStorage.setItem(k,v)}catch(_){} } };
+const PALETTE = ['#ff2d95','#9b5cff','#3d7bff','#ffd166','#ff6ec7','#5fe1ff'];
+const CRISPY = ['#3d7bff','#9fd3ff','#6a4dff','#ffffff','#5fe1ff'];
+let crispy = false, beat = 0, hypeLevel = 0, ideaCount = null;
 
-  // sparkles
-  (function(){
-    const box=document.querySelector('.sparkles');
-    for(let i=0;i<34;i++){
-      const s=document.createElement('i');
-      s.style.left=Math.random()*100+'vw'; s.style.top=Math.random()*100+'vh';
-      s.style.animationDelay=(Math.random()*3)+'s'; s.style.animationDuration=(2+Math.random()*3)+'s';
-      const k=Math.random()*.7+.4; s.style.width=s.style.height=(4*k)+'px';
-      box.appendChild(s);
-    }
-  })();
-
-  // hype rating
-  const hypeWords={1:"Could be fun",2:"Nice one",3:"Love it",4:"Obsessed",5:"We HAVE to do this 🔥"};
-  const hypeInputs=[...document.querySelectorAll('input[name=hype]')];
-  function paintHype(){
-    const v=+(hypeInputs.find(i=>i.checked)?.value||0);
-    hypeInputs.forEach(i=>document.querySelector(`label[for=${i.id}]`).classList.toggle('on',+i.value<=v));
-    document.getElementById('hypeText').textContent=v?hypeWords[v]:'';
+/* ================= SOUND ================= */
+const Sound = (() => {
+  let ctx, master, noiseBuf, timer, nextT = 0, step = 0, on = false, tempo = 116;
+  const kicks = [];
+  const roots = [110, 146.83, 98, 130.81];                 // A, D, G, C
+  const chords = [[220,261.63,329.63],[293.66,349.23,440],[196,246.94,293.66],[261.63,329.63,392]];
+  function init(){
+    const AC = window.AudioContext || window.webkitAudioContext; if(!AC) return false;
+    ctx = new AC();
+    const comp = ctx.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 4;
+    master = ctx.createGain(); master.gain.value = 0; master.connect(comp); comp.connect(ctx.destination);
+    noiseBuf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+    const d = noiseBuf.getChannelData(0); for(let i=0;i<d.length;i++) d[i] = Math.random()*2-1;
+    return true;
   }
-  hypeInputs.forEach(i=>i.addEventListener('change',paintHype));
+  function env(g,t,peak,dur){ g.gain.setValueAtTime(peak,t); g.gain.exponentialRampToValueAtTime(0.0008,t+dur); }
+  function kick(t){ const o=ctx.createOscillator(), g=ctx.createGain(); o.frequency.setValueAtTime(150,t); o.frequency.exponentialRampToValueAtTime(42,t+.11); env(g,t,.95,.32); o.connect(g).connect(master); o.start(t); o.stop(t+.34); kicks.push(t); }
+  function noise(t,dur,type,f,vol,q=1){ const s=ctx.createBufferSource(); s.buffer=noiseBuf; const fl=ctx.createBiquadFilter(); fl.type=type; fl.frequency.value=f; fl.Q.value=q; const g=ctx.createGain(); env(g,t,vol,dur); s.connect(fl).connect(g).connect(master); s.start(t); s.stop(t+dur+.02); }
+  function bass(t,f){ const o=ctx.createOscillator(), fl=ctx.createBiquadFilter(), g=ctx.createGain(); o.type='sawtooth'; o.frequency.value=f; fl.type='lowpass'; fl.frequency.setValueAtTime(900,t); fl.frequency.exponentialRampToValueAtTime(220,t+.14); fl.Q.value=7; env(g,t,.32,.16); o.connect(fl).connect(g).connect(master); o.start(t); o.stop(t+.18); }
+  function stab(t,ch){ ch.forEach(f=>{ const o=ctx.createOscillator(), fl=ctx.createBiquadFilter(), g=ctx.createGain(); o.type='square'; o.frequency.value=f; fl.type='lowpass'; fl.frequency.value=2200; env(g,t,.045,.2); o.connect(fl).connect(g).connect(master); o.start(t); o.stop(t+.22); }); }
+  function play(s,t){
+    const b = s % 16, bar = Math.floor(s/16) % 4;
+    if(b%4===0) kick(t);
+    if(b%4===2) noise(t,.11,'highpass',7000,.22);
+    if(b%2===1) noise(t,.03,'highpass',9500,.06);
+    if(b===4||b===12){ noise(t,.16,'bandpass',1500,.45,1.4); noise(t+.012,.12,'bandpass',1200,.3,1.4); }
+    if(b%2===0) bass(t, b%4===0 ? roots[bar]/2 : roots[bar]);
+    if(b===6||b===14) stab(t, chords[bar]);
+  }
+  function tick(){ while(nextT < ctx.currentTime + .12){ play(step,nextT); nextT += 60/tempo/4; step = (step+1) % 64; } }
+  return {
+    get on(){ return on },
+    start(){ if(!ctx && !init()) return false; ctx.resume(); on = true; clearInterval(timer);
+      master.gain.cancelScheduledValues(ctx.currentTime); master.gain.setTargetAtTime(.34, ctx.currentTime, .4);
+      nextT = ctx.currentTime + .06; timer = setInterval(tick, 25); return true; },
+    stop(){ if(!ctx) return; on = false; master.gain.setTargetAtTime(0, ctx.currentTime, .12); const tm = timer; setTimeout(()=>{ if(!on) clearInterval(tm) }, 500); },
+    tempo(h){ tempo = 116 + h*3; },
+    pollBeat(){ if(!ctx) return false; let hit=false; while(kicks.length && kicks[0] <= ctx.currentTime){ kicks.shift(); hit=true; } return hit; },
+    blip(f=880){ if(!on) return; const t=ctx.currentTime, o=ctx.createOscillator(), g=ctx.createGain(); o.type='triangle'; o.frequency.setValueAtTime(f,t); o.frequency.exponentialRampToValueAtTime(f*1.5,t+.06); env(g,t,.18,.12); o.connect(g).connect(master); o.start(t); o.stop(t+.14); },
+    printer(){ if(!on) return; for(let i=0;i<14;i++) noise(ctx.currentTime + i*.142, .05, 'bandpass', 2400, .14, 3); },
+    chime(){ if(!on) return; [523.25,659.25,783.99,1046.5,1318.5].forEach((f,i)=>{ const t=ctx.currentTime+i*.07, o=ctx.createOscillator(), g=ctx.createGain(); o.type='sine'; o.frequency.value=f; env(g,t,.2,.6); o.connect(g).connect(master); o.start(t); o.stop(t+.62); }); },
+    fizz(){ if(!on) return; for(let i=0;i<8;i++) noise(ctx.currentTime + Math.random()*.4, .03, 'highpass', 5000+Math.random()*4000, .08); }
+  };
+})();
 
-  // tap a selected chip again to clear it
-  document.querySelectorAll('.chips input[type=radio]').forEach(inp=>{
-    const lab=document.querySelector(`label[for=${inp.id}]`);
-    lab.addEventListener('mousedown',()=>{inp.dataset.was=inp.checked});
-    lab.addEventListener('click',e=>{ if(inp.dataset.was==='true'){e.preventDefault();inp.checked=false;inp.dataset.was='false';} });
-  });
+const soundBtn = $('#soundBtn'), soundLabel = $('#soundLabel');
+soundBtn.addEventListener('click', () => {
+  if(Sound.on){ Sound.stop(); soundBtn.classList.remove('on'); soundLabel.textContent='Play music'; soundBtn.setAttribute('aria-pressed','false'); }
+  else if(Sound.start()){ Sound.tempo(hypeLevel); soundBtn.classList.add('on'); soundLabel.textContent='Music on'; soundBtn.setAttribute('aria-pressed','true'); }
+});
 
-  const form=document.getElementById('ideaForm'), btn=document.getElementById('submitBtn'),
-        err=document.getElementById('error'), done=document.getElementById('done');
+/* ================= NEON SIGN ================= */
+const title = $('#title');
+[..."CHRISTIE'S"].forEach((ch,i) => { const s=document.createElement('span'); s.textContent=ch; s.style.setProperty('--i',i); s.setAttribute('aria-hidden','true'); s.addEventListener('animationend', e => { if(e.animationName==='neonOn') s.classList.add('lit'); }); title.appendChild(s); });
+if(!reduced) setInterval(() => {
+  if(!$('#intro').classList.contains('show') || Math.random() < .4) return;
+  const spans = title.querySelectorAll('.lit'); if(!spans.length) return; const s = spans[Math.floor(Math.random()*spans.length)];
+  s.classList.remove('flick'); void s.offsetWidth; s.classList.add('flick');
+  setTimeout(()=>s.classList.remove('flick'), 600);
+}, 2600);
 
-  form.addEventListener('submit',async e=>{
-    e.preventDefault(); err.textContent='';
-    const fd=new FormData(form);
-    if(!fd.get('name').trim()){err.textContent='Pop your name in first 💕';form.name.focus();return}
-    if(!fd.get('idea').trim()){err.textContent="What's the idea? 👀";form.idea.focus();return}
-    if(!SCRIPT_URL.startsWith('https://script.google.com/')){err.textContent='The idea box isn\'t connected yet. Tell the organisers!';return}
-    btn.disabled=true; btn.textContent='Sending…';
-    try{
-      await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:new URLSearchParams(fd)});
-      form.hidden=true; done.hidden=false; confetti(); window.scrollTo({top:0,behavior:'smooth'});
-    }catch(_){
-      err.textContent='Hmm, that didn\'t send. Check your signal and try again.';
-    }finally{ btn.disabled=false; btn.textContent='Drop it in the box ✨'; }
-  });
+/* ================= COUNTDOWN + MARQUEE BULBS ================= */
+(function countdown(){
+  const today = new Date(); today.setHours(0,0,0,0);
+  const days = Math.round((HEN_DATE - today) / 864e5);
+  const el = $('#days');
+  if(days > 1) el.innerHTML = `${days}<small>DAYS</small>`;
+  else if(days === 1) el.innerHTML = `1<small>DAY</small>`;
+  else if(days === 0){ el.textContent = "IT'S TODAY!"; $('#till').textContent = 'hen do · 09.09.27'; }
+  else { el.textContent = 'WHAT A NIGHT'; $('#till').textContent = 'thanks for the ideas'; }
+})();
+function placeBulbs(){
+  const m = $('#marquee'); m.querySelectorAll('.bulb').forEach(b=>b.remove());
+  const w = m.offsetWidth, h = m.offsetHeight, gap = 18, pts = [];
+  for(let x=10;x<=w-10;x+=gap) pts.push([x,0]);
+  for(let y=gap;y<=h-gap/2;y+=gap) pts.push([w,y]);
+  for(let x=w-10;x>=10;x-=gap) pts.push([x,h]);
+  for(let y=h-gap;y>=gap/2;y-=gap) pts.push([0,y]);
+  pts.forEach(([x,y]) => { const b=document.createElement('i'); b.className='bulb'; b.style.left=x+'px'; b.style.top=y+'px'; m.appendChild(b); });
+}
+let bulbPhase = 0;
+setInterval(() => { bulbPhase = (bulbPhase+1)%3; $$('#marquee .bulb').forEach((b,i)=>b.classList.toggle('on', reduced ? true : i%3===bulbPhase)); }, 160);
 
-  document.getElementById('again').addEventListener('click',()=>{
-    const name=form.name.value; form.reset(); form.name.value=name; paintHype();
-    done.hidden=true; form.hidden=false; form.idea.focus();
-  });
+/* ================= DANCE FLOOR ================= */
+const floor = $('#floor');
+for(let i=0;i<60;i++) floor.appendChild(document.createElement('i'));
+const floorTiles = [...floor.children];
+function lightFloor(n = 9){
+  const pal = crispy ? CRISPY : PALETTE;
+  floorTiles.forEach(t => t.classList.remove('lit'));
+  for(let k=0;k<n;k++){ const t = floorTiles[Math.floor(Math.random()*floorTiles.length)]; t.style.setProperty('--c', pal[Math.floor(Math.random()*pal.length)]); t.classList.add('lit'); }
+}
+let lastFloor = 0;
 
-  function confetti(){
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const cols=['#ff2d95','#9b5cff','#ffd166','#ffffff','#5fd4ff'];
-    for(let i=0;i<90;i++){
-      const c=document.createElement('div'); c.className='confetti';
-      c.style.left=Math.random()*100+'vw'; c.style.background=cols[i%cols.length];
-      c.style.animationDuration=(2.2+Math.random()*2)+'s'; c.style.animationDelay=(Math.random()*.6)+'s';
-      document.body.appendChild(c); setTimeout(()=>c.remove(),5000);
+/* ================= MIRROR BALL ================= */
+const ballC = $('#ball'), bx = ballC.getContext('2d');
+const BS = 300, R = BS/2 - 4, L = (() => { const v=[-.45,.55,.7], m=Math.hypot(...v); return v.map(x=>x/m); })();
+function drawBall(t){
+  bx.clearRect(0,0,BS,BS);
+  const cx = BS/2, cy = BS/2;
+  bx.fillStyle = '#140a1e'; bx.beginPath(); bx.arc(cx,cy,R,0,Math.PI*2); bx.fill();
+  const rot = t * .00045 * (crispy ? 1.6 : 1) + hypeLevel * t * .00004;
+  const bands = 17, hueBase = crispy ? 215 : 300;
+  for(let i=0;i<bands;i++){
+    const la0 = -Math.PI/2 + i*Math.PI/bands, la1 = la0 + Math.PI/bands, lc = (la0+la1)/2;
+    const g = (la1-la0)*.09, a0 = la0+g, a1 = la1-g;
+    const n = Math.max(5, Math.round(36*Math.cos(lc))), dl = Math.PI*2/n;
+    for(let j=0;j<n;j++){
+      const lo = j*dl + rot + i*.37, l0 = lo + dl*.07, l1 = lo + dl*.93, loc = lo + dl/2;
+      const nx = Math.cos(lc)*Math.sin(loc), ny = Math.sin(lc), nz = Math.cos(lc)*Math.cos(loc);
+      if(nz < .03) continue;
+      const P = (la,lg) => [cx + R*Math.cos(la)*Math.sin(lg), cy - R*Math.sin(la)];
+      const d = Math.max(0, nx*L[0] + ny*L[1] + nz*L[2]);
+      const seed = (i*131 + j*71) % 997;
+      const sparkle = Math.sin(t*.0035 + seed*1.7) > .975;
+      let light = 20 + 62*Math.pow(d,1.4) + (seed%7)*2;
+      const hue = (hueBase + Math.sin(loc*2 + i*.6 + t*.0006)*(crispy?28:60) + 360) % 360;
+      bx.fillStyle = sparkle ? '#ffffff' : `hsl(${hue},${crispy?55:38}%,${Math.min(92,light)}%)`;
+      bx.beginPath(); const p = [P(a0,l0),P(a0,l1),P(a1,l1),P(a1,l0)];
+      bx.moveTo(...p[0]); bx.lineTo(...p[1]); bx.lineTo(...p[2]); bx.lineTo(...p[3]); bx.closePath(); bx.fill();
+      if(sparkle){ bx.save(); bx.globalCompositeOperation='lighter'; const [sx,sy] = P(lc,loc); const gr=bx.createRadialGradient(sx,sy,0,sx,sy,16); gr.addColorStop(0,'rgba(255,255,255,.9)'); gr.addColorStop(1,'rgba(255,255,255,0)'); bx.fillStyle=gr; bx.fillRect(sx-16,sy-16,32,32); bx.restore(); }
     }
   }
+  let gr = bx.createRadialGradient(cx-R*.38, cy-R*.42, 2, cx-R*.38, cy-R*.42, R*.7);
+  gr.addColorStop(0,'rgba(255,255,255,.55)'); gr.addColorStop(1,'rgba(255,255,255,0)');
+  bx.fillStyle = gr; bx.beginPath(); bx.arc(cx,cy,R,0,Math.PI*2); bx.fill();
+  gr = bx.createRadialGradient(cx,cy,R*.55,cx,cy,R);
+  gr.addColorStop(0,'rgba(10,0,20,0)'); gr.addColorStop(1,'rgba(10,0,20,.6)');
+  bx.fillStyle = gr; bx.beginPath(); bx.arc(cx,cy,R,0,Math.PI*2); bx.fill();
+}
+
+/* ================= LIGHT FLECKS ================= */
+const fc = $('#flecks'), fx = fc.getContext('2d');
+let W=0, H=0, DPR=1, tiltX=0, tiltY=0, targetTX=0, targetTY=0;
+function resize(){ DPR = Math.min(window.devicePixelRatio||1, 2); W = innerWidth; H = innerHeight; fc.width = W*DPR; fc.height = H*DPR; fx.setTransform(DPR,0,0,DPR,0,0); placeBulbs(); }
+const sprites = {};
+function sprite(c){ if(sprites[c]) return sprites[c]; const s=document.createElement('canvas'); s.width=s.height=64; const g=s.getContext('2d'); const gr=g.createRadialGradient(32,32,0,32,32,32); gr.addColorStop(0,'#fff'); gr.addColorStop(.18,c); gr.addColorStop(1,'rgba(0,0,0,0)'); g.fillStyle=gr; g.fillRect(0,0,64,64); return sprites[c]=s; }
+const spots = Array.from({length:90}, () => ({ a: Math.random()*Math.PI*2, y: Math.random(), s: 5 + Math.random()*13, k: Math.floor(Math.random()*6), tw: Math.random()*6 }));
+function drawFlecks(t){
+  fx.clearRect(0,0,W,H); fx.globalCompositeOperation = 'lighter';
+  const pal = crispy ? CRISPY : PALETTE;
+  const rot = t*.00022*(1 + hypeLevel*.12) + tiltX*.6;
+  const sc = window.scrollY*.25;
+  for(const p of spots){
+    const ang = p.a + rot, z = Math.cos(ang); if(z < 0) continue;
+    const x = W/2 + Math.sin(ang)*W*.8;
+    const y = ((p.y*H*1.15 - sc + tiltY*40) % H + H) % H;
+    const size = p.s * (1 + beat*.45) * (.6 + z*.5);
+    fx.globalAlpha = Math.min(1, z*z*(.22 + beat*.35) * (.75 + .25*Math.sin(t*.004 + p.tw)));
+    fx.drawImage(sprite(pal[p.k % pal.length]), x-size, y-size, size*2, size*2);
+  }
+  fx.globalAlpha = 1;
+}
+
+/* tilt / pointer */
+addEventListener('pointermove', e => { targetTX = (e.clientX/innerWidth - .5); targetTY = (e.clientY/innerHeight - .5); }, {passive:true});
+function enableTilt(){
+  const add = () => addEventListener('deviceorientation', e => { if(e.gamma==null) return; targetTX = Math.max(-1,Math.min(1,e.gamma/45))*.5; targetTY = Math.max(-1,Math.min(1,(e.beta-45)/45))*.5; }, {passive:true});
+  try{ if(typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function'){ DeviceOrientationEvent.requestPermission().then(r => { if(r==='granted') add(); }).catch(()=>{}); } else add(); }catch(_){}
+}
+
+/* main loop */
+let autoBeat = 0;
+function frame(t){
+  if(Sound.pollBeat()) { beat = 1; if(t - lastFloor > 400){ lightFloor(); lastFloor = t; } }
+  else if(!Sound.on && t - autoBeat > 1000){ autoBeat = t; beat = .55; if(t - lastFloor > 900){ lightFloor(7); lastFloor = t; } }
+  beat *= .92;
+  tiltX += (targetTX - tiltX)*.05; tiltY += (targetTY - tiltY)*.05;
+  if($('#intro').classList.contains('show')) drawBall(t);
+  drawFlecks(t);
+  requestAnimationFrame(frame);
+}
+resize(); addEventListener('resize', resize);
+if(reduced){ drawBall(0); drawFlecks(0); lightFloor(); }
+else requestAnimationFrame(frame);
+document.fonts && document.fonts.ready.then(placeBulbs);
+
+/* ================= CRISPY MODE (tap the ball 5x) ================= */
+let taps = [];
+$('#ballRig').addEventListener('click', () => {
+  const rig = $('#ballRig'); rig.classList.remove('drop','boing'); void rig.offsetWidth; rig.classList.add('boing');
+  Sound.blip(660 + taps.length*110);
+  const now = Date.now(); taps = taps.filter(x => now - x < 2500); taps.push(now);
+  if(taps.length >= 5){ taps = []; setCrispy(!crispy); }
+});
+function setCrispy(v){
+  crispy = v; document.body.classList.toggle('crispy', v);
+  if(v){ toast('🍸 Crispy mode unlocked. One Bombay Sapphire & tonic, coming right up.'); bubbles(40); Sound.fizz(); }
+  else toast('🪩 Back to the disco');
+}
+function bubbles(n){
+  if(reduced) return;
+  for(let i=0;i<n;i++){ const b=document.createElement('div'); b.className='bubble'; const s=4+Math.random()*12;
+    b.style.cssText = `left:${Math.random()*100}vw;width:${s}px;height:${s}px;--dx:${(Math.random()-.5)*60}px;animation-duration:${3+Math.random()*4}s;animation-delay:${Math.random()*1.5}s`;
+    document.body.appendChild(b); setTimeout(()=>b.remove(), 9000); }
+}
+let toastT; function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'), 3800); }
+
+/* ================= LIVE COUNTER ================= */
+function showCount(){ if(ideaCount == null) return; $('#counterText').textContent = `${ideaCount} idea${ideaCount===1?'':'s'} in the box`; $('#counter').hidden = false; }
+fetch(SCRIPT_URL + '?count=1').then(r => r.json()).then(d => { if(d && typeof d.count === 'number'){ ideaCount = d.count; showCount(); } }).catch(()=>{});
+
+/* ================= FLOW ================= */
+const form = $('#form'), steps = $$('.step'), N = steps.length, tilesEl = $('#tiles');
+for(let i=0;i<N;i++) tilesEl.appendChild(document.createElement('i'));
+let cur = 0;
+function showScreen(id){ $$('.screen').forEach(s => s.classList.toggle('show', s.id === id)); window.scrollTo({top:0}); if(id==='intro') requestAnimationFrame(placeBulbs); }
+function showStep(i, dir='r'){
+  steps.forEach((s,k) => { s.classList.remove('show','in-r','in-l'); if(k===i){ s.classList.add('show','in-'+dir); } });
+  [...tilesEl.children].forEach((t,k) => { t.className = k<i ? 'done' : (k===i ? 'now' : ''); if(k<i) t.style.setProperty('--c', (crispy?CRISPY:PALETTE)[k % 5]); });
+  $('#stepCount').textContent = String(i+1).padStart(2,'0') + '/' + String(N).padStart(2,'0');
+  cur = i;
+  const first = steps[i].querySelector('input[type=text],input[type=url]');
+  if(first && matchMedia('(hover:hover)').matches) setTimeout(()=>first.focus({preventScroll:true}), 350);
+}
+function validate(i){
+  const req = steps[i].dataset.req; if(!req) return true;
+  const inp = form.elements[req], err = steps[i].querySelector('.err');
+  if(inp.value.trim()) { err.textContent=''; return true; }
+  err.textContent = req === 'name' ? 'Pop your name in first 💕' : "What's the idea? 👀";
+  inp.classList.remove('shake'); void inp.offsetWidth; inp.classList.add('shake'); inp.focus();
+  return false;
+}
+function next(){
+  if(!validate(cur)) return;
+  if(cur === 0) store.set('hen_name', form.name.value.trim());
+  Sound.blip(740); lightFloor(14);
+  if(cur < N-1) showStep(cur+1, 'r'); else submit();
+}
+form.addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  if(b.classList.contains('next')) next();
+  else if(b.hasAttribute('data-skip')){ Sound.blip(520); showStep(cur+1, 'r'); }
+});
+form.addEventListener('keydown', e => { if(e.key === 'Enter' && e.target.tagName === 'INPUT'){ e.preventDefault(); next(); } });
+form.addEventListener('change', e => {
+  if(e.target.type !== 'radio' || e.target.name === 'hype') return;
+  Sound.blip(880 + Math.random()*300); lightFloor(16);
+  const st = e.target.closest('.step');
+  if(st && st.hasAttribute('data-auto') && st === steps[cur]) setTimeout(() => { if(steps[cur] === st) showStep(cur+1, 'r'); }, 420);
+});
+$('#backBtn').addEventListener('click', () => { Sound.blip(400); if(cur === 0) showScreen('intro'); else showStep(cur-1, 'l'); });
+$('#startBtn').addEventListener('click', () => {
+  enableTilt();
+  const saved = store.get('hen_name'); if(saved && !form.name.value) form.name.value = saved;
+  showScreen('flow'); showStep(saved ? 1 : 0, 'r'); Sound.blip(660);
+});
+
+/* G&T glasses */
+const HYPE_WORDS = ['', 'A cheeky single', 'Sounds fun', 'Love this', 'Obsessed', 'Make it a double 🍸'];
+const glassesEl = $('#glasses');
+glassesEl.insertAdjacentHTML('beforeend', `<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8ecff" stop-opacity=".95"/><stop offset="1" stop-color="#3d7bff" stop-opacity=".85"/></linearGradient></defs></svg>`);
+for(let v=1; v<=5; v++){
+  const b = document.createElement('button'); b.type='button'; b.className='glass'; b.dataset.v=v;
+  b.setAttribute('role','radio'); b.setAttribute('aria-checked','false'); b.setAttribute('aria-label', `${v} G&T${v>1?'s':''}: ${HYPE_WORDS[v].replace(/ 🍸/,'')}`);
+  b.innerHTML = `<svg viewBox="0 0 64 96"><defs><clipPath id="gc${v}"><path d="M10 14 L54 14 L50 90 L14 90 Z"/></clipPath></defs>
+    <g clip-path="url(#gc${v})"><rect class="liquid" x="0" y="90" width="64" height="80"/>
+      <rect class="ice" x="20" y="38" width="13" height="13" rx="2" transform="rotate(12 26 44)"/><rect class="ice" x="31" y="50" width="12" height="12" rx="2" transform="rotate(-10 37 56)"/>
+      <circle class="bub" cx="24" cy="84" r="1.8" style="--d:0s"/><circle class="bub" cx="38" cy="86" r="1.4" style="--d:.5s"/><circle class="bub" cx="31" cy="82" r="1.2" style="--d:1s"/><circle class="bub" cx="44" cy="84" r="1.6" style="--d:.8s"/></g>
+    <path class="outline" d="M10 14 L54 14 L50 90 L14 90 Z"/>
+    <g class="lime"><circle cx="50" cy="13" r="11" fill="#9be15d" stroke="#e9ffd0" stroke-width="2"/><path d="M50 2 V24 M39 13 H61 M42.5 5.5 L57.5 20.5 M57.5 5.5 L42.5 20.5" stroke="#e9ffd0" stroke-width="1.2"/></g></svg>`;
+  glassesEl.appendChild(b);
+}
+glassesEl.addEventListener('click', e => {
+  const g = e.target.closest('.glass'); if(!g) return;
+  const v = +g.dataset.v; setHype(hypeLevel === v ? 0 : v);
+});
+function setHype(v){
+  hypeLevel = v; $('#hype').value = v || '';
+  $$('.glass').forEach(g => { const on = +g.dataset.v <= v; g.classList.toggle('full', on); g.setAttribute('aria-checked', String(+g.dataset.v === v)); });
+  $('#hypeWord').textContent = HYPE_WORDS[v];
+  Sound.tempo(v); if(v) { Sound.fizz(); lightFloor(8 + v*6); }
+}
+
+/* ================= SUBMIT + TICKET ================= */
+let lastPayload = null;
+function fillTicket(){
+  const f = form.elements, bits = [f.price.value, f.time.value, f.transport.value].filter(Boolean);
+  $('#tIdea').textContent = f.idea.value.trim();
+  $('#tMeta').innerHTML = [bits.join(' · ') || 'Details to follow', f.christie.value ? 'Christie: ' + f.christie.value : ''].filter(Boolean).map(x => x.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))).join('<br>');
+  $('#tName').textContent = f.name.value.trim();
+  $('#tHype').textContent = hypeLevel ? '🍸'.repeat(hypeLevel) : '';
+  $('#tNo').textContent = ideaCount != null ? 'No. ' + String(ideaCount + 1).padStart(3,'0') : 'VIP';
+}
+function send(){
+  const fd = new FormData(form);
+  return fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:new URLSearchParams(fd) });
+}
+const wait = ms => new Promise(r => setTimeout(r, ms));
+async function submit(){
+  fillTicket();
+  showScreen('ticketScreen');
+  const scene = $('#scene'), ticket = $('#ticket'), paper = $('#paper');
+  $('#doneCopy').hidden = true; $('#failCopy').hidden = true;
+  ticket.style.visibility = ''; paper.style.height = ''; scene.classList.remove('printing'); void scene.offsetWidth;
+  const sending = send().then(() => true).catch(() => false);
+  scene.classList.add('printing'); Sound.printer();
+  await wait(reduced ? 200 : 2300);
+  const ok = await sending;
+  if(!ok){ scene.classList.remove('printing'); $('#failCopy').hidden = false; return; }
+  await wait(reduced ? 0 : 700);
+  await dropTicket(ticket);
+  if(ideaCount != null){ ideaCount++; showCount(); }
+  const doneText = ideaCount != null ? `It's in the box, idea number ${ideaCount}! The organisers have got it, and Christie's none the wiser.` : "It's in the box. The organisers have got it, and Christie's none the wiser.";
+  $('#doneText').textContent = doneText;
+  $('#doneCopy').hidden = false;
+}
+async function dropTicket(ticket){
+  const ballot = $('#ballot'), from = ticket.getBoundingClientRect(), box = ballot.getBoundingClientRect();
+  const fly = ticket.cloneNode(true); fly.removeAttribute('id'); fly.classList.add('flyer');
+  Object.assign(fly.style, { left: from.left+'px', top: from.top+'px', width: from.width+'px', height: from.height+'px', transform:'none', animation:'none' });
+  document.body.appendChild(fly); ticket.style.visibility = 'hidden';
+  $('#paper').style.height = '30px';
+  const slotX = box.left + box.width/2, slotY = box.top + 12;
+  const dx = slotX - (from.left + from.width/2), dy = slotY - (from.top + from.height/2);
+  if(!reduced){
+    await fly.animate([
+      { transform:'translate(0,0) rotate(0) scale(1)', opacity:1 },
+      { transform:`translate(${dx*.3}px,${dy*.25 - 30}px) rotate(-8deg) scale(.9)`, opacity:1, offset:.35 },
+      { transform:`translate(${dx}px,${dy - 20}px) rotate(90deg) scale(.42,.42)`, opacity:1, offset:.8 },
+      { transform:`translate(${dx}px,${dy + 30}px) rotate(90deg) scale(.32,.42)`, opacity:0 }
+    ], { duration: 1100, easing:'cubic-bezier(.45,0,.3,1)', fill:'forwards' }).finished.catch(()=>{});
+  }
+  fly.remove();
+  ballot.classList.remove('gulp'); void ballot.offsetWidth; ballot.classList.add('gulp');
+  Sound.chime(); glitter(slotX, slotY); lightFloor(30); beat = 1;
+}
+function glitter(x, y){
+  if(reduced) return;
+  const cols = crispy ? CRISPY : ['#ffd166','#ff2d95','#ffffff','#9b5cff','#5fe1ff'];
+  for(let i=0;i<70;i++){
+    const g = document.createElement('div'); g.className='glitter'; g.style.left = x+'px'; g.style.top = y+'px'; g.style.background = cols[i%cols.length];
+    g.style.boxShadow = `0 0 6px ${cols[i%cols.length]}`;
+    document.body.appendChild(g);
+    const a = -Math.PI/2 + (Math.random()-.5)*Math.PI*1.3, v = 90 + Math.random()*220;
+    g.animate([
+      { transform:'translate(-50%,-50%) rotate(0)', opacity:1 },
+      { transform:`translate(${Math.cos(a)*v}px,${Math.sin(a)*v}px) rotate(${Math.random()*720}deg)`, opacity:1, offset:.55 },
+      { transform:`translate(${Math.cos(a)*v*1.2}px,${Math.sin(a)*v + 260}px) rotate(${Math.random()*1080}deg)`, opacity:0 }
+    ], { duration: 1400 + Math.random()*900, easing:'cubic-bezier(.2,.7,.4,1)', fill:'forwards' }).finished.then(()=>g.remove(), ()=>g.remove());
+  }
+}
+$('#retryBtn').addEventListener('click', submit);
+function resetForm(keepName){
+  const name = form.name.value; form.reset(); if(keepName) form.name.value = name;
+  setHype(0); $$('.err').forEach(e => e.textContent = '');
+}
+$('#againBtn').addEventListener('click', () => { resetForm(true); showScreen('flow'); showStep(1, 'r'); });
+$('#homeBtn').addEventListener('click', () => { resetForm(true); showScreen('intro'); });
+})();
 </script>
 </body>
 </html>

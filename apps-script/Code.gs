@@ -39,9 +39,11 @@ function doPost(e) {
   }
 }
 
+// Returns how many ideas are in the box (a number only, never the ideas themselves).
 // Visit the /exec URL in a browser to check it's live.
 function doGet() {
-  return json_({ ok: true, message: 'Idea box is live 🪩' });
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+  return json_({ ok: true, count: Math.max(0, sheet.getLastRow() - 1) });
 }
 
 // Keep text short and stop anything being read as a spreadsheet formula.

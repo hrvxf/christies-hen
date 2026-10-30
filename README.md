@@ -14,3 +14,11 @@ A branded form for the hen do group to drop ideas into. Every submission is save
    - Who has access: **Anyone**
 4. Click **Deploy** and allow access when asked (Google will warn the app is unverified: **Advanced → Go to project**).
 5. Copy the **Web app URL** (ends in `/exec`) and paste it into `index.html` as `SCRIPT_URL`.
+
+## Updating the script
+
+After changing `Code.gs`: **Deploy → Manage deployments → ✏️ edit → Version: New version → Deploy**. This keeps the same `/exec` URL, so the page keeps working.
+
+## Easter egg
+
+Tap the mirror ball 5 times. 🍸
