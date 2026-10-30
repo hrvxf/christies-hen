@@ -519,6 +519,14 @@ body.crispy .news-strip .new{color:var(--ice);box-shadow:inset 0 0 0 1px rgba(15
 @keyframes sheetUp{from{transform:translateY(100%)}}
 .sheet-grab{width:40px;height:4px;border-radius:4px;background:rgba(255,255,255,.2);margin:0 auto 16px}
 .sheet-card .q{font-size:26px}
+.sheet-card{scrollbar-width:none;overscroll-behavior:contain}
+.sheet-card::-webkit-scrollbar{display:none}
+.sheet-card .lbl{margin:14px 0 7px}
+.sheet-card .hint{margin-bottom:6px}
+.sheet-card input[type=text],.sheet-card input[type=url]{padding:13px 15px;font-size:16px}
+.sheet-card textarea{min-height:68px;padding:12px 15px}
+.sheet-card .nav{margin-top:18px}
+.pin-pair{display:grid;grid-template-columns:1.5fr 1fr;gap:10px}
 .sheet-card .chips label{font-size:14px;padding:10px 14px}
 body.locked{overflow:hidden}
 /* the plan: boarding pass */
@@ -1249,10 +1257,12 @@ body.crispy .chips input:checked + label{color:#0a1840;background:linear-gradien
       </div>
       <label class="lbl" for="pdetails">The details <small>(optional)</small></label>
       <textarea id="pdetails" name="details" placeholder="Colour, wording, how many…" maxlength="600"></textarea>
-      <label class="lbl" for="plink">Link <small>(optional)</small></label>
-      <input type="url" id="plink" name="link" inputmode="url" placeholder="Etsy, Amazon, Insta…">
-      <label class="lbl" for="pcost">Rough cost each, if you know <small>(optional)</small></label>
-      <input type="text" id="pcost" name="cost" inputmode="decimal" placeholder="e.g. £8" maxlength="20">
+      <div class="pin-pair">
+        <div><label class="lbl" for="plink">Link <small>(optional)</small></label>
+        <input type="url" id="plink" name="link" inputmode="url" placeholder="Etsy, Amazon…"></div>
+        <div><label class="lbl" for="pcost">Cost each <small>(optional)</small></label>
+        <input type="text" id="pcost" name="cost" inputmode="decimal" placeholder="e.g. £8" maxlength="20"></div>
+      </div>
       <div class="sr" aria-hidden="true"><label for="website5">Leave empty</label><input type="text" id="website5" name="website" tabindex="-1"></div>
       <div class="err" aria-live="polite"></div>
       <div class="nav"><button class="skip" type="button" data-close>Cancel</button><button class="next" type="submit">Pin it</button></div>
