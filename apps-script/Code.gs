@@ -4,7 +4,6 @@
  *   - Activity ideas            → the "Ideas" tab
  *   - Theme / dress code pitches → the "Themes" tab
  *   - Missions for Christie     → the "Missions" tab
- *   - Food and allergies        → the "Food & allergies" tab
  * Tabs are found by name, so other tabs (Budget etc.) can sit anywhere, in any order.
  * Tabs are created automatically the first time something arrives for them.
  *
@@ -22,7 +21,6 @@ const TABS = {
   idea:    { name: 'Ideas',            headers: ['Submitted', 'Name', 'Idea', 'Details', 'Link', 'Price each', 'Time', 'Getting there', 'Bring / wear', 'Christie factor', 'Hype (1-5)'] },
   theme:   { name: 'Themes',           headers: ['Submitted', 'Name', 'Theme', 'The look', 'Link', 'When', 'Christie factor', 'Hype (1-5)', 'Group votes', 'Status', 'Organiser notes'] },
   mission: { name: 'Missions',         headers: ['Submitted', 'Name', 'Mission', 'Rules', 'When', 'Cheek level', "G&Ts she'll need (1-5)", 'Status', 'Organiser notes'] },
-  diet:    { name: 'Food & allergies', headers: ['Submitted', 'Name', 'Diet', 'Allergies & notes'] },
 };
 
 function doPost(e) {
@@ -51,12 +49,6 @@ function doPost(e) {
         new Date(), clean_(p.name), clean_(p.mission), clean_(p.details),
         clean_(p.when), clean_(p.cheek), clean_(p.hype),
       ]);
-      return json_({ ok: true });
-    }
-
-    if (p.type === 'diet') {
-      if (!p.name) return json_({ ok: false, error: 'Name is required' });
-      tab_(ss, 'diet').appendRow([new Date(), clean_(p.name), clean_(p.diet), clean_(p.notes)]);
       return json_({ ok: true });
     }
 

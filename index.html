@@ -457,9 +457,6 @@ body.crispy .btn-gold{background:linear-gradient(180deg,#f2f8ff 0%,#bcdcff 60%,#
 body.crispy .navtile .ico svg{stroke:var(--ice)}
 .cta.mission{margin-top:12px;background:linear-gradient(135deg,#3d7bff,#9b5cff);box-shadow:0 12px 34px rgba(61,123,255,.45),inset 0 1px 0 rgba(255,255,255,.18)}
 .cta.mission::after{animation-delay:6s}
-#foodForm .lbl:first-of-type{margin-top:0}
-#foodForm .chips label{font-size:15px;padding:11px 15px}
-#foodForm .next{display:block;width:100%;margin-top:18px}
 .next[disabled]{opacity:.6;cursor:default}
 .ballot.wide .front span{font-size:21px}
 /* premium pass for inner pages + the idea box questions */
@@ -564,7 +561,6 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
         <button class="navtile" type="button" data-page="money"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/></svg></span><span><b>The money</b><small>£550 each</small></span></button>
         <button class="navtile" type="button" data-page="prep"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><circle cx="12" cy="10" r="3.2"/><path d="M9 16.5h6"/></svg></span><span><b>Before you go</b><small>Check your passport</small></span></button>
         <button class="navtile" type="button" data-page="croatia"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></span><span><b>Croatia 101</b><small>Euros, plugs, Živjeli</small></span></button>
-        <button class="navtile wide" type="button" data-page="food"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3v7a2 2 0 0 0 4 0V3M9 12v9M17 3c-2.2 1.6-3 4-3 7h3v11"/></svg></span><span><b>Food</b><small>Diets and allergies</small></span></button>
       </nav>
     </div>
 
@@ -624,29 +620,6 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
     </div>
   </section>
 
-
-  <section class="screen page" id="pg-food" aria-labelledby="foodH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">So we book the right places</span></div>
-    <h2 class="sec-h" id="foodH">Food and allergies</h2>
-    <form class="panel" id="foodForm" novalidate autocomplete="off">
-      <label class="lbl" for="fname">Your name</label>
-      <input type="text" id="fname" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
-      <p class="lbl">Anything we need to know?</p>
-      <div class="chips" role="group" aria-label="Dietary needs">
-        <input type="checkbox" name="diet" id="d0" value="Eats everything"><label for="d0">Nope, I eat everything</label>
-        <input type="checkbox" name="diet" id="d1" value="Vegetarian"><label for="d1">Vegetarian</label>
-        <input type="checkbox" name="diet" id="d2" value="Vegan"><label for="d2">Vegan</label>
-        <input type="checkbox" name="diet" id="d3" value="Pescatarian"><label for="d3">Pescatarian</label>
-        <input type="checkbox" name="diet" id="d4" value="Gluten-free"><label for="d4">Gluten-free</label>
-        <input type="checkbox" name="diet" id="d5" value="Dairy-free"><label for="d5">Dairy-free</label>
-      </div>
-      <label class="lbl" for="fnotes">Allergies, or anything else? <small>(optional)</small></label>
-      <textarea id="fnotes" name="notes" placeholder="e.g. nut allergy, can't stand olives, go green on boats" maxlength="1500"></textarea>
-      <div class="sr" aria-hidden="true"><label for="website4">Leave empty</label><input type="text" id="website4" name="website" tabindex="-1"></div>
-      <div class="err" aria-live="polite"></div>
-      <button class="next" type="submit">Send it</button>
-    </form>
-  </section>
 
   <!-- ============ FLOW ============ -->
   <section class="screen" id="flow" aria-label="Your idea">
@@ -1600,34 +1573,6 @@ $('#newsLatest').textContent = UPDATES[0].text;
 $('#newsList').innerHTML = UPDATES.map(u => `<li><time>${esc(u.date)}</time><span>${esc(u.text)}</span></li>`).join('');
 $('#dayList').innerHTML = DAYS.map(d => `<div><span class="dbadge"><small>${esc(d.wd)}</small><b>${esc(d.d)}</b><small>SEP</small></span>
   <span class="dinfo"><b>${esc(d.title)}</b>${d.plan.length ? '<ul>' + d.plan.map(x => `<li>${esc(x)}</li>`).join('') + '</ul>' : '<span>TBC</span>'}</span></div>`).join('');
-
-/* ================= FOOD + ALLERGIES ================= */
-const food = $('#foodForm'), foodBtn = food.querySelector('button[type=submit]'), foodErr = food.querySelector('.err');
-if(store.get('hen_name')) food.elements.name.value = store.get('hen_name');
-food.addEventListener('change', e => {
-  const box = e.target; if(box.type !== 'checkbox') return;
-  Sound.blip(880 + Math.random()*300); lightFloor(12);
-  // "I eat everything" and the rest can't both be ticked
-  if(box.checked) food.querySelectorAll('input[name=diet]').forEach(o => { if(o !== box && (o.value === 'Eats everything' || box.value === 'Eats everything')) o.checked = false; });
-});
-food.addEventListener('submit', async e => {
-  e.preventDefault();
-  const name = food.elements.name.value.trim(), notes = food.elements.notes.value.trim();
-  const diet = [...food.querySelectorAll('input[name=diet]:checked')].map(i => i.value).join(', ');
-  if(!name){ foodErr.textContent = REQ_MSG.name; food.elements.name.focus(); return; }
-  if(!diet && !notes){ foodErr.textContent = 'Tick a box or tell us below'; return; }
-  foodErr.textContent = ''; store.set('hen_name', name);
-  foodBtn.disabled = true; foodBtn.textContent = 'Sending…';
-  const p = new URLSearchParams({ type:'diet', name, diet, notes, website: food.elements.website.value,
-    idea: '🍽️ FOOD: ' + [diet, notes].filter(Boolean).join(' · ') });   // fallback for an older Sheet script
-  const ok = await post(p).then(() => true, () => false);
-  foodBtn.disabled = false;
-  if(!ok){ foodBtn.textContent = 'Send it'; foodErr.textContent = "That didn't send. Check your signal and try again."; return; }
-  foodBtn.textContent = 'Got it ✓';
-  const r = foodBtn.getBoundingClientRect(); Sound.chime(); glitter(r.left + r.width/2, r.top); lightFloor(30); beat = 1;
-  toast("Got it. We'll plan round it.");
-  setTimeout(() => { foodBtn.textContent = 'Send it'; }, 4000);
-});
 
 /* ================= PLAYLIST ================= */
 // Tapping into the Spotify player turns the disco music off so the two don't clash.
