@@ -3,7 +3,11 @@
 The hen group's home page: the idea box, the playlist, what's new, the plan, the money, before-you-go reminders and Croatia tips. Everything people send in is saved as a new row in a private Google Sheet that only the organisers can see.
 
 - `index.html` – the page (hosted on GitHub Pages)
-- `apps-script/Code.gs` – the Google Apps Script that receives submissions and writes them to the Sheet (activity ideas → first tab, theme pitches → "Themes", missions for Christie → "Missions")
+- `apps-script/Code.gs` – the Google Apps Script that receives submissions and writes them to the Sheet (activity ideas → first tab, theme pitches → "Themes", missions for Christie → "Missions", the finishing touches board → "Extras")
+
+## The finishing touches board
+
+Everyone can see it. Cards come from the "Extras" tab. Type **Sorted** in a card's Status column to stamp it, or **Hidden** to take it off the board. Hearts are counted once per name (the "Hearted by" column).
 
 ## Updating the page as plans firm up
 
