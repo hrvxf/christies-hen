@@ -2119,14 +2119,20 @@ const Board = (() => {
 Board.load();
 
 /* ================= PHRASEBOOK: tap to hear ================= */
+// Uses the device's own voices. Croatian first; Bosnian or Serbian sound near enough if there's no Croatian voice.
 (function(){
   const synth = window.speechSynthesis;
-  const hrVoice = () => synth && synth.getVoices().find(v => /^hr/i.test(v.lang));
-  if(synth) { synth.getVoices(); synth.addEventListener && synth.addEventListener('voiceschanged', hrVoice); }
+  const pick = () => { const vs = synth ? synth.getVoices() : []; for(const l of ['hr', 'bs', 'sr']){ const v = vs.find(x => x.lang.toLowerCase().startsWith(l)); if(v) return v; } return null; };
+  if(synth){ synth.getVoices(); if(synth.addEventListener) synth.addEventListener('voiceschanged', pick); }
+  const isPhone = /iphone|ipad|android/i.test(navigator.userAgent);
   document.addEventListener('click', e => {
     const b = e.target.closest('.say'); if(!b) return;
-    const v = hrVoice();
-    if(!synth || !v){ toast("Your phone hasn't got a Croatian voice, so go by the pronunciation underneath."); return; }
+    const v = pick();
+    if(!synth || !v){
+      toast(isPhone ? "This phone hasn't got a Croatian voice, so go by the pronunciation underneath."
+                    : "This browser hasn't got a Croatian voice. Try it on your phone, or go by the pronunciation underneath.");
+      return;
+    }
     const wasOn = Sound.on; if(wasOn) Sound.stop();
     synth.cancel();
     const u = new SpeechSynthesisUtterance(b.dataset.say); u.voice = v; u.lang = v.lang; u.rate = .85;
