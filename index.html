@@ -393,6 +393,12 @@ body.crispy .news-strip .new{color:var(--ice);box-shadow:inset 0 0 0 1px rgba(15
 .navtile .em{font-size:28px;line-height:1}
 .navtile b{display:block;font-size:16px;font-weight:600;letter-spacing:.01em}
 .navtile small{display:block;margin-top:2px;font-size:13px;color:var(--muted)}
+.navtile.wide{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:flex-start;min-height:0;gap:14px}
+.tunes{margin-top:34px}
+.tunes-k{text-align:center;margin-bottom:12px!important}
+.spotify.spotify-mini{height:152px;border-radius:14px}
+.tunes .foot{margin-top:10px;font-size:13px}
+.tunes .foot a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(255,209,102,.4)}
 .linkbtn{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--hot);font-weight:700;text-decoration:underline}
 /* inner pages */
 .page-head{display:flex;align-items:center;gap:14px;margin:4px 0 16px}
@@ -544,6 +550,12 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
       <p class="foot">Organisers' eyes only. Add as many as you like.</p>
     </div>
 
+    <div class="tunes" id="tunes">
+      <p class="sec-k tunes-k">The soundtrack</p>
+      <iframe class="spotify spotify-mini" id="spotify" title="The hen do playlist on Spotify" src="https://open.spotify.com/embed/playlist/7hMN4qKrrd0USB6N153CaI?utm_source=generator&amp;theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <p class="foot"><a href="https://open.spotify.com/playlist/7hMN4qKrrd0USB6N153CaI" target="_blank" rel="noopener">Open it in Spotify</a> to add your songs.</p>
+    </div>
+
     <div class="info" id="info">
       <p class="sec-k info-k">The need-to-knows</p>
       <button class="news-strip" type="button" data-page="news"><span class="new">New</span><span class="txt" id="newsLatest"></span><span class="chev" aria-hidden="true">›</span></button>
@@ -552,8 +564,7 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
         <button class="navtile" type="button" data-page="money"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/></svg></span><span><b>The money</b><small>£550 each</small></span></button>
         <button class="navtile" type="button" data-page="prep"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><circle cx="12" cy="10" r="3.2"/><path d="M9 16.5h6"/></svg></span><span><b>Before you go</b><small>Check your passport</small></span></button>
         <button class="navtile" type="button" data-page="croatia"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></span><span><b>Croatia 101</b><small>Euros, plugs, Živjeli</small></span></button>
-        <button class="navtile" type="button" data-page="tunes"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 17.5V5.5l11-2v12"/><circle cx="6.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="15.5" r="2.5"/></svg></span><span><b>Tunes</b><small>Add your songs</small></span></button>
-        <button class="navtile" type="button" data-page="food"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3v7a2 2 0 0 0 4 0V3M9 12v9M17 3c-2.2 1.6-3 4-3 7h3v11"/></svg></span><span><b>Food</b><small>Diets and allergies</small></span></button>
+        <button class="navtile wide" type="button" data-page="food"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3v7a2 2 0 0 0 4 0V3M9 12v9M17 3c-2.2 1.6-3 4-3 7h3v11"/></svg></span><span><b>Food</b><small>Diets and allergies</small></span></button>
       </nav>
     </div>
 
@@ -613,13 +624,6 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
     </div>
   </section>
 
-  <section class="screen page" id="pg-tunes" aria-labelledby="tunesH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">The official soundtrack</span></div>
-    <h2 class="sec-h" id="tunesH">Tunes</h2>
-    <p class="sec-p">Floor-fillers only, please. Add your songs and we'll be belting them out on the boat.</p>
-    <iframe class="spotify" id="spotify" title="The hen do playlist on Spotify" src="https://open.spotify.com/embed/playlist/7hMN4qKrrd0USB6N153CaI?utm_source=generator&amp;theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    <a class="btn btn-gold" style="margin-top:14px" href="https://open.spotify.com/playlist/7hMN4qKrrd0USB6N153CaI" target="_blank" rel="noopener">Add your songs on Spotify<span class="arr" aria-hidden="true">→</span></a>
-  </section>
 
   <section class="screen page" id="pg-food" aria-labelledby="foodH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">So we book the right places</span></div>
