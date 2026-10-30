@@ -418,6 +418,7 @@ body.crispy .news-strip .new{color:var(--ice);box-shadow:inset 0 0 0 1px rgba(15
 .r-ask{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11px;letter-spacing:.14em;color:#6b3a7a}
 .r-ask b{font-size:26px;letter-spacing:0;color:#24002f}
 .r-ask small{font-size:11px;letter-spacing:.14em;color:#6b3a7a}
+.r-fn{margin:6px 0 0;font-size:11px;color:#6b3a7a}
 .r-note{margin:4px 0 0;font-size:11px;color:#6b3a7a;text-align:right}
 .r-bar{height:34px;margin:20px auto 8px;width:78%;background:repeating-linear-gradient(90deg,#2a0b3a 0 2px,transparent 2px 4px,#2a0b3a 4px 5px,transparent 5px 8px,#2a0b3a 8px 11px,transparent 11px 12px,#2a0b3a 12px 13px,transparent 13px 16px)}
 .r-foot{margin:0;text-align:center;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a5a96}
@@ -952,14 +953,14 @@ const UPDATES = [
   { date: '30 Oct 2026', text: "The money's in. Full breakdown's on the receipt, under The money." },
   { date: '30 Oct 2026', text: "We're live. Dates are locked in, the idea box is open and the playlist's up. Get adding!" },
 ];
-// The receipt on The money page. Prices are each, in £: [item, low, high]. Totals add themselves up.
+// The receipt on The money page. Prices are each, in £: [item, low, high, optional footnote]. Totals add themselves up.
 const BUDGET = {
   where: 'Split', people: 7, ask: 550,
   items: [
     ['Accommodation',       193.14, 193.14],
     ['Boat experience',      43.50,  87.00],
     ['Vineyard experience',  43.50,  78.30],
-    ['Flights',             100.00, 100.00],
+    ['Flights',             100.00, 120.00, 'not including luggage'],
     ['Contingency',          80.00,  80.00],
   ],
 };
@@ -1609,12 +1610,13 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
     <div class="r-head"><b>CHRISTIE'S HEN DO</b><span>${esc(BUDGET.where.toUpperCase())} · 09–14.09.27</span><span>${BUDGET.people} GUESTS · PRICES EACH</span></div>
     <div class="r-rule"></div>
     ${row('ITEM', 'FROM', 'UP TO', 'r-cols')}
-    ${BUDGET.items.map(([n, a, b]) => row(esc(n), gbp(a), gbp(b))).join('')}
+    ${BUDGET.items.map(([n, a, b, fn]) => row(esc(n) + (fn ? '*' : ''), gbp(a), gbp(b))).join('')}
+    ${BUDGET.items.filter(i => i[3]).map(i => `<p class="r-fn">* ${esc(i[0])}: ${esc(i[3])}</p>`).join('')}
     <div class="r-rule"></div>
     ${row('TOTAL EACH', gbp(lo), gbp(hi), 'r-total')}
     <div class="r-rule double"></div>
     <div class="r-ask"><span>WE'RE ASKING</span><b>${gbp(BUDGET.ask)}<small> EACH</small></b></div>
-    <p class="r-note">${BUDGET.ask >= hi ? 'Covers the top end, with a little to spare.' : 'Top end may come in a touch higher.'}</p>
+    <p class="r-note">${BUDGET.ask >= hi ? 'Covers the top end, with a little to spare.' : `The top end is ${gbp(hi - BUDGET.ask)} over, so it may come in a touch higher.`}</p>
     <div class="r-bar" aria-hidden="true"></div>
     <p class="r-foot">Christie's none the wiser<br>Thank you, come again</p>`;
 })();
