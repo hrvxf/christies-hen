@@ -12,7 +12,7 @@ Near the top of the script in `index.html` there's a **HUB CONTENT** block:
 - `UPDATES` – the "What's new" list. Add a line at the top whenever something changes.
 - `DAYS` – the itinerary. Add plans to each day's `plan` list as they're booked; empty days show "TBC".
 
-The money, accommodation and "Any questions?" bits are plain HTML in the intro section.
+The home screen is the idea box buttons plus a grid of tiles. Each tile opens its own page (`pg-plan`, `pg-money`, `pg-prep`, `pg-croatia`, `pg-tunes`, `pg-food`, `pg-news`), and pages can be linked to directly, e.g. `…/christies-hen/#money`. The money and accommodation bits are plain HTML in those pages.
 
 ## Connecting it to the Sheet (one time)
 
