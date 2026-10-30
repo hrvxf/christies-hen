@@ -418,6 +418,8 @@ body.crispy .news-strip .new{color:var(--ice);box-shadow:inset 0 0 0 1px rgba(15
 .r-ask{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11px;letter-spacing:.14em;color:#6b3a7a}
 .r-ask b{font-size:26px;letter-spacing:0;color:#24002f}
 .r-ask small{font-size:11px;letter-spacing:.14em;color:#6b3a7a}
+.r-one{grid-template-columns:1fr auto}
+.r-booked{font-style:normal;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#c2185b;margin-left:8px;padding:1px 6px;border:1px solid rgba(194,24,91,.5);border-radius:4px;vertical-align:2px}
 .r-fn{margin:6px 0 0;font-size:11px;color:#6b3a7a}
 .r-note{margin:4px 0 0;font-size:11px;color:#6b3a7a;text-align:right}
 .r-bar{height:34px;margin:20px auto 8px;width:78%;background:repeating-linear-gradient(90deg,#2a0b3a 0 2px,transparent 2px 4px,#2a0b3a 4px 5px,transparent 5px 8px,#2a0b3a 8px 11px,transparent 11px 12px,#2a0b3a 12px 13px,transparent 13px 16px)}
@@ -953,15 +955,17 @@ const UPDATES = [
   { date: '30 Oct 2026', text: "The money's in. Full breakdown's on the receipt, under The money." },
   { date: '30 Oct 2026', text: "We're live. Dates are locked in, the idea box is open and the playlist's up. Get adding!" },
 ];
-// The receipt on The money page. Prices are each, in £: [item, low, high, optional footnote]. Totals add themselves up.
+// The receipt on The money page. Prices are each, in £. Totals add themselves up.
+//   One price:  { item, cost }          (add booked: true once it's paid for)
+//   A range:    { item, from, to }      (add note: '…' for a footnote)
 const BUDGET = {
   where: 'Split', people: 7, ask: 550,
   items: [
-    ['Accommodation',       193.14, 193.14],
-    ['Boat experience',      43.50,  87.00],
-    ['Vineyard experience',  43.50,  78.30],
-    ['Flights',             100.00, 120.00, 'not including luggage'],
-    ['Contingency',          80.00,  80.00],
+    { item: 'Accommodation',       cost: 193.14, booked: true },
+    { item: 'Boat experience',     from: 43.50,  to: 87.00 },
+    { item: 'Vineyard experience', from: 43.50,  to: 78.30 },
+    { item: 'Flights',             from: 100.00, to: 120.00, note: 'not including luggage' },
+    { item: 'Contingency',         cost: 80.00 },
   ],
 };
 // Add plans as they're booked, e.g. plan: ['Private boat day', 'Konoba seafood feast']. A note shows when there's no plan yet.
@@ -1604,15 +1608,19 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
 /* ================= THE MONEY: receipt ================= */
 (function receipt(){
   const gbp = n => '£' + n.toFixed(2);
-  const lo = BUDGET.items.reduce((t, i) => t + i[1], 0), hi = BUDGET.items.reduce((t, i) => t + i[2], 0);
-  const cont = (BUDGET.items.find(i => /contingency/i.test(i[0])) || [0, 0, 0])[2];
+  const low = i => i.cost ?? i.from, high = i => i.cost ?? i.to;
+  const lo = BUDGET.items.reduce((t, i) => t + low(i), 0), hi = BUDGET.items.reduce((t, i) => t + high(i), 0);
+  const c = BUDGET.items.find(i => /contingency/i.test(i.item)), cont = c ? high(c) : 0;
   const row = (a, b, c, cls = '') => `<div class="r-row ${cls}"><span>${a}</span><span>${b}</span><span>${c}</span></div>`;
+  const item = i => i.cost != null
+    ? `<div class="r-row r-one"><span>${esc(i.item)}${i.booked ? '<em class="r-booked">Booked</em>' : ''}</span><span>${gbp(i.cost)}</span></div>`
+    : row(esc(i.item) + (i.note ? '*' : ''), gbp(i.from), gbp(i.to));
   $('#receipt').innerHTML = `
     <div class="r-head"><b>CHRISTIE'S HEN DO</b><span>${esc(BUDGET.where.toUpperCase())} · 09–14.09.27</span><span>${BUDGET.people} GUESTS · PRICES EACH</span></div>
     <div class="r-rule"></div>
     ${row('ITEM', 'FROM', 'UP TO', 'r-cols')}
-    ${BUDGET.items.map(([n, a, b, fn]) => row(esc(n) + (fn ? '*' : ''), gbp(a), gbp(b))).join('')}
-    ${BUDGET.items.filter(i => i[3]).map(i => `<p class="r-fn">* ${esc(i[0])}: ${esc(i[3])}</p>`).join('')}
+    ${BUDGET.items.map(item).join('')}
+    ${BUDGET.items.filter(i => i.note).map(i => `<p class="r-fn">* ${esc(i.item)}: ${esc(i.note)}</p>`).join('')}
     <div class="r-rule"></div>
     ${row('TOTAL EACH', gbp(lo), gbp(hi), 'r-total')}
     <div class="r-rule double"></div>
