@@ -6,11 +6,11 @@
 <meta name="theme-color" content="#0d0018">
 <title>Christie's Hen Do · Croatia 09.09.27</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="Five days in Croatia with the bride-to-be. The plan, the money, the playlist and the idea box. Top secret 🤫">
+<meta name="description" content="Five nights in Croatia with the bride-to-be. The plan, the money, the playlist and the idea box. Top secret 🤫">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hrvxf.github.io/christies-hen/">
 <meta property="og:title" content="Christie's Hen Do · Croatia ☀️">
-<meta property="og:description" content="Five days in Croatia. Everything you need, plus the idea box 🤫">
+<meta property="og:description" content="Five nights in Croatia, 9–14 Sept. Everything you need, plus the idea box 🤫">
 <meta property="og:image" content="https://hrvxf.github.io/christies-hen/og.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -535,7 +535,7 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
       <div class="till" id="till">till Croatia · 09.09.27</div>
     </div>
 
-    <p class="intro-copy">Five days in Croatia with the bride-to-be. <b>Christie's none the wiser</b>, so don't forward this link.</p>
+    <p class="intro-copy">Five nights in Croatia with the bride-to-be. <b>Christie's none the wiser</b>, so don't forward this link.</p>
 
     <div id="box" class="box">
       <p class="sec-k box-k">The idea box</p>
@@ -557,7 +557,7 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
       <p class="sec-k info-k">The need-to-knows</p>
       <button class="news-strip" type="button" data-page="news"><span class="new">New</span><span class="txt" id="newsLatest"></span><span class="chev" aria-hidden="true">›</span></button>
       <nav class="navgrid" aria-label="Trip info">
-        <button class="navtile" type="button" data-page="plan"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><span><b>The plan</b><small>9–13 Sept, filling up</small></span></button>
+        <button class="navtile" type="button" data-page="plan"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><span><b>The plan</b><small>9–14 Sept, filling up</small></span></button>
         <button class="navtile" type="button" data-page="money"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/></svg></span><span><b>The money</b><small>£550 each</small></span></button>
         <button class="navtile" type="button" data-page="prep"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><circle cx="12" cy="10" r="3.2"/><path d="M9 16.5h6"/></svg></span><span><b>Before you go</b><small>Check your passport</small></span></button>
         <button class="navtile" type="button" data-page="croatia"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></span><span><b>Croatia 101</b><small>Euros, plugs, Živjeli</small></span></button>
@@ -574,9 +574,9 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
   </section>
 
   <section class="screen page" id="pg-plan" aria-labelledby="planH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Thu 9 – Mon 13 Sept 2027</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Thu 9 – Tue 14 Sept 2027</span></div>
     <h2 class="sec-h" id="planH">The plan</h2>
-    <p class="sec-p">Filling up as we book. Got ideas? Chuck them in the<button class="linkbtn" type="button" data-go="home">idea box</button></p>
+    <p class="sec-p">Filling up as we book. Got ideas? Chuck them in the <button class="linkbtn" type="button" data-go="home">idea box</button></p>
     <div class="panel rows" id="dayList"></div>
     <div class="panel soon"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg></span><span><b style="color:var(--text)">Where we're staying, and flights:</b> coming soon. Photos up the minute it's booked.</span></div>
   </section>
@@ -932,13 +932,14 @@ const HEN_DATE = new Date(2027, 8, 9); // 9 Sept 2027
 const UPDATES = [
   { date: '30 Oct 2026', text: "We're live. Dates are locked in, the idea box is open and the playlist's up. Get adding!" },
 ];
-// Add plans as they're booked, e.g. plan: ['Private boat day ⛵', 'Konoba seafood feast 🦐']
+// Add plans as they're booked, e.g. plan: ['Private boat day', 'Konoba seafood feast']. A note shows when there's no plan yet.
 const DAYS = [
   { wd: 'THU', d: '09', title: 'Day 1', plan: [] },
   { wd: 'FRI', d: '10', title: 'Day 2', plan: [] },
   { wd: 'SAT', d: '11', title: 'Day 3', plan: [] },
   { wd: 'SUN', d: '12', title: 'Day 4', plan: [] },
   { wd: 'MON', d: '13', title: 'Day 5', plan: [] },
+  { wd: 'TUE', d: '14', title: 'Day 6', note: 'Home time' },
 ];
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
@@ -1572,7 +1573,7 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
 $('#newsLatest').textContent = UPDATES[0].text;
 $('#newsList').innerHTML = UPDATES.map(u => `<li><time>${esc(u.date)}</time><span>${esc(u.text)}</span></li>`).join('');
 $('#dayList').innerHTML = DAYS.map(d => `<div><span class="dbadge"><small>${esc(d.wd)}</small><b>${esc(d.d)}</b><small>SEP</small></span>
-  <span class="dinfo"><b>${esc(d.title)}</b>${d.plan.length ? '<ul>' + d.plan.map(x => `<li>${esc(x)}</li>`).join('') + '</ul>' : '<span>TBC</span>'}</span></div>`).join('');
+  <span class="dinfo"><b>${esc(d.title)}</b>${d.plan && d.plan.length ? '<ul>' + d.plan.map(x => `<li>${esc(x)}</li>`).join('') + '</ul>' : `<span>${esc(d.note || 'TBC')}</span>`}</span></div>`).join('');
 
 /* ================= PLAYLIST ================= */
 // Tapping into the Spotify player turns the disco music off so the two don't clash.
