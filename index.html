@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0d0018">
-<title>Christie's Last Disco · Hen Do HQ</title>
+<title>Christie's Hen Do · Croatia 09.09.27</title>
 <meta name="robots" content="noindex">
 <meta name="description" content="Five days in Croatia with the bride-to-be. The plan, the money, the playlist and the idea box. Top secret 🤫">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hrvxf.github.io/christies-hen/">
-<meta property="og:title" content="Christie's Last Disco 🪩">
+<meta property="og:title" content="Christie's Hen Do · Croatia ☀️">
 <meta property="og:description" content="Five days in Croatia. Everything you need, plus the idea box 🤫">
-<meta property="og:image" content="https://hrvxf.github.io/christies-hen/og.jpg">
+<meta property="og:image" content="https://hrvxf.github.io/christies-hen/og.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -449,7 +449,7 @@ a.cta{text-align:center;text-decoration:none}
   <div class="ent-inner">
     <div class="ent-kicker">You're on the guest list</div>
     <div class="ent-title">CHRISTIE'S</div>
-    <div class="ent-sub">Last Disco</div>
+    <div class="ent-sub">Hen Do</div>
     <button class="enter" id="enterBtn" type="button">Tap to enter 🪩</button>
     <p class="ent-note">🔊 Sound up, ladies</p>
   </div>
@@ -478,7 +478,7 @@ a.cta{text-align:center;text-decoration:none}
 
     <div class="kicker">Welcome to</div>
     <h1 class="sign" id="title" aria-label="Christie's"></h1>
-    <p class="tube">Last Disco</p>
+    <p class="tube">Hen Do</p>
 
     <div class="marquee" id="marquee">
       <div class="days" id="days">—</div>
@@ -507,7 +507,7 @@ a.cta{text-align:center;text-decoration:none}
       </nav>
     </div>
 
-    <p class="sitefoot">Questions? Give Adam a shout in the group chat 💬<br>Christie's Last Disco · 09.09.27</p>
+    <p class="sitefoot">Questions? Give Adam a shout in the group chat 💬<br>Christie's Hen Do · Croatia · 09.09.27</p>
   </section>
 
   <section class="screen page" id="pg-news" aria-labelledby="newsH">
@@ -835,7 +835,7 @@ a.cta{text-align:center;text-decoration:none}
       <div class="paper" id="paper">
         <div class="ticket" id="ticket">
           <div class="t-main">
-            <div class="t-top"><span>CHRISTIE'S LAST DISCO</span><span>09·09·27</span></div>
+            <div class="t-top"><span>CHRISTIE'S HEN DO</span><span>09·09·27</span></div>
             <div class="t-idea" id="tIdea"></div>
             <div class="t-meta" id="tMeta"></div>
             <div class="t-row"><span><span id="tBy">Dropped by</span> <b id="tName"></b></span><span class="t-hype" id="tHype"></span></div>
@@ -1198,7 +1198,7 @@ $('#ballRig').addEventListener('click', () => {
 function setCrispy(v){
   crispy = v; document.body.classList.toggle('crispy', v);
   if(v){ toast('🍸 Crispy mode unlocked. One Bombay Sapphire & tonic, coming right up.'); bubbles(40); Sound.fizz(); }
-  else toast('🪩 Back to the disco');
+  else toast('🪩 Back to the party');
 }
 function bubbles(n){
   if(reduced) return;
@@ -1578,7 +1578,7 @@ food.addEventListener('submit', async e => {
 /* ================= PLAYLIST ================= */
 // Tapping into the Spotify player turns the disco music off so the two don't clash.
 addEventListener('blur', () => setTimeout(() => {
-  if(document.activeElement === $('#spotify') && Sound.on){ Sound.stop(); userMuted = true; paintSound(); toast('🎶 Disco music off so you can hear the playlist'); }
+  if(document.activeElement === $('#spotify') && Sound.on){ Sound.stop(); userMuted = true; paintSound(); toast('🎶 Party music off so you can hear the playlist'); }
 }, 0));
 
 /* ================= PRESS EFFECTS ================= */
