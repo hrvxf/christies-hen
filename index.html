@@ -614,6 +614,7 @@ a.cta{text-align:center;text-decoration:none}
 .btn-gold:hover{box-shadow:0 12px 36px rgba(233,185,85,.34),inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(120,70,0,.25)}
 body.crispy .btn-gold{background:linear-gradient(180deg,#f2f8ff 0%,#bcdcff 60%,#8fbfff 100%);box-shadow:0 10px 30px rgba(61,123,255,.25),inset 0 1px 0 #fff}
 .btn-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.btn-solo{margin-top:10px}
 .btn-line{min-height:50px;padding:0 12px;font-size:15px;color:var(--cream);background:rgba(255,255,255,.035);
   box-shadow:inset 0 0 0 1px rgba(255,220,150,.28)}
 .btn-line:hover{background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,220,150,.5)}
@@ -706,16 +707,13 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
     <div id="box" class="box">
       <p class="sec-k box-k">The idea box</p>
       <button class="btn btn-gold" id="startBtn" type="button" data-go="idea">Drop an idea<span class="arr" aria-hidden="true">→</span></button>
-      <div class="btn-pair">
-        <button class="btn btn-line" id="themeBtn" type="button" data-go="theme">Pitch a theme</button>
-        <button class="btn btn-line" id="missionBtn" type="button" data-go="mission">Set a mission</button>
-      </div>
+      <button class="btn btn-line btn-solo" id="missionBtn" type="button" data-go="mission">Set Christie a mission</button>
       <p class="foot">Organisers' eyes only. Add as many as you like.</p>
     </div>
 
     <button class="board-card" type="button" data-page="board">
       <span class="bc-notes" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span class="bc-txt"><span class="sec-k">The board</span><b>Finishing touches</b><small id="boardCount">Tees, balloons, sashes and all the little extras</small></span>
+      <span class="bc-txt"><span class="sec-k">The board</span><b>Themes &amp; finishing touches</b></span>
       <span class="chev" aria-hidden="true">›</span>
     </button>
 
@@ -771,11 +769,12 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
 
   <section class="screen page" id="pg-board" aria-labelledby="boardH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Everyone can see this one</span></div>
-    <h2 class="sec-h" id="boardH">Finishing touches</h2>
-    <p class="sec-p">Matching tees, balloons, a sash for the bride. Pin up the little extras that'll make it special, and heart your favourites. Adam and Beth sort the ordering, out of the budget.</p>
+    <h2 class="sec-h" id="boardH">Themes &amp; finishing touches</h2>
+    <p class="sec-p">Dress-up themes, matching tees, balloons, a sash for the bride. Pin up anything that'll make it special and heart your favourites. The most-loved rise to the top. Adam and Beth sort the ordering, out of the budget.</p>
     <button class="btn btn-gold" id="pinBtn" type="button">Pin something up<span class="arr" aria-hidden="true">+</span></button>
     <div class="chips board-filter" id="boardFilter" role="radiogroup" aria-label="Show">
       <input type="radio" name="bf" id="bf0" value="" checked><label for="bf0">All</label>
+      <input type="radio" name="bf" id="bf5" value="Theme"><label for="bf5">Themes</label>
       <input type="radio" name="bf" id="bf1" value="Wear"><label for="bf1">Wear</label>
       <input type="radio" name="bf" id="bf2" value="Decor"><label for="bf2">Decor</label>
       <input type="radio" name="bf" id="bf3" value="Props &amp; games"><label for="bf3">Props &amp; games</label>
@@ -1102,7 +1101,7 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
       <div class="done-copy" id="doneCopy" hidden>
         <h2 id="doneH">Idea dropped!</h2>
         <p id="doneText">It's in the box. The organisers have got it, and Christie's none the wiser.</p>
-        <div class="done-btns" id="doneBtns"><button class="again" type="button" data-go="idea">Drop another idea</button><button class="again alt" type="button" data-go="theme">Pitch a theme</button></div>
+        <div class="done-btns" id="doneBtns"><button class="again" type="button" data-go="idea">Drop another idea</button><button class="again alt" type="button" data-go="mission">Set a mission</button></div>
         <button class="ghost" type="button" data-go="home">Back to the dance floor</button>
       </div>
       <div class="done-copy" id="failCopy" hidden>
@@ -1150,13 +1149,14 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
     <form class="sheet-card" id="pinForm" novalidate autocomplete="off" role="dialog" aria-labelledby="pinH">
       <div class="sheet-grab" aria-hidden="true"></div>
       <h2 class="q" id="pinH">Pin something up</h2>
-      <p class="hint">Anything that'd make it extra special. We'll sort the buying.</p>
+      <p class="hint">A theme to dress up for, or anything that'd make it extra special. We'll sort the buying.</p>
       <label class="lbl" for="pname">Your name</label>
       <input type="text" id="pname" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
       <label class="lbl" for="pextra">What is it?</label>
       <input type="text" id="pextra" name="extra" placeholder="e.g. Matching tees for the airport" maxlength="120">
       <p class="lbl">Which pile?</p>
       <div class="chips" role="radiogroup" aria-label="Category">
+        <input type="radio" name="category" id="pc0" value="Theme"><label for="pc0">Theme</label>
         <input type="radio" name="category" id="pc1" value="Wear"><label for="pc1">Wear</label>
         <input type="radio" name="category" id="pc2" value="Decor"><label for="pc2">Decor</label>
         <input type="radio" name="category" id="pc3" value="Props &amp; games"><label for="pc3">Props &amp; games</label>
@@ -1198,7 +1198,7 @@ const HEN_DATE = new Date(2027, 8, 9); // 9 Sept 2027
 /* ================= HUB CONTENT: edit this bit as plans firm up ================= */
 // Newest first. Add a line whenever something changes.
 const UPDATES = [
-  { date: '30 Oct 2026', text: "New: the finishing touches board. Pin up tees, balloons and all the little extras, and heart your favourites." },
+  { date: '30 Oct 2026', text: "New: the themes and finishing touches board. Pin up dress-up themes, tees, balloons and all the little extras, and heart your favourites." },
   { date: '30 Oct 2026', text: "The money's in. Full breakdown's on the receipt, under Costs." },
   { date: '30 Oct 2026', text: "We're live. Dates are locked in, the idea box is open and the playlist's up. Get adding!" },
 ];
@@ -1525,7 +1525,7 @@ let toastT; function toast(msg){ const t=$('#toast'); t.textContent=msg; t.class
 function plural(n, w){ return `${n} ${w}${n===1?'':'s'}`; }
 function showCount(){
   if(ideaCount == null) return;
-  $('#counterText').textContent = themeCount ? `${plural(ideaCount,'idea')} · ${plural(themeCount,'theme')}` : `${plural(ideaCount,'idea')} in the box`;
+  $('#counterText').textContent = `${plural(ideaCount,'idea')} in the box`;
   $('#counter').hidden = false;
 }
 fetch(SCRIPT_URL + '?count=1').then(r => r.json()).then(d => {
@@ -1717,7 +1717,7 @@ const gtNo = n => n != null ? 'No. ' + String(n + 1).padStart(3,'0') : 'VIP';
 // Ideas and missions share the ticket printer; these are the bits that change.
 const TICKET = {
   idea: { by:'Dropped by', admit:'ADMIT ONE', box:'IDEAS', sub:'top secret', done:'Idea dropped!',
-    btns:[['idea','Drop another idea',''],['theme','Pitch a theme','alt']],
+    btns:[['idea','Drop another idea',''],['mission','Set a mission','alt']],
     text: n => n != null ? `It's in the box, idea number ${n}! The organisers have got it, and Christie's none the wiser.` : "It's in the box. The organisers have got it, and Christie's none the wiser." },
   mission: { by:'Set by', admit:'MISSION', box:'MISSIONS', sub:'for later', done:'Mission filed!',
     btns:[['mission','Set another mission',''],['idea','Drop an idea','alt']],
@@ -1927,11 +1927,10 @@ const Board = (() => {
   function render(){
     const el = $('#board');
     const n = items.length;
-    $('#boardCount').textContent = n ? `${n} pinned so far. Heart your favourites.` : 'Tees, balloons, sashes and all the little extras';
     if(!loaded){ el.innerHTML = `<div class="board-empty">${failed ? "Couldn't load the board. Check your signal and try again." : 'Loading the board…'}</div>`; return; }
     const list = items.filter(it => !filter || it.category === filter);   // order is set on load, so cards don't jump when hearted
     el.innerHTML = list.length ? list.map(card).join('')
-      : `<div class="board-empty"><b>${filter ? 'Nothing here yet' : 'Nothing pinned yet'}</b>Matching tees, a sash for the bride, balloons for the villa… go on, be the first.</div>`;
+      : `<div class="board-empty"><b>${filter ? 'Nothing here yet' : 'Nothing pinned yet'}</b>A dress-up theme, matching tees, balloons for the villa… go on, be the first.</div>`;
     freshId = null;
   }
   async function load(){
@@ -1981,6 +1980,12 @@ const Board = (() => {
   $$('.sheet').forEach(sh => sh.addEventListener('click', e => { if(e.target.closest('[data-close]')){ closeSheet(sh.id); if(sh.id === 'whoSheet') pendingHeart = null; } }));
   addEventListener('keydown', e => { if(e.key === 'Escape') $$('.sheet').forEach(sh => { if(!sh.hidden) closeSheet(sh.id); }); });
   $('#pinBtn').addEventListener('click', () => { Sound.blip(700); openSheet('pinSheet'); });
+  const PH = { Theme: ['e.g. All white on the boat', 'Describe the look: colours, outfits, what the bride wears…'],
+               _: ['e.g. Matching tees for the airport', 'Colour, wording, how many…'] };
+  $('#pinForm').addEventListener('change', e => {
+    if(e.target.name !== 'category') return;
+    const [a, b] = PH[e.target.value] || PH._; $('#pextra').placeholder = a; $('#pdetails').placeholder = b; Sound.blip(880);
+  });
 
   $('#whoForm').addEventListener('submit', e => {
     e.preventDefault();
