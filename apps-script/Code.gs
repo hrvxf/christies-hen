@@ -1,10 +1,11 @@
 /**
  * Christie's Hen Do – Idea Box
  * Receives submissions from the GitHub Pages site and adds them to this Sheet.
- *   - Activity ideas            → the "Ideas" tab (first tab)
+ *   - Activity ideas            → the "Ideas" tab
  *   - Theme / dress code pitches → the "Themes" tab
  *   - Missions for Christie     → the "Missions" tab
  *   - Food and allergies        → the "Food & allergies" tab
+ * Tabs are found by name, so other tabs (Budget etc.) can sit anywhere, in any order.
  * Tabs are created automatically the first time something arrives for them.
  *
  * Setup (once):
@@ -18,6 +19,7 @@
  */
 
 const TABS = {
+  idea:    { name: 'Ideas',            headers: ['Submitted', 'Name', 'Idea', 'Details', 'Link', 'Price each', 'Time', 'Getting there', 'Bring / wear', 'Christie factor', 'Hype (1-5)'] },
   theme:   { name: 'Themes',           headers: ['Submitted', 'Name', 'Theme', 'The look', 'Link', 'When', 'Christie factor', 'Hype (1-5)', 'Group votes', 'Status', 'Organiser notes'] },
   mission: { name: 'Missions',         headers: ['Submitted', 'Name', 'Mission', 'Rules', 'When', 'Cheek level', "G&Ts she'll need (1-5)", 'Status', 'Organiser notes'] },
   diet:    { name: 'Food & allergies', headers: ['Submitted', 'Name', 'Diet', 'Allergies & notes'] },
@@ -59,7 +61,7 @@ function doPost(e) {
     }
 
     if (!p.name || !p.idea) return json_({ ok: false, error: 'Name and idea are required' });
-    ideasSheet_(ss).appendRow([
+    tab_(ss, 'idea').appendRow([
       new Date(), clean_(p.name), clean_(p.idea), clean_(p.details), clean_(p.link),
       clean_(p.price), clean_(p.time), clean_(p.transport), clean_(p.kit), clean_(p.christie), clean_(p.hype),
     ]);
@@ -76,16 +78,10 @@ function doGet() {
   const count = key => { const sh = ss.getSheetByName(TABS[key].name); return sh ? Math.max(0, sh.getLastRow() - 1) : 0; };
   return json_({
     ok: true,
-    count: Math.max(0, ideasSheet_(ss).getLastRow() - 1),
+    count: count('idea'),
     themes: count('theme'),
     missions: count('mission'),
   });
-}
-
-// The Ideas tab is the first tab that isn't one of the special ones above.
-function ideasSheet_(ss) {
-  const special = Object.values(TABS).map(t => t.name);
-  return ss.getSheets().find(s => special.indexOf(s.getName()) === -1);
 }
 
 function tab_(ss, key) {
