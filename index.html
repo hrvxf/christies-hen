@@ -1593,6 +1593,8 @@ const Sound = (() => {
     get level(){ return lvl },
     get track(){ return SONGS[skipTo >= 0 ? skipTo : song].name },
     resume(){ if(ctx && on && ctx.state !== 'running') ctx.resume(); },
+    pause(){ if(ctx && ctx.state === 'running') ctx.suspend(); },
+    get state(){ return ctx ? ctx.state : 'none' },
     start(){ if(!ctx && !init()) return false; ctx.resume(); on = true; clearInterval(timer);
       master.gain.cancelScheduledValues(ctx.currentTime); master.gain.setTargetAtTime(.34, ctx.currentTime, .4);
       nextT = ctx.currentTime + .06; timer = setInterval(tick, 25); return true; },
@@ -1640,6 +1642,13 @@ soundBtn.addEventListener('click', () => {
   paintSound();
 });
 $('#nextBtn').addEventListener('click', () => { if(!Sound.on) return; toast('Up next: ' + Sound.next()); });
+// pause when the page isn't on screen (switching apps, home screen, locked phone); carry on when it's back
+document.addEventListener('visibilitychange', () => {
+  if(document.hidden){ Sound.pause(); try{ speechSynthesis.cancel(); }catch(_){} }
+  else if(!userMuted && Sound.on) Sound.resume();
+});
+addEventListener('pagehide', () => Sound.pause());
+addEventListener('pageshow', () => { if(!document.hidden && !userMuted && Sound.on) Sound.resume(); });
 startMusic(); paintSound();
 
 /* entrance: the tap that opens the curtains also unlocks the music */
