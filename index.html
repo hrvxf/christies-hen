@@ -1605,6 +1605,7 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
 (function receipt(){
   const gbp = n => '£' + n.toFixed(2);
   const lo = BUDGET.items.reduce((t, i) => t + i[1], 0), hi = BUDGET.items.reduce((t, i) => t + i[2], 0);
+  const cont = (BUDGET.items.find(i => /contingency/i.test(i[0])) || [0, 0, 0])[2];
   const row = (a, b, c, cls = '') => `<div class="r-row ${cls}"><span>${a}</span><span>${b}</span><span>${c}</span></div>`;
   $('#receipt').innerHTML = `
     <div class="r-head"><b>CHRISTIE'S HEN DO</b><span>${esc(BUDGET.where.toUpperCase())} · 09–14.09.27</span><span>${BUDGET.people} GUESTS · PRICES EACH</span></div>
@@ -1616,7 +1617,9 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
     ${row('TOTAL EACH', gbp(lo), gbp(hi), 'r-total')}
     <div class="r-rule double"></div>
     <div class="r-ask"><span>WE'RE ASKING</span><b>${gbp(BUDGET.ask)}<small> EACH</small></b></div>
-    <p class="r-note">${BUDGET.ask >= hi ? 'Covers the top end, with a little to spare.' : `The top end is ${gbp(hi - BUDGET.ask)} over, so it may come in a touch higher.`}</p>
+    <p class="r-note">${BUDGET.ask >= hi ? 'Covers the top end, with a little to spare.'
+      : hi - BUDGET.ask <= cont ? `Worst case, the extra ${gbp(hi - BUDGET.ask)} comes out of the contingency, so ${gbp(BUDGET.ask)} still stands.`
+      : `The top end is ${gbp(hi - BUDGET.ask)} over, so it may come in a touch higher.`}</p>
     <div class="r-bar" aria-hidden="true"></div>
     <p class="r-foot">Christie's none the wiser<br>Thank you, come again</p>`;
 })();
