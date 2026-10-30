@@ -3,7 +3,7 @@
 A branded form for the hen do group to drop ideas into. Every submission is saved as a new row in a private Google Sheet that only the organisers can see.
 
 - `index.html` – the form (hosted on GitHub Pages)
-- `apps-script/Code.gs` – the Google Apps Script that receives submissions and writes them to the Sheet
+- `apps-script/Code.gs` – the Google Apps Script that receives submissions and writes them to the Sheet (activity ideas → first tab, theme pitches → "Themes" tab)
 
 ## Connecting it to the Sheet (one time)
 

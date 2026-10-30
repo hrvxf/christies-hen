@@ -127,6 +127,9 @@ body.crispy .tube{--hot:var(--ice);--pink:var(--sapphire);color:#e6f2ff}
 .cta:active{transform:scale(.98)}
 .cta[disabled]{opacity:.55;cursor:default}
 body.crispy .cta{background:linear-gradient(135deg,var(--sapphire),#6a4dff);box-shadow:0 12px 34px rgba(61,123,255,.5)}
+.cta.alt{margin-top:12px;color:#2a0b3a;background:linear-gradient(135deg,#ffe7a3,#ffb3dc 55%,#ff8fd0);box-shadow:0 12px 34px rgba(255,180,220,.35),inset 0 1px 0 rgba(255,255,255,.5)}
+.cta.alt::after{animation-delay:4.6s}
+body.crispy .cta.alt{background:linear-gradient(135deg,#e6f2ff,#9fd3ff);box-shadow:0 12px 34px rgba(159,211,255,.35)}
 .foot{text-align:center;color:#a993ba;font-size:13px;margin-top:22px;line-height:1.6}
 
 /* ---------- flow ---------- */
@@ -247,7 +250,47 @@ body.crispy .next{background:linear-gradient(135deg,var(--sapphire),#6a4dff);box
   text-shadow:0 0 6px #fff,0 0 18px var(--pink),0 0 42px var(--violet)}
 .done-copy p{color:var(--muted);font-size:17px;line-height:1.5;margin:10px auto 18px;max-width:24em}
 .again{border:0;color:#fff;background:linear-gradient(135deg,rgba(255,45,149,.35),rgba(155,92,255,.35));box-shadow:0 8px 26px rgba(255,45,149,.3);font:800 17px var(--sans);padding:15px 24px;border-radius:999px;cursor:pointer}
+.done-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.again.alt{background:linear-gradient(135deg,rgba(255,231,163,.3),rgba(255,143,208,.3));box-shadow:0 8px 26px rgba(255,180,220,.25)}
 .ghost{display:block;margin:14px auto 0;background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:15px}
+
+/* ---------- swing tag scene ---------- */
+.rail-scene{position:relative;height:440px;margin-top:6px}
+.rail{position:absolute;left:50%;top:10px;width:min(100%,380px);transform:translateX(-50%);height:12px;border-radius:6px;z-index:2;
+  background:linear-gradient(180deg,#fff6d6,#e8b94a 55%,#9c6f12);box-shadow:0 6px 16px rgba(0,0,0,.4),0 0 26px rgba(255,209,102,.35)}
+.rail::before,.rail::after{content:"";position:absolute;top:-80px;width:8px;height:92px;border-radius:4px;background:linear-gradient(90deg,#9c6f12,#f3cf73,#9c6f12)}
+.rail::before{left:6px}.rail::after{right:6px}
+.ghost-tag{position:absolute;top:16px;width:92px;transform-origin:50% 0;opacity:.32;filter:blur(.6px) saturate(.8);z-index:1}
+.ghost-tag .str{width:1.5px;height:30px;margin:0 auto;background:#e9d9b4}
+.ghost-tag .gt{height:128px;border-radius:8px;background:linear-gradient(180deg,#ffe3ef,#f6c6dc);clip-path:polygon(22% 0,78% 0,100% 16%,100% 100%,0 100%,0 16%)}
+.ghost-tag.g1{left:6%;transform:rotate(4deg)}.ghost-tag.g2{right:6%;transform:rotate(-5deg)}.ghost-tag.g3{left:22%;top:16px;transform:rotate(-3deg);width:70px;opacity:.2}
+.ghost-tag.g3 .gt{height:100px}
+.tag-drop{position:absolute;left:50%;top:14px;width:250px;margin-left:-125px;z-index:3}
+.hanging .tag-drop{animation:tagIn .8s cubic-bezier(.3,1.35,.5,1) both}
+@keyframes tagIn{from{transform:translateY(-110vh)}to{transform:none}}
+.tag-swing{transform-origin:50% 0}
+.hanging .tag-swing{animation:swing 3s ease-in-out .55s both}
+@keyframes swing{0%{transform:rotate(-12deg)}18%{transform:rotate(9deg)}36%{transform:rotate(-6deg)}54%{transform:rotate(3.5deg)}72%{transform:rotate(-1.5deg)}100%{transform:rotate(0)}}
+.tag-string{width:2px;height:48px;margin:0 auto -30px;background:linear-gradient(#f6e7c1,#e9d9b4);position:relative;z-index:2}
+.tag{position:relative;text-align:center;color:#3a0a2e;padding:44px 20px 18px;border-radius:14px;
+  background:linear-gradient(180deg,#fff0f6,#ffd9ea);box-shadow:0 18px 40px rgba(0,0,0,.45);
+  clip-path:polygon(20% 0,80% 0,100% 13%,100% 100%,0 100%,0 13%);
+  -webkit-mask:radial-gradient(circle 7px at 50% 22px,#0000 97%,#000);mask:radial-gradient(circle 7px at 50% 22px,#0000 97%,#000)}
+.tag::before{content:"";position:absolute;left:50%;top:22px;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;
+  background:radial-gradient(circle,#0000 7px,#e8b94a 7.5px,#fff1c2 9px,#c99528 11px)}
+.tag::after{content:"";position:absolute;inset:0;background:radial-gradient(rgba(255,45,149,.09) 1px,transparent 1.2px);background-size:8px 8px;pointer-events:none}
+.tag-kicker{font-family:var(--disco);font-size:21px;color:#e0167c;letter-spacing:.04em}
+.tag-theme{font-weight:900;font-size:25px;line-height:1.1;margin:8px 0 6px;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tag-look{font-size:14px;line-height:1.4;color:#7a3a66;font-style:italic;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tag-rule{height:0;border-top:1.5px dashed rgba(224,22,124,.35);margin:12px 0 10px}
+.tag-meta{font-family:var(--mono);font-size:11px;line-height:1.65;color:#5b1f4a;letter-spacing:.02em}
+.tag-meta b{color:#e0167c;font-weight:700}
+.tag-foot{display:flex;align-items:flex-end;justify-content:space-between;margin-top:12px}
+.barcode{width:96px;height:26px;background:repeating-linear-gradient(90deg,#3a0a2e 0 2px,transparent 2px 4px,#3a0a2e 4px 5px,transparent 5px 8px,#3a0a2e 8px 11px,transparent 11px 12px)}
+.tag-no{font-family:var(--mono);font-weight:700;font-size:12px}
+.tag-hype{font-size:14px;letter-spacing:-2px;min-height:18px;margin-top:6px}
+.rail-scene .done-copy{position:absolute;left:0;right:0;top:400px;text-align:center}
+.tag-shell{min-height:100%}
 
 /* toast + bubbles */
 .toast{position:fixed;left:50%;bottom:calc(var(--safe-b) + 24px);transform:translate(-50%,40px);opacity:0;z-index:40;width:max-content;max-width:min(92vw,400px);
@@ -274,7 +317,7 @@ body.crispy .next{background:linear-gradient(135deg,var(--sapphire),#6a4dff);box
   <span class="pill" id="counter" hidden><span class="dot"></span><span id="counterText"></span></span>
   <span></span>
   <button class="pill sound" id="soundBtn" type="button" aria-pressed="false">
-    <span class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></span><span id="soundLabel">Play music</span>
+    <span class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></span><span id="soundLabel">Tap for music</span>
   </button>
 </div>
 
@@ -295,9 +338,10 @@ body.crispy .next{background:linear-gradient(135deg,var(--sapphire),#6a4dff);box
       <div class="till" id="till">till the hen · 09.09.27</div>
     </div>
 
-    <p class="intro-copy">Got an idea for the hen? Big or small, wild or chill, <b>drop it in the box</b>. It goes straight to the organisers, so Christie won't see a thing 🤫</p>
+    <p class="intro-copy">Got an idea for the hen, or a theme we should all dress up for? <b>Drop it in the box</b>. It goes straight to the organisers, so Christie won't see a thing 🤫</p>
 
-    <button class="cta" id="startBtn" type="button">Drop an idea 🪩</button>
+    <button class="cta" id="startBtn" type="button" data-go="idea">Drop an idea 🪩</button>
+    <button class="cta alt" id="themeBtn" type="button" data-go="theme">Pitch a theme 👗</button>
     <p class="foot">Takes about a minute · add as many as you like</p>
   </section>
 
@@ -309,7 +353,8 @@ body.crispy .next{background:linear-gradient(135deg,var(--sapphire),#6a4dff);box
       <span class="count" id="stepCount">01/08</span>
     </div>
 
-    <form class="card" id="form" novalidate autocomplete="off">
+    <form class="card" id="form" data-kind="idea" novalidate autocomplete="off">
+      <input type="hidden" name="type" value="idea">
       <div class="step" data-req="name">
         <h2 class="q">First up, who's this?</h2>
         <p class="hint">So the organisers know who to thank.</p>
@@ -395,15 +440,82 @@ body.crispy .next{background:linear-gradient(135deg,var(--sapphire),#6a4dff);box
       <div class="step">
         <h2 class="q">How many G&amp;Ts is this idea worth? 🍸</h2>
         <p class="hint">Your hype level. Tap a glass.</p>
-        <input type="hidden" name="hype" id="hype">
-        <div class="glasses" id="glasses" role="radiogroup" aria-label="Hype level"></div>
-        <div class="hype-word" id="hypeWord" aria-live="polite"></div>
+        <input type="hidden" name="hype">
+        <div class="glasses" data-prefix="i" role="radiogroup" aria-label="Hype level"></div>
+        <div class="hype-word" aria-live="polite"></div>
         <div class="err" aria-live="polite"></div>
         <div class="nav"><button class="next" type="button" id="printBtn">Print my ticket 🎟️</button></div>
       </div>
 
       <div class="sr" aria-hidden="true"><label for="website">Leave empty</label><input type="text" id="website" name="website" tabindex="-1"></div>
     </form>
+    <form class="card" id="themeForm" data-kind="theme" novalidate autocomplete="off" hidden>
+      <input type="hidden" name="type" value="theme">
+      <div class="step" data-req="name">
+        <h2 class="q">First up, who's this?</h2>
+        <p class="hint">So the organisers know who to thank.</p>
+        <label class="sr" for="tname">Your name</label>
+        <input type="text" id="tname" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
+        <div class="err" aria-live="polite"></div>
+        <div class="nav"><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step" data-req="theme">
+        <h2 class="q">What's the theme? 👗</h2>
+        <p class="hint">A dress code, colour scheme, fancy dress, matching outfits…</p>
+        <label class="sr" for="theme">The theme</label>
+        <input type="text" id="theme" name="theme" placeholder="e.g. Studio 54 glam" maxlength="120">
+        <label class="lbl" for="look">Describe the look <small>(optional)</small></label>
+        <textarea id="look" name="look" placeholder="e.g. Sequins and white flares, pink feather boa for the bride-to-be" maxlength="1500"></textarea>
+        <div class="err" aria-live="polite"></div>
+        <div class="nav"><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step">
+        <h2 class="q">Got some inspo?</h2>
+        <p class="hint">A Pinterest board, TikTok, Instagram or a shop link.</p>
+        <label class="sr" for="tlink">Link</label>
+        <input type="url" id="tlink" name="link" inputmode="url" placeholder="Paste a link">
+        <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step" data-auto>
+        <h2 class="q">When would we wear it?</h2>
+        <p class="hint">Pick the best fit.</p>
+        <div class="chips big" role="radiogroup" aria-label="When">
+          <input type="radio" name="when" id="w1" value="The whole hen do"><label for="w1">🎉 The whole hen do</label>
+          <input type="radio" name="when" id="w2" value="One night out"><label for="w2">🌙 One night out</label>
+          <input type="radio" name="when" id="w3" value="A daytime activity"><label for="w3">☀️ A daytime activity</label>
+          <input type="radio" name="when" id="w4" value="Just a matching touch (sashes, tees, accessories)"><label for="w4">🎀 Just a matching touch (sashes, tees)</label>
+          <input type="radio" name="when" id="w5" value="Not sure"><label for="w5">🤷‍♀️ Not sure</label>
+        </div>
+        <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step" data-auto>
+        <h2 class="q">The Christie factor 👰‍♀️</h2>
+        <p class="hint">Would she be into it?</p>
+        <div class="chips big" role="radiogroup" aria-label="Christie factor">
+          <input type="radio" name="christie" id="tc1" value="She suggested it"><label for="tc1">💡 She suggested it</label>
+          <input type="radio" name="christie" id="tc2" value="She'd love it"><label for="tc2">😍 She'd love it</label>
+          <input type="radio" name="christie" id="tc3" value="Not sure"><label for="tc3">🤷‍♀️ Not sure</label>
+          <input type="radio" name="christie" id="tc4" value="Total surprise"><label for="tc4">🤫 Total surprise</label>
+        </div>
+        <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step">
+        <h2 class="q">How many G&amp;Ts is this theme worth? 🍸</h2>
+        <p class="hint">Your hype level. Tap a glass.</p>
+        <input type="hidden" name="hype">
+        <div class="glasses" data-prefix="t" role="radiogroup" aria-label="Hype level"></div>
+        <div class="hype-word" aria-live="polite"></div>
+        <div class="nav"><button class="next" type="button">Hang it on the rail 👗</button></div>
+      </div>
+
+      <div class="sr" aria-hidden="true"><label for="website2">Leave empty</label><input type="text" id="website2" name="website" tabindex="-1"></div>
+    </form>
+
   </section>
 
   <!-- ============ TICKET ============ -->
@@ -426,13 +538,45 @@ body.crispy .next{background:linear-gradient(135deg,var(--sapphire),#6a4dff);box
       <div class="done-copy" id="doneCopy" hidden>
         <h2>Idea dropped!</h2>
         <p id="doneText">It's in the box. The organisers have got it, and Christie's none the wiser.</p>
-        <button class="again" id="againBtn" type="button">Drop another idea ✨</button>
-        <button class="ghost" id="homeBtn" type="button">Back to the dance floor</button>
+        <div class="done-btns"><button class="again" type="button" data-go="idea">Drop another idea ✨</button><button class="again alt" type="button" data-go="theme">Pitch a theme 👗</button></div>
+        <button class="ghost" type="button" data-go="home">Back to the dance floor</button>
       </div>
       <div class="done-copy" id="failCopy" hidden>
         <h2>Oops!</h2>
         <p>Your ticket jammed. Check your signal and try again.</p>
         <button class="again" id="retryBtn" type="button">Try again</button>
+      </div>
+    </div>
+  </section>
+  <!-- ============ SWING TAG ============ -->
+  <section class="screen" id="tagScreen" aria-live="polite">
+    <div class="rail-scene" id="railScene">
+      <div class="rail"></div>
+      <div class="ghost-tag g1" aria-hidden="true"><div class="str"></div><div class="gt"></div></div>
+      <div class="ghost-tag g3" aria-hidden="true"><div class="str"></div><div class="gt"></div></div>
+      <div class="ghost-tag g2" aria-hidden="true"><div class="str"></div><div class="gt"></div></div>
+      <div class="tag-drop"><div class="tag-swing">
+        <div class="tag-string"></div>
+        <div class="tag" id="tag">
+          <div class="tag-kicker">DRESS CODE</div>
+          <div class="tag-theme" id="gTheme"></div>
+          <div class="tag-look" id="gLook"></div>
+          <div class="tag-rule"></div>
+          <div class="tag-meta" id="gMeta"></div>
+          <div class="tag-hype" id="gHype"></div>
+          <div class="tag-foot"><div class="barcode"></div><div class="tag-no" id="gNo"></div></div>
+        </div>
+      </div></div>
+      <div class="done-copy" id="tagDone" hidden>
+        <h2>On the rail!</h2>
+        <p id="tagDoneText">Your theme's been hung up for the organisers. Christie's none the wiser.</p>
+        <div class="done-btns"><button class="again alt" type="button" data-go="theme">Pitch another theme 👗</button><button class="again" type="button" data-go="idea">Drop an idea 🪩</button></div>
+        <button class="ghost" type="button" data-go="home">Back to the dance floor</button>
+      </div>
+      <div class="done-copy" id="tagFail" hidden>
+        <h2>Oops!</h2>
+        <p>The tag slipped off the rail. Check your signal and try again.</p>
+        <button class="again" id="tagRetry" type="button">Try again</button>
       </div>
     </div>
   </section>
@@ -450,7 +594,7 @@ const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAl
 const store = { get(k){ try{return localStorage.getItem(k)}catch(_){return null} }, set(k,v){ try{localStorage.setItem(k,v)}catch(_){} } };
 const PALETTE = ['#ff2d95','#9b5cff','#3d7bff','#ffd166','#ff6ec7','#5fe1ff'];
 const CRISPY = ['#3d7bff','#9fd3ff','#6a4dff','#ffffff','#5fe1ff'];
-let crispy = false, beat = 0, hypeLevel = 0, ideaCount = null;
+let crispy = false, beat = 0, hypeLevel = 0, ideaCount = null, themeCount = null;
 
 /* ================= SOUND ================= */
 const Sound = (() => {
@@ -498,10 +642,25 @@ const Sound = (() => {
 })();
 
 const soundBtn = $('#soundBtn'), soundLabel = $('#soundLabel');
+// Music plays from the first tap anywhere (browsers block sound before that). The pill mutes it.
+let userMuted = store.get('hen_muted') === '1';
+function paintSound(){
+  soundBtn.classList.toggle('on', Sound.on);
+  soundLabel.textContent = Sound.on ? 'Mute' : (userMuted ? 'Muted' : 'Tap for music');
+  soundBtn.setAttribute('aria-pressed', String(!Sound.on));
+  soundBtn.setAttribute('aria-label', Sound.on ? 'Mute music' : 'Play music');
+}
+function startMusic(){ if(userMuted || Sound.on) return; if(Sound.start()){ Sound.tempo(hypeLevel); } paintSound(); }
+['click','touchend','keydown'].forEach(ev => addEventListener(ev, e => {
+  if(e.target && e.target.closest && e.target.closest('#soundBtn')) return;
+  startMusic();
+}, { passive:true }));
 soundBtn.addEventListener('click', () => {
-  if(Sound.on){ Sound.stop(); soundBtn.classList.remove('on'); soundLabel.textContent='Play music'; soundBtn.setAttribute('aria-pressed','false'); }
-  else if(Sound.start()){ Sound.tempo(hypeLevel); soundBtn.classList.add('on'); soundLabel.textContent='Music on'; soundBtn.setAttribute('aria-pressed','true'); }
+  if(Sound.on){ Sound.stop(); userMuted = true; store.set('hen_muted','1'); }
+  else { userMuted = false; store.set('hen_muted','0'); startMusic(); }
+  paintSound();
 });
+paintSound();
 
 /* ================= NEON SIGN ================= */
 const title = $('#title');
@@ -651,13 +810,51 @@ function bubbles(n){
 let toastT; function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'), 3800); }
 
 /* ================= LIVE COUNTER ================= */
-function showCount(){ if(ideaCount == null) return; $('#counterText').textContent = `${ideaCount} idea${ideaCount===1?'':'s'} in the box`; $('#counter').hidden = false; }
-fetch(SCRIPT_URL + '?count=1').then(r => r.json()).then(d => { if(d && typeof d.count === 'number'){ ideaCount = d.count; showCount(); } }).catch(()=>{});
+function plural(n, w){ return `${n} ${w}${n===1?'':'s'}`; }
+function showCount(){
+  if(ideaCount == null) return;
+  $('#counterText').textContent = themeCount ? `${plural(ideaCount,'idea')} · ${plural(themeCount,'theme')}` : `${plural(ideaCount,'idea')} in the box`;
+  $('#counter').hidden = false;
+}
+fetch(SCRIPT_URL + '?count=1').then(r => r.json()).then(d => {
+  if(d && typeof d.count === 'number'){ ideaCount = d.count; if(typeof d.themes === 'number') themeCount = d.themes; showCount(); }
+}).catch(()=>{});
 
-/* ================= FLOW ================= */
-const form = $('#form'), steps = $$('.step'), N = steps.length, tilesEl = $('#tiles');
-for(let i=0;i<N;i++) tilesEl.appendChild(document.createElement('i'));
-let cur = 0;
+/* ================= G&T GLASSES ================= */
+const HYPE_WORDS = ['', 'A cheeky single', 'Sounds fun', 'Love this', 'Obsessed', 'Make it a double 🍸'];
+document.body.insertAdjacentHTML('beforeend', `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8ecff" stop-opacity=".95"/><stop offset="1" stop-color="#3d7bff" stop-opacity=".85"/></linearGradient></defs></svg>`);
+$$('.glasses').forEach(box => {
+  const px = box.dataset.prefix;
+  for(let v=1; v<=5; v++){
+    const b = document.createElement('button'); b.type='button'; b.className='glass'; b.dataset.v=v;
+    b.setAttribute('role','radio'); b.setAttribute('aria-checked','false'); b.setAttribute('aria-label', `${v} G&T${v>1?'s':''}: ${HYPE_WORDS[v].replace(/ 🍸/,'')}`);
+    b.innerHTML = `<svg viewBox="0 0 64 96"><defs><clipPath id="${px}gc${v}"><path d="M10 14 L54 14 L50 90 L14 90 Z"/></clipPath></defs>
+      <g clip-path="url(#${px}gc${v})"><rect class="liquid" x="0" y="90" width="64" height="80"/>
+        <rect class="ice" x="20" y="38" width="13" height="13" rx="2" transform="rotate(12 26 44)"/><rect class="ice" x="31" y="50" width="12" height="12" rx="2" transform="rotate(-10 37 56)"/>
+        <circle class="bub" cx="24" cy="84" r="1.8" style="--d:0s"/><circle class="bub" cx="38" cy="86" r="1.4" style="--d:.5s"/><circle class="bub" cx="31" cy="82" r="1.2" style="--d:1s"/><circle class="bub" cx="44" cy="84" r="1.6" style="--d:.8s"/></g>
+      <path class="outline" d="M10 14 L54 14 L50 90 L14 90 Z"/>
+      <g class="lime"><circle cx="50" cy="13" r="11" fill="#9be15d" stroke="#e9ffd0" stroke-width="2"/><path d="M50 2 V24 M39 13 H61 M42.5 5.5 L57.5 20.5 M57.5 5.5 L42.5 20.5" stroke="#e9ffd0" stroke-width="1.2"/></g></svg>`;
+    box.appendChild(b);
+  }
+  box.addEventListener('click', e => { const g = e.target.closest('.glass'); if(!g) return; const v = +g.dataset.v; setHype(hypeLevel === v ? 0 : v); });
+});
+function setHype(v, quiet){
+  hypeLevel = v; form.elements.hype.value = v || '';
+  form.querySelectorAll('.glass').forEach(g => { g.classList.toggle('full', +g.dataset.v <= v); g.setAttribute('aria-checked', String(+g.dataset.v === v)); });
+  form.querySelector('.hype-word').textContent = HYPE_WORDS[v];
+  Sound.tempo(v); if(v && !quiet){ Sound.fizz(); lightFloor(8 + v*6); }
+}
+
+/* ================= FLOW (shared by ideas + themes) ================= */
+const FORMS = { idea: $('#form'), theme: $('#themeForm') };
+const tilesEl = $('#tiles');
+let kind = 'idea', form = FORMS.idea, steps = [], N = 0, cur = 0;
+function useForm(k){
+  kind = k; form = FORMS[k];
+  Object.values(FORMS).forEach(f => f.hidden = f !== form);
+  steps = [...form.querySelectorAll('.step')]; N = steps.length;
+  tilesEl.innerHTML = ''; for(let i=0;i<N;i++) tilesEl.appendChild(document.createElement('i'));
+}
 function showScreen(id){ $$('.screen').forEach(s => s.classList.toggle('show', s.id === id)); window.scrollTo({top:0}); if(id==='intro') requestAnimationFrame(placeBulbs); }
 function showStep(i, dir='r'){
   steps.forEach((s,k) => { s.classList.remove('show','in-r','in-l'); if(k===i){ s.classList.add('show','in-'+dir); } });
@@ -667,98 +864,83 @@ function showStep(i, dir='r'){
   const first = steps[i].querySelector('input[type=text],input[type=url]');
   if(first && matchMedia('(hover:hover)').matches) setTimeout(()=>first.focus({preventScroll:true}), 350);
 }
+const REQ_MSG = { name:'Pop your name in first 💕', idea:"What's the idea? 👀", theme:"What's the theme? 👗" };
 function validate(i){
   const req = steps[i].dataset.req; if(!req) return true;
   const inp = form.elements[req], err = steps[i].querySelector('.err');
   if(inp.value.trim()) { err.textContent=''; return true; }
-  err.textContent = req === 'name' ? 'Pop your name in first 💕' : "What's the idea? 👀";
+  err.textContent = REQ_MSG[req];
   inp.classList.remove('shake'); void inp.offsetWidth; inp.classList.add('shake'); inp.focus();
   return false;
 }
 function next(){
   if(!validate(cur)) return;
-  if(cur === 0) store.set('hen_name', form.name.value.trim());
+  if(cur === 0) store.set('hen_name', form.elements.name.value.trim());
   Sound.blip(740); lightFloor(14);
-  if(cur < N-1) showStep(cur+1, 'r'); else submit();
+  if(cur < N-1) showStep(cur+1, 'r'); else (kind === 'idea' ? submitIdea() : submitTheme());
 }
-form.addEventListener('click', e => {
-  const b = e.target.closest('button'); if(!b) return;
-  if(b.classList.contains('next')) next();
-  else if(b.hasAttribute('data-skip')){ Sound.blip(520); showStep(cur+1, 'r'); }
-});
-form.addEventListener('keydown', e => { if(e.key === 'Enter' && e.target.tagName === 'INPUT'){ e.preventDefault(); next(); } });
-form.addEventListener('change', e => {
-  if(e.target.type !== 'radio' || e.target.name === 'hype') return;
-  Sound.blip(880 + Math.random()*300); lightFloor(16);
-  const st = e.target.closest('.step');
-  if(st && st.hasAttribute('data-auto') && st === steps[cur]) setTimeout(() => { if(steps[cur] === st) showStep(cur+1, 'r'); }, 420);
+Object.values(FORMS).forEach(f => {
+  f.addEventListener('click', e => {
+    const b = e.target.closest('button'); if(!b || b.classList.contains('glass')) return;
+    if(b.classList.contains('next')) next();
+    else if(b.hasAttribute('data-skip')){ Sound.blip(520); showStep(cur+1, 'r'); }
+  });
+  f.addEventListener('keydown', e => { if(e.key === 'Enter' && e.target.tagName === 'INPUT'){ e.preventDefault(); next(); } });
+  f.addEventListener('change', e => {
+    if(e.target.type !== 'radio') return;
+    Sound.blip(880 + Math.random()*300); lightFloor(16);
+    const st = e.target.closest('.step');
+    if(st && st.hasAttribute('data-auto') && st === steps[cur]) setTimeout(() => { if(steps[cur] === st) showStep(cur+1, 'r'); }, 420);
+  });
 });
 $('#backBtn').addEventListener('click', () => { Sound.blip(400); if(cur === 0) showScreen('intro'); else showStep(cur-1, 'l'); });
-$('#startBtn').addEventListener('click', () => {
+
+function startFlow(k){
   enableTilt();
-  const saved = store.get('hen_name'); if(saved && !form.name.value) form.name.value = saved;
+  useForm(k);
+  form.reset(); $$('.err').forEach(e => e.textContent = ''); setHype(0, true);
+  const saved = store.get('hen_name'); if(saved) form.elements.name.value = saved;
   showScreen('flow'); showStep(saved ? 1 : 0, 'r'); Sound.blip(660);
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-go]'); if(!b) return;
+  const go = b.dataset.go;
+  if(go === 'home'){ showScreen('intro'); Sound.blip(500); } else startFlow(go);
 });
 
-/* G&T glasses */
-const HYPE_WORDS = ['', 'A cheeky single', 'Sounds fun', 'Love this', 'Obsessed', 'Make it a double 🍸'];
-const glassesEl = $('#glasses');
-glassesEl.insertAdjacentHTML('beforeend', `<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8ecff" stop-opacity=".95"/><stop offset="1" stop-color="#3d7bff" stop-opacity=".85"/></linearGradient></defs></svg>`);
-for(let v=1; v<=5; v++){
-  const b = document.createElement('button'); b.type='button'; b.className='glass'; b.dataset.v=v;
-  b.setAttribute('role','radio'); b.setAttribute('aria-checked','false'); b.setAttribute('aria-label', `${v} G&T${v>1?'s':''}: ${HYPE_WORDS[v].replace(/ 🍸/,'')}`);
-  b.innerHTML = `<svg viewBox="0 0 64 96"><defs><clipPath id="gc${v}"><path d="M10 14 L54 14 L50 90 L14 90 Z"/></clipPath></defs>
-    <g clip-path="url(#gc${v})"><rect class="liquid" x="0" y="90" width="64" height="80"/>
-      <rect class="ice" x="20" y="38" width="13" height="13" rx="2" transform="rotate(12 26 44)"/><rect class="ice" x="31" y="50" width="12" height="12" rx="2" transform="rotate(-10 37 56)"/>
-      <circle class="bub" cx="24" cy="84" r="1.8" style="--d:0s"/><circle class="bub" cx="38" cy="86" r="1.4" style="--d:.5s"/><circle class="bub" cx="31" cy="82" r="1.2" style="--d:1s"/><circle class="bub" cx="44" cy="84" r="1.6" style="--d:.8s"/></g>
-    <path class="outline" d="M10 14 L54 14 L50 90 L14 90 Z"/>
-    <g class="lime"><circle cx="50" cy="13" r="11" fill="#9be15d" stroke="#e9ffd0" stroke-width="2"/><path d="M50 2 V24 M39 13 H61 M42.5 5.5 L57.5 20.5 M57.5 5.5 L42.5 20.5" stroke="#e9ffd0" stroke-width="1.2"/></g></svg>`;
-  glassesEl.appendChild(b);
-}
-glassesEl.addEventListener('click', e => {
-  const g = e.target.closest('.glass'); if(!g) return;
-  const v = +g.dataset.v; setHype(hypeLevel === v ? 0 : v);
-});
-function setHype(v){
-  hypeLevel = v; $('#hype').value = v || '';
-  $$('.glass').forEach(g => { const on = +g.dataset.v <= v; g.classList.toggle('full', on); g.setAttribute('aria-checked', String(+g.dataset.v === v)); });
-  $('#hypeWord').textContent = HYPE_WORDS[v];
-  Sound.tempo(v); if(v) { Sound.fizz(); lightFloor(8 + v*6); }
-}
+/* ================= SENDING ================= */
+function send(f){ return fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:new URLSearchParams(new FormData(f)) }); }
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const esc = x => x.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const gtNo = n => n != null ? 'No. ' + String(n + 1).padStart(3,'0') : 'VIP';
 
-/* ================= SUBMIT + TICKET ================= */
-let lastPayload = null;
+/* ================= IDEA → TICKET ================= */
 function fillTicket(){
   const f = form.elements, bits = [f.price.value, f.time.value, f.transport.value].filter(Boolean);
   $('#tIdea').textContent = f.idea.value.trim();
-  $('#tMeta').innerHTML = [bits.join(' · ') || 'Details to follow', f.christie.value ? 'Christie: ' + f.christie.value : ''].filter(Boolean).map(x => x.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))).join('<br>');
+  $('#tMeta').innerHTML = [bits.join(' · ') || 'Details to follow', f.christie.value ? 'Christie: ' + f.christie.value : ''].filter(Boolean).map(esc).join('<br>');
   $('#tName').textContent = f.name.value.trim();
   $('#tHype').textContent = hypeLevel ? '🍸'.repeat(hypeLevel) : '';
-  $('#tNo').textContent = ideaCount != null ? 'No. ' + String(ideaCount + 1).padStart(3,'0') : 'VIP';
+  $('#tNo').textContent = gtNo(ideaCount);
 }
-function send(){
-  const fd = new FormData(form);
-  return fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:new URLSearchParams(fd) });
-}
-const wait = ms => new Promise(r => setTimeout(r, ms));
-async function submit(){
+async function submitIdea(){
+  const f = form;
   fillTicket();
   showScreen('ticketScreen');
   const scene = $('#scene'), ticket = $('#ticket'), paper = $('#paper');
   $('#doneCopy').hidden = true; $('#failCopy').hidden = true;
   ticket.style.visibility = ''; paper.style.height = ''; scene.classList.remove('printing'); void scene.offsetWidth;
-  const sending = send().then(() => true).catch(() => false);
+  const sending = send(f).then(() => true).catch(() => false);
   scene.classList.add('printing'); Sound.printer();
   await wait(reduced ? 200 : 2300);
-  const ok = await sending;
-  if(!ok){ scene.classList.remove('printing'); $('#failCopy').hidden = false; return; }
+  if(!(await sending)){ scene.classList.remove('printing'); $('#failCopy').hidden = false; return; }
   await wait(reduced ? 0 : 700);
   await dropTicket(ticket);
   if(ideaCount != null){ ideaCount++; showCount(); }
-  const doneText = ideaCount != null ? `It's in the box, idea number ${ideaCount}! The organisers have got it, and Christie's none the wiser.` : "It's in the box. The organisers have got it, and Christie's none the wiser.";
-  $('#doneText').textContent = doneText;
+  $('#doneText').textContent = ideaCount != null ? `It's in the box, idea number ${ideaCount}! The organisers have got it, and Christie's none the wiser.` : "It's in the box. The organisers have got it, and Christie's none the wiser.";
   $('#doneCopy').hidden = false;
 }
+$('#retryBtn').addEventListener('click', submitIdea);
 async function dropTicket(ticket){
   const ballot = $('#ballot'), from = ticket.getBoundingClientRect(), box = ballot.getBoundingClientRect();
   const fly = ticket.cloneNode(true); fly.removeAttribute('id'); fly.classList.add('flyer');
@@ -779,6 +961,42 @@ async function dropTicket(ticket){
   ballot.classList.remove('gulp'); void ballot.offsetWidth; ballot.classList.add('gulp');
   Sound.chime(); glitter(slotX, slotY); lightFloor(30); beat = 1;
 }
+
+/* ================= THEME → SWING TAG ================= */
+function fillTag(){
+  const f = form.elements;
+  $('#gTheme').textContent = f.theme.value.trim();
+  $('#gLook').textContent = f.look.value.trim();
+  $('#gLook').hidden = !f.look.value.trim();
+  $('#gMeta').innerHTML = [
+    f.when.value ? `<b>WHEN</b> · ${esc(f.when.value)}` : '',
+    f.christie.value ? `<b>CHRISTIE</b> · ${esc(f.christie.value)}` : '',
+    `<b>PITCHED BY</b> · ${esc(f.name.value.trim())}`
+  ].filter(Boolean).join('<br>');
+  $('#gHype').textContent = hypeLevel ? '🍸'.repeat(hypeLevel) : '';
+  $('#gNo').textContent = gtNo(themeCount);
+}
+async function submitTheme(){
+  const f = form;
+  fillTag();
+  showScreen('tagScreen');
+  const scene = $('#railScene');
+  $('#tagDone').hidden = true; $('#tagFail').hidden = true;
+  scene.classList.remove('hanging'); void scene.offsetWidth;
+  const sending = send(f).then(() => true).catch(() => false);
+  scene.classList.add('hanging'); Sound.fizz();
+  await wait(reduced ? 100 : 750);
+  const r = $('#tag').getBoundingClientRect();
+  Sound.chime(); glitter(r.left + r.width/2, r.top + 30); lightFloor(30); beat = 1;
+  await wait(reduced ? 100 : 1500);
+  if(!(await sending)){ $('#tagFail').hidden = false; return; }
+  if(themeCount == null && ideaCount != null) themeCount = 0;
+  if(themeCount != null){ themeCount++; showCount(); }
+  $('#tagDoneText').textContent = themeCount != null ? `Theme number ${themeCount} is on the rail for the organisers. Christie's none the wiser.` : "Your theme's on the rail for the organisers. Christie's none the wiser.";
+  $('#tagDone').hidden = false;
+}
+$('#tagRetry').addEventListener('click', submitTheme);
+
 function glitter(x, y){
   if(reduced) return;
   const cols = crispy ? CRISPY : ['#ffd166','#ff2d95','#ffffff','#9b5cff','#5fe1ff'];
@@ -794,13 +1012,7 @@ function glitter(x, y){
     ], { duration: 1400 + Math.random()*900, easing:'cubic-bezier(.2,.7,.4,1)', fill:'forwards' }).finished.then(()=>g.remove(), ()=>g.remove());
   }
 }
-$('#retryBtn').addEventListener('click', submit);
-function resetForm(keepName){
-  const name = form.name.value; form.reset(); if(keepName) form.name.value = name;
-  setHype(0); $$('.err').forEach(e => e.textContent = '');
-}
-$('#againBtn').addEventListener('click', () => { resetForm(true); showScreen('flow'); showStep(1, 'r'); });
-$('#homeBtn').addEventListener('click', () => { resetForm(true); showScreen('intro'); });
+useForm('idea');
 })();
 </script>
 </body>
