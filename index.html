@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0d0018">
-<title>Christie's Last Disco · Hen Do Idea Box</title>
+<title>Christie's Last Disco · Hen Do HQ</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="Five days in Croatia with the bride-to-be. Got an idea? Drop it in the box. Top secret 🤫">
+<meta name="description" content="Five days in Croatia with the bride-to-be. The plan, the money, the playlist and the idea box. Top secret 🤫">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hrvxf.github.io/christies-hen/">
 <meta property="og:title" content="Christie's Last Disco 🪩">
-<meta property="og:description" content="Five days in Croatia. Got an idea? Drop it in the box 🤫">
+<meta property="og:description" content="Five days in Croatia. Everything you need, plus the idea box 🤫">
 <meta property="og:image" content="https://hrvxf.github.io/christies-hen/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -375,8 +375,55 @@ body[data-party="3"] .hangball canvas,body[data-party="4"] .hangball canvas,body
   background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.8),rgba(159,211,255,.15) 60%);animation:rise linear forwards}
 @keyframes rise{to{transform:translate(var(--dx),-110vh);opacity:.2}}
 
+/* ---------- hub sections ---------- */
+html{scroll-behavior:smooth}
+.jump{display:flex;gap:8px;overflow-x:auto;margin:22px -18px 0;padding:4px 18px 8px;scrollbar-width:none}
+.jump::-webkit-scrollbar{display:none}
+.jump a{flex:none;color:var(--text);text-decoration:none;font-weight:700;font-size:14px;padding:10px 15px;border-radius:999px;background:var(--fill);transition:background .2s,transform .12s}
+.jump a:hover{background:var(--fill2)}.jump a:active{transform:scale(.95)}
+.sec{margin-top:48px;scroll-margin-top:calc(var(--safe-t) + 72px)}
+.sec-k{letter-spacing:.28em;text-transform:uppercase;font-weight:700;font-size:11px;color:var(--gold);margin:0 0 4px}
+.sec-h{font-family:var(--neon);font-weight:400;font-size:clamp(30px,8.6vw,40px);line-height:1.1;margin:0 0 8px;color:#ffe3f3;letter-spacing:.02em;
+  text-shadow:0 0 3px #fff,0 0 10px var(--hot),0 0 24px var(--pink)}
+body.crispy .sec-h{--hot:var(--ice);--pink:var(--sapphire);color:#e6f2ff}
+.sec-p{color:var(--muted);font-size:16px;line-height:1.5;margin:0 0 14px}
+.panel{position:relative;background:linear-gradient(180deg,rgba(48,12,74,.84),rgba(22,3,38,.88));border-radius:22px;padding:18px;
+  box-shadow:0 20px 50px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.07)}
+.panel + .panel{margin-top:12px}
+.panel a{color:var(--hot);font-weight:700}
+.rows{list-style:none;margin:0;padding:0}
+.rows > li,.rows > div{display:flex;gap:13px;padding:13px 0;border-top:1px solid var(--line);line-height:1.45}
+.rows > :first-child{border-top:0;padding-top:0}.rows > :last-child{padding-bottom:0}
+.rows .em{flex:none;width:28px;text-align:center;font-size:22px;line-height:1.2}
+.rows time{flex:none;width:84px;font-family:var(--mono);font-size:12px;color:var(--gold);padding-top:3px}
+.dbadge{flex:none;width:58px;text-align:center;border-radius:14px;padding:7px 0 6px;background:rgba(255,209,102,.1);font-family:var(--mono);color:var(--gold);line-height:1.15}
+.dbadge b{display:block;font-size:22px}.dbadge small{font-size:10px;letter-spacing:.14em}
+.dinfo{align-self:center}
+.dinfo b{display:block;font-size:17px}
+.dinfo span{color:var(--muted);font-size:15px}
+.dinfo ul{margin:4px 0 0;padding-left:18px}
+.soon{display:flex;gap:13px;align-items:center;color:var(--muted);line-height:1.45}
+.soon .em{font-size:28px}
+.big{font-family:var(--mono);font-weight:700;font-size:44px;line-height:1;color:var(--gold);text-shadow:0 0 14px rgba(255,209,102,.5);margin-bottom:14px}
+.big small{font-size:15px;letter-spacing:.16em;margin-left:6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{border-radius:18px;padding:14px;background:var(--fill);font-size:14px;line-height:1.4;color:var(--muted)}
+.tile .em{display:block;font-size:24px;margin-bottom:4px}
+.tile b{display:block;color:var(--text);font-size:16px;margin-bottom:2px}
+.spotify{display:block;width:100%;height:352px;border:0;border-radius:14px;background:rgba(0,0,0,.25)}
+a.cta{text-align:center;text-decoration:none}
+.cta.mission{margin-top:12px;background:linear-gradient(135deg,#3d7bff,#9b5cff);box-shadow:0 12px 34px rgba(61,123,255,.45),inset 0 1px 0 rgba(255,255,255,.18)}
+.cta.mission::after{animation-delay:6s}
+#foodForm .lbl:first-of-type{margin-top:0}
+#foodForm .chips label{font-size:15px;padding:11px 15px}
+#foodForm .next{display:block;width:100%;margin-top:18px}
+.next[disabled]{opacity:.6;cursor:default}
+.ballot.wide .front span{font-size:21px}
+.sitefoot{text-align:center;color:#a993ba;font-size:13px;line-height:1.6;margin:48px 0 10px}
+
 @media (min-width:700px){ main{padding-top:calc(var(--safe-t) + 80px)} }
 @media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   h1.sign span{opacity:1;color:#fff;text-shadow:0 0 12px var(--pink),0 0 28px var(--pink)} .tube{opacity:1}
 }
@@ -424,11 +471,112 @@ body[data-party="3"] .hangball canvas,body[data-party="4"] .hangball canvas,body
       <div class="till" id="till">till Croatia · 09.09.27</div>
     </div>
 
-    <p class="intro-copy">Five days in Croatia with the bride-to-be. Got an idea for what we should get up to, or a theme we should all dress up for? <b>Chuck it in the box.</b> Organisers' eyes only, so Christie won't see a thing 🤫</p>
+    <p class="intro-copy">Five days in Croatia with the bride-to-be. Everything you need lives here, and it'll fill up as we book. <b>Christie's none the wiser</b>, so don't forward this link 😉</p>
 
-    <button class="cta" id="startBtn" type="button" data-go="idea">Drop an idea 🪩</button>
-    <button class="cta alt" id="themeBtn" type="button" data-go="theme">Pitch a theme 👗</button>
-    <p class="foot">Takes a minute · add as many as you like</p>
+    <nav class="jump" aria-label="Jump to">
+      <a href="#news">What's new</a><a href="#plan">The plan</a><a href="#money">Money</a><a href="#box">Idea box</a><a href="#prep">Before you go</a><a href="#croatia">Croatia 101</a><a href="#tunes">Tunes</a><a href="#food">Food</a>
+    </nav>
+
+    <section class="sec" id="news" aria-labelledby="newsH">
+      <p class="sec-k">Hot off the press</p>
+      <h2 class="sec-h" id="newsH">What's new</h2>
+      <ol class="panel rows" id="newsList"></ol>
+    </section>
+
+    <section class="sec" id="plan" aria-labelledby="planH">
+      <p class="sec-k">Thu 9 – Mon 13 Sept 2027</p>
+      <h2 class="sec-h" id="planH">The plan</h2>
+      <p class="sec-p">Filling up as we book. Got ideas? Chuck them in the <a href="#box" style="color:var(--hot);font-weight:700">idea box</a> 👇</p>
+      <div class="panel rows" id="dayList"></div>
+      <div class="panel soon"><span class="em" aria-hidden="true">🏡</span><span><b style="color:var(--text)">Where we're staying, and flights:</b> coming soon. Photos up the minute it's booked.</span></div>
+    </section>
+
+    <section class="sec" id="money" aria-labelledby="moneyH">
+      <p class="sec-k">The boring bit</p>
+      <h2 class="sec-h" id="moneyH">The money</h2>
+      <div class="panel">
+        <div class="big">£550<small>EACH</small></div>
+        <ul class="rows">
+          <li><span class="em" aria-hidden="true">🛟</span><span><b>£80 of that is contingency.</b> Our just-in-case pot for anything that costs more than planned.</span></li>
+          <li><span class="em" aria-hidden="true">🧾</span><span><b>What it covers:</b> we'll spell it out here as things get booked.</span></li>
+          <li><span class="em" aria-hidden="true">💸</span><span><b>How to pay:</b> payment link coming very soon, so hang fire for now.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="box" aria-labelledby="boxH">
+      <p class="sec-k">Organisers' eyes only 🤫</p>
+      <h2 class="sec-h" id="boxH">The idea box</h2>
+      <p class="sec-p">Something we should do, a theme we should all wear, or a little mission for Christie on the trip. Add as many as you like.</p>
+      <button class="cta" id="startBtn" type="button" data-go="idea">Drop an idea 🪩</button>
+      <button class="cta alt" id="themeBtn" type="button" data-go="theme">Pitch a theme 👗</button>
+      <button class="cta mission" id="missionBtn" type="button" data-go="mission">Set Christie a mission 🎯</button>
+      <p class="foot">Takes a minute each</p>
+    </section>
+
+    <section class="sec" id="prep" aria-labelledby="prepH">
+      <p class="sec-k">Do these early</p>
+      <h2 class="sec-h" id="prepH">Before you go</h2>
+      <ul class="panel rows">
+        <li><span class="em" aria-hidden="true">🛂</span><span><b>Check your passport now.</b> For Croatia it needs to be issued less than 10 years before we land, and valid for 3 months after we fly home. Renewals can take weeks. <a href="https://www.gov.uk/foreign-travel-advice/croatia/entry-requirements" target="_blank" rel="noopener">The gov.uk rules</a></span></li>
+        <li><span class="em" aria-hidden="true">🩺</span><span><b>Get a GHIC.</b> It's free on the NHS website, so ignore any site that tries to charge you.</span></li>
+        <li><span class="em" aria-hidden="true">🛡️</span><span><b>Sort travel insurance</b> once flights are booked.</span></li>
+        <li><span class="em" aria-hidden="true">🛃</span><span><b>New EU border checks.</b> You might have fingerprints and a photo taken at passport control. It's free, just a bit more queueing.</span></li>
+      </ul>
+    </section>
+
+    <section class="sec" id="croatia" aria-labelledby="croH">
+      <p class="sec-k">Need to know</p>
+      <h2 class="sec-h" id="croH">Croatia 101</h2>
+      <div class="grid">
+        <div class="tile"><span class="em" aria-hidden="true">💶</span><b>Euros</b>Cards work most places. Carry a bit of cash for boats and beach bars.</div>
+        <div class="tile"><span class="em" aria-hidden="true">🚕</span><b>Getting about</b>Uber and Bolt work in the bigger towns.</div>
+        <div class="tile"><span class="em" aria-hidden="true">🔌</span><b>Plugs</b>European two-pin. Bring an adapter (or two).</div>
+        <div class="tile"><span class="em" aria-hidden="true">☀️</span><b>Weather</b>Still hot in September and the sea's lovely. Swimmies and sunnies.</div>
+        <div class="tile"><span class="em" aria-hidden="true">🥂</span><b>Živjeli!</b>(ZHIV-yeh-lee) Cheers. You'll need this one.</div>
+        <div class="tile"><span class="em" aria-hidden="true">🙏</span><b>Hvala</b>(HVAH-la) Thank you. Also handy.</div>
+        <div class="tile"><span class="em" aria-hidden="true">🚨</span><b>Emergencies</b>Call 112.</div>
+        <div class="tile"><span class="em" aria-hidden="true">💧</span><b>Tap water</b>Fine to drink. Save your euros for G&amp;Ts.</div>
+      </div>
+    </section>
+
+    <section class="sec" id="tunes" aria-labelledby="tunesH">
+      <p class="sec-k">The official soundtrack</p>
+      <h2 class="sec-h" id="tunesH">Tunes</h2>
+      <p class="sec-p">Floor-fillers only, please. Add your songs and we'll be belting them out on the boat.</p>
+      <iframe class="spotify" id="spotify" title="The hen do playlist on Spotify" src="https://open.spotify.com/embed/playlist/7hMN4qKrrd0USB6N153CaI?utm_source=generator&amp;theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <a class="cta alt" href="https://open.spotify.com/playlist/7hMN4qKrrd0USB6N153CaI" target="_blank" rel="noopener">Add your songs on Spotify 🎶</a>
+    </section>
+
+    <section class="sec" id="food" aria-labelledby="foodH">
+      <p class="sec-k">So we book the right places</p>
+      <h2 class="sec-h" id="foodH">Food and allergies</h2>
+      <form class="panel" id="foodForm" novalidate autocomplete="off">
+        <label class="lbl" for="fname">Your name</label>
+        <input type="text" id="fname" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
+        <p class="lbl">Anything we need to know?</p>
+        <div class="chips" role="group" aria-label="Dietary needs">
+          <input type="checkbox" name="diet" id="d0" value="Eats everything"><label for="d0">Nope, I eat everything</label>
+          <input type="checkbox" name="diet" id="d1" value="Vegetarian"><label for="d1">Vegetarian</label>
+          <input type="checkbox" name="diet" id="d2" value="Vegan"><label for="d2">Vegan</label>
+          <input type="checkbox" name="diet" id="d3" value="Pescatarian"><label for="d3">Pescatarian</label>
+          <input type="checkbox" name="diet" id="d4" value="Gluten-free"><label for="d4">Gluten-free</label>
+          <input type="checkbox" name="diet" id="d5" value="Dairy-free"><label for="d5">Dairy-free</label>
+        </div>
+        <label class="lbl" for="fnotes">Allergies, or anything else? <small>(optional)</small></label>
+        <textarea id="fnotes" name="notes" placeholder="e.g. nut allergy, can't stand olives, go green on boats" maxlength="1500"></textarea>
+        <div class="sr" aria-hidden="true"><label for="website4">Leave empty</label><input type="text" id="website4" name="website" tabindex="-1"></div>
+        <div class="err" aria-live="polite"></div>
+        <button class="next" type="submit">Send it 🍽️</button>
+      </form>
+    </section>
+
+    <section class="sec" id="ask" aria-labelledby="askH">
+      <h2 class="sec-h" id="askH">Any questions?</h2>
+      <div class="panel soon"><span class="em" aria-hidden="true">💬</span><span>Give Adam a shout in the group chat.</span></div>
+    </section>
+
+    <p class="sitefoot">Christie's Last Disco · 09.09.27<br>Don't forward this link 😉</p>
   </section>
 
   <!-- ============ FLOW ============ -->
@@ -604,6 +752,64 @@ body[data-party="3"] .hangball canvas,body[data-party="4"] .hangball canvas,body
 
       <div class="sr" aria-hidden="true"><label for="website2">Leave empty</label><input type="text" id="website2" name="website" tabindex="-1"></div>
     </form>
+    <form class="card" id="missionForm" data-kind="mission" novalidate autocomplete="off" hidden>
+      <input type="hidden" name="type" value="mission">
+      <div class="step" data-req="name">
+        <h2 class="q">First things first, who's this?</h2>
+        <p class="hint">So we know who to thank (or blame) 😉</p>
+        <label class="sr" for="mname">Your name</label>
+        <input type="text" id="mname" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
+        <div class="err" aria-live="polite"></div>
+        <div class="nav"><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step" data-req="mission">
+        <h2 class="q">What's the mission? 🎯</h2>
+        <p class="hint">A little challenge for Christie on the trip. Cheeky, not crude 😉</p>
+        <label class="sr" for="mission">The mission</label>
+        <input type="text" id="mission" name="mission" placeholder="e.g. Order drinks in Croatian" maxlength="160">
+        <label class="lbl" for="mdetails">Any rules? <small>(optional)</small></label>
+        <textarea id="mdetails" name="details" placeholder="How does she win? Any props needed?" maxlength="1500"></textarea>
+        <div class="err" aria-live="polite"></div>
+        <div class="nav"><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step" data-auto>
+        <h2 class="q">When should she do it?</h2>
+        <p class="hint">Pick the best fit.</p>
+        <div class="chips big" role="radiogroup" aria-label="When">
+          <input type="radio" name="when" id="mw1" value="At the airport"><label for="mw1">✈️ At the airport</label>
+          <input type="radio" name="when" id="mw2" value="On the boat"><label for="mw2">⛵ On the boat</label>
+          <input type="radio" name="when" id="mw3" value="On a night out"><label for="mw3">🌙 On a night out</label>
+          <input type="radio" name="when" id="mw4" value="At dinner"><label for="mw4">🍽️ At dinner</label>
+          <input type="radio" name="when" id="mw5" value="Any time"><label for="mw5">🎉 Any time</label>
+        </div>
+        <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step" data-auto>
+        <h2 class="q">How brave does she need to be?</h2>
+        <p class="hint">Be kind. Ish.</p>
+        <div class="chips big" role="radiogroup" aria-label="Cheek level">
+          <input type="radio" name="cheek" id="mk1" value="Easy peasy"><label for="mk1">😇 Easy peasy</label>
+          <input type="radio" name="cheek" id="mk2" value="Bit cheeky"><label for="mk2">😏 Bit cheeky</label>
+          <input type="radio" name="cheek" id="mk3" value="Proper dare"><label for="mk3">🫣 Proper dare</label>
+        </div>
+        <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
+      </div>
+
+      <div class="step">
+        <div class="hangball" aria-hidden="true"><i></i><canvas width="300" height="300"></canvas></div>
+        <h2 class="q">How many G&amp;Ts will she need first? 🍸</h2>
+        <p class="hint">Tap a glass and turn it up 🔊</p>
+        <input type="hidden" name="hype">
+        <div class="glasses" data-prefix="m" role="radiogroup" aria-label="G&amp;Ts needed"></div>
+        <div class="hype-word" aria-live="polite"></div>
+        <div class="nav"><button class="next" type="button">Seal the mission 🎯</button></div>
+      </div>
+
+      <div class="sr" aria-hidden="true"><label for="website3">Leave empty</label><input type="text" id="website3" name="website" tabindex="-1"></div>
+    </form>
 
   </section>
 
@@ -617,17 +823,17 @@ body[data-party="3"] .hangball canvas,body[data-party="4"] .hangball canvas,body
             <div class="t-top"><span>CHRISTIE'S LAST DISCO</span><span>09·09·27</span></div>
             <div class="t-idea" id="tIdea"></div>
             <div class="t-meta" id="tMeta"></div>
-            <div class="t-row"><span>Dropped by <b id="tName"></b></span><span class="t-hype" id="tHype"></span></div>
+            <div class="t-row"><span><span id="tBy">Dropped by</span> <b id="tName"></b></span><span class="t-hype" id="tHype"></span></div>
           </div>
-          <div class="t-stub"><span class="admit">ADMIT ONE</span><span class="t-no" id="tNo"></span></div>
+          <div class="t-stub"><span class="admit" id="tAdmit">ADMIT ONE</span><span class="t-no" id="tNo"></span></div>
         </div>
       </div>
-      <div class="ballot" id="ballot"><div class="lid"></div><div class="front"><span>IDEAS</span><small>top secret</small></div></div>
+      <div class="ballot" id="ballot"><div class="lid"></div><div class="front"><span id="ballotH">IDEAS</span><small id="ballotS">top secret</small></div></div>
 
       <div class="done-copy" id="doneCopy" hidden>
-        <h2>Idea dropped!</h2>
+        <h2 id="doneH">Idea dropped!</h2>
         <p id="doneText">It's in the box. The organisers have got it, and Christie's none the wiser.</p>
-        <div class="done-btns"><button class="again" type="button" data-go="idea">Drop another idea ✨</button><button class="again alt" type="button" data-go="theme">Pitch a theme 👗</button></div>
+        <div class="done-btns" id="doneBtns"><button class="again" type="button" data-go="idea">Drop another idea ✨</button><button class="again alt" type="button" data-go="theme">Pitch a theme 👗</button></div>
         <button class="ghost" type="button" data-go="home">Back to the dance floor</button>
       </div>
       <div class="done-copy" id="failCopy" hidden>
@@ -678,12 +884,26 @@ body[data-party="3"] .hangball canvas,body[data-party="4"] .hangball canvas,body
 'use strict';
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxvt4RF_1zeiWXZezLATccRbGs3cNNngqkAgWzGSutRApibnOqbWeIDcdJjAbap7SA/exec";
 const HEN_DATE = new Date(2027, 8, 9); // 9 Sept 2027
+
+/* ================= HUB CONTENT: edit this bit as plans firm up ================= */
+// Newest first. Add a line whenever something changes.
+const UPDATES = [
+  { date: '30 Oct 2026', text: "We're live 🪩 Dates are locked in, the idea box is open and the playlist's up. Get adding!" },
+];
+// Add plans as they're booked, e.g. plan: ['Private boat day ⛵', 'Konoba seafood feast 🦐']
+const DAYS = [
+  { wd: 'THU', d: '09', title: 'Day 1', plan: [] },
+  { wd: 'FRI', d: '10', title: 'Day 2', plan: [] },
+  { wd: 'SAT', d: '11', title: 'Day 3', plan: [] },
+  { wd: 'SUN', d: '12', title: 'Day 4', plan: [] },
+  { wd: 'MON', d: '13', title: 'Day 5', plan: [] },
+];
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const store = { get(k){ try{return localStorage.getItem(k)}catch(_){return null} }, set(k,v){ try{localStorage.setItem(k,v)}catch(_){} } };
 const PALETTE = ['#ff2d95','#9b5cff','#3d7bff','#ffd166','#ff6ec7','#5fe1ff'];
 const CRISPY = ['#3d7bff','#9fd3ff','#6a4dff','#ffffff','#5fe1ff'];
-let crispy = false, beat = 0, hypeLevel = 0, ideaCount = null, themeCount = null, partyOn = false, party = 0, beatCount = 0;
+let crispy = false, beat = 0, hypeLevel = 0, ideaCount = null, themeCount = null, missionCount = null, partyOn = false, party = 0, beatCount = 0;
 
 /* ================= SOUND ================= */
 // Levels: 0 = muffled, outside the club … 3 = normal groove … 5 = build-up, drop, full party.
@@ -981,11 +1201,13 @@ function showCount(){
   $('#counter').hidden = false;
 }
 fetch(SCRIPT_URL + '?count=1').then(r => r.json()).then(d => {
-  if(d && typeof d.count === 'number'){ ideaCount = d.count; if(typeof d.themes === 'number') themeCount = d.themes; showCount(); }
+  if(d && typeof d.count === 'number'){ ideaCount = d.count; if(typeof d.themes === 'number') themeCount = d.themes; if(typeof d.missions === 'number') missionCount = d.missions; showCount(); }
 }).catch(()=>{});
 
 /* ================= G&T GLASSES ================= */
-const HYPE_WORDS = ['', 'Go on then', "I'd be up for it", 'Love this', 'Obsessed', 'Cocktails all round! 🍹'];
+const HYPE_IDEA = ['', 'Go on then', "I'd be up for it", 'Love this', 'Obsessed', 'Cocktails all round! 🍹'];
+const HYPE = { idea: HYPE_IDEA, theme: HYPE_IDEA, mission: ['', 'Just the one', 'A couple for courage', 'Getting brave now', 'Dutch courage', 'Cocktails all round! 🍹'] };
+const PREFIX_KIND = { i: 'idea', t: 'theme', m: 'mission' };
 document.body.insertAdjacentHTML('beforeend', `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8ecff" stop-opacity=".95"/><stop offset="1" stop-color="#3d7bff" stop-opacity=".85"/></linearGradient></defs></svg>`);
 // Each glass holds a bit more than the last; the fifth is a big balloon-glass cocktail.
 const GLASSES = {
@@ -1017,10 +1239,10 @@ function glassSVG(v, px){
 }
 document.body.insertAdjacentHTML('beforeend', `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="cocktail" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc2e2" stop-opacity=".95"/><stop offset=".55" stop-color="#ff5fb0" stop-opacity=".9"/><stop offset="1" stop-color="#9b5cff" stop-opacity=".9"/></linearGradient></defs></svg>`);
 $$('.glasses').forEach(box => {
-  const px = box.dataset.prefix;
+  const px = box.dataset.prefix, words = HYPE[PREFIX_KIND[px]];
   for(let v=1; v<=5; v++){
     const b = document.createElement('button'); b.type='button'; b.className='glass'; b.dataset.v=v;
-    b.setAttribute('role','radio'); b.setAttribute('aria-checked','false'); b.setAttribute('aria-label', `${v} G&T${v>1?'s':''}: ${HYPE_WORDS[v].replace(/\s*\p{Extended_Pictographic}+$/u,'')}`);
+    b.setAttribute('role','radio'); b.setAttribute('aria-checked','false'); b.setAttribute('aria-label', `${v} G&T${v>1?'s':''}: ${words[v].replace(/\s*\p{Extended_Pictographic}+$/u,'')}`);
     b.innerHTML = glassSVG(v, px);
     box.appendChild(b);
   }
@@ -1029,7 +1251,7 @@ $$('.glasses').forEach(box => {
 function setHype(v, quiet){
   hypeLevel = v; form.elements.hype.value = v || '';
   form.querySelectorAll('.glass').forEach(g => { g.classList.toggle('full', +g.dataset.v <= v); g.setAttribute('aria-checked', String(+g.dataset.v === v)); });
-  const hw = form.querySelector('.hype-word'); hw.textContent = HYPE_WORDS[v]; hw.dataset.l = v;
+  const hw = form.querySelector('.hype-word'); hw.textContent = HYPE[kind][v]; hw.dataset.l = v;
   if(partyOn) setParty(true, v);
   if(v && !quiet){
     Sound.fizz();
@@ -1077,7 +1299,7 @@ function dropParty(){
 }
 
 /* ================= FLOW (shared by ideas + themes) ================= */
-const FORMS = { idea: $('#form'), theme: $('#themeForm') };
+const FORMS = { idea: $('#form'), theme: $('#themeForm'), mission: $('#missionForm') };
 const tilesEl = $('#tiles');
 let kind = 'idea', form = FORMS.idea, steps = [], N = 0, cur = 0;
 function useForm(k){
@@ -1086,7 +1308,7 @@ function useForm(k){
   steps = [...form.querySelectorAll('.step')]; N = steps.length;
   tilesEl.innerHTML = ''; for(let i=0;i<N;i++) tilesEl.appendChild(document.createElement('i'));
 }
-function showScreen(id){ $$('.screen').forEach(s => s.classList.toggle('show', s.id === id)); window.scrollTo({top:0}); if(id==='intro') requestAnimationFrame(placeBulbs); }
+function showScreen(id){ $$('.screen').forEach(s => s.classList.toggle('show', s.id === id)); window.scrollTo({top:0, behavior:'instant'}); if(id==='intro') requestAnimationFrame(placeBulbs); }
 function showStep(i, dir='r'){
   steps.forEach((s,k) => { s.classList.remove('show','in-r','in-l'); if(k===i){ s.classList.add('show','in-'+dir); } });
   [...tilesEl.children].forEach((t,k) => { t.className = k<i ? 'done' : (k===i ? 'now' : ''); if(k<i) t.style.setProperty('--c', (crispy?CRISPY:PALETTE)[k % 5]); });
@@ -1096,12 +1318,13 @@ function showStep(i, dir='r'){
   const first = steps[i].querySelector('input[type=text],input[type=url]');
   if(first && matchMedia('(hover:hover)').matches) setTimeout(()=>first.focus({preventScroll:true}), 350);
 }
-const REQ_MSG = { name:'Pop your name in first 💕', idea:"Go on, what's the idea? 👀", theme:"Go on, what's the theme? 👗" };
+const REQ_MSG = { name:'Pop your name in first 💕', idea:"Go on, what's the idea? 👀", theme:"Go on, what's the theme? 👗", mission:"Go on, what's the mission? 🎯" };
 const EXAMPLES = {
   idea: ['Private boat day','Krka waterfalls trip','Hvar beach club day','Sunset kayaking','Vineyard wine tasting','Blue Cave boat trip','Konoba seafood feast','Snorkelling & a picnic'],
   kit: ['swimmies & suncream','water shoes, a hat','something sparkly','sunnies and SPF'],
   theme: ['All white on the boat','Riviera glam','Pink bride squad','70s disco night','Airport tracksuits','Nautical but nice'],
-  look: ['White linen, gold jewellery, massive sunnies. Bride in pink.','Sequins, flares and a feather boa for the bride','Stripes, red lips, sailor hats. Captain Christie.','Matching tees on the way out, glam on the way back']
+  look: ['White linen, gold jewellery, massive sunnies. Bride in pink.','Sequins, flares and a feather boa for the bride','Stripes, red lips, sailor hats. Captain Christie.','Matching tees on the way out, glam on the way back'],
+  mission: ['Order drinks in Croatian','Selfie with a captain','Learn a local toast','Find another Christie','Get the DJ to play ABBA']
 };
 const pick = a => a[Math.floor(Math.random()*a.length)];
 function validate(i){
@@ -1116,7 +1339,7 @@ function next(){
   if(!validate(cur)) return;
   if(cur === 0) store.set('hen_name', form.elements.name.value.trim());
   Sound.blip(740); lightFloor(14);
-  if(cur < N-1) showStep(cur+1, 'r'); else (kind === 'idea' ? submitIdea() : submitTheme());
+  if(cur < N-1) showStep(cur+1, 'r'); else (kind === 'theme' ? submitTheme() : submitTicket());
 }
 Object.values(FORMS).forEach(f => {
   f.addEventListener('click', e => {
@@ -1140,31 +1363,57 @@ function startFlow(k){
   form.reset(); $$('.err').forEach(e => e.textContent = ''); setHype(0, true);
   const saved = store.get('hen_name'); if(saved) form.elements.name.value = saved;
   if(k === 'idea'){ form.elements.idea.placeholder = 'e.g. ' + pick(EXAMPLES.idea); form.elements.kit.placeholder = 'e.g. ' + pick(EXAMPLES.kit); }
-  else { form.elements.theme.placeholder = 'e.g. ' + pick(EXAMPLES.theme); form.elements.look.placeholder = 'e.g. ' + pick(EXAMPLES.look); }
+  else if(k === 'theme'){ form.elements.theme.placeholder = 'e.g. ' + pick(EXAMPLES.theme); form.elements.look.placeholder = 'e.g. ' + pick(EXAMPLES.look); }
+  else form.elements.mission.placeholder = 'e.g. ' + pick(EXAMPLES.mission);
   showScreen('flow'); showStep(saved ? 1 : 0, 'r'); Sound.blip(660);
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-go]'); if(!b) return;
   const go = b.dataset.go;
-  if(go === 'home'){ setParty(false); showScreen('intro'); Sound.blip(500); } else startFlow(go);
+  if(go === 'home'){ setParty(false); showScreen('intro'); $('#box').scrollIntoView({behavior:'instant'}); Sound.blip(500); } else startFlow(go);
 });
 
 /* ================= SENDING ================= */
-function send(f){ return fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:new URLSearchParams(new FormData(f)) }); }
+function post(params){ return fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:params }); }
+function send(f){
+  const p = new URLSearchParams(new FormData(f));
+  // If the Sheet's script hasn't been updated yet it only knows ideas, so give it an "idea" to file. Nothing gets lost.
+  if(p.get('type') === 'mission') p.set('idea', '🎯 MISSION: ' + p.get('mission'));
+  return post(p);
+}
 const wait = ms => new Promise(r => setTimeout(r, ms));
 const esc = x => x.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const gtNo = n => n != null ? 'No. ' + String(n + 1).padStart(3,'0') : 'VIP';
 
 /* ================= IDEA → TICKET ================= */
+// Ideas and missions share the ticket printer; these are the bits that change.
+const TICKET = {
+  idea: { by:'Dropped by', admit:'ADMIT ONE', box:'IDEAS', sub:'top secret', done:'Idea dropped!',
+    btns:[['idea','Drop another idea ✨',''],['theme','Pitch a theme 👗','alt']],
+    text: n => n != null ? `It's in the box, idea number ${n}! The organisers have got it, and Christie's none the wiser.` : "It's in the box. The organisers have got it, and Christie's none the wiser." },
+  mission: { by:'Set by', admit:'MISSION', box:'MISSIONS', sub:'for later', done:'Mission filed!',
+    btns:[['mission','Set another mission 🎯',''],['idea','Drop an idea 🪩','alt']],
+    text: n => n != null ? `Mission number ${n} is locked away for the trip. Christie's none the wiser.` : "It's locked away for the trip. Christie's none the wiser." }
+};
 function fillTicket(){
-  const f = form.elements, bits = [f.price.value, f.time.value, f.transport.value].filter(Boolean);
-  $('#tIdea').textContent = f.idea.value.trim();
-  $('#tMeta').innerHTML = [bits.join(' · ') || 'Details to follow', f.christie.value ? 'Christie: ' + f.christie.value : ''].filter(Boolean).map(esc).join('<br>');
+  const f = form.elements, T = TICKET[kind];
+  if(kind === 'mission'){
+    $('#tIdea').textContent = f.mission.value.trim();
+    $('#tMeta').innerHTML = esc([f.when.value, f.cheek.value].filter(Boolean).join(' · ') || 'Rules to follow');
+  } else {
+    const bits = [f.price.value, f.time.value, f.transport.value].filter(Boolean);
+    $('#tIdea').textContent = f.idea.value.trim();
+    $('#tMeta').innerHTML = [bits.join(' · ') || 'Details to follow', f.christie.value ? 'Christie: ' + f.christie.value : ''].filter(Boolean).map(esc).join('<br>');
+  }
+  $('#tBy').textContent = T.by; $('#tAdmit').textContent = T.admit;
+  $('#ballotH').textContent = T.box; $('#ballotS').textContent = T.sub; $('#ballot').classList.toggle('wide', kind === 'mission');
+  $('#doneH').textContent = T.done;
+  $('#doneBtns').innerHTML = T.btns.map(([go, label, cls]) => `<button class="again ${cls}" type="button" data-go="${go}">${label}</button>`).join('');
   $('#tName').textContent = f.name.value.trim();
   $('#tHype').textContent = hypeLevel ? '🍸'.repeat(hypeLevel) : '';
-  $('#tNo').textContent = gtNo(ideaCount);
+  $('#tNo').textContent = gtNo(kind === 'mission' ? missionCount : ideaCount);
 }
-async function submitIdea(){
+async function submitTicket(){
   const f = form;
   fillTicket();
   showScreen('ticketScreen');
@@ -1177,11 +1426,13 @@ async function submitIdea(){
   if(!(await sending)){ scene.classList.remove('printing'); $('#failCopy').hidden = false; return; }
   await wait(reduced ? 0 : 700);
   await dropTicket(ticket);
-  if(ideaCount != null){ ideaCount++; showCount(); }
-  $('#doneText').textContent = ideaCount != null ? `It's in the box, idea number ${ideaCount}! The organisers have got it, and Christie's none the wiser.` : "It's in the box. The organisers have got it, and Christie's none the wiser.";
+  let n = null;
+  if(kind === 'mission'){ if(missionCount != null) n = ++missionCount; }
+  else if(ideaCount != null){ n = ++ideaCount; showCount(); }
+  $('#doneText').textContent = TICKET[kind].text(n);
   $('#doneCopy').hidden = false;
 }
-$('#retryBtn').addEventListener('click', submitIdea);
+$('#retryBtn').addEventListener('click', submitTicket);
 async function dropTicket(ticket){
   const ballot = $('#ballot'), paper = $('#paper'), from = ticket.getBoundingClientRect(), box = ballot.getBoundingClientRect();
   const fly = ticket.cloneNode(true); fly.removeAttribute('id'); fly.classList.add('flyer');
@@ -1256,6 +1507,45 @@ function glitter(x, y){
   }
 }
 useForm('idea');
+
+/* ================= HUB: what's new + the plan ================= */
+$('#newsList').innerHTML = UPDATES.map(u => `<li><time>${esc(u.date)}</time><span>${esc(u.text)}</span></li>`).join('');
+$('#dayList').innerHTML = DAYS.map(d => `<div><span class="dbadge"><small>${esc(d.wd)}</small><b>${esc(d.d)}</b><small>SEP</small></span>
+  <span class="dinfo"><b>${esc(d.title)}</b>${d.plan.length ? '<ul>' + d.plan.map(x => `<li>${esc(x)}</li>`).join('') + '</ul>' : '<span>TBC 🪩</span>'}</span></div>`).join('');
+
+/* ================= FOOD + ALLERGIES ================= */
+const food = $('#foodForm'), foodBtn = food.querySelector('button[type=submit]'), foodErr = food.querySelector('.err');
+if(store.get('hen_name')) food.elements.name.value = store.get('hen_name');
+food.addEventListener('change', e => {
+  const box = e.target; if(box.type !== 'checkbox') return;
+  Sound.blip(880 + Math.random()*300); lightFloor(12);
+  // "I eat everything" and the rest can't both be ticked
+  if(box.checked) food.querySelectorAll('input[name=diet]').forEach(o => { if(o !== box && (o.value === 'Eats everything' || box.value === 'Eats everything')) o.checked = false; });
+});
+food.addEventListener('submit', async e => {
+  e.preventDefault();
+  const name = food.elements.name.value.trim(), notes = food.elements.notes.value.trim();
+  const diet = [...food.querySelectorAll('input[name=diet]:checked')].map(i => i.value).join(', ');
+  if(!name){ foodErr.textContent = REQ_MSG.name; food.elements.name.focus(); return; }
+  if(!diet && !notes){ foodErr.textContent = 'Tick a box or tell us below 🍽️'; return; }
+  foodErr.textContent = ''; store.set('hen_name', name);
+  foodBtn.disabled = true; foodBtn.textContent = 'Sending…';
+  const p = new URLSearchParams({ type:'diet', name, diet, notes, website: food.elements.website.value,
+    idea: '🍽️ FOOD: ' + [diet, notes].filter(Boolean).join(' · ') });   // fallback for an older Sheet script
+  const ok = await post(p).then(() => true, () => false);
+  foodBtn.disabled = false;
+  if(!ok){ foodBtn.textContent = 'Send it 🍽️'; foodErr.textContent = "That didn't send. Check your signal and try again."; return; }
+  foodBtn.textContent = 'Got it ✓';
+  const r = foodBtn.getBoundingClientRect(); Sound.chime(); glitter(r.left + r.width/2, r.top); lightFloor(30); beat = 1;
+  toast("Got it. We'll plan round it 🍽️");
+  setTimeout(() => { foodBtn.textContent = 'Send it 🍽️'; }, 4000);
+});
+
+/* ================= PLAYLIST ================= */
+// Tapping into the Spotify player turns the disco music off so the two don't clash.
+addEventListener('blur', () => setTimeout(() => {
+  if(document.activeElement === $('#spotify') && Sound.on){ Sound.stop(); userMuted = true; paintSound(); toast('🎶 Disco music off so you can hear the playlist'); }
+}, 0));
 
 /* ================= PRESS EFFECTS ================= */
 document.addEventListener('pointerdown', e => {

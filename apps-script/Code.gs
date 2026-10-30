@@ -1,8 +1,11 @@
 /**
  * Christie's Hen Do – Idea Box
  * Receives submissions from the GitHub Pages site and adds them to this Sheet.
- *   - Activity ideas → the "Ideas" tab (first tab)
+ *   - Activity ideas            → the "Ideas" tab (first tab)
  *   - Theme / dress code pitches → the "Themes" tab
+ *   - Missions for Christie     → the "Missions" tab
+ *   - Food and allergies        → the "Food & allergies" tab
+ * Tabs are created automatically the first time something arrives for them.
  *
  * Setup (once):
  *  1. In the Sheet: Extensions → Apps Script. Delete what's there, paste this file, Save.
@@ -14,8 +17,11 @@
  * (That keeps the same /exec URL.)
  */
 
-const THEMES_TAB = 'Themes';
-const THEME_HEADERS = ['Submitted', 'Name', 'Theme', 'The look', 'Link', 'When', 'Christie factor', 'Hype (1-5)', 'Group votes', 'Status', 'Organiser notes'];
+const TABS = {
+  theme:   { name: 'Themes',           headers: ['Submitted', 'Name', 'Theme', 'The look', 'Link', 'When', 'Christie factor', 'Hype (1-5)', 'Group votes', 'Status', 'Organiser notes'] },
+  mission: { name: 'Missions',         headers: ['Submitted', 'Name', 'Mission', 'Rules', 'When', 'Cheek level', "G&Ts she'll need (1-5)", 'Status', 'Organiser notes'] },
+  diet:    { name: 'Food & allergies', headers: ['Submitted', 'Name', 'Diet', 'Allergies & notes'] },
+};
 
 function doPost(e) {
   const lock = LockService.getScriptLock();
@@ -30,10 +36,25 @@ function doPost(e) {
 
     if (p.type === 'theme') {
       if (!p.name || !p.theme) return json_({ ok: false, error: 'Name and theme are required' });
-      themesSheet_(ss).appendRow([
+      tab_(ss, 'theme').appendRow([
         new Date(), clean_(p.name), clean_(p.theme), clean_(p.look), clean_(p.link),
         clean_(p.when), clean_(p.christie), clean_(p.hype),
       ]);
+      return json_({ ok: true });
+    }
+
+    if (p.type === 'mission') {
+      if (!p.name || !p.mission) return json_({ ok: false, error: 'Name and mission are required' });
+      tab_(ss, 'mission').appendRow([
+        new Date(), clean_(p.name), clean_(p.mission), clean_(p.details),
+        clean_(p.when), clean_(p.cheek), clean_(p.hype),
+      ]);
+      return json_({ ok: true });
+    }
+
+    if (p.type === 'diet') {
+      if (!p.name) return json_({ ok: false, error: 'Name is required' });
+      tab_(ss, 'diet').appendRow([new Date(), clean_(p.name), clean_(p.diet), clean_(p.notes)]);
       return json_({ ok: true });
     }
 
@@ -48,27 +69,31 @@ function doPost(e) {
   }
 }
 
-// Returns how many ideas and themes are in the box (numbers only, never the content).
+// Returns how many ideas, themes and missions are in the box (numbers only, never the content).
 // Visit the /exec URL in a browser to check it's live.
 function doGet() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const themes = ss.getSheetByName(THEMES_TAB);
+  const count = key => { const sh = ss.getSheetByName(TABS[key].name); return sh ? Math.max(0, sh.getLastRow() - 1) : 0; };
   return json_({
     ok: true,
     count: Math.max(0, ideasSheet_(ss).getLastRow() - 1),
-    themes: themes ? Math.max(0, themes.getLastRow() - 1) : 0,
+    themes: count('theme'),
+    missions: count('mission'),
   });
 }
 
+// The Ideas tab is the first tab that isn't one of the special ones above.
 function ideasSheet_(ss) {
-  return ss.getSheets().find(s => s.getName() !== THEMES_TAB);
+  const special = Object.values(TABS).map(t => t.name);
+  return ss.getSheets().find(s => special.indexOf(s.getName()) === -1);
 }
 
-function themesSheet_(ss) {
-  let sh = ss.getSheetByName(THEMES_TAB);
+function tab_(ss, key) {
+  const t = TABS[key];
+  let sh = ss.getSheetByName(t.name);
   if (!sh) {
-    sh = ss.insertSheet(THEMES_TAB, ss.getSheets().length);
-    sh.appendRow(THEME_HEADERS);
+    sh = ss.insertSheet(t.name, ss.getSheets().length);
+    sh.appendRow(t.headers);
     sh.setFrozenRows(1);
   }
   return sh;
