@@ -616,6 +616,41 @@ body.locked{overflow:hidden}
 .ph-hr small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:#d9b9e6;margin-top:1px}
 .ph-en{flex:none;max-width:38%;text-align:right;font-size:13px;color:var(--muted);line-height:1.3}
 .ph-en em{display:block;margin-top:3px;font-style:normal;font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+/* before you go: passport + stamps */
+.pp-wrap{filter:drop-shadow(0 18px 30px rgba(0,0,0,.45));margin:4px 0 22px}
+.pp-open{display:grid;grid-template-columns:1fr 1fr;border-radius:10px;overflow:hidden;background:#fbf3e6;
+  background-image:repeating-linear-gradient(135deg,rgba(194,24,91,.035) 0 2px,transparent 2px 9px)}
+.screen.show .pp-open{animation:receiptIn .9s cubic-bezier(.2,.8,.2,1) both .1s}
+.pp-page{position:relative;padding:12px 11px 10px;color:#2a0b3a;min-height:206px}
+.pp-id{box-shadow:inset -14px 0 16px -14px rgba(42,11,58,.35)}
+.pp-visa{box-shadow:inset 14px 0 16px -14px rgba(42,11,58,.35)}
+.pp-head{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7a1450;margin-bottom:9px}
+.pp-body{display:flex;gap:8px}
+.pp-photo{flex:none;width:40px;height:50px;border-radius:3px;background:radial-gradient(circle at 35% 35%,#fff,#c9b7e6 30%,#6b4ea0 70%,#2a1640);box-shadow:inset 0 0 0 2px #fbf3e6}
+.pp-body dl{margin:0;min-width:0;font-family:var(--mono)}
+.pp-body dt{font-size:6.5px;letter-spacing:.14em;text-transform:uppercase;color:#8a5a96}
+.pp-body dd{margin:0 0 5px;font-size:9.5px;font-weight:700;line-height:1.2}
+.pp-mrz{position:absolute;left:11px;right:8px;bottom:10px;font-family:var(--mono);font-size:7px;letter-spacing:.06em;line-height:1.5;color:#6b4a78;word-break:break-all}
+.stamps{display:grid;grid-template-columns:1fr 1fr;gap:10px 8px;justify-items:center;align-items:center;margin-top:4px}
+.stamp{display:grid;place-items:center;width:62px;height:46px;font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:center;line-height:1.25;
+  color:var(--ink-c);border:2px solid var(--ink-c);border-radius:6px;transform:rotate(var(--rot));opacity:.08;transition:opacity .2s}
+.stamp.round{width:50px;height:50px;border-radius:50%}
+.stamp.on{opacity:.85}
+.stamp.thunk{animation:thunk .45s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes thunk{0%{transform:scale(1.8) rotate(var(--rot));opacity:0}60%{transform:scale(.94) rotate(var(--rot));opacity:.9}100%{transform:scale(1) rotate(var(--rot));opacity:.85}}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.check{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border-radius:18px;background:linear-gradient(180deg,rgba(48,12,74,.86),rgba(22,3,38,.9));box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.tick{flex:none;display:grid;place-items:center;width:30px;height:30px;margin-top:1px;border:0;border-radius:50%;cursor:pointer;background:rgba(255,255,255,.08);transition:background .2s,transform .15s}
+.tick svg{width:15px;height:15px;fill:none;stroke:transparent;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.tick:active{transform:scale(.9)}
+.check.done .tick{background:linear-gradient(180deg,#fff3cf,#f6d27c 60%,#e9b955)}
+.check.done .tick svg{stroke:#24082f}
+.ck-txt{flex:1;min-width:0}
+.ck-txt b{display:block;font-weight:600;font-size:16px}
+.ck-txt span{display:block;margin-top:2px;font-size:14px;line-height:1.45;color:var(--muted)}
+.ck-txt a,.ck-txt .linkbtn{display:inline-block;margin-top:6px;font-size:13px;font-weight:600;color:var(--gold);text-decoration:none}
+.check.done .ck-txt b{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(255,209,102,.6)}
+.prep-note{margin:16px 4px 0;font-size:13px;line-height:1.5;color:var(--muted)}
 .linkbtn{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--hot);font-weight:700;text-decoration:underline}
 /* inner pages */
 .page-head{display:flex;align-items:center;gap:14px;margin:4px 0 16px}
@@ -891,12 +926,30 @@ body.crispy .chips input:checked + label{color:#0a1840;background:linear-gradien
   <section class="screen page" id="pg-prep" aria-labelledby="prepH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Do these early</span></div>
     <h2 class="sec-h" id="prepH">Before you go</h2>
-    <ul class="panel rows">
-      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><circle cx="12" cy="10" r="3.2"/><path d="M9 16.5h6"/></svg></span><span><b>Check your passport now.</b> For Croatia it needs to be issued less than 10 years before we land, and valid for 3 months after we fly home. Renewals can take weeks. <a href="https://www.gov.uk/foreign-travel-advice/croatia/entry-requirements" target="_blank" rel="noopener">The gov.uk rules</a></span></li>
-      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8v8M8 12h8"/></svg></span><span><b>Get a GHIC.</b> It's free on the NHS website, so ignore any site that tries to charge you.</span></li>
-      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.5-3.2 8-7.5 9.5-4.3-1.5-7.5-5-7.5-9.5V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span><b>Sort travel insurance</b> once flights are booked.</span></li>
-      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.2"/><path d="M6.5 16c.6-1.6 1.5-2.4 2.5-2.4s1.9.8 2.5 2.4M14 10h4M14 13.5h3"/></svg></span><span><b>New EU border checks.</b> You might have fingerprints and a photo taken at passport control. It's free, just a bit more queueing.</span></li>
-    </ul>
+
+    <div class="pp-wrap"><div class="pp-open">
+      <div class="pp-page pp-id">
+        <div class="pp-head">Passport · Putovnica</div>
+        <div class="pp-body">
+          <span class="pp-photo" aria-hidden="true"></span>
+          <dl>
+            <dt>Name</dt><dd>The Hen Party</dd>
+            <dt>Destination</dt><dd>Split, Croatia</dd>
+            <dt>Dates</dt><dd>09 – 14 Sep 2027</dd>
+            <dt>Guest of honour</dt><dd>Christie</dd>
+          </dl>
+        </div>
+        <div class="pp-mrz" aria-hidden="true">P&lt;HEN&lt;&lt;CHRISTIE&lt;&lt;SPLIT&lt;&lt;&lt;&lt;&lt;<br>090927&lt;&lt;140927&lt;&lt;G&amp;T&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
+      </div>
+      <div class="pp-page pp-visa">
+        <div class="pp-head">Visas</div>
+        <div class="stamps" id="stamps" aria-hidden="true"></div>
+      </div>
+    </div></div>
+
+    <div class="plan-prog"><span id="prepProg"></span><i><b id="prepBar"></b></i></div>
+    <ul class="checks" id="checks"></ul>
+    <p class="prep-note">New EU border checks mean you might have fingerprints and a photo taken at passport control the first time. It's free, just a bit more queueing.</p>
   </section>
 
   <section class="screen page" id="pg-croatia" aria-labelledby="croH">
@@ -2240,6 +2293,48 @@ Board.load();
     u.onend = u.onerror = () => { b.classList.remove('on'); if(wasOn && !userMuted) startMusic(); };
     synth.speak(u);
   });
+})();
+
+/* ================= BEFORE YOU GO: checklist + stamps ================= */
+// Ticks are saved on each person's phone. Each one stamps the passport.
+(function(){
+  const ITEMS = [
+    { id:'passport', title:'Check your passport', text:'Issued after 9 Sep 2017 and valid until at least 14 Dec 2027. Renewals can take weeks.',
+      link:{ href:'https://www.gov.uk/foreign-travel-advice/croatia/entry-requirements', label:'The gov.uk rules →' }, stamp:'Passport<br>checked', shape:'round', ink:'#7a1450', rot:'-8deg' },
+    { id:'leave', title:'Book the time off', text:'Thu 9 to Tue 14 Sept 2027.',
+      link:{ href:'split-trip.ics', label:'Add the dates to my calendar →', download:true }, stamp:'Leave<br>booked', ink:'#2f5fb8', rot:'6deg' },
+    { id:'pay', title:'Pay your share', text:'£550 each. Payment link coming soon.', page:{ id:'money', label:'See the costs →' }, stamp:'Paid', ink:'#b8860b', rot:'-4deg', shape:'round' },
+    { id:'ghic', title:'Get a GHIC', text:"It's free on the NHS website, so ignore any site that tries to charge you.", stamp:'GHIC<br>sorted', ink:'#1f7a5a', rot:'9deg' },
+    { id:'insurance', title:'Sort travel insurance', text:'Once flights are booked.', stamp:'Insured', ink:'#c2185b', rot:'-10deg' },
+    { id:'outfits', title:'Sort your theme outfits', text:"Once we've picked the themes. Heart your favourites on the board.", page:{ id:'board', label:'Go to the board →' }, stamp:'Dressed<br>to impress', ink:'#6a3fb5', rot:'5deg', shape:'round' },
+  ];
+  const TICK = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  const done = new Set(JSON.parse(store.get('hen_checks') || '[]'));
+  $('#stamps').innerHTML = ITEMS.map(i => `<span class="stamp${i.shape === 'round' ? ' round' : ''}" data-id="${i.id}" style="--ink-c:${i.ink};--rot:${i.rot}">${i.stamp}</span>`).join('');
+  $('#checks').innerHTML = ITEMS.map(i => `<li class="check" data-id="${i.id}"><button class="tick" type="button" aria-pressed="false" aria-label="${esc(i.title)}">${TICK}</button>
+    <div class="ck-txt"><b>${esc(i.title)}</b><span>${esc(i.text)}</span>
+    ${i.link ? `<a href="${i.link.href}"${i.link.download ? ' download' : ' target="_blank" rel="noopener"'}>${esc(i.link.label)}</a>` : ''}
+    ${i.page ? `<button class="linkbtn" type="button" data-page="${i.page.id}">${esc(i.page.label)}</button>` : ''}</div></li>`).join('');
+  function paint(thunkId){
+    ITEMS.forEach(i => {
+      const on = done.has(i.id), li = $(`.check[data-id="${i.id}"]`), st = $(`.stamp[data-id="${i.id}"]`);
+      li.classList.toggle('done', on); li.querySelector('.tick').setAttribute('aria-pressed', String(on)); st.classList.toggle('on', on);
+      if(i.id === thunkId && on){ st.classList.remove('thunk'); void st.offsetWidth; st.classList.add('thunk'); }
+    });
+    $('#prepProg').textContent = `${done.size} of ${ITEMS.length} sorted`;
+    $('#prepBar').style.width = Math.max(3, done.size / ITEMS.length * 100) + '%';
+  }
+  $('#checks').addEventListener('click', e => {
+    const b = e.target.closest('.tick'); if(!b) return;
+    const id = b.closest('.check').dataset.id;
+    done.has(id) ? done.delete(id) : done.add(id);
+    store.set('hen_checks', JSON.stringify([...done]));
+    paint(id);
+    if(done.has(id)){ Sound.blip(660); lightFloor(16); try{ navigator.vibrate && navigator.vibrate(18); }catch(_){} }
+    else Sound.blip(420);
+    if(done.size === ITEMS.length && done.has(id)){ Sound.chime(); const r = $('#stamps').getBoundingClientRect(); glitter(r.left + r.width/2, r.top + 40); toast("All sorted. See you on the 9th!"); }
+  });
+  paint();
 })();
 
 /* ================= PLAYLIST ================= */
