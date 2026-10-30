@@ -481,8 +481,9 @@ body.crispy .news-strip .new{color:var(--ice);box-shadow:inset 0 0 0 1px rgba(15
 .bc-txt b{display:block;font-size:17px;font-weight:600}
 .bc-txt small{display:block;margin-top:2px;font-size:13px;color:var(--muted);line-height:1.35}
 /* finishing touches: the board */
-.board-filter{margin:16px 0 18px}
-.board-filter label{font-size:14px;padding:9px 14px}
+.board-filter{flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;margin:16px -18px 18px;padding:2px 18px}
+.board-filter::-webkit-scrollbar{display:none}
+.board-filter label{flex:none;white-space:nowrap;font-size:13px;padding:8px 12px}
 .board{display:grid;grid-template-columns:1fr 1fr;gap:16px 12px;align-items:start}
 .board-empty{grid-column:1/-1;text-align:center;color:var(--muted);line-height:1.5;padding:26px 10px;border-radius:18px;box-shadow:inset 0 0 0 1px rgba(255,220,150,.16)}
 .board-empty b{display:block;color:var(--text);font-weight:600;margin-bottom:4px}
@@ -658,6 +659,21 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   h1.sign span{opacity:1;color:#fff;text-shadow:0 0 12px var(--pink),0 0 28px var(--pink)} .tube{opacity:1}
 }
+/* fewer outlines: soft fills in place of rings */
+.chips label,.chips.big label{box-shadow:none;background:rgba(255,255,255,.07)}
+.chips label:hover{background:rgba(255,255,255,.11)}
+.chips input:checked + label,body.crispy .chips input:checked + label{color:#24082f;background:linear-gradient(180deg,#fff3cf 0%,#f6d27c 60%,#e9b955 100%);box-shadow:0 6px 18px rgba(233,185,85,.22)}
+body.crispy .chips input:checked + label{color:#0a1840;background:linear-gradient(180deg,#f2f8ff,#bcdcff);box-shadow:0 6px 18px rgba(61,123,255,.25)}
+.btn-line,.skip,.again.alt,.back{box-shadow:none;background:rgba(255,255,255,.08)}
+.btn-line:hover,.skip:hover,.again.alt:hover,.back:hover{box-shadow:none;background:rgba(255,255,255,.12)}
+.ico,.navtile .ico{box-shadow:none;background:rgba(255,209,102,.1)}
+.navtile.art .obj{box-shadow:none;background:rgba(0,0,0,.24)}
+.news-strip .new,body.crispy .news-strip .new{box-shadow:none;background:rgba(255,209,102,.14)}
+.tl.tba .tl-card{box-shadow:none;background:rgba(40,8,62,.62)}
+.board-empty{box-shadow:none;background:rgba(255,255,255,.04)}
+.news-strip,.navtile,.board-card,.panel,.tl-card,.tile,.card{box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.board-filter{gap:4px}
+.board-filter label{font-size:12.5px;padding:8px 10.5px}
 </style>
 </head>
 <body class="waiting">
@@ -776,7 +792,7 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
       <input type="radio" name="bf" id="bf5" value="Theme"><label for="bf5">Themes</label>
       <input type="radio" name="bf" id="bf1" value="Wear"><label for="bf1">Wear</label>
       <input type="radio" name="bf" id="bf2" value="Decor"><label for="bf2">Decor</label>
-      <input type="radio" name="bf" id="bf3" value="Props &amp; games"><label for="bf3">Props &amp; games</label>
+      <input type="radio" name="bf" id="bf3" value="Games"><label for="bf3">Games</label>
       <input type="radio" name="bf" id="bf4" value="Gifts"><label for="bf4">Gifts</label>
     </div>
     <div class="board" id="board" aria-live="polite"></div>
@@ -1158,7 +1174,7 @@ body.crispy .chips input:checked + label{color:#e6f2ff;background:rgba(159,211,2
         <input type="radio" name="category" id="pc0" value="Theme"><label for="pc0">Theme</label>
         <input type="radio" name="category" id="pc1" value="Wear"><label for="pc1">Wear</label>
         <input type="radio" name="category" id="pc2" value="Decor"><label for="pc2">Decor</label>
-        <input type="radio" name="category" id="pc3" value="Props &amp; games"><label for="pc3">Props &amp; games</label>
+        <input type="radio" name="category" id="pc3" value="Games"><label for="pc3">Games</label>
         <input type="radio" name="category" id="pc4" value="Gifts"><label for="pc4">Gifts</label>
         <input type="radio" name="category" id="pc5" value="Other"><label for="pc5">Other</label>
       </div>
