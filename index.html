@@ -566,6 +566,45 @@ body.locked{overflow:hidden}
 .tl ul{list-style:none;margin:10px 0 0;padding:10px 0 0;display:grid;gap:8px;border-top:1px solid var(--line)}
 .tl ul li{display:flex;gap:12px;align-items:baseline;line-height:1.4}
 .tl .when{flex:none;width:76px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.sub-h{font-weight:600;font-size:20px;letter-spacing:-.01em;margin:30px 0 12px}
+/* croatia 101: big postcard */
+.pc-wrap{filter:drop-shadow(0 18px 30px rgba(0,0,0,.45));margin:6px 4px 0}
+.pc-big{display:flex;gap:10px;padding:9px;border-radius:8px;background:#fff8ec;transform:rotate(-1.2deg)}
+.screen.show .pc-big{animation:pcIn .9s cubic-bezier(.2,.8,.2,1) both .1s}
+@keyframes pcIn{from{transform:translateY(-24px) rotate(-5deg);opacity:0}to{transform:rotate(-1.2deg);opacity:1}}
+.pcb-pic{position:relative;flex:1.25;min-height:150px;border-radius:4px;overflow:hidden;background:linear-gradient(180deg,#ffb38a 0%,#ff8fb0 50%,#5fb6e8 51%,#2f7fc4 100%)}
+.pcb-sun{position:absolute;left:56%;top:24%;width:34px;height:34px;border-radius:50%;background:#fff3cf;box-shadow:0 0 22px #fff3cf}
+.pcb-isle{position:absolute;bottom:49%;height:14px;border-radius:50% 50% 0 0;background:#8a4a7a}
+.pcb-isle.i1{left:-6%;width:46%}.pcb-isle.i2{right:-8%;width:34%;height:10px;background:#a05a86}
+.pcb-sea{position:absolute;left:0;right:0;top:51%;bottom:0;background:repeating-linear-gradient(180deg,transparent 0 7px,rgba(255,255,255,.22) 7px 8px)}
+.pcb-txt{position:absolute;left:10px;bottom:9px;font:900 italic 30px/1 var(--sans);color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.pcb-txt small{display:block;font:700 9px var(--mono);letter-spacing:.2em;text-transform:uppercase;margin-bottom:3px}
+.pcb-back{position:relative;flex:1;display:flex;flex-direction:column;padding:4px 2px 2px;color:#2a0b3a}
+.pcb-stamp{align-self:flex-end;display:grid;place-items:center;width:34px;height:40px;background:#c2185b;border:3px dotted #fff8ec;outline:1px solid rgba(194,24,91,.35)}
+.pcb-stamp i{width:14px;height:14px;border-radius:50%;background:#fff3cf}
+.pcb-mark{position:absolute;right:22px;top:16px;width:42px;height:42px;border-radius:50%;border:1.5px solid rgba(42,11,58,.35);display:grid;place-items:center;text-align:center;
+  font:700 6.5px/1.3 var(--mono);letter-spacing:.08em;color:rgba(42,11,58,.55);transform:rotate(-14deg)}
+.pcb-note{margin:26px 0 6px;font:italic 500 13px/1.4 var(--sans);color:#4a1d57}
+.pcb-line{display:block;height:1px;background:rgba(42,11,58,.2);margin-top:12px}
+/* weather */
+.wx{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.wx div{text-align:center;padding:14px 6px 12px;border-radius:18px;background:linear-gradient(180deg,rgba(48,12,74,.86),rgba(22,3,38,.9));box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.wx b{display:block;font:700 30px var(--mono);color:var(--gold);text-shadow:0 0 14px rgba(255,209,102,.35)}
+.wx small{display:block;margin-top:2px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.wx-note{margin:10px 2px 0;font-size:14px;color:var(--muted);line-height:1.45}
+/* phrasebook */
+.phrases{list-style:none;margin:0;padding:6px 14px}
+.phrases li{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line)}
+.phrases li:first-child{border-top:0}
+.say{flex:none;display:grid;place-items:center;width:36px;height:36px;border:0;border-radius:50%;cursor:pointer;background:rgba(255,209,102,.12);transition:transform .15s,background .2s}
+.say svg{width:17px;height:17px;fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.say:active{transform:scale(.9)}
+.say.on{background:var(--gold)}.say.on svg{stroke:#24082f}
+.ph-hr{flex:1;min-width:0}
+.ph-hr b{display:block;font-weight:600;font-size:16px}
+.ph-hr small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:#d9b9e6;margin-top:1px}
+.ph-en{flex:none;max-width:38%;text-align:right;font-size:13px;color:var(--muted);line-height:1.3}
+.ph-en em{display:block;margin-top:3px;font-style:normal;font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
 .linkbtn{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--hot);font-weight:700;text-decoration:underline}
 /* inner pages */
 .page-head{display:flex;align-items:center;gap:14px;margin:4px 0 16px}
@@ -847,18 +886,48 @@ body.crispy .chips input:checked + label{color:#0a1840;background:linear-gradien
   </section>
 
   <section class="screen page" id="pg-croatia" aria-labelledby="croH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Need to know</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Split, Croatia</span></div>
     <h2 class="sec-h" id="croH">Croatia 101</h2>
-    <div class="grid">
-      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.5 6.5a6.5 6.5 0 1 0 0 11"/><path d="M4.5 10.5h8M4.5 13.5h8"/></svg></span><b>Euros</b>Cards work most places. Carry a bit of cash for boats and beach bars.</div>
-      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 17v-4.5L7 7h10l2 5.5V17"/><path d="M3.5 12.5h17M5 17h14"/><path d="M7.5 17v2M16.5 17v2"/></svg></span><b>Getting about</b>Uber and Bolt work in the bigger towns.</div>
-      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6.5 8h11v3a5.5 5.5 0 0 1-11 0zM12 16.5V21"/></svg></span><b>Plugs</b>European two-pin. Bring an adapter (or two).</div>
-      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></span><b>Weather</b>Still hot in September and the sea's lovely. Swimmies and sunnies.</div>
-      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3h8l-.5 5a3.5 3.5 0 0 1-7 0z"/><path d="M12 11.5V20M8.5 20h7"/></svg></span><b>Živjeli!</b>(ZHIV-yeh-lee) Cheers. You'll need this one.</div>
-      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><b>Hvala</b>(HVAH-la) Thank you. Also handy.</div>
-      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4.5M12 17.5v.01"/></svg></span><b>Emergencies</b>Call 112.</div>
-      <div class="tile"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5S6 10 6 14a6 6 0 0 0 12 0c0-4-6-10.5-6-10.5z"/></svg></span><b>Tap water</b>Fine to drink. Save your euros for G&amp;Ts.</div>
+
+    <div class="pc-wrap"><div class="pc-big">
+      <div class="pcb-pic">
+        <span class="pcb-sun"></span><span class="pcb-isle i1"></span><span class="pcb-isle i2"></span><span class="pcb-sea"></span>
+        <span class="pcb-txt"><small>Pozdrav iz</small>Splita</span>
+      </div>
+      <div class="pcb-back">
+        <span class="pcb-stamp" aria-hidden="true"><i></i></span>
+        <span class="pcb-mark" aria-hidden="true">SPLIT<br>09.09.27</span>
+        <p class="pcb-note">Girls, the sea's warm and the G&amp;Ts are cold. See you on the 9th. x</p>
+        <span class="pcb-line"></span><span class="pcb-line"></span>
+      </div>
+    </div></div>
+
+    <h3 class="sub-h">The weather</h3>
+    <div class="wx">
+      <div><b>25°</b><small>Days</small></div><div><b>17°</b><small>Nights</small></div><div><b>23°</b><small>Sea</small></div>
     </div>
+    <p class="wx-note">Typical for September. Sunnies, swimmies and a light layer for the evenings.</p>
+
+    <h3 class="sub-h">Say it like a local</h3>
+    <ul class="panel phrases">
+        <li><button class="say" type="button" data-say="Bok!" aria-label="Hear Bok!"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></button><span class="ph-hr"><b>Bok!</b><small>bok</small></span><span class="ph-en">Hi! (and bye)</span></li>
+        <li><button class="say" type="button" data-say="Hvala" aria-label="Hear Hvala"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></button><span class="ph-hr"><b>Hvala</b><small>HVAH-lah</small></span><span class="ph-en">Thank you</span></li>
+        <li><button class="say" type="button" data-say="Molim" aria-label="Hear Molim"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></button><span class="ph-hr"><b>Molim</b><small>MOH-leem</small></span><span class="ph-en">Please</span></li>
+        <li><button class="say" type="button" data-say="Živjeli!" aria-label="Hear Živjeli!"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></button><span class="ph-hr"><b>Živjeli!</b><small>ZHIV-yeh-lee</small></span><span class="ph-en">Cheers!</span></li>
+        <li><button class="say" type="button" data-say="Jedan gin tonic, molim" aria-label="Hear Jedan gin tonic, molim"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></button><span class="ph-hr"><b>Jedan gin tonic, molim</b><small>YEH-dahn gin TOH-nik, MOH-leem</small></span><span class="ph-en">One G&amp;T, please<em>Christie's order</em></span></li>
+        <li><button class="say" type="button" data-say="Još jedan!" aria-label="Hear Još jedan!"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></button><span class="ph-hr"><b>Još jedan!</b><small>yosh YEH-dahn</small></span><span class="ph-en">Another one!</span></li>
+        <li><button class="say" type="button" data-say="Ovo je mladenka!" aria-label="Hear Ovo je mladenka!"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></button><span class="ph-hr"><b>Ovo je mladenka!</b><small>OH-voh yeh MLAH-den-kah</small></span><span class="ph-en">This is the bride!</span></li>
+        <li><button class="say" type="button" data-say="Račun, molim" aria-label="Hear Račun, molim"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></button><span class="ph-hr"><b>Račun, molim</b><small>RAH-choon, MOH-leem</small></span><span class="ph-en">The bill, please</span></li>
+    </ul>
+
+    <h3 class="sub-h">Need to know</h3>
+    <ul class="panel rows">
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.5 6.5a6.5 6.5 0 1 0 0 11"/><path d="M4.5 10.5h8M4.5 13.5h8"/></svg></span><span><b>Euros.</b> Cards work most places. Carry a bit of cash for boats and beach bars. Around 10% is the usual tip in restaurants, but it's not compulsory.</span></li>
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 17v-4.5L7 7h10l2 5.5V17"/><path d="M3.5 12.5h17M5 17h14"/><path d="M7.5 17v2M16.5 17v2"/></svg></span><span><b>Getting about.</b> Uber and Bolt both work in Split. The airport's about 25 km out, so allow 30–40 minutes. There are seven of us, so that's two cars or a minibus.</span></li>
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6.5 8h11v3a5.5 5.5 0 0 1-11 0zM12 16.5V21"/></svg></span><span><b>Plugs.</b> European two-pin. Bring an adapter (or two).</span></li>
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5S6 10 6 14a6 6 0 0 0 12 0c0-4-6-10.5-6-10.5z"/></svg></span><span><b>Tap water.</b> Fine to drink. Save your euros for G&amp;Ts.</span></li>
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4.5M12 17.5v.01"/></svg></span><span><b>Emergencies.</b> Call 112.</span></li>
+    </ul>
   </section>
 
 
@@ -2038,6 +2107,24 @@ const Board = (() => {
   return { load };
 })();
 Board.load();
+
+/* ================= PHRASEBOOK: tap to hear ================= */
+(function(){
+  const synth = window.speechSynthesis;
+  const hrVoice = () => synth && synth.getVoices().find(v => /^hr/i.test(v.lang));
+  if(synth) { synth.getVoices(); synth.addEventListener && synth.addEventListener('voiceschanged', hrVoice); }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.say'); if(!b) return;
+    const v = hrVoice();
+    if(!synth || !v){ toast("Your phone hasn't got a Croatian voice, so go by the pronunciation underneath."); return; }
+    const wasOn = Sound.on; if(wasOn) Sound.stop();
+    synth.cancel();
+    const u = new SpeechSynthesisUtterance(b.dataset.say); u.voice = v; u.lang = v.lang; u.rate = .85;
+    $$('.say.on').forEach(x => x.classList.remove('on')); b.classList.add('on');
+    u.onend = u.onerror = () => { b.classList.remove('on'); if(wasOn && !userMuted) startMusic(); };
+    synth.speak(u);
+  });
+})();
 
 /* ================= PLAYLIST ================= */
 // Tapping into the Spotify player turns the disco music off so the two don't clash.
