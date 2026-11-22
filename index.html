@@ -1415,6 +1415,7 @@ const UPDATES = [
 //   A range:    { item, from, to }      (add note: '…' for a footnote)
 const BUDGET = {
   where: 'Split', people: 7, ask: 550,
+  deposit: 93.15,   // each, paid first; part of the ask, not on top of it
   items: [
     { item: 'Accommodation',       cost: 193.14, booked: true },
     { item: 'Boat experience',     from: 43.50,  to: 87.00 },
@@ -2211,6 +2212,8 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
     ${row('TOTAL EACH', gbp(lo), gbp(hi), 'r-total')}
     <div class="r-rule double"></div>
     <div class="r-ask"><span>WE'RE ASKING</span><b>${gbp(BUDGET.ask)}<small> EACH</small></b></div>
+    ${BUDGET.deposit ? `<div class="r-row r-one"><span>Deposit (part of the ${gbp(BUDGET.ask)})</span><span>${gbp(BUDGET.deposit)}</span></div>
+    <div class="r-row r-one"><span>Rest to pay</span><span>${gbp(BUDGET.ask - BUDGET.deposit)}</span></div>` : ''}
     <p class="r-note">${BUDGET.ask >= hi ? 'Covers the top end, with a little to spare.'
       : hi - BUDGET.ask <= cont ? `Worst case, the extra ${gbp(hi - BUDGET.ask)} comes out of the contingency, so ${gbp(BUDGET.ask)} still stands.`
       : `The top end is ${gbp(hi - BUDGET.ask)} over, so it may come in a touch higher.`}</p>
