@@ -17,7 +17,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪩</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Outfit:wght@400;500;700;900&family=Space+Mono:wght@400;700&family=Tilt+Neon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Monoton&family=Outfit:wght@400;500;700;900&family=Space+Mono:wght@400;700&family=Tilt+Neon&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#0d0018; --plum:#22003a; --pink:#ff2d95; --hot:#ff6ec7; --violet:#9b5cff;
@@ -809,6 +809,101 @@ body.crispy .act.gold{background:linear-gradient(180deg,#f2f8ff,#bcdcff 60%,#8fb
 .m-note::before{content:"";position:absolute;left:50%;top:-4px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff3cf,#e9b955 60%,#9c6f12)}
 .m-note i{display:block;height:2.5px;border-radius:2px;background:rgba(42,11,58,.22)}
 .m-note i:last-child{width:60%}
+
+/* ================= THE VILLA: first-visit reveal, home tile and page ================= */
+:root{--serif:"Cormorant Garamond",Georgia,serif;--champ:#e9c983}
+.vr{position:fixed;inset:0;z-index:70;background:#07000d;color:var(--text);overflow:hidden;animation:fadeIn .5s both}
+.vr-stage{position:absolute;inset:0;display:none}
+.vr[data-s=door] .vr-door,.vr[data-s=lights] .vr-lights,.vr[data-s=tour] .vr-tour,.vr[data-s=end] .vr-end{display:flex}
+.vr-x{position:absolute;z-index:5;top:calc(var(--safe-t) + 14px);right:14px;width:44px;height:44px;border:0;border-radius:14px;background:rgba(7,0,13,.55);color:var(--text);display:grid;place-items:center;cursor:pointer}
+.vr-x svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round}
+.vr-k{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--champ);margin:0}
+.vr-serif{display:block;font-family:var(--serif);font-weight:600;line-height:1;margin:0}
+.vr-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(7,0,13,.55) 0%,transparent 28%,transparent 48%,rgba(7,0,13,.94) 100%)}
+.vr-door{flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:40px 32px;text-align:center;background:radial-gradient(420px 320px at 50% 46%,rgba(233,201,131,.11),transparent 70%)}
+.vr-door h2{font-family:var(--serif);font-style:italic;font-weight:500;font-size:46px;line-height:1.05;margin:0}
+.vr-door p{margin:0;font-size:16px;line-height:1.5;color:var(--muted);max-width:280px}
+.vr-key{position:relative;width:172px;height:172px;flex:none;border:0;padding:0;border-radius:50%;background:#0f0418;cursor:pointer;display:grid;place-items:center;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.vr-key:focus-visible{outline:2px solid var(--champ);outline-offset:6px}
+.vr-ring{position:absolute;inset:0;transform:rotate(-90deg)}
+.vr-ring circle{fill:none;stroke-width:5}
+.vr-ring .bg{stroke:rgba(255,255,255,.12)}
+.vr-ring .fg{stroke:var(--champ);stroke-linecap:round;stroke-dasharray:521.5;stroke-dashoffset:521.5}
+.vr-card{width:96px;height:60px;border-radius:10px;background:linear-gradient(135deg,#f4dca0,#c9a35a);box-shadow:0 10px 24px rgba(0,0,0,.5);display:flex;flex-direction:column;justify-content:space-between;padding:8px 10px;color:#2a1a00;font-family:var(--mono);text-align:left;transition:transform .2s}
+.vr-card small{font-size:7px;letter-spacing:.2em}.vr-card b{font-size:9px;letter-spacing:.08em}
+.vr-key.held .vr-card{transform:scale(.93)}
+.vr-tap{min-height:44px;border:0;background:none;color:var(--muted);font:500 14px var(--sans);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.vr-lights,.vr-end{flex-direction:column;justify-content:flex-end}
+.vr-hero,.vr-endpic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 50%}
+.vr-hero{filter:brightness(.06) saturate(.2);transform:scale(1.12);transition:filter 2.6s ease,transform 6s ease}
+.vr-lights.on .vr-hero{filter:none;transform:none}
+.vr-endpic{opacity:.55}
+.vr-name,.vr-end-in{position:relative;width:100%;max-width:520px;margin:0 auto;box-sizing:border-box;padding:0 28px calc(var(--safe-b) + 40px);display:flex;flex-direction:column;gap:14px}
+.vr-name{opacity:0;transform:translateY(16px);transition:opacity 1.2s ease,transform 1.2s ease}
+.vr-lights.named .vr-name{opacity:1;transform:none}
+.vr-name h2{font-size:58px;line-height:.95}
+.vr-name p,.vr-end-in p{margin:0;font-size:16px;line-height:1.5;color:#e6d8ef}
+.vr-end-in h2{font-family:var(--serif);font-style:italic;font-weight:500;font-size:42px;line-height:1.05;margin:0}
+.vr-tour{border:0;padding:0;margin:0;width:100%;height:100%;background:#07000d;color:var(--text);cursor:pointer;text-align:left;font:inherit}
+.vr-blur{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;filter:blur(28px) brightness(.42) saturate(1.2)}
+.vr-bars{position:absolute;z-index:2;top:calc(var(--safe-t) + 32px);left:16px;right:74px;display:flex;gap:6px}
+.vr-bars i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.25)}
+.vr-bars i.on{background:var(--champ)}
+.vr-frame{position:absolute;left:0;right:0;top:calc(var(--safe-t) + 92px);display:flex;flex-direction:column;align-items:center;gap:16px}
+.vr-shot{display:block;width:min(100%,560px);aspect-ratio:1060/785;object-fit:cover;box-shadow:0 30px 60px rgba(0,0,0,.55)}
+.vr-rot{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(7,0,13,.5);box-shadow:inset 0 0 0 1px rgba(233,201,131,.35);font-size:12px;color:#e6d8ef}
+.vr-rot svg{width:16px;height:16px;fill:none;stroke:var(--champ);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.vr-fade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 58%,rgba(7,0,13,.88) 100%)}
+.vr-cap{position:absolute;left:28px;right:28px;bottom:calc(var(--safe-b) + 40px);max-width:480px;display:flex;flex-direction:column;gap:10px}
+.vr-cap .vr-serif{font-size:44px}
+.vr-cap .l{font-size:16px;line-height:1.45;color:#e6d8ef}
+.vr-cap small{font-size:12px;color:#a993b8}
+@media (orientation:landscape) and (max-height:560px){
+  .vr-frame{top:0;bottom:0;right:auto;width:62%;gap:0}
+  .vr-shot{width:100%;height:100%;aspect-ratio:auto;box-shadow:none}
+  .vr-rot,.vr-fade{display:none}
+  .vr-bars{left:calc(62% + 28px);top:calc(var(--safe-t) + 30px)}
+  .vr-cap{left:calc(62% + 28px);right:24px;bottom:calc(var(--safe-b) + 24px)}
+  .vr-cap .vr-serif{font-size:36px}
+  .vr-door{gap:12px;padding:16px}.vr-door h2{font-size:32px}.vr-key{width:120px;height:120px}
+  .vr-name h2{font-size:40px}.vr-name,.vr-end-in{padding-bottom:20px;gap:10px}.vr-end-in h2{font-size:32px}
+}
+@media (prefers-reduced-motion:reduce){.vr-hero,.vr-name{transition:none}.vr{animation:none}}
+.vtile{padding:10px 14px 10px 10px}
+.vtile .vt-pic{flex:none;width:92px;height:68px;border-radius:12px;overflow:hidden;background:rgba(0,0,0,.3);display:grid;place-items:center}
+.vtile .vt-pic img{width:100%;height:100%;object-fit:cover;display:block}
+.vt-card{width:62px;height:40px;border-radius:7px;background:linear-gradient(135deg,#f4dca0,#c9a35a);display:flex;flex-direction:column;justify-content:space-between;padding:5px 7px;color:#2a1a00;font-family:var(--mono);box-shadow:0 6px 14px rgba(0,0,0,.45)}
+.vt-card small{font-size:6px;letter-spacing:.18em;margin:0;color:inherit}.vt-card b{font-size:7px;letter-spacing:.06em}
+.vtile .vt-txt{flex:1;min-width:0}
+.vtile .vt-txt small{display:block;margin:0 0 3px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.vtile .vt-txt b{font-size:17px}
+.vl-hero{position:relative;margin:0 -18px;height:min(128vw,600px);overflow:hidden}
+.vl-hero img{width:100%;height:100%;object-fit:cover;object-position:52% 50%;display:block}
+.vl-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(13,0,24,.96) 100%)}
+.vl-hero figcaption{position:absolute;z-index:1;left:22px;right:22px;bottom:22px;display:flex;flex-direction:column;gap:10px}
+.vl-h{font-family:var(--serif);font-weight:600;font-size:58px;line-height:.95;margin:0;color:var(--text)}
+.vl-intro{font-family:var(--serif);font-style:italic;font-weight:500;font-size:25px;line-height:1.3;color:#f3e6f7;margin:22px 4px 24px}
+.vl-stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid rgba(233,201,131,.35);margin:0 4px}
+.vl-stats div{padding:14px 0;text-align:center}.vl-stats div+div{border-left:1px solid rgba(233,201,131,.2)}
+.vl-stats b{display:block;font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.1}
+.vl-stats small{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.vl-sec{margin-top:40px}
+.vl-sec>img{display:block;width:calc(100% + 36px);margin:0 -18px 16px;aspect-ratio:1060/785;object-fit:cover}
+.vl-sec h3,.vl-sec p{margin-left:4px;margin-right:4px}
+.vl-n{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--champ);margin-top:0;margin-bottom:4px}
+.vl-sec h3{font-family:var(--serif);font-weight:600;font-size:36px;line-height:1;margin-top:0;margin-bottom:8px}
+.vl-sec p:not(.vl-n){font-size:16px;line-height:1.55;color:var(--muted);margin-top:0;margin-bottom:0}
+.vl-duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.vl-duo img{width:100%;aspect-ratio:1060/785;object-fit:cover;border-radius:4px;display:block}
+.vl-key{margin-top:44px;border-radius:18px;padding:20px;background:linear-gradient(135deg,#f4dca0,#c9a35a);color:#1f1200;font-family:var(--mono);display:grid;gap:10px;box-shadow:0 18px 40px rgba(0,0,0,.4)}
+.vl-key .hd{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.2em;padding-bottom:10px;border-bottom:1px solid rgba(31,18,0,.25)}
+.vl-key .row{display:flex;justify-content:space-between;gap:12px;font-size:13px}
+.vl-about{margin:32px 4px 20px}
+.vl-about p{margin:8px 0 0;font-size:16px;line-height:1.55;color:var(--muted)}
+.vl-links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+#villaReplay{margin-top:10px}
+.floor-wrap{transition:opacity .4s}
+body:has(#pg-villa.show) .floor-wrap{opacity:0}
 </style>
 </head>
 <body class="waiting">
@@ -837,6 +932,48 @@ body.crispy .act.gold{background:linear-gradient(180deg,#f2f8ff,#bcdcff 60%,#8fb
       <span class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></span><span id="soundLabel">Music on</span>
     </button>
   </span>
+</div>
+
+<!-- ============ THE VILLA REVEAL: plays once, the first time each person enters (see VILLA_TOUR) ============ -->
+<div class="vr" id="villaReveal" data-s="door" role="dialog" aria-modal="true" aria-label="Where we're staying" hidden>
+  <button class="vr-x" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="vr-stage vr-door">
+    <p class="vr-k">Christie's Hen Do</p>
+    <h2>Room for seven.</h2>
+    <p>The keys have landed. Press and hold to let yourself in.</p>
+    <button class="vr-key" type="button" aria-label="Press and hold to see where we're staying">
+      <svg class="vr-ring" viewBox="0 0 172 172" aria-hidden="true"><circle class="bg" cx="86" cy="86" r="83"/><circle class="fg" cx="86" cy="86" r="83"/></svg>
+      <span class="vr-card" aria-hidden="true"><small>ROOM KEY</small><b>ADMIT 7</b></span>
+    </button>
+    <button class="vr-tap" type="button">Or just tap here</button>
+  </div>
+  <div class="vr-stage vr-lights">
+    <img class="vr-hero" alt="The villa at night, every window lit and the pool glowing">
+    <span class="vr-shade" aria-hidden="true"></span>
+    <div class="vr-name">
+      <span class="vr-k">Welcome to</span>
+      <h2 class="vr-serif" id="vrName"></h2>
+      <p id="vrWhere"></p>
+      <button class="btn btn-gold vr-go" type="button">Have a look round<span class="arr" aria-hidden="true">→</span></button>
+    </div>
+  </div>
+  <button class="vr-stage vr-tour" type="button">
+    <img class="vr-blur" alt="" aria-hidden="true">
+    <span class="vr-bars" aria-hidden="true"></span>
+    <span class="vr-frame"><img class="vr-shot" alt=""><span class="vr-rot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M3 9a9 9 0 0 1 4-5M21 15a9 9 0 0 1-4 5"/><path d="M3 4v5h5M21 20v-5h-5"/></svg>Turn your phone for the full view</span></span>
+    <span class="vr-fade" aria-hidden="true"></span>
+    <span class="vr-cap" aria-live="polite"><span class="vr-k" id="vrNum"></span><span class="vr-serif" id="vrTitle"></span><span class="l" id="vrLine"></span><small>Tap for the next one</small></span>
+  </button>
+  <div class="vr-stage vr-end">
+    <img class="vr-endpic" alt="" aria-hidden="true">
+    <span class="vr-shade" aria-hidden="true"></span>
+    <div class="vr-end-in">
+      <h2>Not a bad gaff, eh?</h2>
+      <p>Christie's none the wiser. Don't forward this link.</p>
+      <button class="btn btn-gold vr-details" type="button">All the details<span class="arr" aria-hidden="true">→</span></button>
+      <button class="btn btn-line vr-again" type="button">Watch it again</button>
+    </div>
+  </div>
 </div>
 
 <main>
@@ -878,6 +1015,7 @@ body.crispy .act.gold{background:linear-gradient(180deg,#f2f8ff,#bcdcff 60%,#8fb
       <p class="sec-k info-k">The need-to-knows</p>
       <button class="news-strip" type="button" data-page="news"><span class="new">New</span><span class="txt" id="newsLatest"></span><span class="chev" aria-hidden="true">›</span></button>
       <nav class="navgrid" aria-label="Trip info">
+        <button class="navtile wide vtile" id="villaTile" type="button"></button>
         <button class="navtile art" type="button" data-page="plan">
           <span class="obj" aria-hidden="true"><span class="pass">
             <span class="p-main"><span class="p-k">Boarding pass</span><span class="p-to">SPLIT</span><span class="p-row"><span>UK</span><svg viewBox="0 0 24 24" class="p-plane"><path d="M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8.5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5z"/></svg><span>SPU</span></span><span class="p-date">09 SEP → 14 SEP</span></span>
@@ -955,9 +1093,64 @@ body.crispy .act.gold{background:linear-gradient(180deg,#f2f8ff,#bcdcff 60%,#8fb
     <div class="plan-prog"><span id="planProg"></span><i><b id="planBar"></b></i></div>
     <ol class="timeline" id="dayList"></ol>
 
-    <div class="panel soon" style="margin-top:6px"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg></span><span><b style="color:var(--text)">Where we're staying is booked.</b> Photos and details coming soon.</span></div>
+    <button class="panel soon linkpanel" id="planVilla" type="button" style="margin-top:6px;width:100%;border:0;text-align:left;font:inherit;color:inherit;cursor:pointer"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg></span><span style="flex:1"><b style="color:var(--text)">Where we're staying</b><br>Photos, check-in times and the lot.</span><span class="chev" aria-hidden="true">›</span></button>
     <a class="btn btn-line" style="margin-top:14px" href="split-trip.ics" download>Add the dates to my calendar</a>
     <p class="sec-p" style="text-align:center;margin-top:16px;font-size:14px">Got ideas? Chuck them in the <button class="linkbtn" type="button" data-go="home">idea box</button></p>
+  </section>
+
+  <section class="screen page" id="pg-villa" aria-labelledby="villaH">
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Booked and confirmed</span></div>
+    <figure class="vl-hero">
+      <img src="villa/01-villa-night.jpg" alt="Villa Matković at night, windows lit and the pool glowing" loading="lazy">
+      <figcaption><span class="vr-k">Kučine · Split · 09–14.09.27</span><h2 class="vl-h" id="villaH">Villa<br>Matković</h2></figcaption>
+    </figure>
+    <p class="vl-intro">Four bedrooms, a private pool and, apparently, the best view over Split. The whole place is ours.</p>
+    <div class="vl-stats"><div><b>4</b><small>Bedrooms</small></div><div><b>4</b><small>Baths</small></div><div><b>8×4</b><small>Pool (m)</small></div><div><b>4.92</b><small>Airbnb</small></div></div>
+
+    <article class="vl-sec">
+      <img src="villa/03-pool-day.jpg" alt="The pool in full sun, mountains and sea behind" loading="lazy">
+      <p class="vl-n">01</p><h3>The pool</h3>
+      <p>Eight metres by four, sunbeds and parasols down one side, outdoor shower for the brave. Swimmies on by 10am.</p>
+    </article>
+    <article class="vl-sec">
+      <img src="villa/04-pergola-view.jpg" alt="Shaded seating with a hammock chair, looking down over Split and the sea" loading="lazy">
+      <p class="vl-n">02</p><h3>The view</h3>
+      <p>Big terrace, outdoor sofas under a shade tree, a hammock chair, and Split and the sea laid out below. Morning coffee sorted.</p>
+    </article>
+    <article class="vl-sec">
+      <img src="villa/05-tavern.jpg" alt="Stone tavern room with an open fire and long wooden benches" loading="lazy">
+      <p class="vl-n">03</p><h3>The tavern</h3>
+      <p>A proper old Dalmatian konoba: stone walls, open fire, one long table. Plus a modern kitchen for the everyday stuff.</p>
+      <div class="vl-duo">
+        <img src="villa/06-dining.jpg" alt="Long shaded dining table next to the pool" loading="lazy">
+        <img src="villa/02-terrace-view.jpg" alt="Sunny terrace with chairs and a sea view" loading="lazy">
+      </div>
+    </article>
+    <article class="vl-sec">
+      <img src="villa/07-pool-night.jpg" alt="The pool lit up at night with Split twinkling below" loading="lazy">
+      <p class="vl-n">04</p><h3>After dark</h3>
+      <p>Pool lit up, city twinkling below. Pre-drinks here, dancing in town: quiet hours start at 11:30pm.</p>
+    </article>
+
+    <div class="vl-key">
+      <div class="hd"><span>ROOM KEY</span><span>ADMIT 7</span></div>
+      <div class="row"><span>Check in</span><b>Thu 09 Sep · 4pm</b></div>
+      <div class="row"><span>Check out</span><b>Tue 14 Sep · 9am</b></div>
+      <div class="row"><span>Quiet hours</span><b>11:30pm – 8am</b></div>
+      <div class="row"><span>Host</span><b>Milan</b></div>
+    </div>
+
+    <div class="vl-about">
+      <span class="vr-k">Getting about</span>
+      <p>Quiet hillside village. Bus stop, café bar and a shop about 100m away. Split's ten minutes by taxi or Uber.</p>
+    </div>
+    <div class="panel soon"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span>The exact address and door details are in the group chat, so they stay off the internet.</span></div>
+    <div class="vl-links">
+      <a class="btn btn-line" href="https://www.airbnb.co.uk/rooms/35017749" target="_blank" rel="noopener">Airbnb listing</a>
+      <a class="btn btn-line" href="https://villamatkovic.wixsite.com/villainsplit" target="_blank" rel="noopener">The villa's site</a>
+    </div>
+    <button class="btn btn-line" id="villaReplay" type="button">Watch the reveal again</button>
+    <p class="sec-p" style="text-align:center;margin-top:16px;font-size:14px">Questions? Give Adam or Beth a shout in the group chat.</p>
   </section>
 
   <section class="screen page" id="pg-money" aria-labelledby="moneyH">
@@ -1406,6 +1599,7 @@ const HEN_DATE = new Date(2027, 8, 9); // 9 Sept 2027
 /* ================= HUB CONTENT: edit this bit as plans firm up ================= */
 // Newest first. Add a line whenever something changes.
 const UPDATES = [
+  { date: '24 Nov 2026', text: "The keys have landed. Tap Where we're staying on the home screen and let yourself in." },
   { date: '30 Oct 2026', text: "New: the Themes & extras board. Pin up dress-up themes, tees, balloons and all the little extras, and heart your favourites." },
   { date: '30 Oct 2026', text: "The money's in. Full breakdown's on the receipt, under Costs." },
   { date: '30 Oct 2026', text: "We're live. Dates are locked in, the idea box is open and the playlist's up. Get adding!" },
@@ -1435,6 +1629,20 @@ const DAYS = [
   { date: 'Mon 13 Sep', title: 'Day 5', plan: [] },
   { date: 'Tue 14 Sep', title: 'Day 6', travel: true, note: 'Fly home', plan: [] },
 ];
+// The villa reveal: plays once on each phone, the first time they enter the HQ. Photos live in the villa/ folder.
+// The full villa page (pg-villa) is plain HTML further down.
+const VILLA_TOUR = {
+  name: 'Villa Matković',
+  where: 'Kučine. Ten minutes up the hill from Split. All ours, 9 to 14 September.',
+  hero: 'villa/01-villa-night.jpg',   // the "lights on" moment
+  end: 'villa/07-pool-night.jpg',     // behind the last screen
+  slides: [
+    { img: 'villa/03-pool-day.jpg',       title: 'The pool',   line: 'Eight metres of it, all ours. Swimmies on by 10am.',            alt: 'The pool in full sun with mountains behind' },
+    { img: 'villa/04-pergola-view.jpg',   title: 'The view',   line: 'Split and the sea, straight from the hammock chair.',           alt: 'Shaded terrace with a hammock chair looking down over Split and the sea' },
+    { img: 'villa/05-tavern.jpg',         title: 'The tavern', line: 'Stone walls, open fire, one long table. Konoba night, at home.', alt: 'Stone tavern room with a fire going and long wooden benches' },
+    { img: 'villa/08-terrace-night.jpg',  title: 'After dark', line: 'Four bedrooms, four bathrooms, one very good terrace.',          alt: 'Lantern-lit terrace at night with the city lights below' },
+  ],
+};
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const store = { get(k){ try{return localStorage.getItem(k)}catch(_){return null} }, set(k,v){ try{localStorage.setItem(k,v)}catch(_){} } };
@@ -1666,6 +1874,7 @@ function enterParty(){
   document.body.classList.remove('waiting');
   lightFloor(24); beat = 1;
   setTimeout(() => entrance.classList.add('gone'), reduced ? 0 : 1200);
+  document.dispatchEvent(new Event('hq:entered'));
 }
 entrance.addEventListener('click', enterParty);
 
@@ -2508,6 +2717,86 @@ document.addEventListener('pointerdown', e => {
       {duration:450 + Math.random()*200, easing:'cubic-bezier(.2,.8,.3,1)'}).finished.then(()=>sp.remove(), ()=>sp.remove());
   }
 }, { passive:true });
+
+/* ================= THE VILLA: first-visit reveal + home tile ================= */
+(function villa(){
+  const SEEN = 'hen_villa_seen', V = VILLA_TOUR, n = V.slides.length;
+  const vr = $('#villaReveal'), tile = $('#villaTile'), key = vr.querySelector('.vr-key'), ring = vr.querySelector('.fg');
+  const lights = vr.querySelector('.vr-lights'), shot = vr.querySelector('.vr-shot'), blur = vr.querySelector('.vr-blur');
+  const C = 521.5, HOLD = 1100;
+  let raf = 0, timers = [], slide = 0, lastFocus = null;
+  const seen = () => store.get(SEEN) === '1';
+  $('#vrName').innerHTML = esc(V.name).replace(' ', '<br>');
+  $('#vrWhere').textContent = V.where;
+
+  function paintTile(){
+    if(seen()){
+      tile.innerHTML = `<span class="vt-pic"><img src="${V.hero}" alt=""></span><span class="vt-txt"><small>Where we're staying</small><b>${esc(V.name)}</b></span><span class="chev" aria-hidden="true">›</span>`;
+      tile.dataset.page = 'villa';
+    } else {
+      tile.innerHTML = `<span class="vt-pic"><span class="vt-card"><small>ROOM KEY</small><b>ADMIT 7</b></span></span><span class="vt-txt"><small>The keys have landed</small><b>Where we're staying</b></span><span class="chev" aria-hidden="true">›</span>`;
+      delete tile.dataset.page;
+    }
+  }
+  const stage = s => { vr.dataset.s = s; };
+  const setRing = p => { ring.style.strokeDashoffset = C * (1 - p); };
+  function clear(){ cancelAnimationFrame(raf); timers.forEach(clearTimeout); timers = []; key.classList.remove('held'); }
+  function reset(){ clear(); setRing(0); lights.classList.remove('on', 'named'); slide = 0; stage('door'); }
+  function open(){
+    vr.querySelector('.vr-hero').src = V.hero; vr.querySelector('.vr-endpic').src = V.end;
+    V.slides.forEach(x => { new Image().src = x.img; });
+    lastFocus = document.activeElement;
+    reset(); vr.hidden = false; document.body.classList.add('locked');
+    setTimeout(() => key.focus({ preventScroll: true }), 120);
+  }
+  function close(){ clear(); vr.hidden = true; document.body.classList.remove('locked'); paintTile(); if(lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true }); }
+  function unlock(){
+    if(vr.dataset.s !== 'door') return;
+    clear(); setRing(1); store.set(SEEN, '1'); Sound.chime(); stage('lights');
+    vr.querySelector('.vr-go').focus({ preventScroll: true });
+    if(reduced){ lights.classList.add('on', 'named'); return; }
+    timers.push(setTimeout(() => lights.classList.add('on'), 120));
+    timers.push(setTimeout(() => lights.classList.add('named'), 2300));
+  }
+  key.addEventListener('pointerdown', e => {
+    if(e.button > 0) return;
+    e.preventDefault(); key.classList.add('held');
+    const t0 = performance.now();
+    const tick = now => { const p = Math.min(1, (now - t0) / HOLD); setRing(p); if(p >= 1) unlock(); else raf = requestAnimationFrame(tick); };
+    raf = requestAnimationFrame(tick);
+  });
+  ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => key.addEventListener(ev, () => {
+    if(vr.dataset.s !== 'door') return;
+    cancelAnimationFrame(raf); key.classList.remove('held'); setRing(0);
+  }));
+  key.addEventListener('click', e => { if(e.detail === 0) unlock(); });   // Enter / Space on a keyboard
+  key.addEventListener('contextmenu', e => e.preventDefault());
+  vr.querySelector('.vr-tap').addEventListener('click', unlock);
+
+  function paintSlide(){
+    const x = V.slides[slide];
+    shot.src = x.img; shot.alt = x.alt; blur.src = x.img;
+    $('#vrNum').textContent = (slide + 1) + ' / ' + n;
+    $('#vrTitle').textContent = x.title; $('#vrLine').textContent = x.line;
+    vr.querySelector('.vr-bars').innerHTML = V.slides.map((_, i) => `<i${i <= slide ? ' class="on"' : ''}></i>`).join('');
+  }
+  vr.querySelector('.vr-go').addEventListener('click', () => { slide = 0; paintSlide(); stage('tour'); vr.querySelector('.vr-tour').focus({ preventScroll: true }); });
+  vr.querySelector('.vr-tour').addEventListener('click', () => {
+    Sound.blip(700);
+    if(slide < n - 1){ slide++; paintSlide(); }
+    else { stage('end'); vr.querySelector('.vr-details').focus({ preventScroll: true }); }
+  });
+  vr.querySelector('.vr-again').addEventListener('click', () => { reset(); key.focus({ preventScroll: true }); });
+  vr.querySelector('.vr-details').addEventListener('click', () => { close(); openPage('villa'); });
+  vr.querySelector('.vr-x').addEventListener('click', close);
+  addEventListener('keydown', e => { if(!vr.hidden && e.key === 'Escape') close(); });
+
+  tile.addEventListener('click', () => { if(!seen()) open(); });
+  $('#planVilla').addEventListener('click', () => seen() ? openPage('villa') : open());
+  $('#villaReplay').addEventListener('click', open);
+  document.addEventListener('hq:entered', () => { if(!seen()) setTimeout(open, reduced ? 0 : 1300); });
+  paintTile();
+})();
 })();
 </script>
 </body>

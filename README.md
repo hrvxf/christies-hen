@@ -16,8 +16,9 @@ Near the top of the script in `index.html` there's a **HUB CONTENT** block:
 - `UPDATES` – the "What's new" list. Add a line at the top whenever something changes.
 - `BUDGET` – the receipt on The money page: each item's price per person, either one `cost` (mark `booked: true` once paid) or a `from`/`to` range. Totals are worked out automatically.
 - `DAYS` – the itinerary. Add plans to each day's `plan` list as they're booked; empty days show "TBC".
+- `VILLA_TOUR` – the villa reveal. It plays once on each phone, the first time someone taps into the HQ (press and hold the key card, the villa lights up, then a four-photo tour). Swap photos or captions here; the photos live in `villa/`. The full villa page (`pg-villa`, `…/christies-hen/#villa`) is plain HTML, and "Watch the reveal again" at the bottom of it replays the reveal.
 
-The home screen is the idea box buttons plus a grid of tiles. Each tile opens its own page (`pg-plan`, `pg-money`, `pg-prep`, `pg-croatia`, `pg-news`); the Spotify mini player sits on the home screen under the idea box, and pages can be linked to directly, e.g. `…/christies-hen/#money`. The money and accommodation bits are plain HTML in those pages.
+The home screen is the idea box buttons plus a grid of tiles. Each tile opens its own page (`pg-villa`, `pg-plan`, `pg-money`, `pg-prep`, `pg-croatia`, `pg-news`); the Spotify mini player sits on the home screen under the idea box, and pages can be linked to directly, e.g. `…/christies-hen/#money`. The money and accommodation bits are plain HTML in those pages.
 
 ## Connecting it to the Sheet (one time)
 
