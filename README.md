@@ -37,3 +37,7 @@ After changing `Code.gs`: **Deploy → Manage deployments → ✏️ edit → Ve
 ## Easter egg
 
 Tap the mirror ball 5 times. 🍸
+
+## The look
+
+The styling ends with an **AFTER DARK** layer at the bottom of the `<style>` block: ink and plum ground, champagne gold for anything you tap, cream for the paper props, Cormorant Garamond headings, Outfit to read, Space Mono for labels. One gold button per screen, thin gold outlines for the quieter ones, no emojis. To tweak colours, change the variables at the top of that layer.
