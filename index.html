@@ -1267,6 +1267,35 @@ body[data-scr="pg-board"] .dk.on{color:#2a0b3a;text-shadow:none}
 .cf-total{display:flex;justify-content:space-between;padding:12px 0 10px;font-family:var(--mono);font-size:12px}
 .cf-total span{letter-spacing:.14em;text-transform:uppercase;color:#7a1450}
 .cf-empty{margin:0;padding:4px 0 12px;font-size:15px;color:#6b4a5c}
+/* organiser mode (Adam): manage buttons on the board, the idea box page */
+.org-only{display:none!important}
+body.org .org-only{display:flex!important}
+.org-btn{display:none;flex:none;align-items:center;gap:6px;min-height:40px;padding:0 12px;border:0;border-radius:10px;background:#e9c983;color:#1a0a00;font:600 13px var(--sans);cursor:pointer}
+.org-btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8}
+body.org .org-btn{display:inline-flex}
+.td .org-btn,.note .org-btn{margin-top:10px}
+.td-alts .org-btn{margin:0 0 0 6px;min-height:36px;padding:0 10px}
+.td-alts li>div{display:flex;align-items:center}
+.cf-row .org-btn{margin-left:4px;min-height:36px;padding:0 10px}
+.op-k{margin:0;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--champ)}
+.op-acts{display:grid;gap:10px;margin-top:16px}
+.op-acts .btn{min-height:50px}
+.op-bought{margin-top:18px;padding-top:6px;border-top:1px solid var(--hair)}
+.op-bought .btn{margin-top:12px;min-height:50px}
+.oi-add{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:14px;line-height:1.4;color:var(--muted)}
+.oi-add input{flex:none;width:20px;height:20px;margin:1px 0 0;accent-color:var(--champ)}
+.ib-list{display:flex;flex-direction:column;gap:14px}
+.ib{padding:18px 16px 16px;border-radius:18px;background:var(--tone1,#1d0a2c)}
+.ib-top{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--champ)}
+.ib h3{margin:6px 0 4px;font-family:var(--serif);font-weight:600;font-size:26px;line-height:1.05;overflow-wrap:anywhere}
+.ib p{margin:0 0 8px;font-size:15px;line-height:1.45;color:var(--muted);overflow-wrap:anywhere}
+.ib dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:8px 0 0;font-size:14px}
+.ib dt{color:var(--soft)}
+.ib dd{margin:0;color:var(--text);overflow-wrap:anywhere}
+.ib a{color:var(--champ);font-weight:600;text-decoration:none}
+.ib-acts{display:flex;gap:10px;margin-top:14px}
+.ib-acts .btn{min-height:48px;font-size:15px}
+.ib-empty{padding:22px 16px;border-radius:18px;background:rgba(255,255,255,.04);color:var(--muted);text-align:center;line-height:1.5}
 #pg-plan .page-head{justify-content:flex-end;margin-bottom:-44px;position:relative;z-index:2}
 .page-head{min-height:44px}
 .hd-ico{margin-left:auto;display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:var(--tone1);color:var(--champ)}
@@ -1566,6 +1595,18 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <div class="board" id="board" aria-labelledby="voteH" aria-live="polite"></div>
     <h4 class="bd-h" id="cfH">Confirmed</h4>
     <div class="confirmed" id="confirmedList" aria-labelledby="cfH"></div>
+  </section>
+
+  <section class="screen page" id="pg-ideas" aria-labelledby="ideasH">
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
+    <h2 class="sec-h" id="ideasH">Idea box</h2>
+    <p class="sec-p">Organiser only. Everyone's activity ideas, newest first. Confirming adds it to the budget.</p>
+    <div class="chips board-filter" id="ideaFilter" role="radiogroup" aria-label="Show">
+      <input type="radio" name="if" id="if0" value="" checked><label for="if0">To decide</label>
+      <input type="radio" name="if" id="if1" value="Confirmed"><label for="if1">Confirmed</label>
+      <input type="radio" name="if" id="if2" value="Not this time"><label for="if2">Not this time</label>
+    </div>
+    <div class="ib-list" id="ideaList" aria-live="polite"></div>
   </section>
 
   <section class="screen page pg-photo" id="pg-plan" aria-labelledby="planH">
@@ -2018,6 +2059,8 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <h2 class="q" id="moreH">Everything else</h2>
     <nav class="more-list" aria-label="Everything else">
       <button class="more-row" type="button" id="meRow"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="mr-txt"><b id="meName">You</b><small>Not you? Tap to switch</small></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="more-row" type="button" id="orgRow" hidden><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span class="mr-txt"><b>Organiser mode</b><small id="orgRowTxt">Locked · tap to unlock</small></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="more-row org-only" type="button" data-page="ideas"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></span><span class="mr-txt"><b>Idea box</b><small>Organiser only · confirm activities</small></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="more-row" type="button" data-villa><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span><span class="mr-txt"><b>Where we're staying</b></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="more-row" type="button" data-page="money"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span><span class="mr-txt"><b>Costs</b><small id="moreMoney">Deposit paid, £456.85 left each</small></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="more-row" type="button" data-page="prep"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mr-txt"><b>Before you go</b><small id="morePrep">Passport, leave, GHIC</small></span><span class="chev" aria-hidden="true">›</span></button>
@@ -2089,6 +2132,59 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
       <input type="text" id="wname" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
       <div class="err" aria-live="polite"></div>
       <div class="nav"><button class="skip" type="button" data-close>Cancel</button><button class="next" type="submit">Heart it</button></div>
+    </form>
+  </div>
+
+  <div class="sheet" id="orgSheet" hidden>
+    <div class="sheet-back" data-close></div>
+    <form class="sheet-card" id="orgForm" novalidate autocomplete="off" role="dialog" aria-labelledby="orgH">
+      <div class="sheet-grab" aria-hidden="true"></div>
+      <h2 class="q" id="orgH">Organiser mode</h2>
+      <p class="hint">Enter your code. This phone will remember it.</p>
+      <label class="sr" for="orgCode">Organiser code</label>
+      <input type="password" id="orgCode" name="code" inputmode="numeric" autocomplete="off" placeholder="Code" maxlength="12">
+      <div class="err" aria-live="polite"></div>
+      <div class="nav"><button class="skip" type="button" data-close>Cancel</button><button class="next" type="submit">Unlock</button></div>
+    </form>
+  </div>
+  <div class="sheet" id="orgPinSheet" hidden>
+    <div class="sheet-back" data-close></div>
+    <form class="sheet-card" id="orgPinForm" novalidate autocomplete="off" role="dialog" aria-labelledby="opH">
+      <div class="sheet-grab" aria-hidden="true"></div>
+      <p class="op-k" id="opKind"></p>
+      <h2 class="q" id="opH"></h2>
+      <p class="hint" id="opNow"></p>
+      <label class="lbl" for="opCost">Cost, all in <small>(update it if you know the real price)</small></label>
+      <input type="text" id="opCost" name="cost" inputmode="decimal" placeholder="e.g. £40" maxlength="20">
+      <div class="op-acts">
+        <button class="btn btn-gold" type="button" data-op="Confirmed">Confirm</button>
+        <button class="btn btn-line" type="button" data-op="Not this time">Not this time</button>
+        <button class="btn btn-line" type="button" data-op="">Back to the vote</button>
+      </div>
+      <div class="op-bought" id="opBought">
+        <p class="lbl">Bought it? Log what it cost</p>
+        <div class="pin-pair">
+          <div><label class="lbl" for="opAmt">Paid</label><input type="text" id="opAmt" name="amount" inputmode="decimal" placeholder="£" maxlength="20"></div>
+          <div><label class="lbl" for="opTo">Paid to <small>(optional)</small></label><input type="text" id="opTo" name="to" placeholder="e.g. Etsy" maxlength="60"></div>
+        </div>
+        <button class="btn btn-line" type="button" data-op="bought">Log it in the budget</button>
+      </div>
+      <div class="err" aria-live="polite"></div>
+      <div class="nav"><button class="skip" type="button" data-close>Close</button></div>
+    </form>
+  </div>
+  <div class="sheet" id="orgIdeaSheet" hidden>
+    <div class="sheet-back" data-close></div>
+    <form class="sheet-card" id="orgIdeaForm" novalidate autocomplete="off" role="dialog" aria-labelledby="oiH">
+      <div class="sheet-grab" aria-hidden="true"></div>
+      <p class="op-k">Confirm activity</p>
+      <h2 class="q" id="oiH"></h2>
+      <p class="hint" id="oiPrice"></p>
+      <label class="lbl" for="oiEach">Price each</label>
+      <input type="text" id="oiEach" name="each" inputmode="decimal" placeholder="e.g. £87" maxlength="20">
+      <label class="oi-add"><input type="checkbox" id="oiAdd" name="add" checked> Add it to Costs and bookings in the budget (as Quoted, price each times everyone paying)</label>
+      <div class="err" aria-live="polite"></div>
+      <div class="nav"><button class="skip" type="button" data-close>Cancel</button><button class="next" type="submit">Confirm</button></div>
     </form>
   </div>
 
@@ -3085,6 +3181,32 @@ $('#dayList').innerHTML = DAYS.map(d => {
 (function(){ const n = DAYS.filter(d => d.plan && d.plan.length).length;
   $('#planProg').textContent = `${n} of ${DAYS.length} days planned`; $('#planBar').style.width = Math.max(3, n / DAYS.length * 100) + '%'; })();
 
+/* ================= ORGANISER MODE (Adam only) ================= */
+// Unlocked with the code in the Sheet's Bank details tab ("Organiser code"). The page never holds the real code:
+// it sends what was typed, and the Sheet's script checks it on every organiser request.
+const Org = (() => {
+  let code = store.get('hen_org') || '';
+  const apply = () => document.body.classList.toggle('org', !!code);
+  function lock(){ code = ''; try{ localStorage.removeItem('hen_org'); }catch(_){} apply(); }
+  async function call(action, params = {}){
+    try{
+      const r = await fetch(SCRIPT_URL + '?' + new URLSearchParams({ org: action, code, ...params }));
+      const d = await r.json();
+      if(d && (d.wrong || d.locked)) lock();
+      return d || { ok:false };
+    }catch(_){ return { ok:false, error:"That didn't go through. Check your signal and try again." }; }
+  }
+  async function unlock(c){
+    code = c;
+    const d = await call('check');
+    if(d.ok){ store.set('hen_org', c); apply(); } else lock();
+    return d;
+  }
+  const err = d => d.locked ? 'Too many tries. Have a break and try again in 15 minutes.' : d.wrong ? "That's not the code." : (d.error || "That didn't go through. Try again.");
+  apply();
+  return { get on(){ return !!code; }, call, unlock, lock, err };
+})();
+
 /* ================= THEMES & EXTRAS BOARD ================= */
 // Everyone can see it and vote (one heart per name). Pins live in the Sheet's "Extras" tab.
 // Adam and Beth confirm winners in that tab's Status column: a confirmed theme gets stamped for its day,
@@ -3120,6 +3242,8 @@ const Board = (() => {
     }).join('')}</span>`;
   }
   const voteBtn = it => `<button class="vote${mine(it) ? ' on' : ''}" type="button" data-id="${escA(it.id)}" aria-pressed="${mine(it)}"${isTmp(it) ? ' disabled' : ''}>${mine(it) ? "You're in" : 'Me too'}</button>`;
+  const GEAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>';
+  const manage = it => isTmp(it) ? '' : `<button class="org-btn" type="button" data-manage="${escA(it.id)}" aria-label="Manage ${escA(it.extra)}">${GEAR}Manage</button>`;
   const heartBtn = it => `<button class="heart" type="button" data-id="${escA(it.id)}" aria-pressed="${mine(it)}" aria-label="Vote for ${escA(it.extra)}"${isTmp(it) ? ' disabled' : ''}>${HEART_SVG}<span>${votes(it)}</span></button>`;
 
   /* themes, one card per day */
@@ -3134,6 +3258,7 @@ const Board = (() => {
           <div class="td-top"><span class="td-when">${esc(d.label)}</span><span class="td-stamp">Confirmed</span></div>
           <h3>${esc(won.extra)}</h3><p class="td-by">${esc(nice(won.name))}'s idea</p>
           ${won.details ? `<p class="td-look">${esc(won.details)}</p>` : ''}
+          ${manage(won)}
         </article>`;
       if(!list.length) return `<article class="td td-empty" style="${r}">
           <div class="td-top"><span class="td-when">${esc(d.label)}</span></div>
@@ -3146,7 +3271,8 @@ const Board = (() => {
           <h3>${esc(lead.extra)}</h3><p class="td-by">${esc(nice(lead.name))}'s idea</p>
           ${lead.details ? `<p class="td-look">${esc(lead.details)}</p>` : ''}
           <div class="td-vote"><div>${faces(lead)}<span class="td-n">${votes(lead)} of ${GUESTS.length}</span></div>${voteBtn(lead)}</div>
-          ${rest.length ? `<ul class="td-alts">${rest.map(t => `<li><span>${esc(t.extra)}<small>${esc(nice(t.name))}'s idea</small></span>${heartBtn(t)}</li>`).join('')}</ul>` : ''}
+          ${manage(lead)}
+          ${rest.length ? `<ul class="td-alts">${rest.map(t => `<li><span>${esc(t.extra)}<small>${esc(nice(t.name))}'s idea</small></span><div>${heartBtn(t)}${manage(t)}</div></li>`).join('')}</ul>` : ''}
         </article>`;
     }).join('');
   }
@@ -3163,6 +3289,7 @@ const Board = (() => {
       ${cost > left ? `<div class="n-over">More than what's left in the pot</div>` : ''}
       ${link ? `<a class="n-link" href="${escA(link)}" target="_blank" rel="noopener nofollow">Have a look →</a>` : ''}
       <div class="n-foot">${faces(it)}${heartBtn(it)}</div>
+      ${manage(it)}
     </article>`;
   }
   function render(){
@@ -3189,7 +3316,7 @@ const Board = (() => {
       : `<div class="board-empty"><b>${filter ? 'Nothing here yet' : 'Nothing up for a vote'}</b>Matching tees, balloons for the villa… go on, pin the first.</div>`;
 
     cf.innerHTML = done.length
-      ? done.map(it => `<div class="cf-row">${TICK_SVG}<div><b>${esc(it.extra)}</b><small>${esc(isTheme(it) ? 'Theme' : (it.category || 'Other'))} · ${esc(nice(it.name))}'s idea</small></div><span>${pounds(money(it))}</span></div>`).join('')
+      ? done.map(it => `<div class="cf-row">${TICK_SVG}<div><b>${esc(it.extra)}</b><small>${esc(isTheme(it) ? 'Theme' : (it.category || 'Other'))} · ${esc(nice(it.name))}'s idea</small></div><span>${pounds(money(it))}</span>${manage(it)}</div>`).join('')
         + `<div class="cf-total"><span>Off the pot</span><b>${pounds(spent)}</b></div>`
       : `<p class="cf-empty">Nothing confirmed yet. Adam and Beth lock the winners in.</p>`;
     freshId = null;
@@ -3228,7 +3355,40 @@ const Board = (() => {
   }
   document.addEventListener('click', e => {
     const v = e.target.closest('#pg-board .heart[data-id], #pg-board .vote[data-id]'); if(v && !v.disabled){ toggle(v.dataset.id); return; }
-    const p = e.target.closest('#pg-board [data-pitch]'); if(p) pitch(p.dataset.pitch);
+    const p = e.target.closest('#pg-board [data-pitch]'); if(p){ pitch(p.dataset.pitch); return; }
+    const m = e.target.closest('#pg-board [data-manage]'); if(m) manageOpen(m.dataset.manage);
+  });
+
+  /* organiser: confirm, turn down, send back to the vote, log what it cost */
+  let managing = null;
+  function manageOpen(id){
+    const it = items.find(x => x.id === id); if(!it || !Org.on) return;
+    managing = it;
+    const day = THEME_DAYS.find(d => d.id === it.day);
+    $('#opKind').textContent = isTheme(it) ? 'Theme · ' + (day ? day.label : 'day to be decided') : (it.category || 'Other');
+    $('#opH').textContent = it.extra;
+    $('#opNow').textContent = `${nice(it.name)}'s idea · ${it.confirmed ? 'confirmed' : 'up for a vote'} · ${votes(it)} of ${GUESTS.length} voted`;
+    $('#opCost').value = it.cost || '';
+    $('#opAmt').value = money(it) ? String(money(it)) : ''; $('#opTo').value = '';
+    $('#opBought').hidden = isTheme(it) && !money(it);
+    $$('#orgPinForm [data-op]').forEach(b => { b.hidden = (b.dataset.op === 'Confirmed' && it.confirmed) || (b.dataset.op === '' && !it.confirmed); });
+    openSheet('orgPinSheet');
+  }
+  $('#orgPinForm').addEventListener('submit', e => e.preventDefault());
+  $('#orgPinForm').addEventListener('click', async e => {
+    const b = e.target.closest('[data-op]'); if(!b || !managing) return;
+    const op = b.dataset.op, it = managing, err = $('#orgPinForm .err'), btns = $$('#orgPinForm [data-op]');
+    err.textContent = '';
+    if(op === 'bought' && !(Number(String($('#opAmt').value).replace(/[^0-9.]/g, '')) > 0)){ err.textContent = 'How much was it?'; $('#opAmt').focus(); return; }
+    btns.forEach(x => x.disabled = true); Sound.blip(700);
+    const d = op === 'bought'
+      ? await Org.call('bought', { id: it.id, amount: $('#opAmt').value, to: $('#opTo').value.trim() })
+      : await Org.call('pin', { id: it.id, status: op, cost: $('#opCost').value.trim() });
+    btns.forEach(x => x.disabled = false);
+    if(!d.ok){ err.textContent = Org.err(d); if(d.wrong || d.locked) closeSheet('orgPinSheet'); return; }
+    closeSheet('orgPinSheet'); managing = null; Sound.chime();
+    toast(op === 'bought' ? 'Logged in the budget, against the extras pot.' : op === 'Confirmed' ? "Confirmed. It's in the Sheet." : op ? 'Taken off the board.' : 'Back up for a vote.');
+    load();
   });
   $('#boardFilter').addEventListener('change', e => { filter = e.target.value; Sound.blip(800); render(); });
 
@@ -3299,9 +3459,100 @@ const Board = (() => {
   });
 
   document.addEventListener('page:board', load);
-  return { load };
+  return { load, openSheet, closeSheet };
 })();
 Board.load();
+
+/* ================= ORGANISER: unlocking, and the idea box ================= */
+(function organiser(){
+  const row = $('#orgRow'), rowTxt = $('#orgRowTxt'), more = $('#moreSheet');
+  const safeLink = u => { const m = String(u || '').match(/https?:\/\/[^\s"'<>]+/i); return m ? m[0] : ''; };
+  function paintRow(){
+    row.hidden = !(Org.on || /^adam$/i.test((Me.name || '').trim()));
+    rowTxt.textContent = Org.on ? 'On · tap to lock' : 'Locked · tap to unlock';
+  }
+  window.HQ_ORG_ROW = paintRow;
+  row.addEventListener('click', () => {
+    if(Org.on){ Org.lock(); paintRow(); Sound.blip(520); toast('Organiser mode off on this phone.'); return; }
+    $('#orgCode').value = ''; Board.openSheet('orgSheet'); setTimeout(() => $('#orgCode').focus(), 250);
+  });
+  $('#orgForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const c = $('#orgCode').value.trim(), err = $('#orgForm .err'), btn = $('#orgForm button[type=submit]');
+    if(!c){ err.textContent = 'Pop the code in'; return; }
+    btn.disabled = true; btn.textContent = 'Checking…';
+    const d = await Org.unlock(c);
+    btn.disabled = false; btn.textContent = 'Unlock';
+    if(!d.ok){ err.textContent = Org.err(d); $('#orgCode').select(); Sound.blip(300); return; }
+    Board.closeSheet('orgSheet'); more.hidden = true; document.body.classList.remove('locked');
+    paintRow(); Sound.chime(); toast('Organiser mode on. Manage buttons are on the board, and the idea box is in More.');
+  });
+
+  /* the idea box: private, so it only loads with the code */
+  const list = $('#ideaList');
+  let ideas = [], filter = '', current = null;
+  const status = i => (i.status || '').trim();
+  function card(i){
+    const link = safeLink(i.link), when = i.at ? new Date(i.at).toLocaleDateString('en-GB', { day:'numeric', month:'short' }) : '';
+    const facts = [['Price', i.price], ['Time', i.time], ['Getting there', i.transport], ['Bring', i.kit], ['Christie factor', i.christie], ["G&Ts", i.hype ? i.hype + ' of 5' : '']]
+      .filter(f => f[1]).map(f => `<dt>${esc(f[0])}</dt><dd>${esc(String(f[1]))}</dd>`).join('');
+    const s = status(i);
+    const acts = !s ? `<button class="btn btn-gold" type="button" data-ic="${i.row}">Confirm</button><button class="btn btn-line" type="button" data-is="Not this time" data-row="${i.row}">Not this time</button>`
+      : `<button class="btn btn-line" type="button" data-is="" data-row="${i.row}">Back to undecided</button>`;
+    return `<article class="ib"><div class="ib-top"><span>${esc(i.name || 'Someone')}</span><span>${esc(s || when)}</span></div>
+      <h3>${esc(i.idea)}</h3>${i.details ? `<p>${esc(i.details)}</p>` : ''}
+      ${facts ? `<dl>${facts}</dl>` : ''}
+      ${link ? `<p><a href="${esc(link)}" target="_blank" rel="noopener nofollow">Have a look →</a></p>` : ''}
+      <div class="ib-acts">${acts}</div></article>`;
+  }
+  function render(){
+    const shown = ideas.filter(i => filter ? status(i) === filter : !['Confirmed', 'Not this time'].includes(status(i)));
+    list.innerHTML = shown.length ? shown.map(card).join('')
+      : `<div class="ib-empty">${filter ? 'Nothing here yet.' : 'All decided. Nice work.'}</div>`;
+  }
+  async function load(){
+    if(!Org.on){ list.innerHTML = '<div class="ib-empty">Organiser only. Unlock it from More.</div>'; return; }
+    if(!ideas.length) list.innerHTML = '<div class="ib-empty">Opening the idea box…</div>';
+    const d = await Org.call('ideas');
+    if(!d.ok){ list.innerHTML = `<div class="ib-empty">${esc(Org.err(d))}</div>`; paintRow(); return; }
+    ideas = (d.ideas || []).sort((a, b) => (b.at || 0) - (a.at || 0));
+    render();
+  }
+  document.addEventListener('page:ideas', load);
+  $('#ideaFilter').addEventListener('change', e => { filter = e.target.value; Sound.blip(800); render(); });
+  async function setStatus(i, s, extra = {}){
+    const d = await Org.call('idea', { row: i.row, idea: i.idea, status: s, ...extra });
+    if(!d.ok){ toast(Org.err(d)); return d; }
+    i.status = s; render(); Sound.chime();
+    return d;
+  }
+  list.addEventListener('click', async e => {
+    const c = e.target.closest('[data-ic]');
+    if(c){
+      current = ideas.find(x => String(x.row) === c.dataset.ic); if(!current) return;
+      $('#oiH').textContent = current.idea;
+      $('#oiPrice').textContent = `${current.name || 'They'} said: ${current.price || 'no price given'}`;
+      const n = String(current.price || '').replace(/,/g, '').match(/\d+(\.\d+)?/);
+      $('#oiEach').value = n ? n[0] : ''; $('#oiAdd').checked = true; $('#orgIdeaForm .err').textContent = '';
+      Board.openSheet('orgIdeaSheet'); return;
+    }
+    const b = e.target.closest('[data-is]'); if(!b) return;
+    const i = ideas.find(x => String(x.row) === b.dataset.row); if(!i) return;
+    b.disabled = true; const d = await setStatus(i, b.dataset.is); b.disabled = false;
+    if(d.ok) toast(b.dataset.is ? 'Marked not this time.' : 'Back to undecided. Take it out of the budget by hand if it was added.');
+  });
+  $('#orgIdeaForm').addEventListener('submit', async e => {
+    e.preventDefault(); if(!current) return;
+    const btn = $('#orgIdeaForm button[type=submit]'), add = $('#oiAdd').checked;
+    btn.disabled = true; btn.textContent = 'Confirming…';
+    const d = await Org.call('idea', { row: current.row, idea: current.idea, status: 'Confirmed', add: add ? '1' : '0', each: $('#oiEach').value });
+    btn.disabled = false; btn.textContent = 'Confirm';
+    if(!d.ok){ $('#orgIdeaForm .err').textContent = Org.err(d); return; }
+    current.status = 'Confirmed'; Board.closeSheet('orgIdeaSheet'); render(); Sound.chime();
+    toast(d.added ? 'Confirmed and added to the budget as Quoted.' : (d.warn || 'Confirmed.'));
+  });
+  paintRow();
+})();
 
 /* ================= PHRASEBOOK: tap to hear ================= */
 // Uses the device's own voices. Croatian first; Bosnian or Serbian sound near enough if there's no Croatian voice.
@@ -3547,7 +3798,7 @@ document.addEventListener('pointerdown', e => {
   showScreen = function(id){ baseShow(id); paintDock(id); };
   paintDock(($('.screen.show') || {}).id || 'intro');
 
-  function openMore(){ $('#meName').textContent = Me.name ? `You're ${Me.name}` : 'Who are you?'; more.hidden = false; document.body.classList.add('locked'); setTimeout(() => { const f = more.querySelector('.more-row'); f && f.focus({ preventScroll:true }); }, 250); }
+  function openMore(){ $('#meName').textContent = Me.name ? `You're ${Me.name}` : 'Who are you?'; if(window.HQ_ORG_ROW) window.HQ_ORG_ROW(); more.hidden = false; document.body.classList.add('locked'); setTimeout(() => { const f = more.querySelector('.more-row'); f && f.focus({ preventScroll:true }); }, 250); }
   function closeMore(){ more.hidden = true; document.body.classList.remove('locked'); }
   dockEl.addEventListener('click', e => {
     const b = e.target.closest('[data-dock]'); if(!b) return;
