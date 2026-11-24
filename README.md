@@ -19,7 +19,7 @@ Everyone can see it and vote on it. Pins come from the "Extras" tab; votes are c
 - **Pin an extra** (under the extras pot) is for extras only (wear, decor, games, gifts, other), with details, a link and a rough cost.
 - **Extras** (wear, decor, games, gifts, other) sit under "Up for a vote" with a rough cost for the whole thing.
 - **Adam and Beth confirm** in the Status column: **Confirmed** locks it in (a confirmed theme becomes the winner; an extra moves to Confirmed and its cost comes off the extras pot), **Not this time** or **Hidden** takes it off the board, blank means it's still up for a vote.
-- **The extras pot** is the Budget tab's "Extras pot" row (£200, out of the contingency). The page shows what's left after confirmed extras, and what would be left if everything up for a vote went through. `EXTRAS_POT` is only a fallback if the Sheet can't be read.
+- **The extras pot** is the Budget tab's "Extras pot" row (£250, out of the contingency). The page shows what's left after confirmed extras, and what would be left if everything up for a vote went through. `EXTRAS_POT` is only a fallback if the Sheet can't be read.
 
 Nobody buys anything themselves: Adam and Beth sort the buying from the pot.
 
