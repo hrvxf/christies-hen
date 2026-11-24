@@ -1085,15 +1085,18 @@ h1.sign span,h1.sign span.lit,h1.sign span.lit.flick,body.crispy h1.sign span{co
 
 /* dock */
 .dock{position:fixed;z-index:45;left:50%;transform:translateX(-50%);bottom:calc(var(--safe-b) + 14px);width:min(calc(100% - 28px),532px);height:68px;border-radius:24px;
-  background:rgba(29,10,44,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 18px 40px rgba(0,0,0,.6);
+  background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.05)),rgba(52,26,78,.55);
+  -webkit-backdrop-filter:blur(22px) saturate(170%);backdrop-filter:blur(22px) saturate(170%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.08),0 20px 44px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.3);
   display:none;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center}
 body[data-scr="intro"] .dock,body[data-scr^="pg-"] .dock{display:grid}
 body.waiting .dock,body.locked .dock{display:none!important}
-.dk{display:flex;flex-direction:column;align-items:center;gap:5px;min-height:56px;justify-content:center;border:0;background:none;cursor:pointer;color:var(--soft);font:500 10px var(--sans);letter-spacing:.02em}
+.dk{display:flex;flex-direction:column;align-items:center;gap:5px;min-height:56px;justify-content:center;border:0;background:none;cursor:pointer;color:#d9c6e6;font:500 10px var(--sans);letter-spacing:.02em}
 .dk svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
-.dk.on{color:var(--champ);font-weight:600}
+.dk.on{color:var(--champ);font-weight:600;text-shadow:0 0 12px rgba(233,201,131,.35)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.dock{background:rgba(40,18,60,.96)}}
 .dk-add{justify-self:center;display:grid;place-items:center;width:58px;height:58px;margin-top:-30px;border:0;border-radius:50%;cursor:pointer;background:var(--champ);color:#1a0a00;font:300 32px/1 var(--sans);
-  box-shadow:0 10px 24px rgba(233,201,131,.35),0 0 0 6px var(--ink)}
+  box-shadow:0 10px 24px rgba(233,201,131,.4),inset 0 1px 0 rgba(255,255,255,.5),0 0 0 5px rgba(255,255,255,.08)}
 .dk-add:active{transform:scale(.94)}
 body[data-scr="intro"] main,body[data-scr^="pg-"] main{padding-bottom:calc(var(--safe-b) + 110px)}
 body[data-scr^="pg-"] .page-head .back{display:none}
