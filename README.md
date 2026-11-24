@@ -22,6 +22,16 @@ Everyone can see it and vote on it. Pins come from the "Extras" tab; votes are c
 
 Nobody buys anything themselves: Adam and Beth sort the buying from the pot.
 
+## Organiser mode (Adam only)
+
+More → **Organiser mode** (only shown to Adam) asks for the code in the Sheet's Bank details tab ("Organiser code"). The phone remembers it; tap the row again to lock. The website never holds the real code: the Sheet's script checks it on every organiser request, and five wrong tries in 15 minutes locks it for 15 minutes. To change the code, change it in the Sheet (every phone will need the new one).
+
+Unlocked:
+
+- **Manage** buttons appear on every theme and extra on the board: Confirm (optionally with the real cost), Not this time, or Back to the vote. It sets the Extras tab's Status for you.
+- **Bought it?** in the same pop-up logs what an extra actually cost as a row in the Budget tab's Payments out, against the Extras pot line.
+- **Idea box** (in More) shows everyone's activity ideas, which are otherwise private. Confirm one to set its Status and add it to the Budget tab's Costs and bookings as Quoted (price each × everyone paying), or mark it Not this time.
+
 ## Updating the page as plans firm up
 
 Near the top of the script in `index.html` there's a **HUB CONTENT** block:
