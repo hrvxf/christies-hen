@@ -1211,6 +1211,38 @@ body[data-scr="pg-board"] .dk.on{color:#2a0b3a;text-shadow:none}
 #pg-board #tdH{margin-top:10px;margin-bottom:20px;font-size:clamp(38px,11vw,46px)}
 #pg-board .bd-h{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1;color:#2a0b3a;margin:28px 0 12px}
 #pg-board .board-filter{margin:0 -18px 18px}
+#pg-board #exH{margin:40px 0 16px;font-size:clamp(38px,11vw,46px)}
+/* the extras pot: a bright strip that stands out from the cork */
+.xpot{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px 16px 12px;border-radius:16px;background:#fff8ec;color:#2a0b3a;box-shadow:0 10px 22px rgba(60,30,10,.28),inset 0 0 0 2px #ff7eb6}
+.xpot-ico{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:linear-gradient(160deg,#ff7eb6,#e0167c);color:#fff}
+.xpot-ico svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.xpot-main{flex:1;min-width:0}
+.xpot-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.xpot-k{font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#c2185b}
+.xpot-num{font-size:13px;color:#5b3a55;white-space:nowrap}
+.xpot-num b{margin-right:2px;font:700 22px var(--mono);color:#2a0b3a}
+.xpot-bar{display:flex;height:9px;margin-top:8px;border-radius:5px;overflow:hidden;background:#f3e2ec}
+.xpot-bar i{display:block;background:linear-gradient(90deg,#ff4fa0,#e0167c)}
+.xpot-bar i+i{background:repeating-linear-gradient(45deg,rgba(224,22,124,.45) 0 4px,rgba(224,22,124,.15) 4px 8px)}
+.xpot-line{margin:7px 0 0;font-size:12.5px;line-height:1.35;color:#5b3a55}
+.xpot-line:empty{display:none}
+/* extras: sticky notes that open in place */
+.ex-grid{grid-auto-flow:row dense}
+.ex-name{flex:1;display:block;width:100%;padding:0;border:0;background:none;color:inherit;text-align:left;font:700 23px/.95 'Caveat',cursive;cursor:pointer;overflow-wrap:anywhere}
+.ex-cost{font:700 11px var(--mono)}
+.tt.ex-open{grid-column:1/-1;aspect-ratio:auto;justify-content:flex-start;gap:8px;padding:18px 16px 14px}
+.tt.ex-open h3{font-size:34px}
+.ex-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.ex-k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#7a1450}
+.ex-x{flex:none;width:40px;height:40px;margin:-10px -8px 0 0;border:0;border-radius:50%;background:rgba(255,255,255,.55);color:#2a0b3a;font-size:22px;line-height:1;cursor:pointer}
+.tt .ex-details{margin:0;font:400 15px/1.4 var(--sans);opacity:1}
+.ex-link{font-weight:600;font-size:14px;color:#7a1450;text-decoration:none}
+.ex-costrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;font-family:var(--mono);font-size:14px}
+.ex-over{font-family:var(--sans);font-size:13px;color:#a3123f}
+.tt.ex-open .face{width:24px;height:24px;margin-right:-6px;font-size:10px}
+.tt.ex-open .td-vote{margin-top:4px}
+.tt.ex-open .org-btn{margin-top:6px;min-height:36px;font-size:13px}
+.ex-empty{grid-column:1/-1;margin:0;font-size:15px;color:#3a1a10}
 #pg-board #pinBtn{margin-top:14px}
 .td-list{display:flex;flex-direction:column;gap:18px}
 .td{position:relative;padding:20px 16px 14px;border-radius:6px;background:#fff4e3;color:#2a0b3a;box-shadow:0 10px 20px rgba(60,30,10,.3);transform:rotate(var(--r,0deg))}
@@ -1606,10 +1638,8 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <h3 class="bd-h" id="tdH">What's the theme?</h3>
     <div class="td-list" id="themeDays" aria-labelledby="tdH" aria-live="polite"></div>
 
-    <h3 class="bd-k">Extras</h3>
-    <section class="pot" id="pot" aria-label="Extras pot"></section>
-    <button class="btn btn-gold" id="pinBtn" type="button">Pin an extra<span class="arr" aria-hidden="true">+</span></button>
-    <h4 class="bd-h" id="voteH">Up for a vote</h4>
+    <h3 class="bd-h" id="exH">Extras</h3>
+    <section class="xpot" id="pot" aria-label="Extras pot"></section>
     <div class="chips board-filter" id="boardFilter" role="radiogroup" aria-label="Show">
       <input type="radio" name="bf" id="bf0" value="" checked><label for="bf0">All</label>
       <input type="radio" name="bf" id="bf1" value="Wear"><label for="bf1">Wear</label>
@@ -1618,9 +1648,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
       <input type="radio" name="bf" id="bf4" value="Gifts"><label for="bf4">Gifts</label>
       <input type="radio" name="bf" id="bf5" value="Other"><label for="bf5">Other</label>
     </div>
-    <div class="board" id="board" aria-labelledby="voteH" aria-live="polite"></div>
-    <h4 class="bd-h" id="cfH">Confirmed</h4>
-    <div class="confirmed" id="confirmedList" aria-labelledby="cfH"></div>
+    <div class="tt-grid ex-grid" id="board" aria-labelledby="exH" aria-live="polite"></div>
   </section>
 
   <section class="screen page" id="pg-ideas" aria-labelledby="ideasH">
@@ -2226,7 +2254,7 @@ const HEN_DATE = new Date(2027, 8, 9); // 9 Sept 2027
 
 /* ================= HUB CONTENT: edit this bit as plans firm up ================= */
 // The extras pot comes from the Budget tab's "Extras pot" row; this is only used if that can't be read.
-const EXTRAS_POT = 200;
+const EXTRAS_POT = 250;
 // The guest list on the way in. Everyone taps their name once and the phone remembers them.
 // Not Christie: it's a surprise. Anyone else can tap "Not on the list?" and type their name.
 const GUESTS = ['Adam', 'Beth', 'Heather', 'Kaitlin', 'Lauren', 'Sorraya'];
@@ -3286,48 +3314,58 @@ const Board = (() => {
     return `<div class="tt-grid">${list.map(tile).join('')}${add}</div>`;
   }
 
-  /* extras: the pot, up for a vote, confirmed */
-  function note(it, i, left){
-    const link = safeLink(it.link), cost = money(it);
-    return `<article class="note${it.id === freshId ? ' fresh' : ''}" style="--r:${TILT[i % TILT.length]}">
-      <span class="n-cat">${esc(it.category || 'Other')}</span>
-      <h3>${esc(it.extra)}</h3>
-      <p class="n-idea">${esc(nice(it.name))}'s idea</p>
-      ${it.details ? `<p>${esc(it.details)}</p>` : ''}
-      <div class="n-meta">${cost ? `${pounds(cost)} all in` : (it.cost ? esc(it.cost) : 'Cost to be found')}</div>
-      ${cost > left ? `<div class="n-over">More than what's left in the pot</div>` : ''}
-      ${link ? `<a class="n-link" href="${escA(link)}" target="_blank" rel="noopener nofollow">Have a look →</a>` : ''}
-      <div class="n-foot">${faces(it)}${heartBtn(it)}</div>
-      ${manage(it)}
-    </article>`;
+  /* extras: a bright pot strip, then sticky notes (name, cost, likes) that open in place to show the rest */
+  const NOTE_BG = ['#fff0a0', '#ffc9dc', '#c8e6ff', '#d4f2c4', '#ffd9b3', '#e6d6ff'];
+  const JAR_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8M9 4v2.4C6.6 7.4 5 9.6 5 12.6V18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5.4c0-3-1.6-5.2-4-6.2V4"/><path d="M12 11.5v5M10.2 13h2.7a1.3 1.3 0 0 1 0 2.6h-2.7"/></svg>';
+  let openId = null;
+  function extraNote(it, i, left){
+    const cost = money(it), r = TILT[i % TILT.length], bg = NOTE_BG[(i + 3) % NOTE_BG.length];
+    const tag = it.confirmed ? '<span class="tt-k">Confirmed</span>' : '';
+    const cls = `tt ex${it.confirmed ? ' done' : ''}${it.id === freshId ? ' fresh' : ''}`;
+    if(it.id !== openId) return `<article class="${cls}" style="--r:${r};--bg:${bg}">${tag}
+        <button class="ex-name" type="button" data-open="${escA(it.id)}" aria-expanded="false">${esc(it.extra)}</button>
+        <div class="tt-foot"><span class="ex-cost">${cost ? pounds(cost) : esc(it.cost || 'Free')}</span>${heartBtn(it)}</div>
+      </article>`;
+    const link = safeLink(it.link), n = votes(it);
+    return `<article class="${cls} ex-open" style="--r:-.3deg;--bg:${bg}">${tag}
+        <div class="ex-top"><span class="ex-k">${esc(it.category || 'Other')} · ${esc(nice(it.name))}'s idea</span>
+          <button class="ex-x" type="button" data-open="${escA(it.id)}" aria-expanded="true" aria-label="Close ${escA(it.extra)}">×</button></div>
+        <h3>${esc(it.extra)}</h3>
+        ${it.details ? `<p class="ex-details">${esc(it.details)}</p>` : ''}
+        ${link ? `<a class="ex-link" href="${escA(link)}" target="_blank" rel="noopener nofollow">Have a look →</a>` : ''}
+        <div class="ex-costrow"><b>${cost ? pounds(cost) + ' all in' : esc(it.cost || 'Free')}</b>${!it.confirmed && cost > left ? `<span class="ex-over">More than what's left in the pot</span>` : ''}</div>
+        <div class="td-vote"><div>${faces(it)}<span class="td-n">${n === 1 && (it.by || []).length ? `${esc(nice(it.by[0]))} likes it` : n ? `${n} like it` : 'No likes yet'}</span></div>
+          <button class="vote${mine(it) ? ' on' : ''}" type="button" data-id="${escA(it.id)}" aria-pressed="${mine(it)}"${isTmp(it) ? ' disabled' : ''}>${mine(it) ? 'You like it' : 'Like it'}</button></div>
+        ${manage(it)}
+      </article>`;
   }
   function render(){
-    const days = $('#themeDays'), el = $('#board'), potEl = $('#pot'), cf = $('#confirmedList');
+    const days = $('#themeDays'), el = $('#board'), potEl = $('#pot');
     if(!loaded){
-      const msg = `<div class="board-empty">${failed ? "Couldn't load the board. Check your signal and try again." : 'Loading the board…'}</div>`;
-      days.innerHTML = msg; el.innerHTML = ''; potEl.innerHTML = ''; cf.innerHTML = ''; return;
+      days.innerHTML = `<div class="board-empty">${failed ? "Couldn't load the board. Check your signal and try again." : 'Loading the board…'}</div>`;
+      el.innerHTML = ''; potEl.innerHTML = ''; return;
     }
     days.innerHTML = themeCard();
 
-    const done = items.filter(it => it.confirmed && (!isTheme(it) || money(it) > 0));
-    const open = items.filter(it => !it.confirmed && !isTheme(it));
-    const spent = done.reduce((a, it) => a + money(it), 0), pending = open.reduce((a, it) => a + money(it), 0);
+    const extras = items.filter(it => !isTheme(it));
+    const spent = items.filter(it => it.confirmed).reduce((a, it) => a + money(it), 0);
+    const pending = extras.filter(it => !it.confirmed).reduce((a, it) => a + money(it), 0);
     const left = pot - spent, after = left - pending, pct = n => Math.max(0, Math.min(100, n / (pot || 1) * 100)).toFixed(1) + '%';
-    potEl.innerHTML = `<div class="pot-top"><span>Extras pot · ${pounds(pot)}</span><span>Confirmed ${pounds(spent)}</span></div>
-      <div class="pot-left">${pounds(left)} <small>left</small></div>
-      <div class="pot-bar" aria-hidden="true"><i style="width:${pct(spent)}"></i><i style="width:${pct(Math.min(pending, Math.max(left, 0)))}"></i></div>
-      <p>${!pending ? 'Nothing with a price up for a vote right now.'
-        : after >= 0 ? `If everything up for a vote goes through: ${pounds(after)} left.`
-        : `Everything up for a vote comes to ${pounds(pending)}, so ${pounds(-after)} more than what's left. Vote for your favourites.`}</p>`;
+    potEl.innerHTML = `<span class="xpot-ico">${JAR_SVG}</span>
+      <div class="xpot-main">
+        <div class="xpot-row"><span class="xpot-k">Extras pot</span><span class="xpot-num"><b>${pounds(left)}</b> left of ${pounds(pot)}</span></div>
+        <div class="xpot-bar" aria-hidden="true"><i style="width:${pct(spent)}"></i><i style="width:${pct(Math.min(pending, Math.max(left, 0)))}"></i></div>
+        <p class="xpot-line">${spent ? pounds(spent) + ' confirmed. ' : ''}${!pending ? (spent ? '' : 'Nothing confirmed yet.')
+          : after >= 0 ? `If everything else goes through: ${pounds(after)} left.` : `Everything up for a vote comes to ${pounds(pending)}, so pick favourites.`}</p>
+      </div>`;
 
-    const list = open.filter(it => !filter || (it.category || 'Other') === filter);
-    el.innerHTML = list.length ? list.map((it, i) => note(it, i, left)).join('')
-      : `<div class="board-empty"><b>${filter ? 'Nothing here yet' : 'Nothing up for a vote'}</b>Matching tees, balloons for the villa… go on, pin the first.</div>`;
-
-    cf.innerHTML = done.length
-      ? done.map(it => `<div class="cf-row">${TICK_SVG}<div><b>${esc(it.extra)}</b><small>${esc(isTheme(it) ? 'Theme' : (it.category || 'Other'))} · ${esc(nice(it.name))}'s idea</small></div><span>${pounds(money(it))}</span>${manage(it)}</div>`).join('')
-        + `<div class="cf-total"><span>Off the pot</span><b>${pounds(spent)}</b></div>`
-      : `<p class="cf-empty">Nothing confirmed yet. Adam and Beth lock the winners in.</p>`;
+    // up for a vote first (order set on load, so notes don't jump when liked), then confirmed
+    const list = [...extras.filter(it => !it.confirmed), ...extras.filter(it => it.confirmed)]
+      .filter(it => !filter || (it.category || 'Other') === filter);
+    if(openId && !list.some(it => it.id === openId)) openId = null;
+    const add = `<button class="tt tt-add" type="button" data-pin><span aria-hidden="true">+</span>Pin one</button>`;
+    el.innerHTML = (list.length ? '' : `<p class="ex-empty">${filter ? `Nothing in ${esc(filter)} yet.` : 'Nothing pinned yet. Matching tees, balloons for the villa…'}</p>`)
+      + list.map((it, i) => extraNote(it, i, left)).join('') + add;
     freshId = null;
   }
   async function load(){
@@ -3365,6 +3403,14 @@ const Board = (() => {
   document.addEventListener('click', e => {
     const v = e.target.closest('#pg-board .heart[data-id], #pg-board .vote[data-id]'); if(v && !v.disabled){ toggle(v.dataset.id); return; }
     const p = e.target.closest('#pg-board [data-pitch]'); if(p){ pitch(); return; }
+    const o = e.target.closest('#pg-board [data-open]');
+    if(o){
+      const id = o.dataset.open; openId = openId === id ? null : id; Sound.blip(openId ? 760 : 520); render();
+      const n = openId && $(`#board [data-open="${CSS.escape(openId)}"]`);
+      if(n) n.closest('.tt').scrollIntoView({ block:'nearest', behavior: reduced ? 'instant' : 'smooth' });
+      return;
+    }
+    if(e.target.closest('#pg-board [data-pin]')){ pinExtra(); return; }
     const m = e.target.closest('#pg-board [data-manage]'); if(m) manageOpen(m.dataset.manage);
   });
 
@@ -3413,7 +3459,7 @@ const Board = (() => {
   function closeSheet(id){ $('#' + id).hidden = true; document.body.classList.remove('locked'); }
   $$('.sheet').forEach(sh => sh.addEventListener('click', e => { if(e.target.closest('[data-close]')){ closeSheet(sh.id); if(sh.id === 'whoSheet') pendingHeart = null; } }));
   addEventListener('keydown', e => { if(e.key === 'Escape') $$('.sheet').forEach(sh => { if(!sh.hidden) closeSheet(sh.id); }); });
-  $('#pinBtn').addEventListener('click', () => { Sound.blip(700); if($('#pc0').checked) $('#pc0').checked = false; setCategory(''); openSheet('pinSheet'); });
+  function pinExtra(){ Sound.blip(700); if($('#pc0').checked) $('#pc0').checked = false; setCategory(''); openSheet('pinSheet'); }
   $('#pinSheet [data-notme]').addEventListener('click', () => { $('#pinAs').hidden = true; $('#pinWho').hidden = false; $('#pname').value = ''; $('#pname').focus(); });
 
   // Two ways in: "Pin something up" is for extras (pile, details, link, cost); "Pitch a theme" asks for the
