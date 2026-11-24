@@ -1289,6 +1289,15 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 .say{background:rgba(233,201,131,.14)!important;box-shadow:none!important}
 .note:nth-child(even){box-shadow:0 12px 24px rgba(0,0,0,.4)!important}
 .toast{box-shadow:0 12px 30px rgba(0,0,0,.5)!important}
+
+/* home header: Christie's on the left, the countdown on the right with room to breathe */
+.hq-head{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px;margin-top:26px!important}
+#intro h1.sign{font-size:clamp(38px,11vw,54px)!important;line-height:.9}
+.hq-head .marquee{display:flex!important;flex-direction:column;align-items:flex-start;padding-left:16px!important;border-left:1px solid rgba(233,201,131,.35);border-radius:0!important}
+.hq-head .days{display:flex!important;align-items:center;gap:12px;font-size:clamp(40px,12vw,50px)!important;line-height:.85!important}
+.hq-head .days small{display:flex!important;flex-direction:column;gap:4px;margin:0!important;font-family:var(--mono);font-size:10px!important;letter-spacing:.2em!important;line-height:1.2;text-transform:uppercase;color:var(--muted)}
+.hq-head .days:has(small) + .till{display:none!important}
+#intro .news-strip{margin-top:30px!important}
 </style>
 </head>
 <body class="waiting">
@@ -2262,8 +2271,8 @@ if(!reduced) setInterval(() => {
   const today = new Date(); today.setHours(0,0,0,0);
   const days = Math.round((HEN_DATE - today) / 864e5);
   const el = $('#days');
-  if(days > 1) el.innerHTML = `${days}<small>DAYS</small>`;
-  else if(days === 1) el.innerHTML = `1<small>DAY</small>`;
+  if(days > 1) el.innerHTML = `${days}<small><span>Days</span><span>to go</span></small>`;
+  else if(days === 1) el.innerHTML = `1<small><span>Day</span><span>to go</span></small>`;
   else if(days === 0){ el.textContent = "IT'S TODAY!"; $('#till').textContent = 'hen do · 09.09.27'; }
   else { el.textContent = 'WHAT A NIGHT'; $('#till').textContent = 'thanks for the ideas'; }
 })();
