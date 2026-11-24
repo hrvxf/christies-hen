@@ -814,7 +814,7 @@ body.crispy .act.gold{background:linear-gradient(180deg,#f2f8ff,#bcdcff 60%,#8fb
 :root{--serif:"Cormorant Garamond",Georgia,serif;--champ:#e9c983}
 .vr{position:fixed;inset:0;z-index:70;background:#07000d;color:var(--text);overflow:hidden;animation:fadeIn .5s both}
 .vr-stage{position:absolute;inset:0;display:none}
-.vr[data-s=door] .vr-door,.vr[data-s=lights] .vr-lights,.vr[data-s=tour] .vr-tour,.vr[data-s=end] .vr-end{display:flex}
+.vr[data-s=turn] .vr-turn,.vr[data-s=door] .vr-door,.vr[data-s=lights] .vr-lights,.vr[data-s=tour] .vr-tour,.vr[data-s=end] .vr-end{display:flex}
 .vr-x{position:absolute;z-index:5;top:calc(var(--safe-t) + 14px);right:14px;width:44px;height:44px;border:0;border-radius:14px;background:rgba(7,0,13,.55);color:var(--text);display:grid;place-items:center;cursor:pointer}
 .vr-x svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round}
 .vr-k{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--champ);margin:0}
@@ -832,6 +832,13 @@ body.crispy .act.gold{background:linear-gradient(180deg,#f2f8ff,#bcdcff 60%,#8fb
 .vr-card{width:96px;height:60px;border-radius:10px;background:linear-gradient(135deg,#f4dca0,#c9a35a);box-shadow:0 10px 24px rgba(0,0,0,.5);display:flex;flex-direction:column;justify-content:space-between;padding:8px 10px;color:#2a1a00;font-family:var(--mono);text-align:left;transition:transform .2s}
 .vr-card small{font-size:7px;letter-spacing:.2em}.vr-card b{font-size:9px;letter-spacing:.08em}
 .vr-key.held .vr-card{transform:scale(.93)}
+.vr-turn{flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:40px 32px;text-align:center;background:radial-gradient(420px 320px at 50% 40%,rgba(233,201,131,.11),transparent 70%)}
+.vr-turn h2{font-family:var(--serif);font-style:italic;font-weight:500;font-size:42px;line-height:1.05;margin:0;max-width:300px}
+.vr-turn p{margin:0;font-size:16px;color:var(--muted)}
+.vr-turn .vr-land{width:auto;min-width:240px;margin-top:10px}
+.vr-phone{display:grid;place-items:center;width:110px;height:110px}
+.vr-phone svg{width:84px;height:84px;fill:none;stroke:var(--champ);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;animation:vrTurn 3s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes vrTurn{0%,25%{transform:rotate(0)}50%,85%{transform:rotate(-90deg)}100%{transform:rotate(0)}}
 .vr-tap{min-height:44px;border:0;background:none;color:var(--muted);font:500 14px var(--sans);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .vr-lights,.vr-end{flex-direction:column;justify-content:flex-end}
 .vr-hero,.vr-endpic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 50%}
@@ -866,9 +873,14 @@ body.crispy .act.gold{background:linear-gradient(180deg,#f2f8ff,#bcdcff 60%,#8fb
   .vr-cap{left:calc(62% + 28px);right:24px;bottom:calc(var(--safe-b) + 24px)}
   .vr-cap .vr-serif{font-size:36px}
   .vr-door{gap:12px;padding:16px}.vr-door h2{font-size:32px}.vr-key{width:120px;height:120px}
+  .vr-lights{flex-direction:row}
+  .vr-hero{width:62%;right:auto;object-fit:cover}
+  .vr-lights .vr-shade{background:linear-gradient(90deg,transparent 52%,rgba(7,0,13,.96) 63%)}
+  .vr-name{position:absolute;left:62%;right:0;top:0;bottom:0;width:auto;max-width:none;margin:0;justify-content:center;padding:20px 28px calc(var(--safe-b) + 20px)}
+  .vr-turn{gap:10px;padding:16px}.vr-turn h2{font-size:32px;max-width:none}.vr-phone{width:70px;height:70px}.vr-phone svg{width:56px;height:56px;animation:none;transform:rotate(-90deg)}
   .vr-name h2{font-size:40px}.vr-name,.vr-end-in{padding-bottom:20px;gap:10px}.vr-end-in h2{font-size:32px}
 }
-@media (prefers-reduced-motion:reduce){.vr-hero,.vr-name{transition:none}.vr{animation:none}}
+@media (prefers-reduced-motion:reduce){.vr-hero,.vr-name{transition:none}.vr{animation:none}.vr-phone svg{animation:none;transform:rotate(-90deg)}}
 .vtile{padding:10px 14px 10px 10px}
 .vtile .vt-pic{flex:none;width:92px;height:68px;border-radius:12px;overflow:hidden;background:rgba(0,0,0,.3);display:grid;place-items:center}
 .vtile .vt-pic img{width:100%;height:100%;object-fit:cover;display:block}
@@ -1063,6 +1075,134 @@ h1.sign span,h1.sign span.lit,h1.sign span.lit.flick,body.crispy h1.sign span{co
 .ballot .front small{font-family:var(--mono);font-weight:400!important;font-size:10px!important;letter-spacing:.24em!important;color:var(--champ)!important}
 .hangball canvas{filter:sepia(1) saturate(1.3) hue-rotate(-8deg) brightness(1.05);box-shadow:0 0 30px rgba(233,201,131,.35)!important}
 .tag-theme{font-family:var(--serif);font-weight:600!important;font-size:28px!important}
+
+/* =====================================================================
+   THE DOCK: filled surfaces, fewer buttons.
+   Navigation lives in the dock at the bottom. Cards are solid tones, never
+   outlines, and each one shows a status plus where it takes you.
+   ===================================================================== */
+:root{--tone1:#1d0a2c; --tone0:#140620; --warm:linear-gradient(135deg,#3a2a10 0%,#2a0f2e 70%); --sea:linear-gradient(160deg,#1f3a5a,#1d0a2c 75%)}
+
+/* dock */
+.dock{position:fixed;z-index:45;left:50%;transform:translateX(-50%);bottom:calc(var(--safe-b) + 14px);width:min(calc(100% - 28px),532px);height:68px;border-radius:24px;
+  background:rgba(29,10,44,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 18px 40px rgba(0,0,0,.6);
+  display:none;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center}
+body[data-scr="intro"] .dock,body[data-scr^="pg-"] .dock{display:grid}
+body.waiting .dock,body.locked .dock{display:none!important}
+.dk{display:flex;flex-direction:column;align-items:center;gap:5px;min-height:56px;justify-content:center;border:0;background:none;cursor:pointer;color:var(--soft);font:500 10px var(--sans);letter-spacing:.02em}
+.dk svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+.dk.on{color:var(--champ);font-weight:600}
+.dk-add{justify-self:center;display:grid;place-items:center;width:58px;height:58px;margin-top:-30px;border:0;border-radius:50%;cursor:pointer;background:var(--champ);color:#1a0a00;font:300 32px/1 var(--sans);
+  box-shadow:0 10px 24px rgba(233,201,131,.35),0 0 0 6px var(--ink)}
+.dk-add:active{transform:scale(.94)}
+body[data-scr="intro"] main,body[data-scr^="pg-"] main{padding-bottom:calc(var(--safe-b) + 110px)}
+body[data-scr^="pg-"] .page-head .back{display:none}
+body[data-scr^="pg-"] .page-head:not(:has(.hd-ico)){display:none}
+#pg-plan .page-head{justify-content:flex-end;margin-bottom:-44px;position:relative;z-index:2}
+.page-head{min-height:44px}
+.hd-ico{margin-left:auto;display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:var(--tone1);color:var(--champ)}
+.hd-ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+
+/* more drawer */
+.more-card .q{font-size:34px;margin:6px 0 14px}
+.more-list{display:flex;flex-direction:column;gap:8px}
+.more-row{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:10px 14px 10px 10px;border:0;border-radius:18px;cursor:pointer;text-align:left;text-decoration:none;color:var(--text);font:inherit;background:var(--tone0)}
+.more-row:active{background:#24103a}
+.mr-ico{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:rgba(233,201,131,.12);color:var(--champ)}
+.mr-ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+.mr-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.mr-txt b{font-size:16px;font-weight:600}.mr-txt small{font-size:13px;color:var(--soft)}
+.more-row .chev{color:var(--soft)}
+
+/* home: header + dashboard */
+#intro .ball-rig{display:none!important}
+.hq-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-top:8px}
+.hq-title{text-align:left}
+#intro .kicker{text-align:left;margin:0 0 6px}
+#intro h1.sign{text-align:left;font-size:clamp(40px,11.5vw,50px);margin:0;white-space:nowrap}
+.hq-title{flex:1;min-width:0}
+.hq-head .marquee{flex:none}
+.hq-head .marquee{display:block!important;margin:0!important;text-align:right}
+.hq-head .marquee::before,.hq-head .marquee::after{display:none!important}
+.hq-head .days{font-size:56px!important}
+.hq-head .days small{margin-top:6px;font-size:9px}
+.hq-head .till{font-size:9px!important;letter-spacing:.16em!important;margin-top:2px!important;white-space:nowrap}
+#intro .intro-copy{text-align:left;font-size:19px;margin:18px 0 0;max-width:none}
+#intro .news-strip{margin-top:20px}
+#intro .box{margin-top:12px}
+.nextup{display:flex;flex-direction:column;gap:12px;width:100%;padding:18px;border:0;border-radius:20px;cursor:pointer;text-align:left;font:inherit;color:var(--text);background:var(--warm)}
+.nu-k{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--champ)}
+.nu-k span+span{color:var(--soft)}
+.nu-main{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.nu-main b{display:block;font-family:var(--serif);font-weight:600;font-size:30px;line-height:1}
+.nu-main small{display:block;margin-top:6px;font-size:13px;line-height:1.4;color:var(--muted)}
+.nu-go{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--champ);color:#1a0a00;font-size:18px}
+.nu-bar{height:3px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden}
+.nu-bar i{display:block;height:100%;border-radius:2px;background:var(--champ)}
+#intro .info{margin-top:12px}
+#intro .info .info-k{display:none}
+.vtile{position:relative;display:block!important;width:100%;height:180px;min-height:0;padding:0!important;overflow:hidden;border-radius:20px!important;text-align:left}
+.vtile .vt-pic{position:absolute!important;inset:0;width:auto!important;height:auto!important;border-radius:0!important;background:var(--tone1)!important}
+.vtile .vt-pic img{width:100%;height:100%;object-fit:cover}
+.vtile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(11,2,19,.9) 100%);pointer-events:none}
+.vtile .vt-txt{position:absolute;z-index:1;left:18px;right:44px;bottom:14px}
+.vtile .vt-txt b{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1}
+.vtile .chev{position:absolute;z-index:1;right:16px;bottom:16px;color:var(--text)}
+.vtile .vt-card{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%) rotate(-4deg) scale(1.6)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.dcard{display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-height:150px;padding:16px;border:0;border-radius:20px;cursor:pointer;text-align:left;font:inherit;color:var(--text);background:var(--tone1)}
+.dcard > b{font-size:15px;font-weight:600;margin-top:auto}
+.dcard small{font-size:12px;line-height:1.35;color:var(--soft)}
+.dc-big{font-family:var(--serif);font-weight:600!important;font-size:40px!important;line-height:1;margin:0!important;color:var(--text)}
+.dc-money{background:var(--warm)}.dc-money .dc-big{color:var(--champ)}
+.dc-sea{background:var(--sea)}
+.ring{width:48px;height:48px}
+.ring circle{fill:none;stroke-width:3}.ring .r-bg{stroke:rgba(255,255,255,.1)}
+.ring .r-fg{stroke:var(--champ);stroke-linecap:round;stroke-dasharray:0 94.25;transform:rotate(-90deg);transform-origin:18px 18px;transition:stroke-dasharray .5s}
+.ring text{font:10px var(--mono);fill:var(--text)}
+.dc-strip{display:flex;gap:3px;width:100%}
+.dc-strip i{flex:1;height:30px;border-radius:6px;background:var(--tone0)}
+.dc-strip i.t{background:var(--champ)}.dc-strip i.p{background:rgba(233,201,131,.45)}
+#intro .tunes{margin-top:30px}
+#intro .tunes .tunes-k{text-align:left}
+
+/* plan: day strip, tonal days, photo link */
+.daystrip{display:flex;gap:6px;margin:6px 0 4px}
+.ds-d{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 0;border-radius:14px;background:var(--tone1);color:var(--text)}
+.ds-d small{font-family:var(--mono);font-size:9px;letter-spacing:.12em;opacity:.8}
+.ds-d b{font-family:var(--serif);font-weight:600;font-size:26px;line-height:1}
+.ds-d.t{background:var(--champ);color:#1a0a00}
+.ds-d.p{background:#3a2a10}
+.timeline::before{display:none!important}
+.tl-dot{display:none!important}
+.tl{padding-left:0!important}
+.tl-card{background:var(--tone0)!important}
+.tl.travel .tl-card{background:var(--warm)!important}
+.tl:not(.tba):not(.travel) .tl-card{background:var(--tone1)!important}
+.photolink{position:relative;display:block;width:100%;height:120px;margin-top:14px;padding:0;border:0;border-radius:20px;overflow:hidden;cursor:pointer;text-align:left;color:var(--text);background:var(--tone1)}
+.photolink img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.photolink::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,2,19,.9) 0%,rgba(11,2,19,.15) 75%)}
+.pl-txt{position:absolute;z-index:1;left:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:4px}
+.pl-txt b{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1}
+.photolink .chev{position:absolute;z-index:1;right:16px;top:50%;transform:translateY(-50%)}
+
+/* no more outlines: secondary buttons, chips, inputs, cards are filled */
+.btn-line,.skip,.again.alt,.back,.pill,.pill.sound{background:var(--tone1)!important;box-shadow:none!important}
+.btn-line:hover,.skip:hover,.again.alt:hover,.back:hover{background:#26103a!important}
+.chips label,.chips.big label,.board-filter label{background:var(--tone1)!important;box-shadow:none!important}
+.chips input:checked + label,body.crispy .chips input:checked + label,.board-filter input:checked + label{background:var(--champ)!important}
+input[type=text],input[type=url],textarea{background:var(--tone1)!important;box-shadow:none!important}
+input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
+.card,.panel,.tl-card,.news-strip,.navtile,.board-card,.tile,.act,.sheet-card{box-shadow:none!important}
+.card,.sheet-card{background:var(--tone1)!important}
+.sheet-card{background:#170824!important}
+.panel{background:var(--tone0)!important}
+.pay{background:var(--warm)!important;box-shadow:none!important}
+.news-strip{background:var(--tone0)!important}
+.news-strip .new,body.crispy .news-strip .new{background:rgba(255,110,199,.14)!important;box-shadow:none!important}
+.say{background:rgba(233,201,131,.14)!important;box-shadow:none!important}
+.note:nth-child(even){box-shadow:0 12px 24px rgba(0,0,0,.4)!important}
+.toast{box-shadow:0 12px 30px rgba(0,0,0,.5)!important}
 </style>
 </head>
 <body class="waiting">
@@ -1096,8 +1236,15 @@ h1.sign span,h1.sign span.lit,h1.sign span.lit.flick,body.crispy h1.sign span{co
 </div>
 
 <!-- ============ THE VILLA REVEAL: plays once, the first time each person enters (see VILLA_TOUR) ============ -->
-<div class="vr" id="villaReveal" data-s="door" role="dialog" aria-modal="true" aria-label="Where we're staying" hidden>
+<div class="vr" id="villaReveal" data-s="turn" role="dialog" aria-modal="true" aria-label="Where we're staying" hidden>
   <button class="vr-x" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="vr-stage vr-turn">
+    <span class="vr-phone" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="15" y="5" width="18" height="38" rx="3.5"/><path d="M21 9h6"/><circle cx="24" cy="38" r="1.2"/></svg></span>
+    <h2>Turn your phone sideways</h2>
+    <p>It's better this way. Trust us.</p>
+    <button class="btn btn-gold vr-land" type="button">I'm in landscape</button>
+    <button class="vr-tap vr-upright" type="button">My screen won't turn</button>
+  </div>
   <div class="vr-stage vr-door">
     <p class="vr-k">Christie's Hen Do</p>
     <h2>Room for seven.</h2>
@@ -1145,26 +1292,42 @@ h1.sign span,h1.sign span.lit,h1.sign span.lit.flick,body.crispy h1.sign span{co
       <div class="ballbox"><canvas id="ball" width="300" height="300"></canvas></div>
     </div>
 
-    <div class="kicker">Welcome to</div>
-    <h1 class="sign" id="title" aria-label="Christie's"></h1>
-    <p class="tube">Hen HQ</p>
-
-    <div class="marquee" id="marquee">
-      <div class="days" id="days">—</div>
-      <div class="till" id="till">till Croatia · 09.09.27</div>
-    </div>
-
-    <p class="intro-copy">Five nights in Croatia with the bride-to-be. <b>Christie's none the wiser</b>, so don't forward this link.</p>
-
-    <div id="box" class="box">
-      <p class="sec-k box-k">Get involved</p>
-      <div class="trio">
-        <button class="act gold" id="startBtn" type="button" data-go="idea"><span class="act-o" aria-hidden="true"><span class="m-ticket"><b>ADMIT</b><b>ONE</b></span></span><span class="act-l">Suggest an activity</span></button>
-        <button class="act" id="missionBtn" type="button" data-go="mission"><span class="act-o" aria-hidden="true"><span class="m-env"><i></i></span></span><span class="act-l">Set Christie a mission</span></button>
-        <button class="act" id="boardBtn" type="button" data-page="board"><span class="act-o" aria-hidden="true"><span class="m-note"><i></i><i></i><i></i></span></span><span class="act-l">Themes &amp; extras</span></button>
+    <div class="hq-head">
+      <div class="hq-title"><h1 class="sign" id="title" aria-label="Christie's"></h1></div>
+      <div class="marquee" id="marquee">
+        <div class="days" id="days">—</div>
+        <div class="till" id="till">till Croatia · 09.09.27</div>
       </div>
     </div>
+    <p class="tube" hidden>Hen HQ</p>
 
+    <button class="news-strip" type="button" data-page="news"><span class="new">New</span><span class="txt" id="newsLatest"></span><span class="chev" aria-hidden="true">›</span></button>
+
+    <div id="box" class="box">
+      <button class="nextup" id="nextUp" type="button" data-page="prep"></button>
+    </div>
+
+    <div class="info" id="info">
+      <button class="navtile wide vtile" id="villaTile" type="button"></button>
+      <div class="duo">
+        <button class="dcard" type="button" data-page="plan">
+          <span class="dc-strip" id="miniStrip" aria-hidden="true"></span>
+          <b>The plan</b><small id="planMini">Thu 9 to Tue 14 Sept</small>
+        </button>
+        <button class="dcard dc-money" type="button" data-page="money">
+          <b class="dc-big" id="tileAsk">£550</b>
+          <b>Costs</b><small id="moneyMini">Left each. Deposit paid</small>
+        </button>
+        <button class="dcard" type="button" data-page="prep">
+          <svg class="ring" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15" class="r-bg"/><circle cx="18" cy="18" r="15" class="r-fg" id="prepRing"/><text x="18" y="21.5" text-anchor="middle" id="ringTxt">0/6</text></svg>
+          <b>Before you go</b><small id="prepNext">Passport, leave, GHIC</small>
+        </button>
+        <button class="dcard dc-sea" type="button" data-page="croatia">
+          <b class="dc-big">25°</b>
+          <b>Croatia 101</b><small>Sea's 23°. Bring swimmies.</small>
+        </button>
+      </div>
+    </div>
 
     <div class="tunes" id="tunes">
       <p class="sec-k tunes-k">The soundtrack</p>
@@ -1172,53 +1335,17 @@ h1.sign span,h1.sign span.lit,h1.sign span.lit.flick,body.crispy h1.sign span{co
       <p class="foot"><a href="https://open.spotify.com/playlist/7hMN4qKrrd0USB6N153CaI?si=J-kXQgJ4Q-avdQ9F8eZQ2A&amp;pt=3b04bd2be1e85936a08321d98a921cb1" target="_blank" rel="noopener">Join the playlist</a> to add your songs.</p>
     </div>
 
-    <div class="info" id="info">
-      <p class="sec-k info-k">The need-to-knows</p>
-      <button class="news-strip" type="button" data-page="news"><span class="new">New</span><span class="txt" id="newsLatest"></span><span class="chev" aria-hidden="true">›</span></button>
-      <nav class="navgrid" aria-label="Trip info">
-        <button class="navtile wide vtile" id="villaTile" type="button"></button>
-        <button class="navtile art" type="button" data-page="plan">
-          <span class="obj" aria-hidden="true"><span class="pass">
-            <span class="p-main"><span class="p-k">Boarding pass</span><span class="p-to">SPLIT</span><span class="p-row"><span>UK</span><svg viewBox="0 0 24 24" class="p-plane"><path d="M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8.5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5z"/></svg><span>SPU</span></span><span class="p-date">09 SEP → 14 SEP</span></span>
-            <span class="p-stub"><span class="p-bar"></span></span>
-          </span></span>
-          <span class="art-txt"><b>The plan</b></span>
-        </button>
-        <button class="navtile art" type="button" data-page="money">
-          <span class="obj" aria-hidden="true"><span class="mini-r">
-            <span class="mr-k">Receipt</span><i></i><i class="s"></i><i></i><i class="s"></i>
-            <span class="mr-t"><span>TOTAL</span><b id="tileAsk">£550</b></span>
-          </span></span>
-          <span class="art-txt"><b>Costs</b></span>
-        </button>
-        <button class="navtile art" type="button" data-page="prep">
-          <span class="obj" aria-hidden="true"><span class="passport">
-            <span class="pp-crest"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
-            <span class="pp-word">Passport</span>
-          </span></span>
-          <span class="art-txt"><b>Before you go</b></span>
-        </button>
-        <button class="navtile art" type="button" data-page="croatia">
-          <span class="obj" aria-hidden="true"><span class="postcard">
-            <span class="pc-pic"><img src="villa/04-pergola-view.jpg" alt="" loading="lazy"><span class="pc-sun"></span><span class="pc-sea"></span><span class="pc-txt"><small>Pozdrav iz</small>Splita</span></span>
-            <span class="pc-side"><span class="pc-stamp"></span><i></i><i></i><i></i></span>
-          </span></span>
-          <span class="art-txt"><b>Croatia 101</b></span>
-        </button>
-      </nav>
-    </div>
-
-    <p class="sitefoot">Questions? Give Adam or Beth a shout in the group chat.<br>Christie's Hen Do · Croatia · 09.09.27</p>
+    <p class="sitefoot">Christie's none the wiser, so don't forward this link.<br>Questions? Give Adam or Beth a shout in the group chat.<br>Christie's Hen Do · Croatia · 09.09.27</p>
   </section>
 
   <section class="screen page" id="pg-news" aria-labelledby="newsH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Hot off the press</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="newsH">What's new</h2>
     <ol class="panel rows" id="newsList"></ol>
   </section>
 
   <section class="screen page" id="pg-board" aria-labelledby="boardH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Everyone can see this one</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="boardH">Themes &amp; extras</h2>
     <button class="btn btn-gold" id="pinBtn" type="button">Pin something up<span class="arr" aria-hidden="true">+</span></button>
     <div class="chips board-filter" id="boardFilter" role="radiogroup" aria-label="Show">
@@ -1233,34 +1360,19 @@ h1.sign span,h1.sign span.lit,h1.sign span.lit.flick,body.crispy h1.sign span{co
   </section>
 
   <section class="screen page" id="pg-plan" aria-labelledby="planH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Thu 9 – Tue 14 Sept 2027</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><a class="hd-ico" href="split-trip.ics" download aria-label="Add the dates to my calendar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M12 13v4M10 15h4"/></svg></a></div>
     <h2 class="sec-h" id="planH">The plan</h2>
-    <div class="bp-wrap"><div class="bp">
-      <div class="bp-main">
-        <div class="bp-k">Boarding pass · Christie's Hen Do</div>
-        <div class="bp-route">
-          <span class="bp-port"><small>From</small><b>UK</b><small>Home</small></span>
-          <span class="bp-fly" aria-hidden="true"><i></i><svg viewBox="0 0 24 24"><path d="M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8.5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5z"/></svg><i></i></span>
-          <span class="bp-port r"><small>To</small><b>SPU</b><small>Split</small></span>
-        </div>
-        <div class="bp-grid">
-          <span><small>Depart</small>Thu 09 Sep</span><span><small>Return</small>Tue 14 Sep</span><span><small>Nights</small>5</span>
-          <span><small>Guests</small>7</span><span><small>Class</small>First</span><span><small>Gate</small>TBC</span>
-        </div>
-      </div>
-      <div class="bp-stub" aria-hidden="true"><span class="bp-admit">ADMIT 7</span><span class="bp-bar"></span></div>
-    </div></div>
+    <div class="daystrip" id="dayStrip" aria-hidden="true"></div>
 
     <div class="plan-prog"><span id="planProg"></span><i><b id="planBar"></b></i></div>
     <ol class="timeline" id="dayList"></ol>
 
-    <button class="panel soon linkpanel" id="planVilla" type="button" style="margin-top:6px;width:100%;border:0;text-align:left;font:inherit;color:inherit;cursor:pointer"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg></span><span style="flex:1"><b style="color:var(--text)">Where we're staying</b><br>Photos, check-in times and the lot.</span><span class="chev" aria-hidden="true">›</span></button>
-    <a class="btn btn-line" style="margin-top:14px" href="split-trip.ics" download>Add the dates to my calendar</a>
-    <p class="sec-p" style="text-align:center;margin-top:16px;font-size:14px">Got ideas? Chuck them in the <button class="linkbtn" type="button" data-go="home">idea box</button></p>
+    <button class="photolink" id="planVilla" type="button"><img src="villa/01-villa-night.jpg" alt="" loading="lazy"><span class="pl-txt"><span class="vr-k">Home for 5 nights</span><b>Villa Matković</b></span><span class="chev" aria-hidden="true">›</span></button>
+    <p class="sec-p" style="text-align:center;margin-top:16px;font-size:14px">Got an idea for a free day? <button class="linkbtn" type="button" data-go="idea">Suggest an activity</button></p>
   </section>
 
   <section class="screen page" id="pg-villa" aria-labelledby="villaH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Booked and confirmed</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <figure class="vl-hero">
       <img src="villa/01-villa-night.jpg" alt="Villa Matković at night, windows lit and the pool glowing" loading="lazy">
       <figcaption><span class="vr-k">Kučine · Split · 09–14.09.27</span><h2 class="vl-h" id="villaH">Villa<br>Matković</h2></figcaption>
@@ -1315,7 +1427,7 @@ h1.sign span,h1.sign span.lit,h1.sign span.lit.flick,body.crispy h1.sign span{co
   </section>
 
   <section class="screen page" id="pg-money" aria-labelledby="moneyH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">The boring bit</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="moneyH">Costs</h2>
     <div class="receipt-wrap"><div class="receipt" id="receipt" aria-label="Budget breakdown"></div></div>
     <div class="pay" id="pay">
@@ -1328,7 +1440,7 @@ h1.sign span,h1.sign span.lit,h1.sign span.lit.flick,body.crispy h1.sign span{co
   </section>
 
   <section class="screen page" id="pg-prep" aria-labelledby="prepH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Do these early</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="prepH">Before you go</h2>
 
     <div class="pp-wrap"><div class="pp-open">
@@ -1357,7 +1469,7 @@ h1.sign span,h1.sign span.lit,h1.sign span.lit.flick,body.crispy h1.sign span{co
   </section>
 
   <section class="screen page" id="pg-croatia" aria-labelledby="croH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Split, Croatia</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="croH">Croatia 101</h2>
 
     <div class="pc-wrap"><div class="pc-big">
@@ -1693,6 +1805,31 @@ h1.sign span,h1.sign span.lit,h1.sign span.lit.flick,body.crispy h1.sign span{co
     </div>
   </section>
 </main>
+
+<!-- ============ THE DOCK: main navigation, shown on the home screen and info pages ============ -->
+<nav class="dock" id="dock" aria-label="Main">
+  <button class="dk" type="button" data-dock="home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9H4z"/></svg><span>Home</span></button>
+  <button class="dk" type="button" data-dock="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg><span>Plan</span></button>
+  <button class="dk-add" type="button" data-go="idea" aria-label="Suggest an activity"><span aria-hidden="true">+</span></button>
+  <button class="dk" type="button" data-dock="board"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16l-7-4-7 4z"/></svg><span>Board</span></button>
+  <button class="dk" type="button" data-dock="more" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>More</span></button>
+</nav>
+<div class="sheet" id="moreSheet" hidden>
+  <div class="sheet-back" data-close></div>
+  <div class="sheet-card more-card" role="dialog" aria-modal="true" aria-labelledby="moreH">
+    <div class="sheet-grab" aria-hidden="true"></div>
+    <h2 class="q" id="moreH">Everything else</h2>
+    <nav class="more-list" aria-label="Everything else">
+      <button class="more-row" type="button" data-villa><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span><span class="mr-txt"><b>Where we're staying</b></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="more-row" type="button" data-page="money"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span><span class="mr-txt"><b>Costs</b><small id="moreMoney">Deposit paid, £456.85 left each</small></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="more-row" type="button" data-page="prep"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mr-txt"><b>Before you go</b><small id="morePrep">Passport, leave, GHIC</small></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="more-row" type="button" data-page="croatia"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg></span><span class="mr-txt"><b>Croatia 101</b></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="more-row" type="button" data-go="mission"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="mr-txt"><b>Set Christie a mission</b></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="more-row" type="button" data-page="news"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5"/></svg></span><span class="mr-txt"><b>What's new</b></span><span class="chev" aria-hidden="true">›</span></button>
+      <a class="more-row" href="https://open.spotify.com/playlist/7hMN4qKrrd0USB6N153CaI" target="_blank" rel="noopener"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="17" r="3"/><circle cx="18" cy="15" r="3"/><path d="M10 17V5l11-2v12"/></svg></span><span class="mr-txt"><b>The playlist</b></span><span class="chev" aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</div>
   <div class="sheet" id="pinSheet" hidden>
     <div class="sheet-back" data-close></div>
     <form class="sheet-card" id="pinForm" novalidate autocomplete="off" role="dialog" aria-labelledby="pinH">
@@ -1772,6 +1909,7 @@ const UPDATES = [
 const BUDGET = {
   where: 'Split', people: 7, ask: 550,
   deposit: 93.15,   // each, paid first; part of the ask, not on top of it
+  depositPaid: true, // everyone's paid the deposit. Shows "Paid" on the receipt and the rest still to pay elsewhere
   items: [
     { item: 'Accommodation',       cost: 193.14, booked: true },
     { item: 'Boat experience',     from: 43.50,  to: 87.00 },
@@ -1799,9 +1937,9 @@ const VILLA_TOUR = {
   hero: 'villa/01-villa-night.jpg',   // the "lights on" moment
   end: 'villa/07-pool-night.jpg',     // behind the last screen
   slides: [
-    { img: 'villa/03-pool-day.jpg',       title: 'The pool',   line: 'Eight metres of it, all ours. Swimmies on by 10am.',            alt: 'The pool in full sun with mountains behind' },
-    { img: 'villa/04-pergola-view.jpg',   title: 'The view',   line: 'Split and the sea, straight from the hammock chair.',           alt: 'Shaded terrace with a hammock chair looking down over Split and the sea' },
+    { img: 'villa/09-pergola-swing.jpg',  title: 'The view',   line: 'Split and the sea, straight from the hammock chair.',           alt: 'Shaded terrace with a hammock chair and sofas, looking down over Split and the sea' },
     { img: 'villa/05-tavern.jpg',         title: 'The tavern', line: 'Stone walls, open fire, one long table. Konoba night, at home.', alt: 'Stone tavern room with a fire going and long wooden benches' },
+    { img: 'villa/10-pool-view.jpg',      title: 'The pool',   line: 'Eight metres of it, all ours. Swimmies on by 10am.',            alt: 'The pool and sunbeds with the mountain and the sea behind' },
     { img: 'villa/08-terrace-night.jpg',  title: 'After dark', line: 'Four bedrooms, four bathrooms, one very good terrace.',          alt: 'Lantern-lit terrace at night with the city lights below' },
   ],
 };
@@ -2568,7 +2706,8 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
   const low = i => i.cost ?? i.from, high = i => i.cost ?? i.to;
   const lo = BUDGET.items.reduce((t, i) => t + low(i), 0), hi = BUDGET.items.reduce((t, i) => t + high(i), 0);
   const c = BUDGET.items.find(i => /contingency/i.test(i.item)), cont = c ? high(c) : 0;
-  $('#tileAsk').textContent = '£' + BUDGET.ask;
+  const rest = BUDGET.ask - (BUDGET.depositPaid ? BUDGET.deposit : 0);
+  $('#tileAsk').textContent = BUDGET.depositPaid ? '£' + rest.toFixed(2) : '£' + BUDGET.ask;
   const row = (a, b, c, cls = '') => `<div class="r-row ${cls}"><span>${a}</span><span>${b}</span><span>${c}</span></div>`;
   const item = i => i.cost != null
     ? `<div class="r-row r-one"><span>${esc(i.item)}${i.booked ? '<em class="r-booked">Booked</em>' : ''}</span><span>${gbp(i.cost)}</span></div>`
@@ -2583,7 +2722,7 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
     ${row('TOTAL EACH', gbp(lo), gbp(hi), 'r-total')}
     <div class="r-rule double"></div>
     <div class="r-ask"><span>WE'RE ASKING</span><b>${gbp(BUDGET.ask)}<small> EACH</small></b></div>
-    ${BUDGET.deposit ? `<div class="r-row r-one"><span>Deposit (part of the ${gbp(BUDGET.ask)})</span><span>${gbp(BUDGET.deposit)}</span></div>
+    ${BUDGET.deposit ? `<div class="r-row r-one"><span>Deposit (part of the ${gbp(BUDGET.ask)})${BUDGET.depositPaid ? '<em class="r-booked">Paid</em>' : ''}</span><span>${gbp(BUDGET.deposit)}</span></div>
     <div class="r-row r-one"><span>Rest to pay</span><span>${gbp(BUDGET.ask - BUDGET.deposit)}</span></div>` : ''}
     <p class="r-note">${BUDGET.ask >= hi ? 'Covers the top end, with a little to spare.'
       : hi - BUDGET.ask <= cont ? `Worst case, the extra ${gbp(hi - BUDGET.ask)} comes out of the contingency, so ${gbp(BUDGET.ask)} still stands.`
@@ -2602,7 +2741,7 @@ $('#dayList').innerHTML = DAYS.map(d => {
   return `<li class="${cls}"><span class="tl-dot" aria-hidden="true">${d.travel ? PLANE : ''}</span><div class="tl-card">
     <div class="tl-date">${esc(d.date)}</div>
     <div class="tl-title">${esc(d.title)}${d.note ? `<span class="tl-note"> · ${esc(d.note)}</span>` : ''}</div>
-    ${items.length ? '<ul>' + items.map(i => `<li>${i.when ? `<span class="when">${esc(i.when)}</span>` : ''}<span>${esc(i.what)}</span></li>`).join('') + '</ul>' : '<div class="tl-tba">To be announced</div>'}
+    ${items.length ? '<ul>' + items.map(i => `<li>${i.when ? `<span class="when">${esc(i.when)}</span>` : ''}<span>${esc(i.what)}</span></li>`).join('') + '</ul>' : ''}
   </div></li>`;
 }).join('');
 (function(){ const n = DAYS.filter(d => d.plan && d.plan.length).length;
@@ -2765,7 +2904,7 @@ Board.load();
       link:{ href:'https://www.gov.uk/foreign-travel-advice/croatia/entry-requirements', label:'The gov.uk rules →' }, stamp:'Passport<br>checked', shape:'round', ink:'#7a1450', rot:'-8deg' },
     { id:'leave', title:'Book the time off', text:'Thu 9 to Tue 14 Sept 2027.',
       link:{ href:'split-trip.ics', label:'Add the dates to my calendar →', download:true }, stamp:'Leave<br>booked', ink:'#2f5fb8', rot:'6deg' },
-    { id:'pay', title:'Pay your share', text:'£550 each, by bank transfer.', page:{ id:'money', label:'See the bank details →' }, stamp:'Paid', ink:'#b8860b', rot:'-4deg', shape:'round' },
+    { id:'pay', title:'Pay the rest of your share', text:'Deposit paid, thank you. £456.85 left each, by bank transfer.', page:{ id:'money', label:'See the bank details →' }, stamp:'Paid', ink:'#b8860b', rot:'-4deg', shape:'round' },
     { id:'ghic', title:'Get a GHIC', text:"It's free on the NHS website, so ignore any site that tries to charge you.", stamp:'GHIC<br>sorted', ink:'#1f7a5a', rot:'9deg' },
     { id:'insurance', title:'Sort travel insurance', text:'Once flights are booked.', stamp:'Insured', ink:'#c2185b', rot:'-10deg' },
     { id:'outfits', title:'Sort your theme outfits', text:"Once we've picked the themes. Heart your favourites on the board.", page:{ id:'board', label:'Go to the board →' }, stamp:'Dressed<br>to impress', ink:'#6a3fb5', rot:'5deg', shape:'round' },
@@ -2785,6 +2924,7 @@ Board.load();
     });
     $('#prepProg').textContent = `${done.size} of ${ITEMS.length} sorted`;
     $('#prepBar').style.width = Math.max(3, done.size / ITEMS.length * 100) + '%';
+    window.HQ_PREP = { ITEMS, done }; document.dispatchEvent(new Event('prep:change'));
   }
   $('#checks').addEventListener('click', e => {
     const b = e.target.closest('.tick'); if(!b) return;
@@ -2803,7 +2943,7 @@ Board.load();
 // The details live in the Sheet's "Bank details" tab, not in this (public) code. Optional secret word.
 (function(){
   const body = $('#payBody');
-  $('#payAsk').textContent = '£' + BUDGET.ask + ' each';
+  $('#payAsk').textContent = BUDGET.depositPaid ? '£' + (BUDGET.ask - BUDGET.deposit).toFixed(2) + ' left each' : '£' + BUDGET.ask + ' each';
   function show(d){
     const row = (label, val, copy, cls = '') => `<li class="${cls}"><span class="bk"><small>${label}</small><b>${esc(val)}</b></span>${copy ? `<button class="copy" type="button" data-copy="${esc(copy)}">Copy</button>` : ''}</li>`;
     body.innerHTML = `<ul class="bank">
@@ -2903,13 +3043,13 @@ document.addEventListener('pointerdown', e => {
   const stage = s => { vr.dataset.s = s; };
   const setRing = p => { ring.style.strokeDashoffset = C * (1 - p); };
   function clear(){ cancelAnimationFrame(raf); timers.forEach(clearTimeout); timers = []; key.classList.remove('held'); }
-  function reset(){ clear(); setRing(0); lights.classList.remove('on', 'named'); slide = 0; stage('door'); }
+  function reset(){ clear(); setRing(0); lights.classList.remove('on', 'named'); slide = 0; stage('turn'); }
   function open(){
     vr.querySelector('.vr-hero').src = V.hero; vr.querySelector('.vr-endpic').src = V.end;
     V.slides.forEach(x => { new Image().src = x.img; });
     lastFocus = document.activeElement;
     reset(); vr.hidden = false; document.body.classList.add('locked');
-    setTimeout(() => key.focus({ preventScroll: true }), 120);
+    setTimeout(() => vr.querySelector('.vr-land').focus({ preventScroll: true }), 120);
   }
   function close(){ clear(); vr.hidden = true; document.body.classList.remove('locked'); paintTile(); if(lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true }); }
   function unlock(){
@@ -2933,7 +3073,10 @@ document.addEventListener('pointerdown', e => {
   }));
   key.addEventListener('click', e => { if(e.detail === 0) unlock(); });   // Enter / Space on a keyboard
   key.addEventListener('contextmenu', e => e.preventDefault());
-  vr.querySelector('.vr-tap').addEventListener('click', unlock);
+  vr.querySelector('.vr-door .vr-tap').addEventListener('click', unlock);
+  const toDoor = () => { Sound.blip(600); stage('door'); setTimeout(() => key.focus({ preventScroll: true }), 60); };
+  vr.querySelector('.vr-land').addEventListener('click', toDoor);
+  vr.querySelector('.vr-upright').addEventListener('click', toDoor);
 
   function paintSlide(){
     const x = V.slides[slide];
@@ -2948,7 +3091,7 @@ document.addEventListener('pointerdown', e => {
     if(slide < n - 1){ slide++; paintSlide(); }
     else { stage('end'); vr.querySelector('.vr-details').focus({ preventScroll: true }); }
   });
-  vr.querySelector('.vr-again').addEventListener('click', () => { reset(); key.focus({ preventScroll: true }); });
+  vr.querySelector('.vr-again').addEventListener('click', () => { reset(); vr.querySelector('.vr-land').focus({ preventScroll: true }); });
   vr.querySelector('.vr-details').addEventListener('click', () => { close(); openPage('villa'); });
   vr.querySelector('.vr-x').addEventListener('click', close);
   addEventListener('keydown', e => { if(!vr.hidden && e.key === 'Escape') close(); });
@@ -2958,6 +3101,68 @@ document.addEventListener('pointerdown', e => {
   $('#villaReplay').addEventListener('click', open);
   document.addEventListener('hq:entered', () => { if(!seen()) setTimeout(open, reduced ? 0 : 1300); });
   paintTile();
+})();
+
+/* ================= THE DOCK, the More drawer and the home dashboard ================= */
+(function dock(){
+  const dockEl = $('#dock'), more = $('#moreSheet');
+  const tabOf = id => id === 'intro' ? 'home' : id === 'pg-plan' ? 'plan' : id === 'pg-board' ? 'board' : id.startsWith('pg-') ? 'more' : '';
+  function paintDock(id){
+    document.body.dataset.scr = id;
+    const tab = tabOf(id);
+    dockEl.querySelectorAll('.dk').forEach(b => { const on = b.dataset.dock === tab; b.classList.toggle('on', on); on ? b.setAttribute('aria-current', 'page') : b.removeAttribute('aria-current'); });
+  }
+  const baseShow = showScreen;
+  showScreen = function(id){ baseShow(id); paintDock(id); };
+  paintDock(($('.screen.show') || {}).id || 'intro');
+
+  function openMore(){ more.hidden = false; document.body.classList.add('locked'); setTimeout(() => { const f = more.querySelector('.more-row'); f && f.focus({ preventScroll:true }); }, 250); }
+  function closeMore(){ more.hidden = true; document.body.classList.remove('locked'); }
+  dockEl.addEventListener('click', e => {
+    const b = e.target.closest('[data-dock]'); if(!b) return;
+    const d = b.dataset.dock; Sound.blip(640);
+    if(d === 'home'){
+      if($('#intro').classList.contains('show')){ window.scrollTo({ top:0, behavior: reduced ? 'instant' : 'smooth' }); return; }
+      setParty(false); showScreen('intro');
+      if(location.hash) history.pushState(null, '', location.pathname + location.search);
+    }
+    else if(d === 'more') openMore();
+    else openPage(d);
+  });
+  more.addEventListener('click', e => {
+    if(e.target.closest('[data-villa]')){ closeMore(); $('#villaTile').click(); return; }
+    if(e.target.closest('[data-page],[data-go],a.more-row')) closeMore();
+  });
+
+  /* the plan, as a strip of days */
+  const dayBits = DAYS.map(d => { const [dow, num] = d.date.split(' '); return { dow, num, t: !!d.travel, p: !d.travel && d.plan && d.plan.length > 0 }; });
+  const planned = dayBits.filter(d => d.p).length, free = dayBits.filter(d => !d.t).length;
+  $('#dayStrip').innerHTML = dayBits.map(d => `<span class="ds-d${d.t ? ' t' : d.p ? ' p' : ''}"><small>${esc(d.dow.toUpperCase())}</small><b>${esc(d.num)}</b></span>`).join('');
+  $('#miniStrip').innerHTML = dayBits.map(d => `<i class="${d.t ? 't' : d.p ? 'p' : ''}"></i>`).join('');
+  $('#planMini').textContent = planned ? `${planned} of ${free} free days planned` : `${free} days wide open`;
+  const restEach = (BUDGET.ask - BUDGET.deposit).toFixed(2);
+  $('#moneyMini').textContent = BUDGET.depositPaid ? 'Left each. Deposit paid' : `Each. £${BUDGET.deposit.toFixed(2)} deposit first`;
+  $('#moreMoney').textContent = BUDGET.depositPaid ? `Deposit paid, £${restEach} left each` : `£${BUDGET.ask} each, £${BUDGET.deposit.toFixed(2)} deposit first`;
+
+  /* next up: the first thing on your checklist you haven't ticked */
+  function paintNext(){
+    const P = window.HQ_PREP; if(!P) return;
+    const N = P.ITEMS.length, n = P.done.size, left = P.ITEMS.filter(i => !P.done.has(i.id)), el = $('#nextUp');
+    const pct = Math.max(4, n / N * 100);
+    let title, text, page;
+    if(left.length){ const it = left[0]; title = it.title; text = it.text; page = it.page ? it.page.id : 'prep'; }
+    else { title = 'All sorted'; text = "Checklist done. Now go and heart some themes."; page = 'board'; }
+    el.dataset.page = page;
+    el.innerHTML = `<span class="nu-k"><span>${left.length ? 'Next up for you' : 'You\'re all set'}</span><span>${n} of ${N} done</span></span>
+      <span class="nu-main"><span><b>${esc(title)}</b><small>${esc(text)}</small></span><span class="nu-go" aria-hidden="true">→</span></span>
+      <span class="nu-bar" aria-hidden="true"><i style="width:${pct}%"></i></span>`;
+    $('#prepRing').style.strokeDasharray = `${(n / N * 94.25).toFixed(2)} 94.25`;
+    $('#ringTxt').textContent = `${n}/${N}`;
+    $('#prepNext').textContent = left.length ? 'Next: ' + left[0].title.toLowerCase() : 'All sorted';
+    $('#morePrep').textContent = `${n} of ${N} sorted`;
+  }
+  document.addEventListener('prep:change', paintNext);
+  paintNext();
 })();
 })();
 </script>
