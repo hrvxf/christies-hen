@@ -8,7 +8,7 @@
  *   - Who's been in             → the "Guests" tab: one row per phone, with the name they picked at the door,
  *                                 when they first and last came in, and how many visits.
  *     Organisers: in the Extras tab's Status column pick Confirmed to lock a pin in (an extra moves to
- *     Confirmed on the page and its cost comes off the extras pot; a theme gets stamped for its day),
+ *     Confirmed on the page and its cost comes off the extras pot; the confirmed theme is the winner for the whole trip),
  *     or Not this time / Hidden to take it off the board. Blank means it's still up for a vote.
  *     The pot's size comes from the Budget tab's "Extras pot" row.
  *   - Bank details for paying come from the "Bank details" tab (kept here, not in the public website code).
