@@ -5,6 +5,8 @@
  *   - Theme / dress code pitches → the "Themes" tab
  *   - Missions for Christie     → the "Missions" tab
  *   - Finishing touches board   → the "Extras" tab (everyone can see these on the page)
+ *   - Who's been in             → the "Guests" tab: one row per phone, with the name they picked at the door,
+ *                                 when they first and last came in, and how many visits.
  *     Organisers: type Sorted in the Status column to stamp a card, or Hidden to take it off the board.
  *   - Bank details for paying come from the "Bank details" tab (kept here, not in the public website code).
  *     Fill in its Secret word row to make people type that word before the details show.
@@ -25,6 +27,7 @@ const TABS = {
   idea:    { name: 'Ideas',            headers: ['Submitted', 'Name', 'Idea', 'Details', 'Link', 'Price each', 'Time', 'Getting there', 'Bring / wear', 'Christie factor', 'Hype (1-5)'] },
   theme:   { name: 'Themes',           headers: ['Submitted', 'Name', 'Theme', 'The look', 'Link', 'When', 'Christie factor', 'Hype (1-5)', 'Group votes', 'Status', 'Organiser notes'] },
   extra:   { name: 'Extras',           headers: ['Submitted', 'ID', 'Name', 'Extra', 'Details', 'Link', 'Category', 'Rough cost each', 'Hearts', 'Hearted by', 'Status', 'Organiser notes'] },
+  guest:   { name: 'Guests',           headers: ['Device', 'Name', 'First seen', 'Last seen', 'Visits', 'Phone'] },
   mission: { name: 'Missions',         headers: ['Submitted', 'Name', 'Mission', 'Rules', 'When', 'Cheek level', "G&Ts she'll need (1-5)", 'Status', 'Organiser notes'] },
 };
 
@@ -38,6 +41,22 @@ function doPost(e) {
     if (p.website) return json_({ ok: true });
 
     const ss = SpreadsheetApp.getActiveSpreadsheet();
+
+    // A phone checking in at the door. One row per phone; a name change just updates the row.
+    if (p.type === 'hello') {
+      const dev = String(p.device || '').trim().slice(0, 40);
+      if (!p.name || !dev) return json_({ ok: false, error: 'Name and device are required' });
+      const sh = tab_(ss, 'guest'), now = new Date(), n = sh.getLastRow() - 1;
+      const i = n > 0 ? sh.getRange(2, 1, n, 1).getValues().findIndex(r => String(r[0]) === dev) : -1;
+      if (i < 0) {
+        sh.appendRow([dev, clean_(p.name), now, now, 1, clean_(p.phone)]);
+      } else {
+        const row = i + 2, visits = Number(sh.getRange(row, 5).getValue()) || 0;
+        sh.getRange(row, 2).setValue(clean_(p.name));
+        sh.getRange(row, 4, 1, 3).setValues([[now, visits + 1, clean_(p.phone)]]);
+      }
+      return json_({ ok: true });
+    }
 
     if (p.type === 'theme') {
       if (!p.name || !p.theme) return json_({ ok: false, error: 'Name and theme are required' });

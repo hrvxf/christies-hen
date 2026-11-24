@@ -985,6 +985,28 @@ input:focus,textarea:focus{box-shadow:inset 0 0 0 1.5px var(--champ)!important;o
 .enter{margin-top:48px!important;padding:16px 56px!important;font-size:17px!important}
 .ent-rope{display:block;margin-top:22px;width:300px;max-width:80vw;height:auto;overflow:visible}
 .ent-note{color:var(--soft)!important;text-shadow:none!important;margin-top:22px!important}
+/* entrance, first visit: find your name on the guest list (asked once, remembered on the phone) */
+.entrance.asking{cursor:default;overflow-y:auto;place-items:safe center}
+.entrance.asking .ent-ball{width:60px;height:60px;margin-bottom:26px}
+.entrance.asking .enter{display:none}
+.ent-list{margin-top:34px;width:min(330px,84vw)}
+.ent-ask{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--soft);margin:0 0 14px}
+.ent-names{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ent-name{position:relative;min-height:52px;border:0;border-radius:14px;background:transparent;box-shadow:inset 0 0 0 1px var(--hair2);color:var(--text);font:500 16px var(--sans);cursor:pointer;transition:background .2s,color .2s}
+.ent-name:hover{background:rgba(233,201,131,.06)}
+.ent-name:focus-visible,.ent-link:focus-visible{outline:2px solid var(--champ);outline-offset:3px}
+.ent-name::after{content:"";position:absolute;left:22%;right:22%;top:50%;height:1.5px;background:#1a0a00;transform:scaleX(0);transform-origin:left;transition:transform .35s .1s}
+.ent-name.ticked{background:var(--champ);color:#1a0a00;box-shadow:none}
+.ent-name.ticked::after{transform:scaleX(1)}
+.ent-link{margin-top:16px;padding:8px;border:0;background:none;color:var(--soft);font:500 14px var(--sans);text-decoration:underline;text-decoration-color:var(--hair2);text-underline-offset:4px;cursor:pointer}
+.ent-other{display:flex;gap:8px;margin-top:8px}
+.ent-other input{flex:1;min-width:0;min-height:52px;padding:0 14px;border:0;border-radius:14px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--hair2);color:var(--text);font:500 16px var(--sans)}
+.ent-other input:focus{outline:none;box-shadow:inset 0 0 0 1.5px var(--champ)}
+.ent-other button{flex:none;min-height:52px;padding:0 18px;border:0;border-radius:14px;background:var(--champ);color:#1a0a00;font:600 15px var(--sans);cursor:pointer}
+.ent-other.shake{animation:shake .4s}
+.as-me{margin:6px 0 2px;color:var(--muted);font-size:15px}
+.as-me b{color:var(--text);font-weight:600}
+.as-me button{border:0;background:none;padding:4px;color:var(--champ);font:500 15px var(--sans);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 
 /* home hero */
 .ball-rig .ballbox{width:76px!important;height:76px!important;top:54px!important;left:50%!important;margin-left:-38px!important;transform:none!important;box-shadow:0 0 30px rgba(233,201,131,.35)!important}
@@ -1305,11 +1327,22 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
   <div class="door l" aria-hidden="true"></div><div class="door r" aria-hidden="true"></div>
   <div class="ent-inner">
     <span class="ent-ball" aria-hidden="true"></span>
-    <div class="ent-kicker">You're on the guest list</div>
+    <div class="ent-kicker" id="entKick">You're on the guest list</div>
     <div class="ent-title">Christie's</div>
     <div class="ent-sub">Hen HQ</div>
     <button class="enter" id="enterBtn" type="button">Let me in</button>
+    <div class="ent-list" id="entList" hidden>
+      <p class="ent-ask" id="entAsk">Find your name</p>
+      <div class="ent-names" id="entNames" role="group" aria-labelledby="entAsk"></div>
+      <button class="ent-link" id="entElse" type="button">Not on the list?</button>
+      <form class="ent-other" id="entOther" novalidate autocomplete="off" hidden>
+        <label class="sr" for="entName">Your name</label>
+        <input type="text" id="entName" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
+        <button type="submit">That's me</button>
+      </form>
+    </div>
     <svg class="ent-rope" viewBox="0 0 300 60" aria-hidden="true"><rect x="8" y="6" width="6" height="54" rx="3" fill="#c9a35a"/><circle cx="11" cy="6" r="6" fill="#e9c983"/><rect x="286" y="6" width="6" height="54" rx="3" fill="#c9a35a"/><circle cx="289" cy="6" r="6" fill="#e9c983"/><path d="M14 14 C 90 52, 210 52, 286 14" fill="none" stroke="#7a1450" stroke-width="7" stroke-linecap="round"/><path d="M14 12 C 90 48, 210 48, 286 12" fill="none" stroke="rgba(255,110,199,.35)" stroke-width="1.5"/></svg>
+    <button class="ent-link" id="entSwap" type="button" hidden></button>
   </div>
 </div>
 <div class="sky" aria-hidden="true"></div>
@@ -1898,6 +1931,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <div class="sheet-grab" aria-hidden="true"></div>
     <h2 class="q" id="moreH">Everything else</h2>
     <nav class="more-list" aria-label="Everything else">
+      <button class="more-row" type="button" id="meRow"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="mr-txt"><b id="meName">You</b><small>Not you? Tap to switch</small></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="more-row" type="button" data-villa><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span><span class="mr-txt"><b>Where we're staying</b></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="more-row" type="button" data-page="money"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span><span class="mr-txt"><b>Costs</b><small id="moreMoney">Deposit paid, £456.85 left each</small></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="more-row" type="button" data-page="prep"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mr-txt"><b>Before you go</b><small id="morePrep">Passport, leave, GHIC</small></span><span class="chev" aria-hidden="true">›</span></button>
@@ -1914,8 +1948,11 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
       <div class="sheet-grab" aria-hidden="true"></div>
       <h2 class="q" id="pinH">Pin something up</h2>
       <p class="hint">We'll sort the buying.</p>
+      <p class="as-me" id="pinAs" hidden>Pinning as <b></b> <button type="button" data-notme>Not you?</button></p>
+      <div class="who-field" id="pinWho">
       <label class="lbl" for="pname">Your name</label>
       <input type="text" id="pname" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
+      </div>
       <label class="lbl" for="pextra">What is it?</label>
       <input type="text" id="pextra" name="extra" placeholder="e.g. Matching tees for the airport" maxlength="120">
       <p class="lbl">Which pile?</p>
@@ -1974,6 +2011,9 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxvt4RF_1zeiWXZezLAT
 const HEN_DATE = new Date(2027, 8, 9); // 9 Sept 2027
 
 /* ================= HUB CONTENT: edit this bit as plans firm up ================= */
+// The guest list on the way in. Everyone taps their name once and the phone remembers them.
+// Not Christie: it's a surprise. Anyone else can tap "Not on the list?" and type their name.
+const GUESTS = ['Adam', 'Beth', 'Heather', 'Kaitlin', 'Lauren', 'Sorraya'];
 // Newest first. Add a line whenever something changes.
 const UPDATES = [
   { date: '24 Nov 2026', text: "The villa's revealed. Have a nose." },
@@ -2024,6 +2064,31 @@ const VILLA_TOUR = {
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const store = { get(k){ try{return localStorage.getItem(k)}catch(_){return null} }, set(k,v){ try{localStorage.setItem(k,v)}catch(_){} } };
+
+/* ================= WHO'S THIS: asked once at the door, then remembered on this phone ================= */
+// The name and a random device ID live in the phone's storage, with a cookie as a backup copy.
+// The Sheet's "Guests" tab logs each phone, so the organisers can see who's been in.
+const Me = (() => {
+  const YEAR = 60 * 60 * 24 * 400;
+  const cookie = k => { const m = document.cookie.match('(?:^|; )' + k + '=([^;]*)'); try{ return m ? decodeURIComponent(m[1]) : ''; }catch(_){ return ''; } };
+  const keep = (k, v) => { try{ document.cookie = `${k}=${encodeURIComponent(v)}; max-age=${v ? YEAR : 0}; path=/; SameSite=Lax`; }catch(_){} };
+  const drop = k => { try{ localStorage.removeItem(k); }catch(_){} keep(k, ''); };
+  let name = (store.get('hen_name') || cookie('hen_name')).trim();
+  let device = store.get('hen_device') || cookie('hen_device');
+  if(!device) device = (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2)).replace(/-/g, '').slice(0, 12);
+  store.set('hen_device', device); keep('hen_device', device);
+  if(name){ store.set('hen_name', name); keep('hen_name', name); }
+  return {
+    get name(){ return name; },
+    device,
+    set(v){
+      v = String(v || '').trim().slice(0, 60); if(!v) return;
+      if(name && v.toLowerCase() !== name.toLowerCase()) drop('hen_hearts');   // hearts belong to the old name
+      name = v; store.set('hen_name', v); keep('hen_name', v);
+    },
+    forget(){ name = ''; drop('hen_name'); drop('hen_hearts'); drop('hen_hello'); },
+  };
+})();
 const PALETTE = ['#ff2d95','#9b5cff','#3d7bff','#ffd166','#ff6ec7','#5fe1ff'];
 const CRISPY = ['#3d7bff','#9fd3ff','#6a4dff','#ffffff','#5fe1ff'];
 let crispy = false, beat = 0, hypeLevel = 0, ideaCount = null, themeCount = null, missionCount = null, partyOn = false, party = 0, beatCount = 0;
@@ -2254,7 +2319,51 @@ function enterParty(){
   setTimeout(() => entrance.classList.add('gone'), reduced ? 0 : 1200);
   document.dispatchEvent(new Event('hq:entered'));
 }
-entrance.addEventListener('click', enterParty);
+(function door(){
+  const kick = $('#entKick'), list = $('#entList'), names = $('#entNames'), other = $('#entOther'), swap = $('#entSwap');
+  const phone = () => { const u = navigator.userAgent; return /iphone/i.test(u) ? 'iPhone' : /ipad/i.test(u) ? 'iPad' : /android/i.test(u) ? 'Android' : /mac/i.test(u) ? 'Mac' : /windows/i.test(u) ? 'Windows' : 'Other'; };
+  // Tell the Sheet who's in, at most every few hours per phone.
+  function hello(force){
+    const last = Number(store.get('hen_hello') || 0);
+    if(!Me.name || (!force && Date.now() - last < 6 * 36e5)) return;
+    store.set('hen_hello', String(Date.now()));
+    post(new URLSearchParams({ type:'hello', name: Me.name, device: Me.device, phone: phone() })).catch(() => {});
+  }
+  function paint(){
+    const known = !!Me.name;
+    entrance.classList.toggle('asking', !known);
+    list.hidden = known; swap.hidden = !known;
+    kick.textContent = known ? `Welcome back, ${Me.name}` : "You're on the guest list";
+    if(known) swap.textContent = `Not ${Me.name}?`;
+    else {
+      names.replaceChildren(...GUESTS.map(n => { const b = document.createElement('button'); b.className = 'ent-name'; b.type = 'button'; b.dataset.name = n; b.textContent = n; return b; }));
+      other.hidden = true; $('#entElse').hidden = false;
+    }
+  }
+  function pick(v, btn){
+    Me.set(v); hello(true);
+    if(btn) btn.classList.add('ticked');
+    Sound.blip(990);
+    setTimeout(() => { enterParty(); toast(`Nice one, ${Me.name}. This phone will remember you.`); }, btn && !reduced ? 650 : 0);
+  }
+  entrance.addEventListener('click', e => {
+    const b = e.target.closest('.ent-name');
+    if(b){ pick(b.dataset.name, b); return; }
+    if(e.target.closest('#entElse')){ e.target.closest('#entElse').hidden = true; other.hidden = false; $('#entName').focus(); return; }
+    if(e.target.closest('#entSwap')){ Me.forget(); paint(); Sound.blip(520); return; }
+    if(e.target.closest('.ent-list')) return;
+    if(Me.name){ hello(); enterParty(); }
+  });
+  other.addEventListener('submit', e => {
+    e.preventDefault();
+    const v = $('#entName').value.trim();
+    if(!v){ other.classList.remove('shake'); void other.offsetWidth; other.classList.add('shake'); return; }
+    pick(v);
+  });
+  paint();
+  // "Not you?" from inside the HQ: forget this phone and go back to the door
+  window.HQ_ASK_NAME = () => { Me.forget(); location.hash = ''; location.reload(); };
+})();
 
 /* ================= NEON SIGN ================= */
 const title = $('#title');
@@ -2588,7 +2697,7 @@ function validate(i){
 }
 function next(){
   if(!validate(cur)) return;
-  if(cur === 0) store.set('hen_name', form.elements.name.value.trim());
+  if(cur === 0) Me.set(form.elements.name.value);
   Sound.blip(740); lightFloor(14);
   if(cur < N-1) showStep(cur+1, 'r'); else (kind === 'theme' ? submitTheme() : submitTicket());
 }
@@ -2612,7 +2721,7 @@ function startFlow(k){
   enableTilt(); setParty(false);
   useForm(k);
   form.reset(); $$('.err').forEach(e => e.textContent = ''); setHype(0, true);
-  const saved = store.get('hen_name'); if(saved) form.elements.name.value = saved;
+  const saved = Me.name; if(saved) form.elements.name.value = saved;
   if(k === 'idea'){ form.elements.idea.placeholder = 'e.g. ' + pick(EXAMPLES.idea); form.elements.kit.placeholder = 'e.g. ' + pick(EXAMPLES.kit); }
   else if(k === 'theme'){ form.elements.theme.placeholder = 'e.g. ' + pick(EXAMPLES.theme); form.elements.look.placeholder = 'e.g. ' + pick(EXAMPLES.look); }
   else form.elements.mission.placeholder = 'e.g. ' + pick(EXAMPLES.mission);
@@ -2863,7 +2972,7 @@ const Board = (() => {
   }
   async function load(){
     try{
-      const me = store.get('hen_name') || '';
+      const me = Me.name || '';
       const r = await fetch(SCRIPT_URL + '?board=1&me=' + encodeURIComponent(me));
       const d = await r.json();
       const temps = items.filter(it => it.id.startsWith('tmp'));
@@ -2880,7 +2989,7 @@ const Board = (() => {
   /* hearts */
   async function toggle(id, btn){
     const it = items.find(x => x.id === id); if(!it) return;
-    const name = store.get('hen_name');
+    const name = Me.name;
     if(!name){ pendingHeart = id; openSheet('whoSheet'); return; }
     const on = !(myHearts.has(id) || it.mine);
     it.mine = on; it.hearts = Math.max(0, (it.hearts || 0) + (on ? 1 : -1));
@@ -2900,7 +3009,8 @@ const Board = (() => {
   function openSheet(id){
     const sh = $('#' + id); sh.hidden = false; document.body.classList.add('locked');
     sh.querySelectorAll('.err').forEach(x => x.textContent = '');
-    const nm = sh.querySelector('input[name=name]'); if(nm && !nm.value) nm.value = store.get('hen_name') || '';
+    const nm = sh.querySelector('input[name=name]'); if(nm && !nm.value) nm.value = Me.name || '';
+    if(id === 'pinSheet'){ const known = !!Me.name; $('#pinAs').hidden = !known; $('#pinWho').hidden = known; if(known){ nm.value = Me.name; $('#pinAs b').textContent = Me.name; } }
     const first = sh.querySelector(id === 'pinSheet' && nm.value ? 'input[name=extra]' : 'input[name=name]');
     setTimeout(() => first && first.focus({preventScroll:true}), 300);
   }
@@ -2908,6 +3018,7 @@ const Board = (() => {
   $$('.sheet').forEach(sh => sh.addEventListener('click', e => { if(e.target.closest('[data-close]')){ closeSheet(sh.id); if(sh.id === 'whoSheet') pendingHeart = null; } }));
   addEventListener('keydown', e => { if(e.key === 'Escape') $$('.sheet').forEach(sh => { if(!sh.hidden) closeSheet(sh.id); }); });
   $('#pinBtn').addEventListener('click', () => { Sound.blip(700); openSheet('pinSheet'); });
+  $('#pinSheet [data-notme]').addEventListener('click', () => { $('#pinAs').hidden = true; $('#pinWho').hidden = false; $('#pname').value = ''; $('#pname').focus(); });
   const PH = { Theme: ['e.g. All white on the boat', 'Describe the look: colours, outfits, what the bride wears…'],
                _: ['e.g. Matching tees for the airport', 'Colour, wording, how many…'] };
   $('#pinForm').addEventListener('change', e => {
@@ -2919,7 +3030,7 @@ const Board = (() => {
     e.preventDefault();
     const v = e.target.elements.name.value.trim();
     if(!v){ e.target.querySelector('.err').textContent = 'Pop your name in first'; return; }
-    store.set('hen_name', v); closeSheet('whoSheet');
+    Me.set(v); closeSheet('whoSheet');
     const id = pendingHeart; pendingHeart = null;
     load().then(() => { const it = items.find(x => x.id === id); if(it && !it.mine) toggle(id); });
   });
@@ -2931,7 +3042,7 @@ const Board = (() => {
     const name = f.name.value.trim(), extra = f.extra.value.trim();
     if(!name){ err.textContent = 'Pop your name in first'; f.name.focus(); return; }
     if(!extra){ err.textContent = "Go on, what is it?"; f.extra.focus(); return; }
-    store.set('hen_name', name); err.textContent = '';
+    Me.set(name); err.textContent = '';
     const data = { type:'extra', name, extra, category: f.category.value || 'Other', details: f.details.value.trim(),
       link: f.link.value.trim(), cost: f.cost.value.trim(), website: f.website.value };
     btn.disabled = true; btn.textContent = 'Pinning…';
@@ -3196,7 +3307,7 @@ document.addEventListener('pointerdown', e => {
   showScreen = function(id){ baseShow(id); paintDock(id); };
   paintDock(($('.screen.show') || {}).id || 'intro');
 
-  function openMore(){ more.hidden = false; document.body.classList.add('locked'); setTimeout(() => { const f = more.querySelector('.more-row'); f && f.focus({ preventScroll:true }); }, 250); }
+  function openMore(){ $('#meName').textContent = Me.name ? `You're ${Me.name}` : 'Who are you?'; more.hidden = false; document.body.classList.add('locked'); setTimeout(() => { const f = more.querySelector('.more-row'); f && f.focus({ preventScroll:true }); }, 250); }
   function closeMore(){ more.hidden = true; document.body.classList.remove('locked'); }
   dockEl.addEventListener('click', e => {
     const b = e.target.closest('[data-dock]'); if(!b) return;
@@ -3211,6 +3322,7 @@ document.addEventListener('pointerdown', e => {
   });
   more.addEventListener('click', e => {
     if(e.target.closest('[data-villa]')){ closeMore(); $('#villaTile').click(); return; }
+    if(e.target.closest('#meRow')){ window.HQ_ASK_NAME(); return; }
     if(e.target.closest('[data-page],[data-go],a.more-row')) closeMore();
   });
 

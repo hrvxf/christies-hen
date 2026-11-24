@@ -5,6 +5,12 @@ The hen group's home page: the idea box, the playlist, what's new, the plan, the
 - `index.html` – the page (hosted on GitHub Pages)
 - `apps-script/Code.gs` – the Google Apps Script that receives submissions (and serves the bank details from the Sheet's "Bank details" tab, so they never sit in this public code) and writes them to the Sheet (activity ideas → first tab, theme pitches → "Themes", missions for Christie → "Missions", the finishing touches board → "Extras")
 
+## Who's who
+
+The first time someone opens the HQ on a phone, the door shows the guest list (`GUESTS` in the HUB CONTENT block) and they tap their name. The phone remembers them from then on: the door says "Welcome back", and the forms, hearts and pins use that name without asking again. "Not on the list?" lets anyone else type their name, and "Not you?" (on the door, or at the top of More) switches who's on that phone.
+
+Each phone checks in to the Sheet's "Guests" tab: the name, when they first and last came in, and how many visits, so you can see who's had a look. iPhones wipe a website's saved data after about a week without a visit, so anyone who's been away a while may be asked to tap their name again. Adding the HQ to the home screen (Share → Add to Home Screen) stops that.
+
 ## The finishing touches board
 
 Everyone can see it. Cards come from the "Extras" tab. Type **Sorted** in a card's Status column to stamp it, or **Hidden** to take it off the board. Hearts are counted once per name (the "Hearted by" column).
