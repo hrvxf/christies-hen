@@ -15,7 +15,7 @@ Each phone checks in to the Sheet's "Guests" tab: the name, when they first and 
 
 Everyone can see it and vote on it. Pins come from the "Extras" tab; votes are counted once per name (the "Hearted by" column).
 
-- **The theme** is one look for the whole trip, pitched as just a name that sells it ("The village socialites"): **Pitch a theme** on the theme card asks for the name and nothing else. Everyone sees every theme pitched and who likes each one, with the one in the lead at the top. Once Adam confirms one, it's shown as the winner.
+- **The theme** is one look for the whole trip, pitched as just a name that sells it ("Yacht wives"): **Pitch a theme** on the theme card asks for the name and nothing else. Everyone sees every theme pitched and who likes each one, with the one in the lead at the top. Once Adam confirms one, it's shown as the winner.
 - **Pin an extra** (under the extras pot) is for extras only (wear, decor, games, gifts, other), with details, a link and a rough cost.
 - **Extras** (wear, decor, games, gifts, other) sit under "Up for a vote" with a rough cost for the whole thing.
 - **Adam and Beth confirm** in the Status column: **Confirmed** locks it in (a confirmed theme becomes the winner; an extra moves to Confirmed and its cost comes off the extras pot), **Not this time** or **Hidden** takes it off the board, blank means it's still up for a vote.

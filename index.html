@@ -3417,14 +3417,14 @@ const Board = (() => {
   $('#pinSheet [data-notme]').addEventListener('click', () => { $('#pinAs').hidden = true; $('#pinWho').hidden = false; $('#pname').value = ''; $('#pname').focus(); });
 
   // Two ways in: "Pin something up" is for extras (pile, details, link, cost); "Pitch a theme" asks for the
-  // theme's name and nothing else, because the name should sell it ("The village socialites").
+  // theme's name and nothing else, because the name should sell it ("Yacht wives").
   function setCategory(v){
     const theme = v === 'Theme', x = $('#pextra');
     $('#pinH').textContent = theme ? 'Pitch a theme' : 'Pin an extra';
     $('#pinPile').hidden = theme;
     $('#pextraL').textContent = theme ? 'Theme name' : 'What is it?';
     $('#pinHint').textContent = theme ? 'A few words. The name should sell it.' : "We'll sort the buying.";
-    x.placeholder = theme ? 'e.g. The village socialites' : 'e.g. Matching tees for the airport';
+    x.placeholder = theme ? 'e.g. Yacht wives' : 'e.g. Matching tees for the airport';
     x.maxLength = theme ? 40 : 120;
     if(theme && x.value.length > 40) x.value = x.value.slice(0, 40);
     $('#pinMore').hidden = theme;
