@@ -41,3 +41,5 @@ Tap the mirror ball 5 times. 🍸
 ## The look
 
 The styling ends with an **AFTER DARK** layer at the bottom of the `<style>` block: ink and plum ground, champagne gold for anything you tap, cream for the paper props, Cormorant Garamond headings, Outfit to read, Space Mono for labels. One gold button per screen, thin gold outlines for the quieter ones, no emojis. To tweak colours, change the variables at the top of that layer.
+
+The **dock** at the bottom is the main navigation: Home, Plan, the gold + (suggest an activity), Board and More. More opens a drawer with everything else (villa, costs, before you go, Croatia 101, missions, what's new, the playlist). The home screen's "Next up for you" card shows each person the first thing on their Before you go checklist they haven't ticked yet. Cards are solid colours rather than outlines, and each one shows a status as well as where it goes.
