@@ -1102,6 +1102,88 @@ body[data-scr="intro"] main,body[data-scr^="pg-"] main{padding-bottom:calc(var(-
 body[data-scr^="pg-"] .page-head .back{display:none}
 body[data-scr^="pg-"] .page-head:not(:has(.hd-ico)){display:none}
 #pg-plan .plan-prog{display:none}
+
+/* =====================================================================
+   PAGE WORLDS: each info page gets its own ground, so they don't all look
+   the same. Home and the villa stay night-time plum.
+   ===================================================================== */
+body[data-scr^="pg-"] .screen.page{position:relative;z-index:0}
+.pg-photo{padding-top:1px}
+.pg-photo::before{content:"";position:absolute;z-index:-1;left:-18px;right:-18px;top:calc(-1 * (var(--safe-t) + 64px));height:calc(var(--safe-t) + 360px)}
+
+/* the plan: Adriatic dusk */
+body[data-scr="pg-plan"] .sky{background:linear-gradient(180deg,#0b2238 0%,#0a2a3c 55%,#061624 100%)!important}
+#pg-plan::before{background:linear-gradient(180deg,rgba(8,24,44,.35) 0%,rgba(8,24,44,.08) 40%,#0b2238 100%),url(villa/10-pool-view.jpg) 50% 40%/cover}
+#pg-plan .sec-h{margin-top:170px;text-shadow:0 2px 20px rgba(0,0,0,.45)}
+#pg-plan .hd-ico{background:rgba(8,24,44,.55)}
+#pg-plan .ds-d:not(.t){background:rgba(120,190,230,.12);color:#eaf6ff}
+#pg-plan .ds-d.p{background:rgba(233,201,131,.3)}
+#pg-plan .tl-card{background:rgba(120,190,230,.10)!important}
+#pg-plan .tl.travel .tl-card{background:linear-gradient(135deg,rgba(233,201,131,.22),rgba(233,201,131,.06))!important}
+#pg-plan .tl-date{color:#8fc3e3}
+#pg-plan .tl.travel .tl-date{color:var(--champ)}
+body[data-scr="pg-plan"] .dock{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04)),rgba(20,60,90,.6)}
+body[data-scr="pg-plan"] .dk{color:#b9d9ee}
+
+/* costs: receipt paper, the one light page */
+body[data-scr="pg-money"] .sky{background:radial-gradient(rgba(42,11,58,.07) 1px,transparent 1.2px) 0 0/14px 14px,#f6ecdb!important}
+#pg-money,#pg-money .sec-h{color:#2a0b3a}
+.cost-left{display:flex;align-items:baseline;gap:10px;margin:2px 0 18px}
+.cost-left b{font-family:var(--serif);font-weight:600;font-size:64px;line-height:1;color:#7a1450}
+.cost-left span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a5a96}
+#pg-money .receipt{box-shadow:0 18px 40px rgba(90,50,20,.18),0 2px 6px rgba(90,50,20,.1)!important}
+#pg-money .pay{background:#2a0b3a!important;color:#fff4e3}
+#pg-money .pay-head span{color:var(--champ)}
+body[data-scr="pg-money"] .dock{background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.4)),rgba(246,236,219,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 20px 44px rgba(90,50,20,.25)}
+body[data-scr="pg-money"] .dk{color:#8a6a7a}
+body[data-scr="pg-money"] .dk.on{color:#7a1450;text-shadow:none}
+body[data-scr="pg-money"] .dk-add{box-shadow:0 10px 24px rgba(160,110,30,.35),inset 0 1px 0 rgba(255,255,255,.6)}
+
+/* before you go: passport leather */
+body[data-scr="pg-prep"] .sky{background:repeating-radial-gradient(circle at 50% 160px,rgba(233,201,131,.05) 0 1px,transparent 1px 9px),radial-gradient(420px 320px at 50% 80px,#5a1430,transparent 70%),#3a0a1e!important}
+#pg-prep .sec-h{color:#f4dca0}
+#pg-prep .check{background:rgba(20,0,8,.28)!important;box-shadow:none!important}
+#pg-prep .ck-txt span{color:#e6b9c6}
+#pg-prep .prep-note{color:#f3d9e1}
+body[data-scr="pg-prep"] .dock{background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.03)),rgba(90,20,48,.6)}
+body[data-scr="pg-prep"] .dk{color:#e6b9c6}
+
+/* Croatia 101: Mediterranean day */
+body[data-scr="pg-croatia"] .sky{background:linear-gradient(180deg,#0d4a6b 0%,#0b3d5a 60%,#082c42 100%)!important}
+#pg-croatia::before{background:linear-gradient(180deg,rgba(13,74,107,0) 35%,#0d4a6b 96%),url(villa/04-pergola-view.jpg) 50% 50%/cover}
+#pg-croatia .pc-wrap{display:none}
+#pg-croatia::before{height:calc(var(--safe-t) + 290px)}
+#pg-croatia .sec-h{margin-top:140px;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.35)}
+#pg-croatia .sec-h::before{content:"Pozdrav iz Splita";display:block;margin-bottom:8px;font:400 11px var(--mono);letter-spacing:.24em;text-transform:uppercase;color:#ffe2b8}
+#pg-croatia .wx{border:0!important;gap:8px!important}
+#pg-croatia .wx div{border:0!important;border-radius:16px!important;padding:12px 0!important;background:rgba(255,255,255,.12)!important}
+#pg-croatia .wx div:nth-child(1){background:#f2b36a!important}
+#pg-croatia .wx div:nth-child(3){background:#3fa7c9!important}
+#pg-croatia .wx div:nth-child(1) b,#pg-croatia .wx div:nth-child(1) small{color:#3a1a00!important}
+#pg-croatia .wx div:nth-child(3) b,#pg-croatia .wx div:nth-child(3) small{color:#04283b!important}
+#pg-croatia .sub-h{color:#ffe2b8}
+#pg-croatia .wx-note,#pg-croatia .ph-en{color:#cfe7f5}
+#pg-croatia .panel{background:rgba(255,255,255,.08)!important}
+#pg-croatia .say{background:#d0693f!important}
+#pg-croatia .say svg{fill:#fff!important}
+body[data-scr="pg-croatia"] .dock{background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.05)),rgba(13,74,107,.55)}
+body[data-scr="pg-croatia"] .dk{color:#cfe7f5}
+body[data-scr="pg-croatia"] .dk.on{color:#ffd38a}
+
+/* themes & extras: cork pinboard */
+body[data-scr="pg-board"] .sky{background:radial-gradient(rgba(70,35,10,.28) 1px,transparent 1.5px) 0 0/9px 9px,radial-gradient(rgba(255,230,190,.18) 1px,transparent 1.5px) 4px 6px/13px 13px,linear-gradient(180deg,#c99a6b,#b5875a)!important}
+#pg-board .sec-h{color:#2a0b3a}
+#pg-board #pinBtn{background:#2a0b3a!important;color:#fff4e3!important}
+#pg-board #pinBtn .arr{color:var(--champ)}
+#pg-board .board-filter label{background:rgba(255,244,227,.7)!important;color:#2a0b3a!important}
+#pg-board .board-filter input:checked + label{background:#2a0b3a!important;color:#fff4e3!important}
+#pg-board .note{box-shadow:0 12px 22px rgba(60,30,10,.35)!important;border-radius:6px!important}
+#pg-board .note:nth-child(even){background:#2a0b3a!important}
+#pg-board .note::before{background:radial-gradient(circle at 35% 30%,#ffb3c8,#c2185b 60%,#6b0a30)!important}
+#pg-board .board-empty{background:rgba(255,244,227,.7)!important;color:#2a0b3a}
+body[data-scr="pg-board"] .dock{background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.12)),rgba(120,80,45,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 20px 44px rgba(60,30,10,.3)}
+body[data-scr="pg-board"] .dk{color:#3a2010}
+body[data-scr="pg-board"] .dk.on{color:#2a0b3a;text-shadow:none}
 #pg-plan .page-head{justify-content:flex-end;margin-bottom:-44px;position:relative;z-index:2}
 .page-head{min-height:44px}
 .hd-ico{margin-left:auto;display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:var(--tone1);color:var(--champ)}
@@ -1358,7 +1440,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <div class="board" id="board" aria-live="polite"></div>
   </section>
 
-  <section class="screen page" id="pg-plan" aria-labelledby="planH">
+  <section class="screen page pg-photo" id="pg-plan" aria-labelledby="planH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><a class="hd-ico" href="split-trip.ics" download aria-label="Add the dates to my calendar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M12 13v4M10 15h4"/></svg></a></div>
     <h2 class="sec-h" id="planH">The plan</h2>
     <div class="daystrip" id="dayStrip" aria-hidden="true"></div>
@@ -1425,6 +1507,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
   <section class="screen page" id="pg-money" aria-labelledby="moneyH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="moneyH">Costs</h2>
+    <p class="cost-left"><b id="costLeft">£456.85</b><span id="costLeftK">Left to pay</span></p>
     <div class="receipt-wrap"><div class="receipt" id="receipt" aria-label="Budget breakdown"></div></div>
     <div class="pay" id="pay">
       <div class="pay-head"><b>Pay by bank transfer</b><span id="payAsk">£550 each</span></div>
@@ -1462,7 +1545,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <p class="prep-note">New EU border checks: expect fingerprints and a photo at passport control.</p>
   </section>
 
-  <section class="screen page" id="pg-croatia" aria-labelledby="croH">
+  <section class="screen page pg-photo" id="pg-croatia" aria-labelledby="croH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="croH">Croatia 101</h2>
 
@@ -2693,6 +2776,8 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
   const lo = BUDGET.items.reduce((t, i) => t + low(i), 0), hi = BUDGET.items.reduce((t, i) => t + high(i), 0);
   const c = BUDGET.items.find(i => /contingency/i.test(i.item)), cont = c ? high(c) : 0;
   const rest = BUDGET.ask - (BUDGET.depositPaid ? BUDGET.deposit : 0);
+  $('#costLeft').textContent = '£' + (BUDGET.depositPaid ? rest.toFixed(2) : BUDGET.ask);
+  $('#costLeftK').textContent = BUDGET.depositPaid ? 'Left to pay' : 'Each';
   $('#tileAsk').textContent = BUDGET.depositPaid ? '£' + rest.toFixed(2) : '£' + BUDGET.ask;
   const row = (a, b, c, cls = '') => `<div class="r-row ${cls}"><span>${a}</span><span>${b}</span><span>${c}</span></div>`;
   const item = i => i.cost != null
