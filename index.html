@@ -1085,6 +1085,8 @@ body.waiting .dock,body.locked .dock{display:none!important}
 .dk-add:active{transform:scale(.94)}
 body[data-scr="intro"] main,body[data-scr^="pg-"] main{padding-bottom:calc(var(--safe-b) + 110px)}
 body[data-scr^="pg-"] .page-head .back{display:none}
+body[data-scr^="pg-"] .page-head:not(:has(.hd-ico)){display:none}
+#pg-plan .page-head{justify-content:flex-end;margin-bottom:-44px;position:relative;z-index:2}
 .page-head{min-height:44px}
 .hd-ico{margin-left:auto;display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:var(--tone1);color:var(--champ)}
 .hd-ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
@@ -1272,7 +1274,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     </div>
 
     <div class="hq-head">
-      <div class="hq-title"><div class="kicker">Hen HQ</div><h1 class="sign" id="title" aria-label="Christie's"></h1></div>
+      <div class="hq-title"><h1 class="sign" id="title" aria-label="Christie's"></h1></div>
       <div class="marquee" id="marquee">
         <div class="days" id="days">—</div>
         <div class="till" id="till">till Croatia · 09.09.27</div>
@@ -1320,13 +1322,13 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
   </section>
 
   <section class="screen page" id="pg-news" aria-labelledby="newsH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Hot off the press</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="newsH">What's new</h2>
     <ol class="panel rows" id="newsList"></ol>
   </section>
 
   <section class="screen page" id="pg-board" aria-labelledby="boardH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Everyone can see this one</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="boardH">Themes &amp; extras</h2>
     <button class="btn btn-gold" id="pinBtn" type="button">Pin something up<span class="arr" aria-hidden="true">+</span></button>
     <div class="chips board-filter" id="boardFilter" role="radiogroup" aria-label="Show">
@@ -1341,7 +1343,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
   </section>
 
   <section class="screen page" id="pg-plan" aria-labelledby="planH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Thu 9 – Tue 14 Sept 2027</span><a class="hd-ico" href="split-trip.ics" download aria-label="Add the dates to my calendar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M12 13v4M10 15h4"/></svg></a></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><a class="hd-ico" href="split-trip.ics" download aria-label="Add the dates to my calendar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M12 13v4M10 15h4"/></svg></a></div>
     <h2 class="sec-h" id="planH">The plan</h2>
     <div class="daystrip" id="dayStrip" aria-hidden="true"></div>
 
@@ -1353,7 +1355,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
   </section>
 
   <section class="screen page" id="pg-villa" aria-labelledby="villaH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Booked and confirmed</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <figure class="vl-hero">
       <img src="villa/01-villa-night.jpg" alt="Villa Matković at night, windows lit and the pool glowing" loading="lazy">
       <figcaption><span class="vr-k">Kučine · Split · 09–14.09.27</span><h2 class="vl-h" id="villaH">Villa<br>Matković</h2></figcaption>
@@ -1408,7 +1410,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
   </section>
 
   <section class="screen page" id="pg-money" aria-labelledby="moneyH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">The boring bit</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="moneyH">Costs</h2>
     <div class="receipt-wrap"><div class="receipt" id="receipt" aria-label="Budget breakdown"></div></div>
     <div class="pay" id="pay">
@@ -1421,7 +1423,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
   </section>
 
   <section class="screen page" id="pg-prep" aria-labelledby="prepH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Do these early</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="prepH">Before you go</h2>
 
     <div class="pp-wrap"><div class="pp-open">
@@ -1450,7 +1452,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
   </section>
 
   <section class="screen page" id="pg-croatia" aria-labelledby="croH">
-    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button><span class="sec-k">Split, Croatia</span></div>
+    <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="croH">Croatia 101</h2>
 
     <div class="pc-wrap"><div class="pc-big">
@@ -1801,13 +1803,13 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <div class="sheet-grab" aria-hidden="true"></div>
     <h2 class="q" id="moreH">Everything else</h2>
     <nav class="more-list" aria-label="Everything else">
-      <button class="more-row" type="button" data-villa><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span><span class="mr-txt"><b>Where we're staying</b><small>Villa Matković, Kučine</small></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="more-row" type="button" data-villa><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span><span class="mr-txt"><b>Where we're staying</b></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="more-row" type="button" data-page="money"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span><span class="mr-txt"><b>Costs</b><small id="moreMoney">Deposit paid, £456.85 left each</small></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="more-row" type="button" data-page="prep"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="mr-txt"><b>Before you go</b><small id="morePrep">Passport, leave, GHIC</small></span><span class="chev" aria-hidden="true">›</span></button>
-      <button class="more-row" type="button" data-page="croatia"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg></span><span class="mr-txt"><b>Croatia 101</b><small>Weather and phrases</small></span><span class="chev" aria-hidden="true">›</span></button>
-      <button class="more-row" type="button" data-go="mission"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="mr-txt"><b>Set Christie a mission</b><small>Dares for the big day</small></span><span class="chev" aria-hidden="true">›</span></button>
-      <button class="more-row" type="button" data-page="news"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5"/></svg></span><span class="mr-txt"><b>What's new</b><small>Every update so far</small></span><span class="chev" aria-hidden="true">›</span></button>
-      <a class="more-row" href="https://open.spotify.com/playlist/7hMN4qKrrd0USB6N153CaI" target="_blank" rel="noopener"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="17" r="3"/><circle cx="18" cy="15" r="3"/><path d="M10 17V5l11-2v12"/></svg></span><span class="mr-txt"><b>The playlist</b><small>Add your songs on Spotify</small></span><span class="chev" aria-hidden="true">↗</span></a>
+      <button class="more-row" type="button" data-page="croatia"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg></span><span class="mr-txt"><b>Croatia 101</b></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="more-row" type="button" data-go="mission"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="mr-txt"><b>Set Christie a mission</b></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="more-row" type="button" data-page="news"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5"/></svg></span><span class="mr-txt"><b>What's new</b></span><span class="chev" aria-hidden="true">›</span></button>
+      <a class="more-row" href="https://open.spotify.com/playlist/7hMN4qKrrd0USB6N153CaI" target="_blank" rel="noopener"><span class="mr-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="17" r="3"/><circle cx="18" cy="15" r="3"/><path d="M10 17V5l11-2v12"/></svg></span><span class="mr-txt"><b>The playlist</b></span><span class="chev" aria-hidden="true">↗</span></a>
     </nav>
   </div>
 </div>
@@ -2722,7 +2724,7 @@ $('#dayList').innerHTML = DAYS.map(d => {
   return `<li class="${cls}"><span class="tl-dot" aria-hidden="true">${d.travel ? PLANE : ''}</span><div class="tl-card">
     <div class="tl-date">${esc(d.date)}</div>
     <div class="tl-title">${esc(d.title)}${d.note ? `<span class="tl-note"> · ${esc(d.note)}</span>` : ''}</div>
-    ${items.length ? '<ul>' + items.map(i => `<li>${i.when ? `<span class="when">${esc(i.when)}</span>` : ''}<span>${esc(i.what)}</span></li>`).join('') + '</ul>' : '<div class="tl-tba">To be announced</div>'}
+    ${items.length ? '<ul>' + items.map(i => `<li>${i.when ? `<span class="when">${esc(i.when)}</span>` : ''}<span>${esc(i.what)}</span></li>`).join('') + '</ul>' : ''}
   </div></li>`;
 }).join('');
 (function(){ const n = DAYS.filter(d => d.plan && d.plan.length).length;
