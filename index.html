@@ -1233,7 +1233,15 @@ body[data-scr="pg-board"] .dk.on{color:#2a0b3a;text-shadow:none}
 .td-alts{list-style:none;margin:12px 0 0;padding:0;border-top:1px dashed rgba(42,11,58,.25)}
 .td-alts li{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:50px;border-bottom:1px dashed rgba(42,11,58,.15);font-size:14px}
 .td-alts li:last-child{border-bottom:0}
-.td-alts small{display:block;font-size:12px;opacity:.7}
+.td-alts small{display:block;font-size:12px;opacity:.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.td-alts li{padding:10px 0}
+.td-alts li>span{min-width:0}
+.td-alts b{display:block;font-weight:600;font-size:15px}
+.td-alts .faces{margin-top:6px}
+.td-alts .face{width:22px;height:22px;margin-right:-5px;font-size:10px;border-width:1.5px}
+.td-alts li.fresh{animation:pinIn .6s cubic-bezier(.3,1.4,.5,1) both}
+.td-count{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:#6b4a5c}
+.td-pitch{display:block;width:100%;min-height:46px;margin-top:12px;border:0;border-radius:12px;background:rgba(42,11,58,.07);color:#2a0b3a;font:600 14px var(--sans);cursor:pointer}
 .td-empty{background:rgba(255,244,227,.4);box-shadow:none;outline:2px dashed rgba(42,11,58,.45);outline-offset:-2px}
 .td-empty::before{display:none}
 .td-empty p{margin:6px 0 12px;font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.1}
@@ -1578,7 +1586,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <p class="sec-p bd-intro">Pin it, vote on it. Adam and Beth confirm the winners and sort the buying.</p>
     <button class="btn btn-gold" id="pinBtn" type="button">Pin something up<span class="arr" aria-hidden="true">+</span></button>
 
-    <h3 class="bd-k" id="tdH">Themes, day by day</h3>
+    <h3 class="bd-k" id="tdH">The theme</h3>
     <div class="td-list" id="themeDays" aria-labelledby="tdH" aria-live="polite"></div>
 
     <h3 class="bd-k">Extras</h3>
@@ -2093,10 +2101,6 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
         <input type="radio" name="category" id="pc4" value="Gifts"><label for="pc4">Gifts</label>
         <input type="radio" name="category" id="pc5" value="Other"><label for="pc5">Other</label>
       </div>
-      <div id="pinDay" hidden>
-        <p class="lbl">Which day?</p>
-        <div class="chips" id="pinDays" role="radiogroup" aria-label="Which day"></div>
-      </div>
       <label class="lbl" for="pdetails">The details <small>(optional)</small></label>
       <textarea id="pdetails" name="details" placeholder="Colour, wording, how many…" maxlength="600"></textarea>
       <div class="pin-pair">
@@ -2197,15 +2201,6 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxvt4RF_1zeiWXZezLAT
 const HEN_DATE = new Date(2027, 8, 9); // 9 Sept 2027
 
 /* ================= HUB CONTENT: edit this bit as plans firm up ================= */
-// Themes & extras board: each theme is pitched for one of these days, and Adam and Beth confirm a winner
-// for each in the Sheet. id is what's saved in the Sheet's Day column; label is what the page shows.
-const THEME_DAYS = [
-  { id: 'Flying out',    label: 'Thu 9 · Flying out' },
-  { id: 'Boat day',      label: 'Boat day' },
-  { id: 'Vineyard',      label: 'Vineyard' },
-  { id: 'Big night out', label: 'Big night out' },
-  { id: 'Flying home',   label: 'Tue 14 · Flying home' },
-];
 // The extras pot comes from the Budget tab's "Extras pot" row; this is only used if that can't be read.
 const EXTRAS_POT = 200;
 // The guest list on the way in. Everyone taps their name once and the phone remembers them.
@@ -3215,7 +3210,6 @@ const Board = (() => {
   const HEART_SVG = '<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>';
   const TICK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
   const TILT = ['-1.6deg','1.2deg','.6deg','-1deg','1.8deg','-.4deg'];
-  const DAY_TILT = ['-.8deg','.6deg','-.4deg','.8deg','-.3deg','.4deg'];
   const FACE = ['#2a0b3a','#7a1450','#3d2a6b','#6b3a10','#1f4a5c','#5c1f3a','#4a3a10'];
   const escA = x => esc(String(x)).replace(/"/g, '&quot;');
   const safeLink = u => /^https?:\/\//i.test(u || '') ? u : '';
@@ -3232,7 +3226,6 @@ const Board = (() => {
   const mine = it => myHearts.has(it.id) || !!it.mine;
   const votes = it => Math.max((it.by || []).length, it.hearts || 0);
   const byVotes = (a, b) => votes(b) - votes(a) || (b.at || 0) - (a.at || 0);
-  const dayOf = it => THEME_DAYS.some(d => d.id === it.day) ? it.day : '';
 
   function faces(it){
     return `<span class="faces">${(it.by || []).slice(0, 7).map(n => {
@@ -3246,35 +3239,34 @@ const Board = (() => {
   const manage = it => isTmp(it) ? '' : `<button class="org-btn" type="button" data-manage="${escA(it.id)}" aria-label="Manage ${escA(it.extra)}">${GEAR}Manage</button>`;
   const heartBtn = it => `<button class="heart" type="button" data-id="${escA(it.id)}" aria-pressed="${mine(it)}" aria-label="Vote for ${escA(it.extra)}"${isTmp(it) ? ' disabled' : ''}>${HEART_SVG}<span>${votes(it)}</span></button>`;
 
-  /* themes, one card per day */
-  function themeDays(){
-    const themes = items.filter(isTheme);
-    const days = THEME_DAYS.slice();
-    if(themes.some(t => !dayOf(t))) days.push({ id: '', label: 'Day to be decided' });
-    return days.map((d, k) => {
-      const list = themes.filter(t => dayOf(t) === d.id).sort(byVotes);
-      const won = list.find(t => t.confirmed), r = `--r:${DAY_TILT[k % DAY_TILT.length]}`;
-      if(won) return `<article class="td done" style="${r}">
-          <div class="td-top"><span class="td-when">${esc(d.label)}</span><span class="td-stamp">Confirmed</span></div>
-          <h3>${esc(won.extra)}</h3><p class="td-by">${esc(nice(won.name))}'s idea</p>
-          ${won.details ? `<p class="td-look">${esc(won.details)}</p>` : ''}
-          ${manage(won)}
-        </article>`;
-      if(!list.length) return `<article class="td td-empty" style="${r}">
-          <div class="td-top"><span class="td-when">${esc(d.label)}</span></div>
-          <p>Nothing yet. Sunnies and regret?</p>
-          <button class="vote" type="button" data-pitch="${escA(d.id)}">Pitch a look</button>
-        </article>`;
-      const [lead, ...rest] = list;
-      return `<article class="td${lead.id === freshId ? ' fresh' : ''}" style="${r}">
-          <div class="td-top"><span class="td-when">${esc(d.label)}</span></div>
-          <h3>${esc(lead.extra)}</h3><p class="td-by">${esc(nice(lead.name))}'s idea</p>
-          ${lead.details ? `<p class="td-look">${esc(lead.details)}</p>` : ''}
-          <div class="td-vote"><div>${faces(lead)}<span class="td-n">${votes(lead)} of ${GUESTS.length}</span></div>${voteBtn(lead)}</div>
-          ${manage(lead)}
-          ${rest.length ? `<ul class="td-alts">${rest.map(t => `<li><span>${esc(t.extra)}<small>${esc(nice(t.name))}'s idea</small></span><div>${heartBtn(t)}${manage(t)}</div></li>`).join('')}</ul>` : ''}
-        </article>`;
-    }).join('');
+  /* the theme: one for the whole trip. Everyone sees every pitch and who likes it; Adam confirms the winner. */
+  function themeCard(){
+    const list = items.filter(isTheme).sort(byVotes);
+    const won = list.find(t => t.confirmed);
+    if(won) return `<article class="td done" style="--r:-.6deg">
+        <div class="td-top"><span class="td-when">The whole trip</span><span class="td-stamp">The winner</span></div>
+        <h3>${esc(won.extra)}</h3><p class="td-by">${esc(nice(won.name))}'s idea</p>
+        ${won.details ? `<p class="td-look">${esc(won.details)}</p>` : ''}
+        <div class="td-vote"><div>${faces(won)}<span class="td-n">${votes(won)} of ${GUESTS.length} liked it</span></div></div>
+        ${manage(won)}
+      </article>`;
+    if(!list.length) return `<article class="td td-empty">
+        <div class="td-top"><span class="td-when">The whole trip</span></div>
+        <p>No themes yet. What are we all wearing?</p>
+        <button class="vote" type="button" data-pitch>Pitch a theme</button>
+      </article>`;
+    const [lead, ...rest] = list;
+    return `<article class="td${lead.id === freshId ? ' fresh' : ''}" style="--r:-.6deg">
+        <div class="td-top"><span class="td-when">In the lead</span><span class="td-count">${list.length} pitched</span></div>
+        <h3>${esc(lead.extra)}</h3><p class="td-by">${esc(nice(lead.name))}'s idea</p>
+        ${lead.details ? `<p class="td-look">${esc(lead.details)}</p>` : ''}
+        <div class="td-vote"><div>${faces(lead)}<span class="td-n">${votes(lead)} of ${GUESTS.length}</span></div>${voteBtn(lead)}</div>
+        ${manage(lead)}
+        ${rest.length ? `<ul class="td-alts">${rest.map(t => `<li class="${t.id === freshId ? 'fresh' : ''}">
+            <span><b>${esc(t.extra)}</b><small>${esc(nice(t.name))}'s idea${t.details ? ' · ' + esc(t.details) : ''}</small>${faces(t)}</span>
+            <div>${heartBtn(t)}${manage(t)}</div></li>`).join('')}</ul>` : ''}
+        <button class="td-pitch" type="button" data-pitch>Pitch another theme +</button>
+      </article>`;
   }
 
   /* extras: the pot, up for a vote, confirmed */
@@ -3298,7 +3290,7 @@ const Board = (() => {
       const msg = `<div class="board-empty">${failed ? "Couldn't load the board. Check your signal and try again." : 'Loading the board…'}</div>`;
       days.innerHTML = msg; el.innerHTML = ''; potEl.innerHTML = ''; cf.innerHTML = ''; return;
     }
-    days.innerHTML = themeDays();
+    days.innerHTML = themeCard();
 
     const done = items.filter(it => it.confirmed && (!isTheme(it) || money(it) > 0));
     const open = items.filter(it => !it.confirmed && !isTheme(it));
@@ -3355,7 +3347,7 @@ const Board = (() => {
   }
   document.addEventListener('click', e => {
     const v = e.target.closest('#pg-board .heart[data-id], #pg-board .vote[data-id]'); if(v && !v.disabled){ toggle(v.dataset.id); return; }
-    const p = e.target.closest('#pg-board [data-pitch]'); if(p){ pitch(p.dataset.pitch); return; }
+    const p = e.target.closest('#pg-board [data-pitch]'); if(p){ pitch(); return; }
     const m = e.target.closest('#pg-board [data-manage]'); if(m) manageOpen(m.dataset.manage);
   });
 
@@ -3364,8 +3356,7 @@ const Board = (() => {
   function manageOpen(id){
     const it = items.find(x => x.id === id); if(!it || !Org.on) return;
     managing = it;
-    const day = THEME_DAYS.find(d => d.id === it.day);
-    $('#opKind').textContent = isTheme(it) ? 'Theme · ' + (day ? day.label : 'day to be decided') : (it.category || 'Other');
+    $('#opKind').textContent = isTheme(it) ? 'Theme for the whole trip' : (it.category || 'Other');
     $('#opH').textContent = it.extra;
     $('#opNow').textContent = `${nice(it.name)}'s idea · ${it.confirmed ? 'confirmed' : 'up for a vote'} · ${votes(it)} of ${GUESTS.length} voted`;
     $('#opCost').value = it.cost || '';
@@ -3407,21 +3398,17 @@ const Board = (() => {
   $('#pinBtn').addEventListener('click', () => { Sound.blip(700); openSheet('pinSheet'); });
   $('#pinSheet [data-notme]').addEventListener('click', () => { $('#pinAs').hidden = true; $('#pinWho').hidden = false; $('#pname').value = ''; $('#pname').focus(); });
 
-  // Pinning a theme asks which day it's for
-  $('#pinDays').innerHTML = THEME_DAYS.map((d, i) => `<input type="radio" name="day" id="pdy${i}" value="${escA(d.id)}"><label for="pdy${i}">${esc(d.id)}</label>`).join('');
   const PH = { Theme: ['e.g. All white on the boat', 'Describe the look: colours, outfits, what the bride wears…'],
                _: ['e.g. Matching tees for the airport', 'Colour, wording, how many…'] };
   function setCategory(v){
     const [a, b] = PH[v] || PH._; $('#pextra').placeholder = a; $('#pdetails').placeholder = b;
-    $('#pinDay').hidden = v !== 'Theme';
   }
   $('#pinForm').addEventListener('change', e => {
     if(e.target.name === 'category'){ setCategory(e.target.value); Sound.blip(880); }
   });
-  function pitch(day){
+  function pitch(){
     Sound.blip(700); openSheet('pinSheet');
-    const c = $('#pc0'); c.checked = true; setCategory('Theme');
-    const d = [...$$('#pinDays input')].find(x => x.value === day); if(d) d.checked = true;
+    $('#pc0').checked = true; setCategory('Theme');
   }
 
   $('#whoForm').addEventListener('submit', e => {
@@ -3438,12 +3425,10 @@ const Board = (() => {
     e.preventDefault();
     const f = pin.elements, err = pin.querySelector('.err'), btn = pin.querySelector('button[type=submit]');
     const name = f.name.value.trim(), extra = f.extra.value.trim(), category = f.category.value || 'Other';
-    const day = category === 'Theme' ? (f.day.value || '') : '';
     if(!name){ err.textContent = 'Pop your name in first'; f.name.focus(); return; }
     if(!extra){ err.textContent = "Go on, what is it?"; f.extra.focus(); return; }
-    if(category === 'Theme' && !day){ err.textContent = 'Which day is it for?'; $('#pinDay').scrollIntoView({ block:'nearest' }); return; }
     Me.set(name); err.textContent = '';
-    const data = { type:'extra', name, extra, category, day, details: f.details.value.trim(),
+    const data = { type:'extra', name, extra, category, details: f.details.value.trim(),
       link: f.link.value.trim(), cost: f.cost.value.trim(), website: f.website.value };
     btn.disabled = true; btn.textContent = 'Pinning…';
     const p = new URLSearchParams(data); p.set('idea', '📌 EXTRA: ' + extra);   // fallback for an older Sheet script
