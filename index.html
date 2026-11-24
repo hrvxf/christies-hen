@@ -2663,7 +2663,10 @@ let kind = 'idea', form = FORMS.idea, steps = [], N = 0, cur = 0;
 function useForm(k){
   kind = k; form = FORMS[k];
   Object.values(FORMS).forEach(f => f.hidden = f !== form);
-  steps = [...form.querySelectorAll('.step')]; N = steps.length;
+  // Once the phone knows who you are, the "who's this?" step drops out of every form
+  const all = [...form.querySelectorAll('.step')];
+  all.forEach(s => s.classList.remove('show','in-r','in-l'));
+  steps = all.filter(s => !(Me.name && s.dataset.req === 'name')); N = steps.length;
   tilesEl.innerHTML = ''; for(let i=0;i<N;i++) tilesEl.appendChild(document.createElement('i'));
 }
 function showScreen(id){ $$('.screen').forEach(s => s.classList.toggle('show', s.id === id)); window.scrollTo({top:0, behavior:'instant'}); if(id==='intro') requestAnimationFrame(placeBulbs); }
@@ -2697,7 +2700,7 @@ function validate(i){
 }
 function next(){
   if(!validate(cur)) return;
-  if(cur === 0) Me.set(form.elements.name.value);
+  if(steps[cur].dataset.req === 'name') Me.set(form.elements.name.value);
   Sound.blip(740); lightFloor(14);
   if(cur < N-1) showStep(cur+1, 'r'); else (kind === 'theme' ? submitTheme() : submitTicket());
 }
@@ -2725,7 +2728,7 @@ function startFlow(k){
   if(k === 'idea'){ form.elements.idea.placeholder = 'e.g. ' + pick(EXAMPLES.idea); form.elements.kit.placeholder = 'e.g. ' + pick(EXAMPLES.kit); }
   else if(k === 'theme'){ form.elements.theme.placeholder = 'e.g. ' + pick(EXAMPLES.theme); form.elements.look.placeholder = 'e.g. ' + pick(EXAMPLES.look); }
   else form.elements.mission.placeholder = 'e.g. ' + pick(EXAMPLES.mission);
-  showScreen('flow'); showStep(saved ? 1 : 0, 'r'); Sound.blip(660);
+  showScreen('flow'); showStep(0, 'r'); Sound.blip(660);
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-go]'); if(!b) return;
