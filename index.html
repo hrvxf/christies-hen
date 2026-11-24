@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <meta name="theme-color" content="#0d0018">
 <title>Christie's Hen HQ · Croatia 09.09.27</title>
 <meta name="robots" content="noindex">
@@ -1320,6 +1320,21 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 .hq-head .days small{display:flex!important;flex-direction:column;gap:4px;margin:0!important;font-family:var(--mono);font-size:10px!important;letter-spacing:.2em!important;line-height:1.2;text-transform:uppercase;color:var(--muted)}
 .hq-head .days:has(small) + .till{display:none!important}
 #intro .news-strip{margin-top:30px!important}
+
+/* =====================================================================
+   KEYBOARD: pop-ups ride above the phone keyboard.
+   The KEYBOARD script sets --vvt / --vvh to the part of the screen the keyboard leaves free.
+   ===================================================================== */
+.sheet{top:var(--vvt,0px);bottom:auto;height:var(--vvh,100%)}
+.sheet-card{--sheet-pb:calc(var(--safe-b) + 22px);max-height:min(92svh,calc(var(--vvh,100svh) - 16px));padding-bottom:var(--sheet-pb)}
+.kb-open .sheet-card{--sheet-pb:12px;border-radius:22px 22px 0 0}
+.kb-open .sheet-card .sheet-grab{margin-bottom:10px}
+/* Cancel / Pin it stay pinned to the bottom of the pop-up, so they sit just above the keyboard */
+.sheet-card .nav{position:sticky;bottom:calc(-1 * var(--sheet-pb));z-index:2;margin:18px -20px calc(-1 * var(--sheet-pb));padding:12px 20px var(--sheet-pb);background:linear-gradient(180deg,rgba(23,8,36,0),#170824 22px)}
+.entrance{top:var(--vvt,0px);bottom:auto;height:var(--vvh,100%)}
+/* full pages get room to scroll the box and its Next button up above the keyboard */
+.kb-open main{padding-bottom:calc(var(--kbh,0px) + 40px)}
+.kb-open .entrance.asking .ent-ball,.kb-open .entrance.asking .ent-rope{display:none}
 </style>
 </head>
 <body class="waiting">
@@ -2064,6 +2079,51 @@ const VILLA_TOUR = {
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const store = { get(k){ try{return localStorage.getItem(k)}catch(_){return null} }, set(k,v){ try{localStorage.setItem(k,v)}catch(_){} } };
+
+/* ================= KEYBOARD: keep pop-ups and the box you're typing in above the phone keyboard ================= */
+// iPhones slide the keyboard over the page without resizing it. This measures the part of the screen
+// that's still visible and hands it to the CSS (--vvt, --vvh), so bottom pop-ups sit just above the keyboard.
+// Android does it for itself, thanks to interactive-widget=resizes-content in the viewport tag.
+(function keyboard(){
+  const vv = window.visualViewport; if(!vv) return;
+  const root = document.documentElement;
+  const typing = () => { const a = document.activeElement; return a && (a.tagName === 'TEXTAREA' || (a.tagName === 'INPUT' && !/^(radio|checkbox|button|submit|hidden)$/.test(a.type))) ? a : null; };
+  let raf = 0, open = false;
+  function reveal(el){
+    if(!el) return;
+    const pad = 12, r = el.getBoundingClientRect();
+    const box = el.closest('.sheet-card') || el.closest('.entrance.asking');
+    if(box){
+      const b = box.getBoundingClientRect(), nav = box.querySelector(':scope > .nav');
+      const bottom = b.bottom - (nav ? nav.offsetHeight : 0) - pad;
+      if(r.bottom > bottom) box.scrollTop += r.bottom - bottom;
+      else if(r.top < b.top + pad) box.scrollTop -= b.top + pad - r.top;
+      return;
+    }
+    // A full page (the idea, theme and mission forms): show the box and, if there's room, its Next button
+    const want = (el.closest('.step') && el.closest('.step').querySelector('.nav')) || el;
+    const w = want.getBoundingClientRect(), top = vv.offsetTop, bottom = top + vv.height - pad;
+    let by = Math.max(0, w.bottom - bottom);
+    by = Math.min(by, Math.max(0, r.top - top - 84));   // never push the box up under the bar at the top
+    if(r.bottom > bottom) by = Math.max(by, r.bottom - bottom);
+    if(by > 0) window.scrollBy(0, by);
+  }
+  function update(){
+    raf = 0;
+    const kb = Math.max(0, innerHeight - vv.height - vv.offsetTop);
+    root.style.setProperty('--vvt', Math.round(vv.offsetTop) + 'px');
+    root.style.setProperty('--vvh', Math.round(vv.height) + 'px');
+    root.style.setProperty('--kbh', Math.round(kb) + 'px');
+    const now = kb > 80 || (!!typing() && vv.height < innerHeight * .85);
+    root.classList.toggle('kb-open', now);
+    if(now && !open) setTimeout(() => reveal(typing()), 30);
+    open = now;
+  }
+  const queue = () => { if(!raf) raf = requestAnimationFrame(update); };
+  vv.addEventListener('resize', queue); vv.addEventListener('scroll', queue); addEventListener('resize', queue);
+  document.addEventListener('focusin', e => { if(e.target === typing()) setTimeout(() => reveal(e.target), open ? 30 : 320); });
+  update();
+})();
 
 /* ================= WHO'S THIS: asked once at the door, then remembered on this phone ================= */
 // The name and a random device ID live in the phone's storage, with a cookie as a backup copy.
