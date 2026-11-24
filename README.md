@@ -3,7 +3,7 @@
 The hen group's home page: the idea box, the playlist, what's new, the plan, the money, before-you-go reminders and Croatia tips. Everything people send in is saved as a new row in a private Google Sheet that only the organisers can see.
 
 - `index.html` – the page (hosted on GitHub Pages)
-- `apps-script/Code.gs` – the Google Apps Script that receives submissions (and serves the bank details from the Sheet's "Bank details" tab, so they never sit in this public code) and writes them to the Sheet (activity ideas → first tab, theme pitches → "Themes", missions for Christie → "Missions", the finishing touches board → "Extras")
+- `apps-script/Code.gs` – the Google Apps Script that receives submissions (and serves the bank details from the Sheet's "Bank details" tab, so they never sit in this public code) and writes them to the Sheet (activity ideas → first tab, theme pitches → "Themes", missions for Christie → "Missions", the themes & extras board → "Extras")
 
 ## Who's who
 
@@ -11,9 +11,16 @@ The first time someone opens the HQ on a phone, the door shows the guest list (`
 
 Each phone checks in to the Sheet's "Guests" tab: the name, when they first and last came in, and how many visits, so you can see who's had a look. iPhones wipe a website's saved data after about a week without a visit, so anyone who's been away a while may be asked to tap their name again. Adding the HQ to the home screen (Share → Add to Home Screen) stops that.
 
-## The finishing touches board
+## Themes & extras
 
-Everyone can see it. Cards come from the "Extras" tab. Type **Sorted** in a card's Status column to stamp it, or **Hidden** to take it off the board. Hearts are counted once per name (the "Hearted by" column).
+Everyone can see it and vote on it. Pins come from the "Extras" tab; votes are counted once per name (the "Hearted by" column).
+
+- **Themes** are pitched for a day (`THEME_DAYS` in the HUB CONTENT block; saved in the tab's Day column). Each day shows its leading theme, everyone else's pitches for that day, and who's voted.
+- **Extras** (wear, decor, games, gifts, other) sit under "Up for a vote" with a rough cost for the whole thing.
+- **Adam and Beth confirm** in the Status column: **Confirmed** locks it in (a theme gets stamped for its day; an extra moves to Confirmed and its cost comes off the extras pot), **Not this time** or **Hidden** takes it off the board, blank means it's still up for a vote.
+- **The extras pot** is the Budget tab's "Extras pot" row (£200, out of the contingency). The page shows what's left after confirmed extras, and what would be left if everything up for a vote went through. `EXTRAS_POT` is only a fallback if the Sheet can't be read.
+
+Nobody buys anything themselves: Adam and Beth sort the buying from the pot.
 
 ## Updating the page as plans firm up
 

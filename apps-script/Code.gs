@@ -4,10 +4,13 @@
  *   - Activity ideas            → the "Ideas" tab
  *   - Theme / dress code pitches → the "Themes" tab
  *   - Missions for Christie     → the "Missions" tab
- *   - Finishing touches board   → the "Extras" tab (everyone can see these on the page)
+ *   - Themes & extras board     → the "Extras" tab (everyone can see these on the page and vote on them)
  *   - Who's been in             → the "Guests" tab: one row per phone, with the name they picked at the door,
  *                                 when they first and last came in, and how many visits.
- *     Organisers: type Sorted in the Status column to stamp a card, or Hidden to take it off the board.
+ *     Organisers: in the Extras tab's Status column pick Confirmed to lock a pin in (an extra moves to
+ *     Confirmed on the page and its cost comes off the extras pot; a theme gets stamped for its day),
+ *     or Not this time / Hidden to take it off the board. Blank means it's still up for a vote.
+ *     The pot's size comes from the Budget tab's "Extras pot" row.
  *   - Bank details for paying come from the "Bank details" tab (kept here, not in the public website code).
  *     Fill in its Secret word row to make people type that word before the details show.
  * Tabs are found by name, so other tabs (Budget etc.) can sit anywhere, in any order.
@@ -26,7 +29,7 @@
 const TABS = {
   idea:    { name: 'Ideas',            headers: ['Submitted', 'Name', 'Idea', 'Details', 'Link', 'Price each', 'Time', 'Getting there', 'Bring / wear', 'Christie factor', 'Hype (1-5)'] },
   theme:   { name: 'Themes',           headers: ['Submitted', 'Name', 'Theme', 'The look', 'Link', 'When', 'Christie factor', 'Hype (1-5)', 'Group votes', 'Status', 'Organiser notes'] },
-  extra:   { name: 'Extras',           headers: ['Submitted', 'ID', 'Name', 'Extra', 'Details', 'Link', 'Category', 'Rough cost each', 'Hearts', 'Hearted by', 'Status', 'Organiser notes'] },
+  extra:   { name: 'Extras',           headers: ['Submitted', 'ID', 'Name', 'Extra', 'Details', 'Link', 'Category', 'Rough cost (all in)', 'Hearts', 'Hearted by', 'Status', 'Organiser notes', 'Day'] },
   guest:   { name: 'Guests',           headers: ['Device', 'Name', 'First seen', 'Last seen', 'Visits', 'Phone'] },
   mission: { name: 'Missions',         headers: ['Submitted', 'Name', 'Mission', 'Rules', 'When', 'Cheek level', "G&Ts she'll need (1-5)", 'Status', 'Organiser notes'] },
 };
@@ -81,7 +84,7 @@ function doPost(e) {
       const id = Utilities.getUuid().slice(0, 8);
       tab_(ss, 'extra').appendRow([
         new Date(), id, clean_(p.name), clean_(p.extra), clean_(p.details), clean_(p.link),
-        clean_(p.category), clean_(p.cost), 0, '', '', '',
+        clean_(p.category), clean_(p.cost), 0, '', '', '', clean_(p.day),
       ]);
       return json_({ ok: true, id: id });
     }
@@ -120,7 +123,7 @@ function doPost(e) {
 function doGet(e) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const q = (e && e.parameter) || {};
-  if (q.board) return json_({ ok: true, items: board_(ss, who_(q.me)) });
+  if (q.board) return json_({ ok: true, items: board_(ss, who_(q.me)), pot: pot_(ss) });
   if (q.bank) return json_(bank_(ss, q.word));
   const count = key => { const sh = ss.getSheetByName(TABS[key].name); return sh ? Math.max(0, sh.getLastRow() - 1) : 0; };
   return json_({
@@ -142,18 +145,35 @@ function tab_(ss, key) {
   return sh;
 }
 
+// Status: blank (or "Up for a vote") = voting, "Confirmed" (or the old "Sorted") = locked in,
+// "Not this time" or "Hidden" = off the board.
 function board_(ss, me) {
   const sh = ss.getSheetByName(TABS.extra.name);
   if (!sh || sh.getLastRow() < 2) return [];
-  return sh.getRange(2, 1, sh.getLastRow() - 1, 11).getValues()
-    .filter(r => r[1] && String(r[10]).trim().toLowerCase() !== 'hidden')
-    .map(r => ({
-      id: String(r[1]), name: String(r[2]), extra: String(r[3]), details: String(r[4]), link: String(r[5]),
-      category: String(r[6]), cost: String(r[7]), hearts: Number(r[8]) || 0,
-      mine: !!me && String(r[9]).split(',').map(who_).indexOf(me) !== -1,
-      sorted: String(r[10]).trim().toLowerCase() === 'sorted',
-      at: r[0] instanceof Date ? r[0].getTime() : 0,
-    }));
+  const status = r => String(r[10]).trim().toLowerCase();
+  return sh.getRange(2, 1, sh.getLastRow() - 1, 13).getValues()
+    .filter(r => r[1] && ['hidden', 'not this time'].indexOf(status(r)) === -1)
+    .map(r => {
+      const by = String(r[9]).split(',').map(who_).filter(Boolean);
+      return {
+        id: String(r[1]), name: String(r[2]), extra: String(r[3]), details: String(r[4]), link: String(r[5]),
+        category: String(r[6]), cost: String(r[7]), hearts: by.length || Number(r[8]) || 0, by: by,
+        mine: !!me && by.indexOf(me) !== -1,
+        confirmed: ['confirmed', 'sorted'].indexOf(status(r)) !== -1,
+        day: String(r[12] || ''),
+        at: r[0] instanceof Date ? r[0].getTime() : 0,
+      };
+    });
+}
+
+// The extras pot, from the Budget tab's "Extras pot" row (the amount is in the next column).
+function pot_(ss) {
+  const sh = ss.getSheetByName('Budget');
+  if (!sh) return null;
+  const rows = sh.getRange(1, 1, Math.min(sh.getLastRow(), 60), 2).getValues();
+  const r = rows.find(x => String(x[0]).trim().toLowerCase().indexOf('extras pot') === 0);
+  const n = r ? Number(r[1]) : NaN;
+  return isFinite(n) ? n : null;
 }
 
 function bank_(ss, word) {

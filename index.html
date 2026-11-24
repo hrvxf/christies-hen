@@ -1206,6 +1206,67 @@ body[data-scr="pg-board"] .sky{background:radial-gradient(rgba(70,35,10,.28) 1px
 body[data-scr="pg-board"] .dock{background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.12)),rgba(120,80,45,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 20px 44px rgba(60,30,10,.3)}
 body[data-scr="pg-board"] .dk{color:#3a2010}
 body[data-scr="pg-board"] .dk.on{color:#2a0b3a;text-shadow:none}
+/* themes & extras: themes by day, the extras pot, up for a vote, confirmed */
+#pg-board .bd-intro{color:#3a1a10;margin:-4px 0 16px}
+#pg-board .bd-k{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#2a0b3a;margin:34px 0 16px}
+#pg-board .bd-h{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1;color:#2a0b3a;margin:28px 0 12px}
+#pg-board .board-filter{margin:0 -18px 18px}
+.td-list{display:flex;flex-direction:column;gap:18px}
+.td{position:relative;padding:20px 16px 14px;border-radius:6px;background:#fff4e3;color:#2a0b3a;box-shadow:0 10px 20px rgba(60,30,10,.3);transform:rotate(var(--r,0deg))}
+.td::before{content:"";position:absolute;left:50%;top:-6px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb3c8,#c2185b 60%,#6b0a30);box-shadow:0 3px 4px rgba(0,0,0,.35)}
+.td.done{background:#2a0b3a;color:#fff4e3}
+.td.fresh{animation:pinIn .6s cubic-bezier(.3,1.4,.5,1) both}
+.td-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.td-when{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7a1450}
+.td.done .td-when{color:var(--champ)}
+.td-stamp{transform:rotate(6deg);padding:3px 8px;border:2px solid var(--champ);border-radius:5px;color:var(--champ);font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.td h3{margin:6px 0 0;font-family:var(--serif);font-weight:600;font-size:27px;line-height:1.05;overflow-wrap:anywhere}
+.td-by{margin:3px 0 0;font-size:13px;opacity:.8}
+.td-look{margin:6px 0 0;font-size:15px;line-height:1.4;color:#3a2438}
+.td.done .td-look{color:var(--muted)}
+.td-vote{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.td-vote>div{display:flex;align-items:center;min-width:0}
+.td-n{margin-left:12px;font-size:13px;opacity:.85;white-space:nowrap}
+.vote{flex:none;min-height:44px;padding:0 16px;border:0;border-radius:12px;background:transparent;box-shadow:inset 0 0 0 1.5px #2a0b3a;color:#2a0b3a;font:600 14px var(--sans);cursor:pointer}
+.vote.on{background:#2a0b3a;color:#fff4e3;box-shadow:none}
+.vote:disabled{opacity:.45;cursor:default}
+.td-alts{list-style:none;margin:12px 0 0;padding:0;border-top:1px dashed rgba(42,11,58,.25)}
+.td-alts li{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:50px;border-bottom:1px dashed rgba(42,11,58,.15);font-size:14px}
+.td-alts li:last-child{border-bottom:0}
+.td-alts small{display:block;font-size:12px;opacity:.7}
+.td-empty{background:rgba(255,244,227,.4);box-shadow:none;outline:2px dashed rgba(42,11,58,.45);outline-offset:-2px}
+.td-empty::before{display:none}
+.td-empty p{margin:6px 0 12px;font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.1}
+.faces{display:flex;align-items:center}
+.face{display:grid;place-items:center;flex:none;width:26px;height:26px;margin-right:-6px;border-radius:50%;border:2px solid var(--fb,#fff4e3);background:var(--f,#2a0b3a);color:#fff4e3;font:600 11px var(--sans)}
+.td.done .face,#pg-board .note:nth-child(even) .face{--fb:#2a0b3a}
+.note .face{width:22px;height:22px;margin-right:-5px;font-size:10px;border-width:1.5px}
+.pot{padding:18px 16px 16px;border-radius:6px;background:#2a0b3a;color:#fff4e3;box-shadow:0 12px 22px rgba(60,30,10,.35)}
+.pot-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px;color:var(--muted)}
+.pot-top span:first-child{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.pot-left{margin-top:6px;font:700 34px var(--mono);color:var(--champ)}
+.pot-left small{font:400 14px var(--sans);color:#fff4e3}
+.pot-bar{display:flex;height:10px;margin-top:12px;border-radius:5px;overflow:hidden;background:rgba(255,255,255,.12)}
+.pot-bar i{display:block;background:var(--champ)}
+.pot-bar i+i{background:repeating-linear-gradient(45deg,rgba(233,201,131,.55) 0 4px,rgba(233,201,131,.2) 4px 8px)}
+.pot p{margin:10px 0 0;font-size:13px;line-height:1.4;color:var(--muted)}
+.note .n-idea{margin:0 0 6px;font-size:12px;-webkit-line-clamp:1}
+.n-over{margin:-2px 0 6px;font-size:12px;color:#a3123f}
+#pg-board .note:nth-child(even) .n-over{color:#ffb3c8}
+#pg-board .note:nth-child(even) .heart{background:rgba(255,179,200,.14);color:#ffd0dd}
+#pg-board .note:nth-child(even) .heart svg{stroke:#ffb3c8}
+#pg-board .note:nth-child(even) .heart[aria-pressed="true"] svg{fill:#ffb3c8;stroke:#ffb3c8}
+.confirmed{position:relative;padding:14px 16px 4px;border-radius:6px;background:#fff4e3;color:#2a0b3a;box-shadow:0 12px 22px rgba(60,30,10,.32);transform:rotate(.4deg)}
+.confirmed::before{content:"";position:absolute;left:24px;top:-6px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb3c8,#c2185b 60%,#6b0a30)}
+.cf-row{display:flex;align-items:center;gap:10px;min-height:54px;border-bottom:1px dashed rgba(42,11,58,.2)}
+.cf-row svg{flex:none;width:20px;height:20px;fill:none;stroke:#7a1450;stroke-width:2}
+.cf-row div{flex:1;min-width:0}
+.cf-row b{display:block;font-weight:500;font-size:15px}
+.cf-row small{font-size:12px;color:#6b4a5c}
+.cf-row>span{flex:none;font:700 13px var(--mono)}
+.cf-total{display:flex;justify-content:space-between;padding:12px 0 10px;font-family:var(--mono);font-size:12px}
+.cf-total span{letter-spacing:.14em;text-transform:uppercase;color:#7a1450}
+.cf-empty{margin:0;padding:4px 0 12px;font-size:15px;color:#6b4a5c}
 #pg-plan .page-head{justify-content:flex-end;margin-bottom:-44px;position:relative;z-index:2}
 .page-head{min-height:44px}
 .hd-ico{margin-left:auto;display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:var(--tone1);color:var(--champ)}
@@ -1470,16 +1531,26 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
   <section class="screen page" id="pg-board" aria-labelledby="boardH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="boardH">Themes &amp; extras</h2>
+    <p class="sec-p bd-intro">Pin it, vote on it. Adam and Beth confirm the winners and sort the buying.</p>
     <button class="btn btn-gold" id="pinBtn" type="button">Pin something up<span class="arr" aria-hidden="true">+</span></button>
+
+    <h3 class="bd-k" id="tdH">Themes, day by day</h3>
+    <div class="td-list" id="themeDays" aria-labelledby="tdH" aria-live="polite"></div>
+
+    <h3 class="bd-k">Extras</h3>
+    <section class="pot" id="pot" aria-label="Extras pot"></section>
+    <h4 class="bd-h" id="voteH">Up for a vote</h4>
     <div class="chips board-filter" id="boardFilter" role="radiogroup" aria-label="Show">
       <input type="radio" name="bf" id="bf0" value="" checked><label for="bf0">All</label>
-      <input type="radio" name="bf" id="bf5" value="Theme"><label for="bf5">Themes</label>
       <input type="radio" name="bf" id="bf1" value="Wear"><label for="bf1">Wear</label>
       <input type="radio" name="bf" id="bf2" value="Decor"><label for="bf2">Decor</label>
       <input type="radio" name="bf" id="bf3" value="Games"><label for="bf3">Games</label>
       <input type="radio" name="bf" id="bf4" value="Gifts"><label for="bf4">Gifts</label>
+      <input type="radio" name="bf" id="bf5" value="Other"><label for="bf5">Other</label>
     </div>
-    <div class="board" id="board" aria-live="polite"></div>
+    <div class="board" id="board" aria-labelledby="voteH" aria-live="polite"></div>
+    <h4 class="bd-h" id="cfH">Confirmed</h4>
+    <div class="confirmed" id="confirmedList" aria-labelledby="cfH"></div>
   </section>
 
   <section class="screen page pg-photo" id="pg-plan" aria-labelledby="planH">
@@ -1964,13 +2035,17 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
         <input type="radio" name="category" id="pc4" value="Gifts"><label for="pc4">Gifts</label>
         <input type="radio" name="category" id="pc5" value="Other"><label for="pc5">Other</label>
       </div>
+      <div id="pinDay" hidden>
+        <p class="lbl">Which day?</p>
+        <div class="chips" id="pinDays" role="radiogroup" aria-label="Which day"></div>
+      </div>
       <label class="lbl" for="pdetails">The details <small>(optional)</small></label>
       <textarea id="pdetails" name="details" placeholder="Colour, wording, how many…" maxlength="600"></textarea>
       <div class="pin-pair">
         <div><label class="lbl" for="plink">Link <small>(optional)</small></label>
         <input type="url" id="plink" name="link" inputmode="url" placeholder="Etsy, Amazon…"></div>
-        <div><label class="lbl" for="pcost">Cost each <small>(optional)</small></label>
-        <input type="text" id="pcost" name="cost" inputmode="decimal" placeholder="e.g. £8" maxlength="20"></div>
+        <div><label class="lbl" for="pcost">Rough cost, all in <small>(optional)</small></label>
+        <input type="text" id="pcost" name="cost" inputmode="decimal" placeholder="e.g. £40" maxlength="20"></div>
       </div>
       <div class="sr" aria-hidden="true"><label for="website5">Leave empty</label><input type="text" id="website5" name="website" tabindex="-1"></div>
       <div class="err" aria-live="polite"></div>
@@ -2011,6 +2086,17 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxvt4RF_1zeiWXZezLAT
 const HEN_DATE = new Date(2027, 8, 9); // 9 Sept 2027
 
 /* ================= HUB CONTENT: edit this bit as plans firm up ================= */
+// Themes & extras board: each theme is pitched for one of these days, and Adam and Beth confirm a winner
+// for each in the Sheet. id is what's saved in the Sheet's Day column; label is what the page shows.
+const THEME_DAYS = [
+  { id: 'Flying out',    label: 'Thu 9 · Flying out' },
+  { id: 'Boat day',      label: 'Boat day' },
+  { id: 'Vineyard',      label: 'Vineyard' },
+  { id: 'Big night out', label: 'Big night out' },
+  { id: 'Flying home',   label: 'Tue 14 · Flying home' },
+];
+// The extras pot comes from the Budget tab's "Extras pot" row; this is only used if that can't be read.
+const EXTRAS_POT = 200;
 // The guest list on the way in. Everyone taps their name once and the phone remembers them.
 // Not Christie: it's a surprise. Anyone else can tap "Not on the list?" and type their name.
 const GUESTS = ['Adam', 'Beth', 'Heather', 'Kaitlin', 'Lauren', 'Sorraya'];
@@ -2939,38 +3025,113 @@ $('#dayList').innerHTML = DAYS.map(d => {
 (function(){ const n = DAYS.filter(d => d.plan && d.plan.length).length;
   $('#planProg').textContent = `${n} of ${DAYS.length} days planned`; $('#planBar').style.width = Math.max(3, n / DAYS.length * 100) + '%'; })();
 
-/* ================= FINISHING TOUCHES BOARD ================= */
-// Everyone can see it. Cards live in the Sheet's "Extras" tab; hearts are counted once per name.
+/* ================= THEMES & EXTRAS BOARD ================= */
+// Everyone can see it and vote (one heart per name). Pins live in the Sheet's "Extras" tab.
+// Adam and Beth confirm winners in that tab's Status column: a confirmed theme gets stamped for its day,
+// a confirmed extra moves to Confirmed and its cost comes off the extras pot.
 const Board = (() => {
   const HEART_SVG = '<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>';
+  const TICK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
   const TILT = ['-1.6deg','1.2deg','.6deg','-1deg','1.8deg','-.4deg'];
+  const DAY_TILT = ['-.8deg','.6deg','-.4deg','.8deg','-.3deg','.4deg'];
+  const FACE = ['#2a0b3a','#7a1450','#3d2a6b','#6b3a10','#1f4a5c','#5c1f3a','#4a3a10'];
   const escA = x => esc(String(x)).replace(/"/g, '&quot;');
   const safeLink = u => /^https?:\/\//i.test(u || '') ? u : '';
+  const key = n => String(n || '').trim().toLowerCase();
+  const nice = n => String(n || '').trim().replace(/(^|[\s'-])\S/g, c => c.toUpperCase());
+  const money = it => { const m = String(it.cost || '').replace(/,/g, '').match(/\d+(\.\d+)?/); return m ? Number(m[0]) : 0; };
+  const pounds = n => '£' + n.toLocaleString('en-GB', { maximumFractionDigits: 2 });
   const myHearts = new Set(JSON.parse(store.get('hen_hearts') || '[]'));
   const saveHearts = () => store.set('hen_hearts', JSON.stringify([...myHearts]));
-  let items = [], loaded = false, failed = false, filter = '', pendingHeart = null, freshId = null;
+  let items = [], pot = EXTRAS_POT, loaded = false, failed = false, filter = '', pendingHeart = null, freshId = null;
 
-  function card(it, i){
-    const meta = [it.cost ? `About ${it.cost} each` : ''].filter(Boolean).join(' · ');
-    const link = safeLink(it.link), mine = myHearts.has(it.id) || it.mine, temp = it.id.startsWith('tmp');
+  const isTheme = it => it.category === 'Theme';
+  const isTmp = it => String(it.id).startsWith('tmp');
+  const mine = it => myHearts.has(it.id) || !!it.mine;
+  const votes = it => Math.max((it.by || []).length, it.hearts || 0);
+  const byVotes = (a, b) => votes(b) - votes(a) || (b.at || 0) - (a.at || 0);
+  const dayOf = it => THEME_DAYS.some(d => d.id === it.day) ? it.day : '';
+
+  function faces(it){
+    return `<span class="faces">${(it.by || []).slice(0, 7).map(n => {
+      const i = GUESTS.findIndex(g => key(g) === key(n));
+      const c = FACE[i >= 0 ? i : [...key(n)].reduce((a, ch) => a + ch.charCodeAt(0), 0) % FACE.length];
+      return `<span class="face" style="--f:${c}" title="${escA(nice(n))}">${esc(nice(n).charAt(0) || '?')}</span>`;
+    }).join('')}</span>`;
+  }
+  const voteBtn = it => `<button class="vote${mine(it) ? ' on' : ''}" type="button" data-id="${escA(it.id)}" aria-pressed="${mine(it)}"${isTmp(it) ? ' disabled' : ''}>${mine(it) ? "You're in" : 'Me too'}</button>`;
+  const heartBtn = it => `<button class="heart" type="button" data-id="${escA(it.id)}" aria-pressed="${mine(it)}" aria-label="Vote for ${escA(it.extra)}"${isTmp(it) ? ' disabled' : ''}>${HEART_SVG}<span>${votes(it)}</span></button>`;
+
+  /* themes, one card per day */
+  function themeDays(){
+    const themes = items.filter(isTheme);
+    const days = THEME_DAYS.slice();
+    if(themes.some(t => !dayOf(t))) days.push({ id: '', label: 'Day to be decided' });
+    return days.map((d, k) => {
+      const list = themes.filter(t => dayOf(t) === d.id).sort(byVotes);
+      const won = list.find(t => t.confirmed), r = `--r:${DAY_TILT[k % DAY_TILT.length]}`;
+      if(won) return `<article class="td done" style="${r}">
+          <div class="td-top"><span class="td-when">${esc(d.label)}</span><span class="td-stamp">Confirmed</span></div>
+          <h3>${esc(won.extra)}</h3><p class="td-by">${esc(nice(won.name))}'s idea</p>
+          ${won.details ? `<p class="td-look">${esc(won.details)}</p>` : ''}
+        </article>`;
+      if(!list.length) return `<article class="td td-empty" style="${r}">
+          <div class="td-top"><span class="td-when">${esc(d.label)}</span></div>
+          <p>Nothing yet. Sunnies and regret?</p>
+          <button class="vote" type="button" data-pitch="${escA(d.id)}">Pitch a look</button>
+        </article>`;
+      const [lead, ...rest] = list;
+      return `<article class="td${lead.id === freshId ? ' fresh' : ''}" style="${r}">
+          <div class="td-top"><span class="td-when">${esc(d.label)}</span></div>
+          <h3>${esc(lead.extra)}</h3><p class="td-by">${esc(nice(lead.name))}'s idea</p>
+          ${lead.details ? `<p class="td-look">${esc(lead.details)}</p>` : ''}
+          <div class="td-vote"><div>${faces(lead)}<span class="td-n">${votes(lead)} of ${GUESTS.length}</span></div>${voteBtn(lead)}</div>
+          ${rest.length ? `<ul class="td-alts">${rest.map(t => `<li><span>${esc(t.extra)}<small>${esc(nice(t.name))}'s idea</small></span>${heartBtn(t)}</li>`).join('')}</ul>` : ''}
+        </article>`;
+    }).join('');
+  }
+
+  /* extras: the pot, up for a vote, confirmed */
+  function note(it, i, left){
+    const link = safeLink(it.link), cost = money(it);
     return `<article class="note${it.id === freshId ? ' fresh' : ''}" style="--r:${TILT[i % TILT.length]}">
-      ${it.sorted ? '<span class="n-sorted">Sorted</span>' : ''}
       <span class="n-cat">${esc(it.category || 'Other')}</span>
       <h3>${esc(it.extra)}</h3>
+      <p class="n-idea">${esc(nice(it.name))}'s idea</p>
       ${it.details ? `<p>${esc(it.details)}</p>` : ''}
-      ${meta ? `<div class="n-meta">${esc(meta)}</div>` : ''}
+      <div class="n-meta">${cost ? `${pounds(cost)} all in` : (it.cost ? esc(it.cost) : 'Cost to be found')}</div>
+      ${cost > left ? `<div class="n-over">More than what's left in the pot</div>` : ''}
       ${link ? `<a class="n-link" href="${escA(link)}" target="_blank" rel="noopener nofollow">Have a look →</a>` : ''}
-      <div class="n-foot"><span class="n-by">${esc(it.name)}</span>
-        <button class="heart" type="button" data-id="${escA(it.id)}" aria-pressed="${mine}" aria-label="Heart ${escA(it.extra)}"${temp ? ' disabled' : ''}>${HEART_SVG}<span>${it.hearts || 0}</span></button></div>
+      <div class="n-foot">${faces(it)}${heartBtn(it)}</div>
     </article>`;
   }
   function render(){
-    const el = $('#board');
-    const n = items.length;
-    if(!loaded){ el.innerHTML = `<div class="board-empty">${failed ? "Couldn't load the board. Check your signal and try again." : 'Loading the board…'}</div>`; return; }
-    const list = items.filter(it => !filter || it.category === filter);   // order is set on load, so cards don't jump when hearted
-    el.innerHTML = list.length ? list.map(card).join('')
-      : `<div class="board-empty"><b>${filter ? 'Nothing here yet' : 'Nothing pinned yet'}</b>A dress-up theme, matching tees, balloons for the villa… go on, be the first.</div>`;
+    const days = $('#themeDays'), el = $('#board'), potEl = $('#pot'), cf = $('#confirmedList');
+    if(!loaded){
+      const msg = `<div class="board-empty">${failed ? "Couldn't load the board. Check your signal and try again." : 'Loading the board…'}</div>`;
+      days.innerHTML = msg; el.innerHTML = ''; potEl.innerHTML = ''; cf.innerHTML = ''; return;
+    }
+    days.innerHTML = themeDays();
+
+    const done = items.filter(it => it.confirmed && (!isTheme(it) || money(it) > 0));
+    const open = items.filter(it => !it.confirmed && !isTheme(it));
+    const spent = done.reduce((a, it) => a + money(it), 0), pending = open.reduce((a, it) => a + money(it), 0);
+    const left = pot - spent, after = left - pending, pct = n => Math.max(0, Math.min(100, n / (pot || 1) * 100)).toFixed(1) + '%';
+    potEl.innerHTML = `<div class="pot-top"><span>Extras pot · ${pounds(pot)}</span><span>Confirmed ${pounds(spent)}</span></div>
+      <div class="pot-left">${pounds(left)} <small>left</small></div>
+      <div class="pot-bar" aria-hidden="true"><i style="width:${pct(spent)}"></i><i style="width:${pct(Math.min(pending, Math.max(left, 0)))}"></i></div>
+      <p>${!pending ? 'Nothing with a price up for a vote right now.'
+        : after >= 0 ? `If everything up for a vote goes through: ${pounds(after)} left.`
+        : `Everything up for a vote comes to ${pounds(pending)}, so ${pounds(-after)} more than what's left. Vote for your favourites.`}</p>`;
+
+    const list = open.filter(it => !filter || (it.category || 'Other') === filter);
+    el.innerHTML = list.length ? list.map((it, i) => note(it, i, left)).join('')
+      : `<div class="board-empty"><b>${filter ? 'Nothing here yet' : 'Nothing up for a vote'}</b>Matching tees, balloons for the villa… go on, pin the first.</div>`;
+
+    cf.innerHTML = done.length
+      ? done.map(it => `<div class="cf-row">${TICK_SVG}<div><b>${esc(it.extra)}</b><small>${esc(isTheme(it) ? 'Theme' : (it.category || 'Other'))} · ${esc(nice(it.name))}'s idea</small></div><span>${pounds(money(it))}</span></div>`).join('')
+        + `<div class="cf-total"><span>Off the pot</span><b>${pounds(spent)}</b></div>`
+      : `<p class="cf-empty">Nothing confirmed yet. Adam and Beth lock the winners in.</p>`;
     freshId = null;
   }
   async function load(){
@@ -2978,33 +3139,36 @@ const Board = (() => {
       const me = Me.name || '';
       const r = await fetch(SCRIPT_URL + '?board=1&me=' + encodeURIComponent(me));
       const d = await r.json();
-      const temps = items.filter(it => it.id.startsWith('tmp'));
+      const temps = items.filter(isTmp);
       items = (d && Array.isArray(d.items)) ? d.items : [];
+      if(d && typeof d.pot === 'number' && isFinite(d.pot)) pot = d.pot;
       // keep a just-pinned card on screen until the Sheet has it
-      temps.forEach(t => { if(!items.some(it => it.extra === t.extra && it.name === t.name)) items.unshift(t); });
-      items.forEach(it => { if(it.mine) myHearts.add(it.id); });
-      items.sort((a, b) => (a.id.startsWith('tmp') ? -1 : 0) - (b.id.startsWith('tmp') ? -1 : 0) || (b.hearts || 0) - (a.hearts || 0) || (b.at || 0) - (a.at || 0));
+      temps.forEach(t => { if(!items.some(it => it.extra === t.extra && key(it.name) === key(t.name))) items.unshift(t); });
+      items.forEach(it => { it.by = Array.isArray(it.by) ? it.by : []; if(it.mine) myHearts.add(it.id); else if(Me.name && !it.by.includes(key(Me.name))) myHearts.delete(it.id); });
+      saveHearts();
+      items.sort((a, b) => (isTmp(b) ? 1 : 0) - (isTmp(a) ? 1 : 0) || byVotes(a, b));
       loaded = true; failed = false;
     }catch(_){ failed = !loaded; }
     render();
   }
 
-  /* hearts */
-  async function toggle(id, btn){
-    const it = items.find(x => x.id === id); if(!it) return;
+  /* votes */
+  async function toggle(id){
+    const it = items.find(x => x.id === id); if(!it || isTmp(it)) return;
     const name = Me.name;
     if(!name){ pendingHeart = id; openSheet('whoSheet'); return; }
-    const on = !(myHearts.has(id) || it.mine);
-    it.mine = on; it.hearts = Math.max(0, (it.hearts || 0) + (on ? 1 : -1));
+    const on = !mine(it), me = key(name);
+    it.mine = on; it.by = (it.by || []).filter(n => n !== me); if(on) it.by.push(me); it.hearts = it.by.length;
     on ? myHearts.add(id) : myHearts.delete(id); saveHearts();
     render();
-    const b = $(`#board .heart[data-id="${CSS.escape(id)}"]`);
+    const b = $(`#pg-board [data-id="${CSS.escape(id)}"]`);
     if(b && on){ b.classList.add('pop'); const r = b.getBoundingClientRect(); glitter(r.left + r.width/2, r.top); }
     Sound.blip(on ? 990 : 520);
     post(new URLSearchParams({ type:'heart', id, name, on: on ? '1' : '0' })).catch(() => {});
   }
   document.addEventListener('click', e => {
-    const h = e.target.closest('#board .heart'); if(h && !h.disabled) toggle(h.dataset.id, h);
+    const v = e.target.closest('#pg-board .heart[data-id], #pg-board .vote[data-id]'); if(v && !v.disabled){ toggle(v.dataset.id); return; }
+    const p = e.target.closest('#pg-board [data-pitch]'); if(p) pitch(p.dataset.pitch);
   });
   $('#boardFilter').addEventListener('change', e => { filter = e.target.value; Sound.blip(800); render(); });
 
@@ -3022,12 +3186,23 @@ const Board = (() => {
   addEventListener('keydown', e => { if(e.key === 'Escape') $$('.sheet').forEach(sh => { if(!sh.hidden) closeSheet(sh.id); }); });
   $('#pinBtn').addEventListener('click', () => { Sound.blip(700); openSheet('pinSheet'); });
   $('#pinSheet [data-notme]').addEventListener('click', () => { $('#pinAs').hidden = true; $('#pinWho').hidden = false; $('#pname').value = ''; $('#pname').focus(); });
+
+  // Pinning a theme asks which day it's for
+  $('#pinDays').innerHTML = THEME_DAYS.map((d, i) => `<input type="radio" name="day" id="pdy${i}" value="${escA(d.id)}"><label for="pdy${i}">${esc(d.id)}</label>`).join('');
   const PH = { Theme: ['e.g. All white on the boat', 'Describe the look: colours, outfits, what the bride wears…'],
                _: ['e.g. Matching tees for the airport', 'Colour, wording, how many…'] };
+  function setCategory(v){
+    const [a, b] = PH[v] || PH._; $('#pextra').placeholder = a; $('#pdetails').placeholder = b;
+    $('#pinDay').hidden = v !== 'Theme';
+  }
   $('#pinForm').addEventListener('change', e => {
-    if(e.target.name !== 'category') return;
-    const [a, b] = PH[e.target.value] || PH._; $('#pextra').placeholder = a; $('#pdetails').placeholder = b; Sound.blip(880);
+    if(e.target.name === 'category'){ setCategory(e.target.value); Sound.blip(880); }
   });
+  function pitch(day){
+    Sound.blip(700); openSheet('pinSheet');
+    const c = $('#pc0'); c.checked = true; setCategory('Theme');
+    const d = [...$$('#pinDays input')].find(x => x.value === day); if(d) d.checked = true;
+  }
 
   $('#whoForm').addEventListener('submit', e => {
     e.preventDefault();
@@ -3035,29 +3210,31 @@ const Board = (() => {
     if(!v){ e.target.querySelector('.err').textContent = 'Pop your name in first'; return; }
     Me.set(v); closeSheet('whoSheet');
     const id = pendingHeart; pendingHeart = null;
-    load().then(() => { const it = items.find(x => x.id === id); if(it && !it.mine) toggle(id); });
+    load().then(() => { const it = items.find(x => x.id === id); if(it && !mine(it)) toggle(id); });
   });
 
   const pin = $('#pinForm');
   pin.addEventListener('submit', async e => {
     e.preventDefault();
     const f = pin.elements, err = pin.querySelector('.err'), btn = pin.querySelector('button[type=submit]');
-    const name = f.name.value.trim(), extra = f.extra.value.trim();
+    const name = f.name.value.trim(), extra = f.extra.value.trim(), category = f.category.value || 'Other';
+    const day = category === 'Theme' ? (f.day.value || '') : '';
     if(!name){ err.textContent = 'Pop your name in first'; f.name.focus(); return; }
     if(!extra){ err.textContent = "Go on, what is it?"; f.extra.focus(); return; }
+    if(category === 'Theme' && !day){ err.textContent = 'Which day is it for?'; $('#pinDay').scrollIntoView({ block:'nearest' }); return; }
     Me.set(name); err.textContent = '';
-    const data = { type:'extra', name, extra, category: f.category.value || 'Other', details: f.details.value.trim(),
+    const data = { type:'extra', name, extra, category, day, details: f.details.value.trim(),
       link: f.link.value.trim(), cost: f.cost.value.trim(), website: f.website.value };
     btn.disabled = true; btn.textContent = 'Pinning…';
     const p = new URLSearchParams(data); p.set('idea', '📌 EXTRA: ' + extra);   // fallback for an older Sheet script
     const ok = await post(p).then(() => true, () => false);
     btn.disabled = false; btn.textContent = 'Pin it';
     if(!ok){ err.textContent = "That didn't send. Check your signal and try again."; return; }
-    const tmp = { ...data, id: 'tmp' + Date.now(), hearts: 0, at: Date.now() };
+    const tmp = { ...data, id: 'tmp' + Date.now(), hearts: 0, by: [], at: Date.now(), confirmed: false };
     items.unshift(tmp); freshId = tmp.id; filter = '';
     $('#bf0').checked = true;
-    pin.reset(); f.name.value = name; closeSheet('pinSheet');
-    loaded = true; render(); Sound.chime(); lightFloor(30); toast('Pinned! Everyone can see it now.');
+    pin.reset(); setCategory(''); f.name.value = name; closeSheet('pinSheet');
+    loaded = true; render(); Sound.chime(); lightFloor(30); toast('Pinned! Everyone can vote on it now.');
     setTimeout(load, 3000);
   });
 
