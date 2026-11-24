@@ -814,7 +814,7 @@ body.crispy .act.gold{background:linear-gradient(180deg,#f2f8ff,#bcdcff 60%,#8fb
 :root{--serif:"Cormorant Garamond",Georgia,serif;--champ:#e9c983}
 .vr{position:fixed;inset:0;z-index:70;background:#07000d;color:var(--text);overflow:hidden;animation:fadeIn .5s both}
 .vr-stage{position:absolute;inset:0;display:none}
-.vr[data-s=door] .vr-door,.vr[data-s=lights] .vr-lights,.vr[data-s=tour] .vr-tour,.vr[data-s=end] .vr-end{display:flex}
+.vr[data-s=turn] .vr-turn,.vr[data-s=door] .vr-door,.vr[data-s=lights] .vr-lights,.vr[data-s=tour] .vr-tour,.vr[data-s=end] .vr-end{display:flex}
 .vr-x{position:absolute;z-index:5;top:calc(var(--safe-t) + 14px);right:14px;width:44px;height:44px;border:0;border-radius:14px;background:rgba(7,0,13,.55);color:var(--text);display:grid;place-items:center;cursor:pointer}
 .vr-x svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round}
 .vr-k{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--champ);margin:0}
@@ -832,6 +832,13 @@ body.crispy .act.gold{background:linear-gradient(180deg,#f2f8ff,#bcdcff 60%,#8fb
 .vr-card{width:96px;height:60px;border-radius:10px;background:linear-gradient(135deg,#f4dca0,#c9a35a);box-shadow:0 10px 24px rgba(0,0,0,.5);display:flex;flex-direction:column;justify-content:space-between;padding:8px 10px;color:#2a1a00;font-family:var(--mono);text-align:left;transition:transform .2s}
 .vr-card small{font-size:7px;letter-spacing:.2em}.vr-card b{font-size:9px;letter-spacing:.08em}
 .vr-key.held .vr-card{transform:scale(.93)}
+.vr-turn{flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:40px 32px;text-align:center;background:radial-gradient(420px 320px at 50% 40%,rgba(233,201,131,.11),transparent 70%)}
+.vr-turn h2{font-family:var(--serif);font-style:italic;font-weight:500;font-size:42px;line-height:1.05;margin:0;max-width:300px}
+.vr-turn p{margin:0;font-size:16px;color:var(--muted)}
+.vr-turn .vr-land{width:auto;min-width:240px;margin-top:10px}
+.vr-phone{display:grid;place-items:center;width:110px;height:110px}
+.vr-phone svg{width:84px;height:84px;fill:none;stroke:var(--champ);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;animation:vrTurn 3s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes vrTurn{0%,25%{transform:rotate(0)}50%,85%{transform:rotate(-90deg)}100%{transform:rotate(0)}}
 .vr-tap{min-height:44px;border:0;background:none;color:var(--muted);font:500 14px var(--sans);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .vr-lights,.vr-end{flex-direction:column;justify-content:flex-end}
 .vr-hero,.vr-endpic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 50%}
@@ -866,9 +873,14 @@ body.crispy .act.gold{background:linear-gradient(180deg,#f2f8ff,#bcdcff 60%,#8fb
   .vr-cap{left:calc(62% + 28px);right:24px;bottom:calc(var(--safe-b) + 24px)}
   .vr-cap .vr-serif{font-size:36px}
   .vr-door{gap:12px;padding:16px}.vr-door h2{font-size:32px}.vr-key{width:120px;height:120px}
+  .vr-lights{flex-direction:row}
+  .vr-hero{width:62%;right:auto;object-fit:cover}
+  .vr-lights .vr-shade{background:linear-gradient(90deg,transparent 52%,rgba(7,0,13,.96) 63%)}
+  .vr-name{position:absolute;left:62%;right:0;top:0;bottom:0;width:auto;max-width:none;margin:0;justify-content:center;padding:20px 28px calc(var(--safe-b) + 20px)}
+  .vr-turn{gap:10px;padding:16px}.vr-turn h2{font-size:32px;max-width:none}.vr-phone{width:70px;height:70px}.vr-phone svg{width:56px;height:56px;animation:none;transform:rotate(-90deg)}
   .vr-name h2{font-size:40px}.vr-name,.vr-end-in{padding-bottom:20px;gap:10px}.vr-end-in h2{font-size:32px}
 }
-@media (prefers-reduced-motion:reduce){.vr-hero,.vr-name{transition:none}.vr{animation:none}}
+@media (prefers-reduced-motion:reduce){.vr-hero,.vr-name{transition:none}.vr{animation:none}.vr-phone svg{animation:none;transform:rotate(-90deg)}}
 .vtile{padding:10px 14px 10px 10px}
 .vtile .vt-pic{flex:none;width:92px;height:68px;border-radius:12px;overflow:hidden;background:rgba(0,0,0,.3);display:grid;place-items:center}
 .vtile .vt-pic img{width:100%;height:100%;object-fit:cover;display:block}
@@ -1224,8 +1236,15 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 </div>
 
 <!-- ============ THE VILLA REVEAL: plays once, the first time each person enters (see VILLA_TOUR) ============ -->
-<div class="vr" id="villaReveal" data-s="door" role="dialog" aria-modal="true" aria-label="Where we're staying" hidden>
+<div class="vr" id="villaReveal" data-s="turn" role="dialog" aria-modal="true" aria-label="Where we're staying" hidden>
   <button class="vr-x" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="vr-stage vr-turn">
+    <span class="vr-phone" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="15" y="5" width="18" height="38" rx="3.5"/><path d="M21 9h6"/><circle cx="24" cy="38" r="1.2"/></svg></span>
+    <h2>Turn your phone sideways</h2>
+    <p>It's better this way. Trust us.</p>
+    <button class="btn btn-gold vr-land" type="button">I'm in landscape</button>
+    <button class="vr-tap vr-upright" type="button">My screen won't turn</button>
+  </div>
   <div class="vr-stage vr-door">
     <p class="vr-k">Christie's Hen Do</p>
     <h2>Room for seven.</h2>
@@ -1918,9 +1937,9 @@ const VILLA_TOUR = {
   hero: 'villa/01-villa-night.jpg',   // the "lights on" moment
   end: 'villa/07-pool-night.jpg',     // behind the last screen
   slides: [
-    { img: 'villa/03-pool-day.jpg',       title: 'The pool',   line: 'Eight metres of it, all ours. Swimmies on by 10am.',            alt: 'The pool in full sun with mountains behind' },
-    { img: 'villa/04-pergola-view.jpg',   title: 'The view',   line: 'Split and the sea, straight from the hammock chair.',           alt: 'Shaded terrace with a hammock chair looking down over Split and the sea' },
+    { img: 'villa/09-pergola-swing.jpg',  title: 'The view',   line: 'Split and the sea, straight from the hammock chair.',           alt: 'Shaded terrace with a hammock chair and sofas, looking down over Split and the sea' },
     { img: 'villa/05-tavern.jpg',         title: 'The tavern', line: 'Stone walls, open fire, one long table. Konoba night, at home.', alt: 'Stone tavern room with a fire going and long wooden benches' },
+    { img: 'villa/10-pool-view.jpg',      title: 'The pool',   line: 'Eight metres of it, all ours. Swimmies on by 10am.',            alt: 'The pool and sunbeds with the mountain and the sea behind' },
     { img: 'villa/08-terrace-night.jpg',  title: 'After dark', line: 'Four bedrooms, four bathrooms, one very good terrace.',          alt: 'Lantern-lit terrace at night with the city lights below' },
   ],
 };
@@ -3024,13 +3043,13 @@ document.addEventListener('pointerdown', e => {
   const stage = s => { vr.dataset.s = s; };
   const setRing = p => { ring.style.strokeDashoffset = C * (1 - p); };
   function clear(){ cancelAnimationFrame(raf); timers.forEach(clearTimeout); timers = []; key.classList.remove('held'); }
-  function reset(){ clear(); setRing(0); lights.classList.remove('on', 'named'); slide = 0; stage('door'); }
+  function reset(){ clear(); setRing(0); lights.classList.remove('on', 'named'); slide = 0; stage('turn'); }
   function open(){
     vr.querySelector('.vr-hero').src = V.hero; vr.querySelector('.vr-endpic').src = V.end;
     V.slides.forEach(x => { new Image().src = x.img; });
     lastFocus = document.activeElement;
     reset(); vr.hidden = false; document.body.classList.add('locked');
-    setTimeout(() => key.focus({ preventScroll: true }), 120);
+    setTimeout(() => vr.querySelector('.vr-land').focus({ preventScroll: true }), 120);
   }
   function close(){ clear(); vr.hidden = true; document.body.classList.remove('locked'); paintTile(); if(lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true }); }
   function unlock(){
@@ -3054,7 +3073,10 @@ document.addEventListener('pointerdown', e => {
   }));
   key.addEventListener('click', e => { if(e.detail === 0) unlock(); });   // Enter / Space on a keyboard
   key.addEventListener('contextmenu', e => e.preventDefault());
-  vr.querySelector('.vr-tap').addEventListener('click', unlock);
+  vr.querySelector('.vr-door .vr-tap').addEventListener('click', unlock);
+  const toDoor = () => { Sound.blip(600); stage('door'); setTimeout(() => key.focus({ preventScroll: true }), 60); };
+  vr.querySelector('.vr-land').addEventListener('click', toDoor);
+  vr.querySelector('.vr-upright').addEventListener('click', toDoor);
 
   function paintSlide(){
     const x = V.slides[slide];
@@ -3069,7 +3091,7 @@ document.addEventListener('pointerdown', e => {
     if(slide < n - 1){ slide++; paintSlide(); }
     else { stage('end'); vr.querySelector('.vr-details').focus({ preventScroll: true }); }
   });
-  vr.querySelector('.vr-again').addEventListener('click', () => { reset(); key.focus({ preventScroll: true }); });
+  vr.querySelector('.vr-again').addEventListener('click', () => { reset(); vr.querySelector('.vr-land').focus({ preventScroll: true }); });
   vr.querySelector('.vr-details').addEventListener('click', () => { close(); openPage('villa'); });
   vr.querySelector('.vr-x').addEventListener('click', close);
   addEventListener('keydown', e => { if(!vr.hidden && e.key === 'Escape') close(); });
