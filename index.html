@@ -1211,6 +1211,7 @@ body[data-scr="pg-board"] .dk.on{color:#2a0b3a;text-shadow:none}
 #pg-board .bd-k{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#2a0b3a;margin:34px 0 16px}
 #pg-board .bd-h{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1;color:#2a0b3a;margin:28px 0 12px}
 #pg-board .board-filter{margin:0 -18px 18px}
+#pg-board #pinBtn{margin-top:14px}
 .td-list{display:flex;flex-direction:column;gap:18px}
 .td{position:relative;padding:20px 16px 14px;border-radius:6px;background:#fff4e3;color:#2a0b3a;box-shadow:0 10px 20px rgba(60,30,10,.3);transform:rotate(var(--r,0deg))}
 .td::before{content:"";position:absolute;left:50%;top:-6px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb3c8,#c2185b 60%,#6b0a30);box-shadow:0 3px 4px rgba(0,0,0,.35)}
@@ -1236,7 +1237,7 @@ body[data-scr="pg-board"] .dk.on{color:#2a0b3a;text-shadow:none}
 .td-alts small{display:block;font-size:12px;opacity:.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .td-alts li{padding:10px 0}
 .td-alts li>span{min-width:0}
-.td-alts b{display:block;font-weight:600;font-size:15px}
+.td-alts b{display:block;font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.1;overflow-wrap:anywhere}
 .td-alts .faces{margin-top:6px}
 .td-alts .face{width:22px;height:22px;margin-right:-5px;font-size:10px;border-width:1.5px}
 .td-alts li.fresh{animation:pinIn .6s cubic-bezier(.3,1.4,.5,1) both}
@@ -1583,14 +1584,14 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
   <section class="screen page" id="pg-board" aria-labelledby="boardH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <h2 class="sec-h" id="boardH">Themes &amp; extras</h2>
-    <p class="sec-p bd-intro">Pin it, vote on it. Adam and Beth confirm the winners and sort the buying.</p>
-    <button class="btn btn-gold" id="pinBtn" type="button">Pin something up<span class="arr" aria-hidden="true">+</span></button>
+    <p class="sec-p bd-intro">Pitch it, vote on it. Adam and Beth confirm the winners and sort the buying.</p>
 
     <h3 class="bd-k" id="tdH">The theme</h3>
     <div class="td-list" id="themeDays" aria-labelledby="tdH" aria-live="polite"></div>
 
     <h3 class="bd-k">Extras</h3>
     <section class="pot" id="pot" aria-label="Extras pot"></section>
+    <button class="btn btn-gold" id="pinBtn" type="button">Pin an extra<span class="arr" aria-hidden="true">+</span></button>
     <h4 class="bd-h" id="voteH">Up for a vote</h4>
     <div class="chips board-filter" id="boardFilter" role="radiogroup" aria-label="Show">
       <input type="radio" name="bf" id="bf0" value="" checked><label for="bf0">All</label>
@@ -2083,24 +2084,27 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <div class="sheet-back" data-close></div>
     <form class="sheet-card" id="pinForm" novalidate autocomplete="off" role="dialog" aria-labelledby="pinH">
       <div class="sheet-grab" aria-hidden="true"></div>
-      <h2 class="q" id="pinH">Pin something up</h2>
-      <p class="hint">We'll sort the buying.</p>
+      <h2 class="q" id="pinH">Pin an extra</h2>
+      <p class="hint" id="pinHint">We'll sort the buying.</p>
       <p class="as-me" id="pinAs" hidden>Pinning as <b></b> <button type="button" data-notme>Not you?</button></p>
       <div class="who-field" id="pinWho">
       <label class="lbl" for="pname">Your name</label>
       <input type="text" id="pname" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
       </div>
-      <label class="lbl" for="pextra">What is it?</label>
-      <input type="text" id="pextra" name="extra" placeholder="e.g. Matching tees for the airport" maxlength="120">
+      <div id="pinPile">
       <p class="lbl">Which pile?</p>
       <div class="chips" role="radiogroup" aria-label="Category">
-        <input type="radio" name="category" id="pc0" value="Theme"><label for="pc0">Theme</label>
+        <input type="radio" name="category" id="pc0" value="Theme" hidden><label for="pc0" hidden>Theme</label>
         <input type="radio" name="category" id="pc1" value="Wear"><label for="pc1">Wear</label>
         <input type="radio" name="category" id="pc2" value="Decor"><label for="pc2">Decor</label>
         <input type="radio" name="category" id="pc3" value="Games"><label for="pc3">Games</label>
         <input type="radio" name="category" id="pc4" value="Gifts"><label for="pc4">Gifts</label>
         <input type="radio" name="category" id="pc5" value="Other"><label for="pc5">Other</label>
       </div>
+      </div>
+      <label class="lbl" for="pextra" id="pextraL">What is it?</label>
+      <input type="text" id="pextra" name="extra" placeholder="e.g. Matching tees for the airport" maxlength="120">
+      <div id="pinMore">
       <label class="lbl" for="pdetails">The details <small>(optional)</small></label>
       <textarea id="pdetails" name="details" placeholder="Colour, wording, how many…" maxlength="600"></textarea>
       <div class="pin-pair">
@@ -2108,6 +2112,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
         <input type="url" id="plink" name="link" inputmode="url" placeholder="Etsy, Amazon…"></div>
         <div><label class="lbl" for="pcost">Rough cost, all in <small>(optional)</small></label>
         <input type="text" id="pcost" name="cost" inputmode="decimal" placeholder="e.g. £40" maxlength="20"></div>
+      </div>
       </div>
       <div class="sr" aria-hidden="true"><label for="website5">Leave empty</label><input type="text" id="website5" name="website" tabindex="-1"></div>
       <div class="err" aria-live="polite"></div>
@@ -2158,8 +2163,10 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
       <p class="op-k" id="opKind"></p>
       <h2 class="q" id="opH"></h2>
       <p class="hint" id="opNow"></p>
+      <div id="opCostWrap">
       <label class="lbl" for="opCost">Cost, all in <small>(update it if you know the real price)</small></label>
       <input type="text" id="opCost" name="cost" inputmode="decimal" placeholder="e.g. £40" maxlength="20">
+      </div>
       <div class="op-acts">
         <button class="btn btn-gold" type="button" data-op="Confirmed">Confirm</button>
         <button class="btn btn-line" type="button" data-op="Not this time">Not this time</button>
@@ -3246,7 +3253,6 @@ const Board = (() => {
     if(won) return `<article class="td done" style="--r:-.6deg">
         <div class="td-top"><span class="td-when">The whole trip</span><span class="td-stamp">The winner</span></div>
         <h3>${esc(won.extra)}</h3><p class="td-by">${esc(nice(won.name))}'s idea</p>
-        ${won.details ? `<p class="td-look">${esc(won.details)}</p>` : ''}
         <div class="td-vote"><div>${faces(won)}<span class="td-n">${votes(won)} of ${GUESTS.length} liked it</span></div></div>
         ${manage(won)}
       </article>`;
@@ -3259,11 +3265,10 @@ const Board = (() => {
     return `<article class="td${lead.id === freshId ? ' fresh' : ''}" style="--r:-.6deg">
         <div class="td-top"><span class="td-when">In the lead</span><span class="td-count">${list.length} pitched</span></div>
         <h3>${esc(lead.extra)}</h3><p class="td-by">${esc(nice(lead.name))}'s idea</p>
-        ${lead.details ? `<p class="td-look">${esc(lead.details)}</p>` : ''}
         <div class="td-vote"><div>${faces(lead)}<span class="td-n">${votes(lead)} of ${GUESTS.length}</span></div>${voteBtn(lead)}</div>
         ${manage(lead)}
         ${rest.length ? `<ul class="td-alts">${rest.map(t => `<li class="${t.id === freshId ? 'fresh' : ''}">
-            <span><b>${esc(t.extra)}</b><small>${esc(nice(t.name))}'s idea${t.details ? ' · ' + esc(t.details) : ''}</small>${faces(t)}</span>
+            <span><b>${esc(t.extra)}</b><small>${esc(nice(t.name))}'s idea</small>${faces(t)}</span>
             <div>${heartBtn(t)}${manage(t)}</div></li>`).join('')}</ul>` : ''}
         <button class="td-pitch" type="button" data-pitch>Pitch another theme +</button>
       </article>`;
@@ -3361,7 +3366,8 @@ const Board = (() => {
     $('#opNow').textContent = `${nice(it.name)}'s idea · ${it.confirmed ? 'confirmed' : 'up for a vote'} · ${votes(it)} of ${GUESTS.length} voted`;
     $('#opCost').value = it.cost || '';
     $('#opAmt').value = money(it) ? String(money(it)) : ''; $('#opTo').value = '';
-    $('#opBought').hidden = isTheme(it) && !money(it);
+    $('#opBought').hidden = isTheme(it);
+    $('#opCostWrap').hidden = isTheme(it);
     $$('#orgPinForm [data-op]').forEach(b => { b.hidden = (b.dataset.op === 'Confirmed' && it.confirmed) || (b.dataset.op === '' && !it.confirmed); });
     openSheet('orgPinSheet');
   }
@@ -3395,20 +3401,29 @@ const Board = (() => {
   function closeSheet(id){ $('#' + id).hidden = true; document.body.classList.remove('locked'); }
   $$('.sheet').forEach(sh => sh.addEventListener('click', e => { if(e.target.closest('[data-close]')){ closeSheet(sh.id); if(sh.id === 'whoSheet') pendingHeart = null; } }));
   addEventListener('keydown', e => { if(e.key === 'Escape') $$('.sheet').forEach(sh => { if(!sh.hidden) closeSheet(sh.id); }); });
-  $('#pinBtn').addEventListener('click', () => { Sound.blip(700); openSheet('pinSheet'); });
+  $('#pinBtn').addEventListener('click', () => { Sound.blip(700); if($('#pc0').checked) $('#pc0').checked = false; setCategory(''); openSheet('pinSheet'); });
   $('#pinSheet [data-notme]').addEventListener('click', () => { $('#pinAs').hidden = true; $('#pinWho').hidden = false; $('#pname').value = ''; $('#pname').focus(); });
 
-  const PH = { Theme: ['e.g. All white on the boat', 'Describe the look: colours, outfits, what the bride wears…'],
-               _: ['e.g. Matching tees for the airport', 'Colour, wording, how many…'] };
+  // Two ways in: "Pin something up" is for extras (pile, details, link, cost); "Pitch a theme" asks for the
+  // theme's name and nothing else, because the name should sell it ("The village socialites").
   function setCategory(v){
-    const [a, b] = PH[v] || PH._; $('#pextra').placeholder = a; $('#pdetails').placeholder = b;
+    const theme = v === 'Theme', x = $('#pextra');
+    $('#pinH').textContent = theme ? 'Pitch a theme' : 'Pin an extra';
+    $('#pinPile').hidden = theme;
+    $('#pextraL').textContent = theme ? 'Theme name' : 'What is it?';
+    $('#pinHint').textContent = theme ? 'A few words. The name should sell it.' : "We'll sort the buying.";
+    x.placeholder = theme ? 'e.g. The village socialites' : 'e.g. Matching tees for the airport';
+    x.maxLength = theme ? 40 : 120;
+    if(theme && x.value.length > 40) x.value = x.value.slice(0, 40);
+    $('#pinMore').hidden = theme;
   }
   $('#pinForm').addEventListener('change', e => {
-    if(e.target.name === 'category'){ setCategory(e.target.value); Sound.blip(880); }
+    if(e.target.name === 'category') Sound.blip(880);
   });
   function pitch(){
     Sound.blip(700); openSheet('pinSheet');
     $('#pc0').checked = true; setCategory('Theme');
+    setTimeout(() => $('#pextra').focus({ preventScroll:true }), 320);
   }
 
   $('#whoForm').addEventListener('submit', e => {
@@ -3426,10 +3441,11 @@ const Board = (() => {
     const f = pin.elements, err = pin.querySelector('.err'), btn = pin.querySelector('button[type=submit]');
     const name = f.name.value.trim(), extra = f.extra.value.trim(), category = f.category.value || 'Other';
     if(!name){ err.textContent = 'Pop your name in first'; f.name.focus(); return; }
-    if(!extra){ err.textContent = "Go on, what is it?"; f.extra.focus(); return; }
+    if(!extra){ err.textContent = category === 'Theme' ? 'Go on, give it a name' : 'Go on, what is it?'; f.extra.focus(); return; }
     Me.set(name); err.textContent = '';
-    const data = { type:'extra', name, extra, category, details: f.details.value.trim(),
-      link: f.link.value.trim(), cost: f.cost.value.trim(), website: f.website.value };
+    const theme = category === 'Theme';
+    const data = { type:'extra', name, extra, category, details: theme ? '' : f.details.value.trim(),
+      link: theme ? '' : f.link.value.trim(), cost: theme ? '' : f.cost.value.trim(), website: f.website.value };
     btn.disabled = true; btn.textContent = 'Pinning…';
     const p = new URLSearchParams(data); p.set('idea', '📌 EXTRA: ' + extra);   // fallback for an older Sheet script
     const ok = await post(p).then(() => true, () => false);
