@@ -1101,6 +1101,7 @@ body.waiting .dock,body.locked .dock{display:none!important}
 body[data-scr="intro"] main,body[data-scr^="pg-"] main{padding-bottom:calc(var(--safe-b) + 110px)}
 body[data-scr^="pg-"] .page-head .back{display:none}
 body[data-scr^="pg-"] .page-head:not(:has(.hd-ico)){display:none}
+#pg-plan .plan-prog{display:none}
 #pg-plan .page-head{justify-content:flex-end;margin-bottom:-44px;position:relative;z-index:2}
 .page-head{min-height:44px}
 .hd-ico{margin-left:auto;display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:var(--tone1);color:var(--champ)}
@@ -1218,7 +1219,6 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <div class="ent-sub">Hen HQ</div>
     <button class="enter" id="enterBtn" type="button">Let me in</button>
     <svg class="ent-rope" viewBox="0 0 300 60" aria-hidden="true"><rect x="8" y="6" width="6" height="54" rx="3" fill="#c9a35a"/><circle cx="11" cy="6" r="6" fill="#e9c983"/><rect x="286" y="6" width="6" height="54" rx="3" fill="#c9a35a"/><circle cx="289" cy="6" r="6" fill="#e9c983"/><path d="M14 14 C 90 52, 210 52, 286 14" fill="none" stroke="#7a1450" stroke-width="7" stroke-linecap="round"/><path d="M14 12 C 90 48, 210 48, 286 12" fill="none" stroke="rgba(255,110,199,.35)" stroke-width="1.5"/></svg>
-    <p class="ent-note">Sound up, ladies</p>
   </div>
 </div>
 <div class="sky" aria-hidden="true"></div>
@@ -1244,14 +1244,12 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
   <div class="vr-stage vr-turn">
     <span class="vr-phone" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="15" y="5" width="18" height="38" rx="3.5"/><path d="M21 9h6"/><circle cx="24" cy="38" r="1.2"/></svg></span>
     <h2>Turn your phone sideways</h2>
-    <p>It's better this way. Trust us.</p>
     <button class="btn btn-gold vr-land" type="button">I'm in landscape</button>
     <button class="vr-tap vr-upright" type="button">My screen won't turn</button>
   </div>
   <div class="vr-stage vr-door">
-    <p class="vr-k">Christie's Hen Do</p>
     <h2>Room for seven.</h2>
-    <p>The keys have landed. Press and hold to let yourself in.</p>
+    <p>Press and hold.</p>
     <button class="vr-key" type="button" aria-label="Press and hold to see where we're staying">
       <svg class="vr-ring" viewBox="0 0 172 172" aria-hidden="true"><circle class="bg" cx="86" cy="86" r="83"/><circle class="fg" cx="86" cy="86" r="83"/></svg>
       <span class="vr-card" aria-hidden="true"><small>ROOM KEY</small><b>ADMIT 7</b></span>
@@ -1262,7 +1260,6 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <img class="vr-hero" alt="The villa at night, every window lit and the pool glowing">
     <span class="vr-shade" aria-hidden="true"></span>
     <div class="vr-name">
-      <span class="vr-k">Welcome to</span>
       <h2 class="vr-serif" id="vrName"></h2>
       <p id="vrWhere"></p>
       <button class="btn btn-gold vr-go" type="button">Have a look round<span class="arr" aria-hidden="true">→</span></button>
@@ -1271,16 +1268,15 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
   <button class="vr-stage vr-tour" type="button">
     <img class="vr-blur" alt="" aria-hidden="true">
     <span class="vr-bars" aria-hidden="true"></span>
-    <span class="vr-frame"><img class="vr-shot" alt=""><span class="vr-rot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M3 9a9 9 0 0 1 4-5M21 15a9 9 0 0 1-4 5"/><path d="M3 4v5h5M21 20v-5h-5"/></svg>Turn your phone for the full view</span></span>
+    <span class="vr-frame"><img class="vr-shot" alt=""><span class="vr-rot" hidden></span></span>
     <span class="vr-fade" aria-hidden="true"></span>
-    <span class="vr-cap" aria-live="polite"><span class="vr-k" id="vrNum"></span><span class="vr-serif" id="vrTitle"></span><span class="l" id="vrLine"></span><small>Tap for the next one</small></span>
+    <span class="vr-cap" aria-live="polite"><span class="vr-k" id="vrNum"></span><span class="vr-serif" id="vrTitle"></span><span class="l" id="vrLine"></span></span>
   </button>
   <div class="vr-stage vr-end">
     <img class="vr-endpic" alt="" aria-hidden="true">
     <span class="vr-shade" aria-hidden="true"></span>
     <div class="vr-end-in">
       <h2>Not a bad gaff, eh?</h2>
-      <p>Christie's none the wiser. Don't forward this link.</p>
       <button class="btn btn-gold vr-details" type="button">All the details<span class="arr" aria-hidden="true">→</span></button>
       <button class="btn btn-line vr-again" type="button">Watch it again</button>
     </div>
@@ -1299,7 +1295,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
       <div class="hq-title"><h1 class="sign" id="title" aria-label="Christie's"></h1></div>
       <div class="marquee" id="marquee">
         <div class="days" id="days">—</div>
-        <div class="till" id="till">till Croatia · 09.09.27</div>
+        <div class="till" id="till">till Croatia</div>
       </div>
     </div>
     <p class="tube" hidden>Hen HQ</p>
@@ -1319,15 +1315,15 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
         </button>
         <button class="dcard dc-money" type="button" data-page="money">
           <b class="dc-big" id="tileAsk">£550</b>
-          <b>Costs</b><small id="moneyMini">Left each. Deposit paid</small>
+          <b>Costs</b><small id="moneyMini">Left to pay</small>
         </button>
         <button class="dcard" type="button" data-page="prep">
           <svg class="ring" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15" class="r-bg"/><circle cx="18" cy="18" r="15" class="r-fg" id="prepRing"/><text x="18" y="21.5" text-anchor="middle" id="ringTxt">0/6</text></svg>
-          <b>Before you go</b><small id="prepNext">Passport, leave, GHIC</small>
+          <b>Before you go</b><small id="prepNext" hidden></small>
         </button>
         <button class="dcard dc-sea" type="button" data-page="croatia">
           <b class="dc-big">25°</b>
-          <b>Croatia 101</b><small>Sea's 23°. Bring swimmies.</small>
+          <b>Croatia 101</b>
         </button>
       </div>
     </div>
@@ -1335,10 +1331,10 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <div class="tunes" id="tunes">
       <p class="sec-k tunes-k">The soundtrack</p>
       <iframe class="spotify spotify-mini" id="spotify" title="The hen do playlist on Spotify" src="https://open.spotify.com/embed/playlist/7hMN4qKrrd0USB6N153CaI?utm_source=generator&amp;theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      <p class="foot"><a href="https://open.spotify.com/playlist/7hMN4qKrrd0USB6N153CaI?si=J-kXQgJ4Q-avdQ9F8eZQ2A&amp;pt=3b04bd2be1e85936a08321d98a921cb1" target="_blank" rel="noopener">Join the playlist</a> to add your songs.</p>
+      <p class="foot"><a href="https://open.spotify.com/playlist/7hMN4qKrrd0USB6N153CaI?si=J-kXQgJ4Q-avdQ9F8eZQ2A&amp;pt=3b04bd2be1e85936a08321d98a921cb1" target="_blank" rel="noopener">Add your songs</a></p>
     </div>
 
-    <p class="sitefoot">Christie's none the wiser, so don't forward this link.<br>Questions? Give Adam or Beth a shout in the group chat.<br>Christie's Hen Do · Croatia · 09.09.27</p>
+    <p class="sitefoot">Don't forward this link.<br>Questions? Ask Adam or Beth.</p>
   </section>
 
   <section class="screen page" id="pg-news" aria-labelledby="newsH">
@@ -1370,33 +1366,31 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <div class="plan-prog"><span id="planProg"></span><i><b id="planBar"></b></i></div>
     <ol class="timeline" id="dayList"></ol>
 
-    <button class="photolink" id="planVilla" type="button"><img src="villa/01-villa-night.jpg" alt="" loading="lazy"><span class="pl-txt"><span class="vr-k">Home for 5 nights</span><b>Villa Matković</b></span><span class="chev" aria-hidden="true">›</span></button>
-    <p class="sec-p" style="text-align:center;margin-top:16px;font-size:14px">Got an idea for a free day? <button class="linkbtn" type="button" data-go="idea">Suggest an activity</button></p>
+    <button class="photolink" id="planVilla" type="button" hidden></button>
   </section>
 
   <section class="screen page" id="pg-villa" aria-labelledby="villaH">
     <div class="page-head"><button class="back" type="button" data-back aria-label="Back">←</button></div>
     <figure class="vl-hero">
       <img src="villa/01-villa-night.jpg" alt="Villa Matković at night, windows lit and the pool glowing" loading="lazy">
-      <figcaption><span class="vr-k">Kučine · Split · 09–14.09.27</span><h2 class="vl-h" id="villaH">Villa<br>Matković</h2></figcaption>
+      <figcaption><span class="vr-k">Kučine · Split</span><h2 class="vl-h" id="villaH">Villa<br>Matković</h2></figcaption>
     </figure>
-    <p class="vl-intro">Four bedrooms, a private pool and, apparently, the best view over Split. The whole place is ours.</p>
     <div class="vl-stats"><div><b>4</b><small>Bedrooms</small></div><div><b>4</b><small>Baths</small></div><div><b>8×4</b><small>Pool (m)</small></div><div><b>4.92</b><small>Airbnb</small></div></div>
 
     <article class="vl-sec">
       <img src="villa/03-pool-day.jpg" alt="The pool in full sun, mountains and sea behind" loading="lazy">
       <p class="vl-n">01</p><h3>The pool</h3>
-      <p>Eight metres by four, sunbeds and parasols down one side, outdoor shower for the brave. Swimmies on by 10am.</p>
+      <p>Sunbeds, parasols and an outdoor shower.</p>
     </article>
     <article class="vl-sec">
       <img src="villa/04-pergola-view.jpg" alt="Shaded seating with a hammock chair, looking down over Split and the sea" loading="lazy">
       <p class="vl-n">02</p><h3>The view</h3>
-      <p>Big terrace, outdoor sofas under a shade tree, a hammock chair, and Split and the sea laid out below. Morning coffee sorted.</p>
+      <p>Sofas under a shade tree, and Split below.</p>
     </article>
     <article class="vl-sec">
       <img src="villa/05-tavern.jpg" alt="Stone tavern room with an open fire and long wooden benches" loading="lazy">
       <p class="vl-n">03</p><h3>The tavern</h3>
-      <p>A proper old Dalmatian konoba: stone walls, open fire, one long table. Plus a modern kitchen for the everyday stuff.</p>
+      <p>An old Dalmatian konoba. Modern kitchen too.</p>
       <div class="vl-duo">
         <img src="villa/06-dining.jpg" alt="Long shaded dining table next to the pool" loading="lazy">
         <img src="villa/02-terrace-view.jpg" alt="Sunny terrace with chairs and a sea view" loading="lazy">
@@ -1405,7 +1399,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <article class="vl-sec">
       <img src="villa/07-pool-night.jpg" alt="The pool lit up at night with Split twinkling below" loading="lazy">
       <p class="vl-n">04</p><h3>After dark</h3>
-      <p>Pool lit up, city twinkling below. Pre-drinks here, dancing in town: quiet hours start at 11:30pm.</p>
+      <p>Pre-drinks here, dancing in town.</p>
     </article>
 
     <div class="vl-key">
@@ -1418,15 +1412,14 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 
     <div class="vl-about">
       <span class="vr-k">Getting about</span>
-      <p>Quiet hillside village. Bus stop, café bar and a shop about 100m away. Split's ten minutes by taxi or Uber.</p>
+      <p>Bus stop, café and shop 100m away. Split's ten minutes by Uber.</p>
     </div>
-    <div class="panel soon"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span>The exact address and door details are in the group chat, so they stay off the internet.</span></div>
+    <div class="panel soon"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span>Address and door code: in the group chat.</span></div>
     <div class="vl-links">
       <a class="btn btn-line" href="https://www.airbnb.co.uk/rooms/35017749" target="_blank" rel="noopener">Airbnb listing</a>
       <a class="btn btn-line" href="https://villamatkovic.wixsite.com/villainsplit" target="_blank" rel="noopener">The villa's site</a>
     </div>
     <button class="btn btn-line" id="villaReplay" type="button">Watch the reveal again</button>
-    <p class="sec-p" style="text-align:center;margin-top:16px;font-size:14px">Questions? Give Adam or Beth a shout in the group chat.</p>
   </section>
 
   <section class="screen page" id="pg-money" aria-labelledby="moneyH">
@@ -1437,9 +1430,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
       <div class="pay-head"><b>Pay by bank transfer</b><span id="payAsk">£550 each</span></div>
       <div id="payBody"><button class="btn btn-gold" id="showBank" type="button">Show the bank details</button></div>
     </div>
-    <ul class="panel rows" style="margin-top:18px">
-      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/><path d="M6 6l3.5 3.5M14.5 14.5L18 18M18 6l-3.5 3.5M9.5 14.5L6 18"/></svg></span><span><b>Why the range?</b> The boat and vineyard costs are estimates until they're booked. The contingency is our just-in-case pot for anything that costs more than planned.</span></li>
-    </ul>
+    
   </section>
 
   <section class="screen page" id="pg-prep" aria-labelledby="prepH">
@@ -1468,7 +1459,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 
     <div class="plan-prog"><span id="prepProg"></span><i><b id="prepBar"></b></i></div>
     <ul class="checks" id="checks"></ul>
-    <p class="prep-note">New EU border checks mean you might have fingerprints and a photo taken at passport control the first time. It's free, just a bit more queueing.</p>
+    <p class="prep-note">New EU border checks: expect fingerprints and a photo at passport control.</p>
   </section>
 
   <section class="screen page" id="pg-croatia" aria-labelledby="croH">
@@ -1493,7 +1484,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <div class="wx">
       <div><b>25°</b><small>Days</small></div><div><b>17°</b><small>Nights</small></div><div><b>23°</b><small>Sea</small></div>
     </div>
-    <p class="wx-note">Typical for September. Sunnies, swimmies and a light layer for the evenings.</p>
+    <p class="wx-note">Sunnies, swimmies and a light layer.</p>
 
     <h3 class="sub-h">Say it like a local</h3>
     <ul class="panel phrases">
@@ -1531,7 +1522,6 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 
       <div class="step" data-req="idea">
         <h2 class="q">What should we do?</h2>
-        <p class="hint">Give it a name. Keep it snappy.</p>
         <label class="sr" for="idea">The idea</label>
         <input type="text" id="idea" name="idea" placeholder="e.g. Private boat day" maxlength="120">
         <label class="lbl" for="details">Sell it to us <small>(optional)</small></label>
@@ -1542,7 +1532,6 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 
       <div class="step">
         <h2 class="q">Got a link?</h2>
-        <p class="hint">Website, Insta, TikTok, whatever sells it.</p>
         <label class="sr" for="link">Link</label>
         <input type="url" id="link" name="link" inputmode="url" placeholder="Paste a link">
         <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
@@ -1564,7 +1553,6 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 
       <div class="step" data-auto>
         <h2 class="q">How long does it take?</h2>
-        <p class="hint">So we can plan it round the sunbathing</p>
         <div class="chips" role="radiogroup" aria-label="Time needed">
           <input type="radio" name="time" id="t1" value="1–2 hours"><label for="t1">1–2 hours</label>
           <input type="radio" name="time" id="t2" value="Half day"><label for="t2">Half day</label>
@@ -1577,7 +1565,6 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 
       <div class="step">
         <h2 class="q">How do we get there?</h2>
-        <p class="hint">And anything we'd need to bring.</p>
         <div class="chips" role="radiogroup" aria-label="Transport">
           <input type="radio" name="transport" id="r1" value="Walkable"><label for="r1">Walkable</label>
           <input type="radio" name="transport" id="r2" value="Taxi / Uber"><label for="r2">Taxi or Uber</label>
@@ -1605,7 +1592,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
       <div class="step" data-req="hype">
         <div class="hangball" aria-hidden="true"><i></i><canvas width="300" height="300"></canvas></div>
         <h2 class="q">How many G&amp;Ts is this idea worth?</h2>
-        <p class="hint">Your hype level. Tap a glass and turn it up</p>
+        <p class="hint">Tap a glass.</p>
         <input type="hidden" name="hype">
         <div class="glasses" data-prefix="i" role="radiogroup" aria-label="Hype level"></div>
         <div class="hype-word" aria-live="polite"></div>
@@ -1628,7 +1615,6 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 
       <div class="step" data-req="theme">
         <h2 class="q">What's the theme?</h2>
-        <p class="hint">Dress code, colour scheme, fancy dress, matching outfits…</p>
         <label class="sr" for="theme">The theme</label>
         <input type="text" id="theme" name="theme" placeholder="e.g. All white on the boat" maxlength="120">
         <label class="lbl" for="look">Describe the look <small>(optional)</small></label>
@@ -1639,7 +1625,6 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 
       <div class="step">
         <h2 class="q">Got some inspo?</h2>
-        <p class="hint">Pinterest, Insta, TikTok or a shop link.</p>
         <label class="sr" for="tlink">Link</label>
         <input type="url" id="tlink" name="link" inputmode="url" placeholder="Paste a link">
         <div class="nav"><button class="skip" type="button" data-skip>Skip</button><button class="next" type="button">Next →</button></div>
@@ -1647,7 +1632,6 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 
       <div class="step" data-auto>
         <h2 class="q">When would we wear it?</h2>
-        <p class="hint">Pick the best fit.</p>
         <div class="chips big" role="radiogroup" aria-label="When">
           <input type="radio" name="when" id="w1" value="The whole trip"><label for="w1">The whole trip</label>
           <input type="radio" name="when" id="w2" value="One night out"><label for="w2">One night out</label>
@@ -1674,7 +1658,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
       <div class="step">
         <div class="hangball" aria-hidden="true"><i></i><canvas width="300" height="300"></canvas></div>
         <h2 class="q">How many G&amp;Ts is this theme worth?</h2>
-        <p class="hint">Your hype level. Tap a glass and turn it up</p>
+        <p class="hint">Tap a glass.</p>
         <input type="hidden" name="hype">
         <div class="glasses" data-prefix="t" role="radiogroup" aria-label="Hype level"></div>
         <div class="hype-word" aria-live="polite"></div>
@@ -1696,7 +1680,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 
       <div class="step" data-req="mission">
         <h2 class="q">What's the mission?</h2>
-        <p class="hint">A little challenge for Christie on the trip. Cheeky, not crude</p>
+        <p class="hint">Cheeky, not crude.</p>
         <label class="sr" for="mission">The mission</label>
         <input type="text" id="mission" name="mission" placeholder="e.g. Order drinks in Croatian" maxlength="160">
         <label class="lbl" for="mdetails">Any rules? <small>(optional)</small></label>
@@ -1707,7 +1691,6 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 
       <div class="step" data-auto>
         <h2 class="q">When should she do it?</h2>
-        <p class="hint">Pick the best fit.</p>
         <div class="chips big" role="radiogroup" aria-label="When">
           <input type="radio" name="when" id="mw1" value="At the airport"><label for="mw1">At the airport</label>
           <input type="radio" name="when" id="mw2" value="On the boat"><label for="mw2">On the boat</label>
@@ -1732,7 +1715,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
       <div class="step" data-req="hype">
         <div class="hangball" aria-hidden="true"><i></i><canvas width="300" height="300"></canvas></div>
         <h2 class="q">How many G&amp;Ts will she need first?</h2>
-        <p class="hint">Tap a glass and turn it up</p>
+        <p class="hint">Tap a glass.</p>
         <input type="hidden" name="hype">
         <div class="glasses" data-prefix="m" role="radiogroup" aria-label="G&amp;Ts needed"></div>
         <div class="hype-word" aria-live="polite"></div>
@@ -1764,9 +1747,9 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 
       <div class="done-copy" id="doneCopy" hidden>
         <h2 id="doneH">Idea dropped!</h2>
-        <p id="doneText">It's in the box. The organisers have got it, and Christie's none the wiser.</p>
+        <p id="doneText">Christie's none the wiser.</p>
         <div class="done-btns" id="doneBtns"><button class="again" type="button" data-go="idea">Suggest another</button><button class="again alt" type="button" data-go="mission">Set a mission</button></div>
-        <button class="ghost" type="button" data-go="home">Back to the dance floor</button>
+        <button class="ghost" type="button" data-go="home">Back to HQ</button>
       </div>
       <div class="done-copy" id="failCopy" hidden>
         <h2>Oops!</h2>
@@ -1796,9 +1779,9 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
       </div></div>
       <div class="done-copy" id="tagDone" hidden>
         <h2>On the rail!</h2>
-        <p id="tagDoneText">Your theme's been hung up for the organisers. Christie's none the wiser.</p>
+        <p id="tagDoneText">Christie's none the wiser.</p>
         <div class="done-btns"><button class="again alt" type="button" data-go="theme">Pitch another theme</button><button class="again" type="button" data-go="idea">Drop an idea</button></div>
-        <button class="ghost" type="button" data-go="home">Back to the dance floor</button>
+        <button class="ghost" type="button" data-go="home">Back to HQ</button>
       </div>
       <div class="done-copy" id="tagFail" hidden>
         <h2>Oops!</h2>
@@ -1838,7 +1821,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <form class="sheet-card" id="pinForm" novalidate autocomplete="off" role="dialog" aria-labelledby="pinH">
       <div class="sheet-grab" aria-hidden="true"></div>
       <h2 class="q" id="pinH">Pin something up</h2>
-      <p class="hint">A theme to dress up for, or anything that'd make it extra special. We'll sort the buying.</p>
+      <p class="hint">We'll sort the buying.</p>
       <label class="lbl" for="pname">Your name</label>
       <input type="text" id="pname" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
       <label class="lbl" for="pextra">What is it?</label>
@@ -1870,7 +1853,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <form class="sheet-card" id="wordForm" novalidate autocomplete="off" role="dialog" aria-labelledby="wordH">
       <div class="sheet-grab" aria-hidden="true"></div>
       <h2 class="q" id="wordH">What's the secret word?</h2>
-      <p class="hint">It's in the group chat. Just so the bank details stay between us.</p>
+      <p class="hint">It's in the group chat.</p>
       <label class="sr" for="wword">Secret word</label>
       <input type="text" id="wword" name="word" placeholder="Secret word" maxlength="60" autocapitalize="off">
       <div class="err" aria-live="polite"></div>
@@ -1882,7 +1865,7 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
     <form class="sheet-card" id="whoForm" novalidate autocomplete="off" role="dialog" aria-labelledby="whoH">
       <div class="sheet-grab" aria-hidden="true"></div>
       <h2 class="q" id="whoH">Who's this?</h2>
-      <p class="hint">So your heart only counts once. We'll remember you on this phone.</p>
+      <p class="hint">So your heart counts once.</p>
       <label class="sr" for="wname">Your name</label>
       <input type="text" id="wname" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
       <div class="err" aria-live="polite"></div>
@@ -1901,7 +1884,7 @@ const HEN_DATE = new Date(2027, 8, 9); // 9 Sept 2027
 /* ================= HUB CONTENT: edit this bit as plans firm up ================= */
 // Newest first. Add a line whenever something changes.
 const UPDATES = [
-  { date: '24 Nov 2026', text: "The keys have landed. Tap Where we're staying on the home screen and let yourself in." },
+  { date: '24 Nov 2026', text: "The villa's revealed. Have a nose." },
   { date: '30 Oct 2026', text: "New: the Themes & extras board. Pin up dress-up themes, tees, balloons and all the little extras, and heart your favourites." },
   { date: '30 Oct 2026', text: "The money's in. Full breakdown's on the receipt, under Costs." },
   { date: '30 Oct 2026', text: "We're live. Dates are locked in, the idea box is open and the playlist's up. Get adding!" },
@@ -1936,14 +1919,14 @@ const DAYS = [
 // The full villa page (pg-villa) is plain HTML further down.
 const VILLA_TOUR = {
   name: 'Villa Matković',
-  where: 'Kučine. Ten minutes up the hill from Split. All ours, 9 to 14 September.',
+  where: 'Ten minutes up the hill from Split.',
   hero: 'villa/01-villa-night.jpg',   // the "lights on" moment
   end: 'villa/07-pool-night.jpg',     // behind the last screen
   slides: [
-    { img: 'villa/09-pergola-swing.jpg',  title: 'The view',   line: 'Split and the sea, straight from the hammock chair.',           alt: 'Shaded terrace with a hammock chair and sofas, looking down over Split and the sea' },
-    { img: 'villa/05-tavern.jpg',         title: 'The tavern', line: 'Stone walls, open fire, one long table. Konoba night, at home.', alt: 'Stone tavern room with a fire going and long wooden benches' },
-    { img: 'villa/10-pool-view.jpg',      title: 'The pool',   line: 'Eight metres of it, all ours. Swimmies on by 10am.',            alt: 'The pool and sunbeds with the mountain and the sea behind' },
-    { img: 'villa/08-terrace-night.jpg',  title: 'After dark', line: 'Four bedrooms, four bathrooms, one very good terrace.',          alt: 'Lantern-lit terrace at night with the city lights below' },
+    { img: 'villa/09-pergola-swing.jpg',  title: 'The view',   line: 'Split and the sea, from the hammock chair.', alt: 'Shaded terrace with a hammock chair and sofas, looking down over Split and the sea' },
+    { img: 'villa/05-tavern.jpg',         title: 'The tavern', line: 'Open fire, one long table.', alt: 'Stone tavern room with a fire going and long wooden benches' },
+    { img: 'villa/10-pool-view.jpg',      title: 'The pool',   line: 'All ours. Swimmies on by 10am.', alt: 'The pool and sunbeds with the mountain and the sea behind' },
+    { img: 'villa/08-terrace-night.jpg',  title: 'After dark', line: 'Pre-drinks, sorted.', alt: 'Lantern-lit terrace at night with the city lights below' },
   ],
 };
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2566,10 +2549,10 @@ const gtNo = n => n != null ? 'No. ' + String(n + 1).padStart(3,'0') : 'VIP';
 const TICKET = {
   idea: { by:'Suggested by', admit:'ADMIT ONE', box:'ACTIVITIES', sub:'top secret', done:'In the box!',
     btns:[['idea','Suggest another',''],['mission','Set a mission','alt']],
-    text: n => n != null ? `Activity number ${n} is in the box! The organisers have got it, and Christie's none the wiser.` : "It's in the box. The organisers have got it, and Christie's none the wiser." },
+    text: n => n != null ? `Number ${n}. Christie's none the wiser.` : "Christie's none the wiser." },
   mission: { by:'Set by', admit:'MISSION', box:'MISSIONS', sub:'for later', done:'Mission filed!',
     btns:[['mission','Set another mission',''],['idea','Drop an idea','alt']],
-    text: n => n != null ? `Mission number ${n} is locked away for the trip. Christie's none the wiser.` : "It's locked away for the trip. Christie's none the wiser." }
+    text: n => n != null ? `Number ${n}, locked away for the trip.` : 'Locked away for the trip.' }
 };
 function fillTicket(){
   const f = form.elements, T = TICKET[kind];
@@ -2663,7 +2646,7 @@ async function submitTheme(){
   if(!(await sending)){ $('#tagFail').hidden = false; return; }
   if(themeCount == null && ideaCount != null) themeCount = 0;
   if(themeCount != null){ themeCount++; showCount(); }
-  $('#tagDoneText').textContent = themeCount != null ? `Theme number ${themeCount} is on the rail for the organisers. Christie's none the wiser.` : "Your theme's on the rail for the organisers. Christie's none the wiser.";
+  $('#tagDoneText').textContent = themeCount != null ? `Number ${themeCount}. Christie's none the wiser.` : "Christie's none the wiser.";
   $('#tagDone').hidden = false;
 }
 $('#tagRetry').addEventListener('click', submitTheme);
@@ -2728,10 +2711,10 @@ if(location.hash && document.getElementById('pg-' + location.hash.slice(1))) ope
     ${BUDGET.deposit ? `<div class="r-row r-one"><span>Deposit (part of the ${gbp(BUDGET.ask)})${BUDGET.depositPaid ? '<em class="r-booked">Paid</em>' : ''}</span><span>${gbp(BUDGET.deposit)}</span></div>
     <div class="r-row r-one"><span>Rest to pay</span><span>${gbp(BUDGET.ask - BUDGET.deposit)}</span></div>` : ''}
     <p class="r-note">${BUDGET.ask >= hi ? 'Covers the top end, with a little to spare.'
-      : hi - BUDGET.ask <= cont ? `Worst case, the extra ${gbp(hi - BUDGET.ask)} comes out of the contingency, so ${gbp(BUDGET.ask)} still stands.`
+      : hi - BUDGET.ask <= cont ? `Worst case comes out of the contingency.`
       : `The top end is ${gbp(hi - BUDGET.ask)} over, so it may come in a touch higher.`}</p>
     <div class="r-bar" aria-hidden="true"></div>
-    <p class="r-foot">Christie's none the wiser<br>Thank you, come again</p>`;
+    <p class="r-foot">Thank you, come again</p>`;
 })();
 
 /* ================= HUB: what's new + the plan ================= */
@@ -2903,14 +2886,14 @@ Board.load();
 // Ticks are saved on each person's phone. Each one stamps the passport.
 (function(){
   const ITEMS = [
-    { id:'passport', title:'Check your passport', text:'Issued after 9 Sep 2017 and valid until at least 14 Dec 2027. Renewals can take weeks.',
+    { id:'passport', title:'Check your passport', text:'Issued after 9 Sep 2017, valid until 14 Dec 2027 or later.',
       link:{ href:'https://www.gov.uk/foreign-travel-advice/croatia/entry-requirements', label:'The gov.uk rules →' }, stamp:'Passport<br>checked', shape:'round', ink:'#7a1450', rot:'-8deg' },
-    { id:'leave', title:'Book the time off', text:'Thu 9 to Tue 14 Sept 2027.',
+    { id:'leave', title:'Book the time off', text:'',
       link:{ href:'split-trip.ics', label:'Add the dates to my calendar →', download:true }, stamp:'Leave<br>booked', ink:'#2f5fb8', rot:'6deg' },
-    { id:'pay', title:'Pay the rest of your share', text:'Deposit paid, thank you. £456.85 left each, by bank transfer.', page:{ id:'money', label:'See the bank details →' }, stamp:'Paid', ink:'#b8860b', rot:'-4deg', shape:'round' },
-    { id:'ghic', title:'Get a GHIC', text:"It's free on the NHS website, so ignore any site that tries to charge you.", stamp:'GHIC<br>sorted', ink:'#1f7a5a', rot:'9deg' },
+    { id:'pay', title:'Pay the rest of your share', text:'£456.85 left each.', page:{ id:'money', label:'See the bank details →' }, stamp:'Paid', ink:'#b8860b', rot:'-4deg', shape:'round' },
+    { id:'ghic', title:'Get a GHIC', text:"Free on the NHS website. Ignore sites that charge.", stamp:'GHIC<br>sorted', ink:'#1f7a5a', rot:'9deg' },
     { id:'insurance', title:'Sort travel insurance', text:'Once flights are booked.', stamp:'Insured', ink:'#c2185b', rot:'-10deg' },
-    { id:'outfits', title:'Sort your theme outfits', text:"Once we've picked the themes. Heart your favourites on the board.", page:{ id:'board', label:'Go to the board →' }, stamp:'Dressed<br>to impress', ink:'#6a3fb5', rot:'5deg', shape:'round' },
+    { id:'outfits', title:'Sort your theme outfits', text:"Once the themes are picked.", page:{ id:'board', label:'Go to the board →' }, stamp:'Dressed<br>to impress', ink:'#6a3fb5', rot:'5deg', shape:'round' },
   ];
   const TICK = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
   const done = new Set(JSON.parse(store.get('hen_checks') || '[]'));
@@ -2954,7 +2937,7 @@ Board.load();
       ${row('Sort code', d.sort || '', (d.sort || '').replace(/\D/g, ''))}
       ${row('Account number', d.account || '', (d.account || '').replace(/\D/g, ''))}
       ${d.reference ? row('Reference', d.reference, '', 'ref') : ''}
-    </ul><p class="pay-note">Pop your name in the reference so Adam and Beth know it's from you.</p>`;
+    </ul><p class="pay-note">Use your name as the reference.</p>`;
   }
   async function fetchBank(word){
     const r = await fetch(SCRIPT_URL + '?bank=1&word=' + encodeURIComponent(word || ''));
@@ -3144,8 +3127,8 @@ document.addEventListener('pointerdown', e => {
   $('#miniStrip').innerHTML = dayBits.map(d => `<i class="${d.t ? 't' : d.p ? 'p' : ''}"></i>`).join('');
   $('#planMini').textContent = planned ? `${planned} of ${free} free days planned` : `${free} days wide open`;
   const restEach = (BUDGET.ask - BUDGET.deposit).toFixed(2);
-  $('#moneyMini').textContent = BUDGET.depositPaid ? 'Left each. Deposit paid' : `Each. £${BUDGET.deposit.toFixed(2)} deposit first`;
-  $('#moreMoney').textContent = BUDGET.depositPaid ? `Deposit paid, £${restEach} left each` : `£${BUDGET.ask} each, £${BUDGET.deposit.toFixed(2)} deposit first`;
+  $('#moneyMini').textContent = BUDGET.depositPaid ? 'Left to pay' : `Each. £${BUDGET.deposit.toFixed(2)} deposit first`;
+  $('#moreMoney').textContent = BUDGET.depositPaid ? `£${restEach} left to pay` : `£${BUDGET.ask} each, £${BUDGET.deposit.toFixed(2)} deposit first`;
 
   /* next up: the first thing on your checklist you haven't ticked */
   function paintNext(){
@@ -3161,7 +3144,6 @@ document.addEventListener('pointerdown', e => {
       <span class="nu-bar" aria-hidden="true"><i style="width:${pct}%"></i></span>`;
     $('#prepRing').style.strokeDasharray = `${(n / N * 94.25).toFixed(2)} 94.25`;
     $('#ringTxt').textContent = `${n}/${N}`;
-    $('#prepNext').textContent = left.length ? 'Next: ' + left[0].title.toLowerCase() : 'All sorted';
     $('#morePrep').textContent = `${n} of ${N} sorted`;
   }
   document.addEventListener('prep:change', paintNext);
