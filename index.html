@@ -1484,6 +1484,46 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 /* full pages get room to scroll the box and its Next button up above the keyboard */
 .kb-open main{padding-bottom:calc(var(--kbh,0px) + 40px)}
 .kb-open .entrance.asking .ent-ball,.kb-open .entrance.asking .ent-rope{display:none}
+/* pin sheet: cream, and you write straight onto the sticky note */
+.sheet-card.pin-card{background:#fff8ec!important;color:#2a0b3a!important;box-shadow:0 -20px 60px rgba(0,0,0,.45)!important}
+.pin-card .sheet-grab{background:rgba(42,11,58,.2)!important;margin-bottom:8px!important}
+.pin-top{display:flex!important;justify-content:space-between!important;align-items:center!important}
+.pin-card .q{margin:0!important;font-family:var(--serif)!important;font-weight:600!important;font-size:32px!important;line-height:1!important;color:#2a0b3a!important;text-shadow:none!important;animation:none!important}
+.pin-x{width:44px!important;height:44px!important;margin-right:-10px!important;border:0!important;border-radius:50%!important;background:none!important;color:#2a0b3a!important;font-size:28px!important;line-height:1!important;cursor:pointer!important}
+.pin-card .lbl{color:#2a0b3a!important}
+.pin-card input[type=text],.pin-card input[type=url],.pin-card #pdetails{background:#fff!important;color:#2a0b3a!important;box-shadow:inset 0 0 0 1.5px rgba(42,11,58,.2)!important;border-radius:12px!important}
+.pin-card input:focus,.pin-card #pdetails:focus{background:#fff!important;box-shadow:inset 0 0 0 2px #e0167c!important}
+.pin-card input::placeholder,.pin-card textarea::placeholder{color:rgba(42,11,58,.45)!important}
+.pin-note{position:relative!important;width:min(260px,78%)!important;margin:22px auto 4px!important;padding:26px 16px 12px!important;box-sizing:border-box!important;background:#ffc9dc!important;box-shadow:0 10px 18px rgba(60,30,10,.25)!important;transform:rotate(-1.2deg)!important;display:flex!important;flex-direction:column!important;gap:6px!important}
+.pin-note.theme{background:#fff0a0!important}
+.pin-note::before{content:""!important;position:absolute!important;left:50%!important;top:-9px!important;width:60px!important;height:18px!important;margin-left:-30px!important;background:rgba(255,255,255,.6)!important;transform:rotate(-3deg)!important}
+.sheet-card .pin-note textarea{min-height:96px!important;padding:0!important;border:0!important;border-radius:0!important;resize:none!important;background:transparent!important;box-shadow:none!important;color:#2a0b3a!important;font:700 32px/1 'Caveat',cursive!important}
+.sheet-card .pin-note textarea:focus{background:transparent!important;box-shadow:none!important;outline:none!important}
+.pin-note:focus-within{box-shadow:0 10px 18px rgba(60,30,10,.25),0 0 0 3px #e0167c!important}
+.pin-note-foot{display:flex!important;justify-content:space-between!important;align-items:center!important;font:700 13px var(--mono)!important}
+.pin-heart{padding:3px 8px!important;border-radius:999px!important;background:rgba(255,255,255,.55)!important;color:#c2185b!important;font-size:11px!important}
+.pin-costs{display:flex!important;gap:6px!important}
+.pin-costs input{position:absolute!important;opacity:0!important;pointer-events:none!important}
+.pin-costs label{flex:1!important;display:grid!important;place-items:center!important;min-height:44px!important;border-radius:12px!important;background:rgba(42,11,58,.07)!important;font:700 13px var(--mono)!important;cursor:pointer!important;user-select:none!important}
+.pin-costs input:checked + label{background:#2a0b3a!important;color:#fff4e3!important}
+.pin-costs input:focus-visible + label{outline:3px solid #e0167c!important;outline-offset:2px!important}
+.pin-own{display:flex!important;align-items:center!important;gap:8px!important;margin-top:8px!important;font:700 16px var(--mono)!important}
+.pin-own input{flex:1!important}
+.pin-more-btn{display:block!important;margin:14px 0 0!important;min-height:40px!important;padding:0!important;border:0!important;background:none!important;color:#7a1450!important;font:600 15px var(--sans)!important;cursor:pointer!important}
+#pinMore{display:flex!important;flex-direction:column!important;gap:10px!important;margin-top:16px!important}
+#pinMore[hidden]{display:none!important}
+.sheet-card #pdetails{min-height:56px!important;padding:12px 15px!important;font-size:16px!important}
+.pin-piles label{background:rgba(42,11,58,.07)!important;color:#2a0b3a!important;font-weight:500!important}
+.pin-piles label:hover{background:rgba(42,11,58,.12)!important}
+.pin-piles input:checked + label{background:#2a0b3a!important;box-shadow:none!important;color:#fff4e3!important}
+.pin-card .err{color:#a3123f!important}
+.pin-go{display:block!important;width:100%!important;min-height:54px!important;margin-top:6px!important;border:0!important;border-radius:16px!important;background:#e0167c!important;color:#fff!important;font:700 17px var(--sans)!important;cursor:pointer!important;transition:transform .12s ease!important}
+.pin-go:active{transform:scale(.97)!important}
+.pin-go:disabled{opacity:.6!important}
+.pin-as{margin:12px 0 0!important;text-align:center!important;font-size:14px!important;color:#5b3a55!important}
+.pin-as b{color:#2a0b3a!important}
+.pin-as button{border:0!important;background:none!important;padding:4px!important;color:#7a1450!important;font:600 14px var(--sans)!important;text-decoration:underline!important;text-underline-offset:3px!important;cursor:pointer!important}
+.pin-card [hidden]{display:none!important}
 </style>
 </head>
 <body class="waiting">
@@ -2127,41 +2167,48 @@ input:focus,textarea:focus{box-shadow:0 0 0 2px var(--champ)!important}
 </div>
   <div class="sheet" id="pinSheet" hidden>
     <div class="sheet-back" data-close></div>
-    <form class="sheet-card" id="pinForm" novalidate autocomplete="off" role="dialog" aria-labelledby="pinH">
+    <form class="sheet-card pin-card" id="pinForm" novalidate autocomplete="off" role="dialog" aria-labelledby="pinH">
       <div class="sheet-grab" aria-hidden="true"></div>
-      <h2 class="q" id="pinH">Pin an extra</h2>
-      <p class="hint" id="pinHint">We'll sort the buying.</p>
-      <p class="as-me" id="pinAs" hidden>Pinning as <b></b> <button type="button" data-notme>Not you?</button></p>
+      <div class="pin-top"><h2 class="q" id="pinH">Pin an extra</h2><button class="pin-x" type="button" data-close aria-label="Close">×</button></div>
       <div class="who-field" id="pinWho">
-      <label class="lbl" for="pname">Your name</label>
-      <input type="text" id="pname" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
+        <label class="lbl" for="pname">Your name</label>
+        <input type="text" id="pname" name="name" autocomplete="given-name" placeholder="Your name" maxlength="60">
       </div>
-      <div id="pinPile">
-      <p class="lbl">Which pile?</p>
-      <div class="chips" role="radiogroup" aria-label="Category">
-        <input type="radio" name="category" id="pc0" value="Theme" hidden><label for="pc0" hidden>Theme</label>
-        <input type="radio" name="category" id="pc1" value="Wear"><label for="pc1">Wear</label>
-        <input type="radio" name="category" id="pc2" value="Decor"><label for="pc2">Decor</label>
-        <input type="radio" name="category" id="pc3" value="Games"><label for="pc3">Games</label>
-        <input type="radio" name="category" id="pc4" value="Gifts"><label for="pc4">Gifts</label>
-        <input type="radio" name="category" id="pc5" value="Other"><label for="pc5">Other</label>
+      <div class="pin-note" id="pinNote">
+        <label class="sr" for="pextra" id="pextraL">What is it?</label>
+        <textarea id="pextra" name="extra" rows="3" maxlength="120" enterkeyhint="done" placeholder="Write it here… e.g. Matching airport tees"></textarea>
+        <div class="pin-note-foot" id="pinFoot" aria-hidden="true"><span id="pinCostShow">£?</span><span class="pin-heart">♡ 0</span></div>
       </div>
+      <div id="pinCostWrap">
+        <p class="lbl" id="pcostL">Roughly how much, all in?</p>
+        <div class="pin-costs" role="radiogroup" aria-labelledby="pcostL">
+          <input type="radio" name="costPick" id="pk0" value="Free"><label for="pk0">Free</label>
+          <input type="radio" name="costPick" id="pk1" value="£10"><label for="pk1">£10</label>
+          <input type="radio" name="costPick" id="pk2" value="£25"><label for="pk2">£25</label>
+          <input type="radio" name="costPick" id="pk3" value="£50"><label for="pk3">£50</label>
+          <input type="radio" name="costPick" id="pk4" value="own"><label for="pk4">Other</label>
+        </div>
+        <label class="pin-own" id="pinOwn" hidden>£<input type="text" id="pcost" name="costOwn" inputmode="decimal" placeholder="e.g. 35" maxlength="12" aria-label="Cost in pounds, all in"></label>
       </div>
-      <label class="lbl" for="pextra" id="pextraL">What is it?</label>
-      <input type="text" id="pextra" name="extra" placeholder="e.g. Matching tees for the airport" maxlength="120">
-      <div id="pinMore">
-      <label class="lbl" for="pdetails">The details <small>(optional)</small></label>
-      <textarea id="pdetails" name="details" placeholder="Colour, wording, how many…" maxlength="600"></textarea>
-      <div class="pin-pair">
-        <div><label class="lbl" for="plink">Link <small>(optional)</small></label>
-        <input type="url" id="plink" name="link" inputmode="url" placeholder="Etsy, Amazon…"></div>
-        <div><label class="lbl" for="pcost">Rough cost, all in <small>(optional)</small></label>
-        <input type="text" id="pcost" name="cost" inputmode="decimal" placeholder="e.g. £40" maxlength="20"></div>
-      </div>
+      <button class="pin-more-btn" type="button" id="pinMoreBtn" aria-expanded="false" aria-controls="pinMore">+ Add more (pile, link, details)</button>
+      <div id="pinMore" hidden>
+        <div class="chips pin-piles" role="radiogroup" aria-label="Which pile?">
+          <input type="radio" name="category" id="pc0" value="Theme" hidden><label for="pc0" hidden>Theme</label>
+          <input type="radio" name="category" id="pc1" value="Wear"><label for="pc1">Wear</label>
+          <input type="radio" name="category" id="pc2" value="Decor"><label for="pc2">Decor</label>
+          <input type="radio" name="category" id="pc3" value="Games"><label for="pc3">Games</label>
+          <input type="radio" name="category" id="pc4" value="Gifts"><label for="pc4">Gifts</label>
+          <input type="radio" name="category" id="pc5" value="Other"><label for="pc5">Other</label>
+        </div>
+        <label class="sr" for="plink">Link</label>
+        <input type="url" id="plink" name="link" inputmode="url" placeholder="Link (Etsy, Amazon…)">
+        <label class="sr" for="pdetails">Details</label>
+        <textarea id="pdetails" name="details" rows="2" placeholder="Details (colour, wording, how many…)" maxlength="600"></textarea>
       </div>
       <div class="sr" aria-hidden="true"><label for="website5">Leave empty</label><input type="text" id="website5" name="website" tabindex="-1"></div>
       <div class="err" aria-live="polite"></div>
-      <div class="nav"><button class="skip" type="button" data-close>Cancel</button><button class="next" type="submit">Pin it</button></div>
+      <button class="pin-go" type="submit" id="pinGo">Stick it up</button>
+      <p class="pin-as" id="pinAs" hidden>As <b></b> · <button type="button" data-notme>Not you?</button></p>
     </form>
   </div>
   <div class="sheet" id="wordSheet" hidden>
@@ -3453,7 +3500,7 @@ const Board = (() => {
     sh.querySelectorAll('.err').forEach(x => x.textContent = '');
     const nm = sh.querySelector('input[name=name]'); if(nm && !nm.value) nm.value = Me.name || '';
     if(id === 'pinSheet'){ const known = !!Me.name; $('#pinAs').hidden = !known; $('#pinWho').hidden = known; if(known){ nm.value = Me.name; $('#pinAs b').textContent = Me.name; } }
-    const first = sh.querySelector(id === 'pinSheet' && nm.value ? 'input[name=extra]' : 'input[name=name]');
+    const first = sh.querySelector(id === 'pinSheet' && nm.value ? '[name=extra]' : 'input[name=name]');
     setTimeout(() => first && first.focus({preventScroll:true}), 300);
   }
   function closeSheet(id){ $('#' + id).hidden = true; document.body.classList.remove('locked'); }
@@ -3462,22 +3509,39 @@ const Board = (() => {
   function pinExtra(){ Sound.blip(700); if($('#pc0').checked) $('#pc0').checked = false; setCategory(''); openSheet('pinSheet'); }
   $('#pinSheet [data-notme]').addEventListener('click', () => { $('#pinAs').hidden = true; $('#pinWho').hidden = false; $('#pname').value = ''; $('#pname').focus(); });
 
-  // Two ways in: "Pin something up" is for extras (pile, details, link, cost); "Pitch a theme" asks for the
-  // theme's name and nothing else, because the name should sell it ("Yacht wives").
+  // Two ways in. An extra: write it on the note, tap a rough cost, and "Add more" holds the pile, link and details.
+  // A theme: just the note, because the name should sell it ("Yacht wives").
+  function costValue(){
+    const k = ($('#pinForm input[name=costPick]:checked') || {}).value || '';
+    if(k === 'own'){ const n = $('#pcost').value.replace(/[^\d.]/g, ''); return n ? '£' + n : ''; }
+    return k;
+  }
+  function syncPin(){
+    $('#pinOwn').hidden = (($('#pinForm input[name=costPick]:checked') || {}).value) !== 'own';
+    $('#pinCostShow').textContent = costValue() || '£?';
+  }
+  function showMore(on){ $('#pinMore').hidden = !on; $('#pinMoreBtn').hidden = on; $('#pinMoreBtn').setAttribute('aria-expanded', on); }
   function setCategory(v){
     const theme = v === 'Theme', x = $('#pextra');
     $('#pinH').textContent = theme ? 'Pitch a theme' : 'Pin an extra';
-    $('#pinPile').hidden = theme;
     $('#pextraL').textContent = theme ? 'Theme name' : 'What is it?';
-    $('#pinHint').textContent = theme ? 'A few words. The name should sell it.' : "We'll sort the buying.";
-    x.placeholder = theme ? 'e.g. Yacht wives' : 'e.g. Matching tees for the airport';
+    x.placeholder = theme ? 'Name it… e.g. Yacht wives' : 'Write it here… e.g. Matching airport tees';
     x.maxLength = theme ? 40 : 120;
     if(theme && x.value.length > 40) x.value = x.value.slice(0, 40);
-    $('#pinMore').hidden = theme;
+    $('#pinNote').classList.toggle('theme', theme);
+    $('#pinCostWrap').hidden = theme; $('#pinFoot').hidden = theme;
+    $('#pinGo').textContent = theme ? 'Pitch it' : 'Stick it up';
+    if(theme){ $('#pinMoreBtn').hidden = true; $('#pinMore').hidden = true; } else showMore(false);
+    syncPin();
   }
+  $('#pinMoreBtn').addEventListener('click', () => { Sound.blip(820); showMore(true); });
   $('#pinForm').addEventListener('change', e => {
-    if(e.target.name === 'category') Sound.blip(880);
+    if(e.target.name === 'category' || e.target.name === 'costPick') Sound.blip(880);
+    if(e.target.name === 'costPick'){ syncPin(); if(e.target.value === 'own') $('#pcost').focus(); }
   });
+  $('#pcost').addEventListener('input', syncPin);
+  // Enter on the note pins it (it's one idea, not a paragraph)
+  $('#pextra').addEventListener('keydown', e => { if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); $('#pinForm').requestSubmit(); } });
   function pitch(){
     Sound.blip(700); openSheet('pinSheet');
     $('#pc0').checked = true; setCategory('Theme');
@@ -3503,11 +3567,11 @@ const Board = (() => {
     Me.set(name); err.textContent = '';
     const theme = category === 'Theme';
     const data = { type:'extra', name, extra, category, details: theme ? '' : f.details.value.trim(),
-      link: theme ? '' : f.link.value.trim(), cost: theme ? '' : f.cost.value.trim(), website: f.website.value };
+      link: theme ? '' : f.link.value.trim(), cost: theme ? '' : costValue(), website: f.website.value };
     btn.disabled = true; btn.textContent = 'Pinning…';
     const p = new URLSearchParams(data); p.set('idea', '📌 EXTRA: ' + extra);   // fallback for an older Sheet script
     const ok = await post(p).then(() => true, () => false);
-    btn.disabled = false; btn.textContent = 'Pin it';
+    btn.disabled = false; btn.textContent = theme ? 'Pitch it' : 'Stick it up';
     if(!ok){ err.textContent = "That didn't send. Check your signal and try again."; return; }
     const tmp = { ...data, id: 'tmp' + Date.now(), hearts: 0, by: [], at: Date.now(), confirmed: false };
     items.unshift(tmp); freshId = tmp.id; filter = '';
